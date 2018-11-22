@@ -13,6 +13,7 @@ For bug tracking purpose you can use the GitHub or questions about AgroLG, you c
 
 # Valorization
 
+* [https://doi.org/10.1101/325423] ( BioArXiv, accepted at PlosOne) doi: https://doi.org/10.1101/325423
 * [https://tel.archives-ouvertes.fr/IBC/hal-01176903v1](https://tel.archives-ouvertes.fr/IBC/hal-01176903v1) 
 * [http://ceur-ws.org/Vol-1546/poster_55.pdf](http://ceur-ws.org/Vol-1546/poster_55.pdf)
 
@@ -21,7 +22,7 @@ For bug tracking purpose you can use the GitHub or questions about AgroLG, you c
 # Contributing
 
 * Intellectual property belongs to IRD, CIRAD, IBC, INRA, IFB, ELIXIR, and SouthGreen development platform.
-* Written by Aravind Venkatesan, Pierre Larmande, Gildas Tagny, Imene chentli, Nordine El Hassouni, Manuel Ruiz.
+* Written by Aravind Venkatesan, Gildas Tagny Ngompe, Nordine El Hassouni, Imene Chentli, Valentin Guignon, Clement Jonquet, Manuel Ruiz, Pierre Larmande. 
 * Copyright 2014-2018
 
 
