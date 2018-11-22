@@ -1,7 +1,7 @@
 
 # AgroLD ETL
 
-AgroLD is a RDF knowledge base that consists of data integrated from a variety of plant resources and ontologies. 
+AgroLD is a RDF knowledge base that consists of data integrated from a variety of plant resources and ontologies. AgroLD ETL is the Python packages developed to transform plant datasets in RDF. Packages are developped for data standards such as GFF,GAF, VCF and specific plant databases.
 
 
 # Contact
@@ -13,7 +13,7 @@ For bug tracking purpose you can use the GitHub or questions about AgroLG, you c
 
 # Valorization
 
-* [https://doi.org/10.1101/325423] ( BioArXiv, accepted at PlosOne) doi: https://doi.org/10.1101/325423
+* [https://doi.org/10.1101/325423] ( BioArXiv, accepted at PlosOne)
 * [https://tel.archives-ouvertes.fr/IBC/hal-01176903v1](https://tel.archives-ouvertes.fr/IBC/hal-01176903v1) 
 * [http://ceur-ws.org/Vol-1546/poster_55.pdf](http://ceur-ws.org/Vol-1546/poster_55.pdf)
 
