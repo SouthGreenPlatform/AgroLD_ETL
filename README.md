@@ -13,7 +13,7 @@ For bug tracking purpose you can use the GitHub or questions about AgroLG, you c
 
 # Valorization
 
-* [https://doi.org/10.1101/325423] ( BioArXiv, accepted at PlosOne)
+* [https://doi.org/10.1101/325423](https://doi.org/10.1101/325423)
 * [https://tel.archives-ouvertes.fr/IBC/hal-01176903v1](https://tel.archives-ouvertes.fr/IBC/hal-01176903v1) 
 * [http://ceur-ws.org/Vol-1546/poster_55.pdf](http://ceur-ws.org/Vol-1546/poster_55.pdf)
 
