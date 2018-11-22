@@ -1,0 +1,9 @@
+@base	<http://www.southgreen.fr/agrold/> .
+@prefix	rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix	rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix	owl:<http://www.w3.org/2002/07/owl#> .
+@prefix	agrold_vocabulary:<http://www.southgreen.fr/agrold/vocabulary/> .
+@prefix	obo:<http://purl.obolibrary.org/obo/> .
+@prefix	sio:<http://semanticscience.org/resource/> .
+@prefix	uniprot:<http://purl.uniprot.org/uniprot/> .
+
