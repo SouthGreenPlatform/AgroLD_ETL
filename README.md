@@ -1,14 +1,13 @@
 
-# AgroLD
+# AgroLD ETL
 
-AgroLD is a RDF knowledge base that consists of data integrated from a variety of plant resources and ontologies. The aim of the Agronomic Linked Data (AgroLD) project is to provide a portal for bioinformatics and domain experts to exploit the homogenized data models towards efficiently generating research hypotheses.
+AgroLD is a RDF knowledge base that consists of data integrated from a variety of plant resources and ontologies. 
 
 
 # Contact
 
 For bug tracking purpose you can use the GitHub or questions about AgroLG, you can contact the mainteners using the following email addresses:
 
-* nordine.elhassouni_at_cirad.fr
 * pierre.larmande_at_ird.fr
 
 
