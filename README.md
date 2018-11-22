@@ -21,8 +21,8 @@ For bug tracking purpose you can use the GitHub or questions about AgroLG, you c
 # Contributing
 
 * Intellectual property belongs to IRD, CIRAD, IBC, INRA, IFB, ELIXIR, and SouthGreen development platform.
-* Written by Aravind Venkatesan, Pierre Larmande, Gildas Tagny, Imene chentli, Nordine El Hassouni, Manuel Ruiz and Patrick Valduriez.
-* Copyright 2014-2016
+* Written by Aravind Venkatesan, Pierre Larmande, Gildas Tagny, Imene chentli, Nordine El Hassouni, Manuel Ruiz.
+* Copyright 2014-2018
 
 
 # The Architecture of project
