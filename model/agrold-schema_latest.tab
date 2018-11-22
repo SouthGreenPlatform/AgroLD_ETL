@@ -1,0 +1,96 @@
+#URIs to be used:
+#
+#Class:	http://www.southgreen.fr/agrold/resource/
+#ObjectProperty and DataTypeProperty:	http://www.southgreen.fr/agrold/vocabulary/
+#ontology mapping:	OBO ontologies	namespace-obo:	http://purl.obolibrary.org/obo/
+#		SIO	namespace-sio:	http://semanticscience.org/resource/
+#		Crop ontology (Germplasm)	namespace-co:	http://www.cropontology.org/rdf/
+#		SWO (Map_Feature, Pathway_Identifier)	namespace-swo:	http://edamontology.org/
+#owl:	http://www.w3.org/2002/07/owl#
+#rdfs:	http://www.w3.org/2000/01/rdf-schema#
+#	exact match:	owl:equivalentClass
+#	subClassOf:	rdfs:subClassOf
+#	RESSOURCE	LABEL	TYPE	ONTOLOGY_MAPPING	NOTE
+#########
+# Class #
+#########
+Chromosome	Chromosome	Class	SO_0000430	exact match
+Gene	Gene	Class	SO_0000704	exact match
+Protein	Protein	Class	SO_0000104	exact match
+QTL	QTL	Class	SO_0000771	exact match
+mRNA	mRNA	Class	SO_0000234	exact match
+CDS	CDS	Class	SO_0000316	exact match
+Exon	Exon	Class	SO_0000147	exact match
+Metabolic_Pathway	Metabolic Pathway	Class	SIO_010532	exact match
+Pathway_Identifier	Pathway Identifier	Class	data_1157	exact match
+Match	Match	Class	SO_0000343	exact match
+Match_part	Match part	Class	SO_0000039	exact match
+EST_match	EST match	Class	SO_0000668	exact match
+cDNA_match	CDNA match	Class	SO_0000689	exact match
+three_prime_UTR	Three prime UTR	Class	SO_0000205	exact match
+five_prime_UTR	Five prime UTR	Class	SO_0000204	exact match
+Flanking_region	Flanking region	Class	SO_0000239	exact match
+miRNA_primary_transcript	miRNA_primary_transcript	Class	SO_0000647	exact match
+miRNA	miRNA	Class	SO_0000276	exact match
+Protein_Family	Protein family	Class	OBI_0000251	exact match
+Population	Population	Class	OBI_0000181	exact match
+Map_Feature	Map feature	Class	data_1865	exact match
+Study	Study	Class	OBI_0000073	exact match
+Germplasm	Germplasm	Class	CO_715:0000225	exact match
+
+##################
+# ObjectProperty #
+##################
+participates_in	participates in	ObjectProperty	BFO_0000056	exact match
+has_function	has function	ObjectProperty	BFO_0000085	exact match
+located_in	located in	ObjectProperty	BFO_0000082	exact match
+expressed_in	expressed in	ObjectProperty	RO_0002206	exact match
+expressed_at	expressed at	ObjectProperty	BFO_0000174	subClassOf (BFO_0000174:has proper continuant part at some time)
+has_trait	has trait	ObjectProperty	RO_0002410	subClassOf (RO_0002410:causally related to)
+observed_in	observed in	ObjectProperty
+taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source)
+evidence	has evidence	ObjectProperty	RO_0002558	exact match (RO_0002558:has evidence)
+has_annotation	has annotation	ObjectProperty	SIO_000255	exact match (SIO_000255:has annotation)
+is_located_on	is located on	ObjectProperty
+encodes	encodes	ObjectProperty	SIO_010078	exact match (SIO_010078:encodes)
+develops_from	develops from	ObjectProperty	RO_0002202	exact match (RO_0002202:develops from)
+is_agent_in	is agent in	ObjectProperty	SIO_000063	exact match (SIO_000063:is agent in)
+part_of	part of	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
+is_member_of	is member of	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
+is_orthologous_to	is orthologous to	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
+is_paralogous_to	is paralogous to	ObjectProperty	SIO_000630	exact match (SIO_000630:is paralogous to)
+derives_from	derives from	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
+contains	contains	ObjectProperty	RO_0002524	exact match (RO_0002524:contains)
+####################
+# DataTypeProperty #
+####################
+description	description	DataTypeProperty	Gene,Protein,QTL	String
+has_synonym	has synonym	DataTypeProperty	Gene,Protein,QTL	String,Integer
+evidence_code	evidence code	DataTypeProperty	Protein,QTL	String
+assigned_by	assigned by	DataTypeProperty	Gene,Protein,QTL	String
+date	date	DataTypeProperty	Gene,Protein,QTL	Date
+has_start_position	has start position	DataTypeProperty	Gene	Integer
+has_end_position	has end position	DataTypeProperty	Gene	Integer
+has_biotype	has biotype	DataTypeProperty	Gene	String
+has_number_of_individuals	has number of individuals	DataTypeProperty	(Gene)	Integer
+has_total_number	has total number	DataTypeProperty	(Gene)	Integer
+abbreviation	abbreviation	DataTypeProperty	(Gene)	String
+has_mutant_type	has mutant type	DataTypeProperty	(Gene)	String
+observation	observation	DataTypeProperty	(Gene)	String
+has_phynotype_class	has phynotype class	DataTypeProperty	(Gene)	String
+has_phynotype_subclass	has phynotype subclass	DataTypeProperty	(Gene)	String
+classified_with	classified with	DataTypeProperty	Protein	String
+comment	comment	DataTypeProperty	Protein	String
+source_project	source project	DataTypeProperty	(Gene)	String
+has_symbol	has symbol	DataTypeProperty	(QTL,Protein)	String
+has_evalue	has evalue	DataTypeProperty 
+######################
+# AnnotationProperty #
+######################
+has_dbxref	has dbxref		AnnotationProperty	(owl:Class)	String
+has_alternative_id	has alternative id	AnnotationProperty	(Gene,Protein,QTL)
+# MISSED DATA
+#has_score	has score	DataTypeProperty	?	?
+#number_of_sequences	number of sequences	DataTypeProperty	?	?
+#has_threshold	has threshold	DataTypeProperty	?	?
+#curation_status	curation status	DataTypeProperty	?	?
