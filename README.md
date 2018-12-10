@@ -6,7 +6,12 @@ AgroLD is a RDF knowledge base that consists of data integrated from a variety o
 
 # Contact
 
+<<<<<<< Updated upstream
 For bug tracking purpose you can use the GitHub or questions about AgroLG, you can contact the mainteners using the following email addresses:
+=======
+    
+    <meta property="og:image" content="https://avatars2.githubusercontent.com/u/6577134?s=400&amp;v=4" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="SouthGreenPlatform/AgroLD_ETL" /><meta property="og:url" content="https://github.com/SouthGreenPlatform/AgroLD_ETL" /><meta property="og:description" content="AgroLD is a RDF knowledge base of plant resources. AGROLD_ETL provides package to lift datasets and data standards for the AgroLD project..." />
+>>>>>>> Stashed changes
 
 * pierre.larmande_at_ird.fr
 
