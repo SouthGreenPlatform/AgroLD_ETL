@@ -11,7 +11,7 @@ AgroLD is a RDF knowledge base that consists of data integrated from a variety o
 
 # Valorization
 
-* [https://doi.org/10.1101/325423](https://doi.org/10.1101/325423)
+* [https://doi.org/10.1371/journal.pone.0198270](https://doi.org/10.1371/journal.pone.0198270)
 * [https://tel.archives-ouvertes.fr/IBC/hal-01176903v1](https://tel.archives-ouvertes.fr/IBC/hal-01176903v1) 
 * [http://ceur-ws.org/Vol-1546/poster_55.pdf](http://ceur-ws.org/Vol-1546/poster_55.pdf)
 
