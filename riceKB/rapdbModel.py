@@ -1,5 +1,5 @@
 import sys
-print sys.path
+print (sys.path)
 from globalVars import *
 from globalVars import base_vocab_ns
 from gffParser import *
@@ -30,15 +30,18 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     number_exon = 0
     number_cds = 0
     line_number = 0
+    ch_number = 0
     number_five_prime_UTR = 0
     number_three_prime_UTR = 0
     rdf_writer = open(output_file, "w")
-    chromosome_list = list()
-    otl_plante = list()
+    chromosome_list = {}
+
+
 
     pubmed_pattern = re.compile(r'^\d+$')
     ncbi_pattern = re.compile(r'^[A-Z]{2}\d{6}$')
 
+    chromosome_size = [43270923,35937250,36413819,35502694,29958434,31248787,29697621,28443022,23012720,23207287,29021106,27531856]
 # The first wrinting in the file is the prefix
 
 
@@ -48,6 +51,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
     rdf_writer.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
     rdf_writer.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+    rdf_writer.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+    rdf_writer.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
     rdf_writer.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     rdf_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     rdf_writer.write(pr + "\t" + mirbase_ns + "<" + mirbase_uri + "> .\n")
@@ -67,196 +72,51 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n")
     rdf_writer.write(pr + "\t" + tenor_ns + "<" + tenor_uri + "> .\n")
     rdf_writer.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n")
-
+    rdf_writer.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n")
     # Ajout du prefix pour la realese des donnees
-    rdf_writer.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    rdf_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n\n")
 
 # In here we buil the modele and writer in file with ttl format
 
+  # Species triple
+
+
+    os_japonica_buffer = ''
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "Oryza sativa Japonica Group" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "Japanese rice" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
+    print(os_japonica_buffer)
+    rdf_writer.write(os_japonica_buffer)
+# Chromosome triple
+# chromosome:IRGSP-1.0:1:1:43270923:1
+#  rdfs:subClassOf obo:SO_0000340
+# rdfs:label "Oryza sativa Japonica Group chromosome:IRGSP-1.0:1:1:43270923:1 (IRGSP-1.0)" .
+# dc:identifier "chromosome:IRGSP-1.0:1:1:43270923:1" .
+# term:inEnsemblAssembly "IRGSP-1.0" .
     for records in rapdb_ds:
         line_number+=1
-        # Chromosome triple
-        if not records['seqid'] in chromosome_list:
-            os_japonica_buffer = ''
-            chromosome_list.append(records['seqid'])
-            os_japonica_buffer += chromosome_ns + re.sub('Os', '', records['seqid']) + "\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-            os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Chromosome" + " .\n\n"
-            #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000430" + " .\n"
-            print(os_japonica_buffer)
-            #os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
-            rdf_writer.write(os_japonica_buffer)
-
-# SGBI.gff3 for EST_match and match_part type
-
-        if records['source'] == "SBGI":
-            if records['type'] == "EST_match":
+        if not records['seqid'] in chromosome_list.keys():
+            for chromosome in chromosome_size:
                 os_japonica_buffer = ''
-                os_japonica_buffer += OrygenesDB_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "EST_match" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000668" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
+                ch_number += 1
+                chromosome_list[records['seqid']]= "IRGSP-1.0:" + str(ch_number) + ":1:" + str(chromosome) + ":1"
+                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1:" + str(chromosome) + ":1" + "\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Chromosome" + " ;\n"
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + "Oryza sativa Japonica Group chromosome:" + "IRGSP-1.0:" + str(
+                    ch_number) + ":1:" + str(chromosome) + ":1" + "(IRGSP-1.0)" + "\" ;\n"
+                os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "IRGSP-1.0:" + str(
+                    ch_number) + ":1:" + str(chromosome) + ":1" + "\" ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" ;\n"
+
                 print(os_japonica_buffer)
+                # os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
 
-            if records['type'] == "match_part":
-                os_japonica_buffer = ''
-                number_match_part_sbgi += 1
-                os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "_match_part_" + str(number_match_part_sbgi) + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Match_part" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000039" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t" + OrygenesDB_ns + records['attributes']['Parent'] + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
+        #RAPDB.gff3
 
-# SSR.gff3 for match type #
-
-        if records['source'] == "Rice_SSR":
-            if records['type'] == "match":
-                os_japonica_buffer = ''
-                os_japonica_buffer += OrygenesDB_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Match" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000343" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-# OTL_public.gff3 for flanking_region type #
-
-        if records['source'] == "OTL_T-DNA":
-            if records['type'] == "flanking_region":
-                os_japonica_buffer = ''
-                os_japonica_buffer += embl_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Flanking_region" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000239" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_evalue" + "\t\t" + " \""+ records['attributes']['evalue'] + "\"" + "; \n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + otl_public_plante_ns + records['attributes']['plant_name'] + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
- # Plante_name of OTL_file.gff3
-
-            if not records['attributes']['plant_name'] in otl_plante:
-                os_japonica_buffer = ''
-                otl_plante.append(records['attributes']['plant_name'])
-                os_japonica_buffer += otl_public_plante_ns + records['attributes']['plant_name'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-# CSIRO.gff3 for flanking_region and flanking_region type
-
-        if records['source'] == "CSIRO":
-            if records['type'] == "flanking_region":
-                os_japonica_buffer = ''
-                os_japonica_buffer += embl_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Flanking_region" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000239" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_evalue" + "\t\t" + " \""+ records['attributes']['evalue'] + "\"" + "; \n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-# miRNA.gff3 for flanking_region and mirRNA and miRNA_primaru-transcrypion type
-
-        if records['source'] == "miRBase":
-            if records['type'] == "miRNA_primary_transcript":
-                os_japonica_buffer = ''
-                os_japonica_buffer += mirbase_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "miRNA_primary_transcript" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000647" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-            if records['type'] == "miRNA":
-                os_japonica_buffer = ''
-                os_japonica_buffer += mirbase_mature_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "miRNA" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000276" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "derives_from" + "\t\t" + mirbase_ns + records['attributes']['Derives_from'] + " ; \n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-# KOME.gff3
-        if records['source'] == "KOME":
-            if records['type'] == "cDNA_match":
-                os_japonica_buffer = ''
-                os_japonica_buffer += cDNA_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "cDNA_match" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000689" + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-            if records['type'] == "match_part":
-                os_japonica_buffer = ''
-                number_match_part_kome += 1
-                os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "_match_part_" + str(number_match_part_kome) + "\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Match_part" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000039" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + cDNA_ns + records['attributes']['Parent'] + " ; \n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                print(os_japonica_buffer)
-                rdf_writer.write(os_japonica_buffer)
-
-#RAPDB.gff3
-
-        if records['source'] == "irgsp1_rep":
+        if records['source']:
             if records['type'] == "gene":
                 os_japonica_buffer = ''
                 os_japonica_buffer += ensembl_ns + records['attributes']['ID'] + "\n"
@@ -268,7 +128,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + chromosome_list[records['seqid']] + " .\n"
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
 
@@ -427,8 +287,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/Downloads/IRGSP-1.0_representative/transcripts_mRNA.gff'
-path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative/transcripts_mRNA.ttl' # The output
+path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/locus_copie.gff'
+path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = parseGFF3(path)   # The parsing file withe tropGeneParser()
