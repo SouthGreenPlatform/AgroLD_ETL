@@ -9,7 +9,7 @@ TODO:
     1) Add variables for common predicates used in the Rdf converters
     2) Cleanup cleanup the script and add comments
 '''
-global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc_ns, dc_uri, ncbi_tax_ns, ncbi_tax_uri, owl, owl_ns, xsd, xsd_ns, base_uri, base_ns, base_vocab_uri, base_vocab_ns, sio_uri, sio_ns, obo_uri, obo_ns, ncbi_tax_uri,\
+global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc_ns, dc_uri, faldo, faldo_ns, ncbi_tax_ns, ncbi_tax_uri, owl, owl_ns, xsd, xsd_ns, base_uri, base_ns, base_vocab_uri, base_vocab_ns, sio_uri, sio_ns, obo_uri, obo_ns, ncbi_tax_uri,\
 ncbi_tax_ns, uniprot, up_ns, gramene_gene, gr_g_ns, gramene_qtl, gr_qtl_ns, sio_term, go_aspects, ont_aspects, gene_term, protein_term, tigr_uri, tigr_ns, rapdb_uri, rapdb_ns,\
 plant_trait_term,orygene_uri, orygene_ns, goa_uri, goa_ns, gr_assoc, gr_assoc_ns, tair_l_uri, tair_l_ns, met_pw_sio_term, ec_code_uri, ec_code_ns,reaction_uri, reaction_ns,\
 pathway_uri, pathway_ns, otl_uri, otl_ns, plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term   
@@ -89,6 +89,9 @@ ncbi_tax_ns = 'taxon:'
 uniprot = 'http://purl.uniprot.org/uniprot/'
 up_ns = 'uniprot:'
 
+faldo = 'http://biohackathon.org/resource/faldo#'
+faldo_ns = 'faldo:'
+
 gramene_gene =  'http://www.identifiers.org/gramene.gene/'
 gr_g_ns = 'gramene_gene:'
 
@@ -107,7 +110,7 @@ qtaro_qtl_ns = 'qtaro_qtl:'
 qtaro_gene = 'http://www.southgreen.fr/agrold/qtaro.gene/'
 qtaro_gene_ns = 'qtaro_gene:'
 
-ensembl_plant = 'http://identifiers.org/ensembl.plant/'
+ensembl_plant = 'http://rdf.ebi.ac.uk/ensembl.plant/'
 ensembl_ns = 'ensembl:'
 
 tair_l_uri = 'http://identifiers.org/tair.locus/'
