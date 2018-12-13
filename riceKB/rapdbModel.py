@@ -82,10 +82,12 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
 
     os_japonica_buffer = ''
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "Oryza sativa Japonica Group" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "Japanese rice" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
+    # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
     rdf_writer.write(os_japonica_buffer)
 # Chromosome triple
@@ -118,19 +120,67 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
         if records['source']:
             if records['type'] == "gene":
+                # rdf: type obo: SO_0001217.
+                # rdf: type term: protein_coding.
+                # rdfs:label "class III peroxidase 22" .
+                # dc:description "Similar to Peroxidase BP 1 precursor. (Os01t0963000-01);Similar to Peroxidase BP 1 precursor. (Os01t0963000-04)" .
+                # obo:RO_0002162 taxon:39947
+                # dc:identifier "Os01g0963000" .
                 os_japonica_buffer = ''
                 os_japonica_buffer += ensembl_ns + records['attributes']['ID'] + "\n"
+                # rapdb..ID  skos:closeMatch ensembl:id
                 os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
                 #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + chromosome_list[records['seqid']] + " .\n"
+                os_japonica_buffer += "\t" + dc_ns + "identifier" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
+
+                os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
+
+                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+                # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
+                # os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
+                # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + chromosome_list[records['seqid']] + " ;\n"
+
+                os_japonica_buffer +=  "\t" + faldo_ns + "location" + "\t"  + ensembl_ns + records['attributes']['ID'] + '-' + str(records['start']) + '-' + str(records['end']) + " .\n\n"
+
+                os_japonica_buffer += ensembl_ns + records['attributes']['ID'] + '-' + str(records['start']) + '-' + str(records['end']) + "\t" + rdfs_ns + "label" + "\t"  + " \"" + ensembl_ns + records['attributes']['ID'] + '-' + str(records['start']) + '-' + str(records['end']) + " \";\n"
+                os_japonica_buffer +=  "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " \";\n"
+                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " \";\n"
+
+                # <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> rdfs:label "chromosome 1:42441701-42442930:1" .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> rdf:type faldo:Region .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> faldo:begin <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> faldo:end <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> faldo:reference <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1> .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> rdf:type faldo:ExactPosition .
+                    #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> rdf:type faldo:ForwardStrandPosition .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> faldo:position 42441701 .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> faldo:reference <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1> .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> rdf:type faldo:ExactPosition .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> rdf:type faldo:ForwardStrandPosition .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> faldo:position 42442930 .
+                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> faldo:reference <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1> .
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
+
+            #   < p1 > sio: has - value  "1" ^ ^ xsd: integer;
+            #         sio: refers - to < exon1 >.
+            #
+            # < exon1 > rdf: type insdc: Exon;
+            #           faldo: location < region1 >.
+            #
+            # < region1 > rdf: type  faldo: Region;
+            #             faldo: begin < position1 >;
+            #              faldo: end < position2 >.
+            #
+            # < position1 > rdf: type  faldo: ExactPosition, faldo: ForwardStrandPosition;
+            #               faldo: position  2983;
+            #               faldo: reference < chromosome >.
+            #
+            # < position2 > rdf: type  faldo: ExactPosition, faldo: ForwardStrandPosition;
+            #               faldo: position   10815;
+            #               faldo: reference < chromosome >.
 
             if records['type'] == "mRNA":
                 os_japonica_buffer = ''
