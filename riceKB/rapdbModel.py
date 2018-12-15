@@ -57,15 +57,10 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
     rdf_writer.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     rdf_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + mirbase_ns + "<" + mirbase_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + mirbase_mature_ns + "<" + mirbase_mature_uri + "> .\n")
     rdf_writer.write(pr + "\t" + protein_ns + "<" + protein_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + flanking_ns + "<" + flanking_uri + "> .\n")
     rdf_writer.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
     rdf_writer.write(pr + "\t" + mRNA_ns + "<" + mRNA_uri + "> .\n")
     rdf_writer.write(pr + "\t" + cDNA_ns + "<" + cDNA_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + otl_public_plante_ns + "<" + otl_public_plante_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + OrygenesDB_ns + "<" + OrygenesDB_uri + "> .\n")
     rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
     rdf_writer.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n")
     rdf_writer.write(pr + "\t" + embl_ns + "<" + embl_uri + "> .\n")
@@ -77,6 +72,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n")
     # Ajout du prefix pour la realese des donnees
     rdf_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n\n")
+    rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n\n")
 
 # In here we buil the modele and writer in file with ttl format
 
@@ -136,7 +132,11 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                     strand = "-1"
                     position = "ReverseStrandPosition"
                 os_japonica_buffer = ''
-                os_japonica_buffer += ensembl_ns + records['attributes']['ID'] + "\n"
+
+                os_japonica_buffer += rapdb_gene_ns + records['attributes']['ID'] + "\n"
+                os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  ensembl_gene_ns + records['attributes']['ID'] + " ;\n"
+                os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + ensembl_gene_ns + records['attributes']['ID'] + " ;\n"
+
                 # rapdb..ID  skos:closeMatch ensembl:id  ## important ##
                 os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
@@ -373,8 +373,6 @@ pp = pprint.PrettyPrinter(indent=4)
 #TEST PARAM
 path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/locus_copie.gff'
 path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica.ttl' # The output
-# path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/transcripts_copie.gff'
-# path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica-2.ttl' # The output
 
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
@@ -384,3 +382,13 @@ ds = parseGFF3(path)   # The parsing file with the tropGeneParser()
 #os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
 
 rapdbModeleRDF(ds, path_output)
+
+# guideline to build resource uri
+# domain name: http://www.southgreen.fr/agrold/
+# resource: resource
+# database : rapdb
+# release-version : 5 (integer)
+# species_name: oryza_sativa
+# annotation_project : IRGSP-1.0
+# entity_type : chromosome
+# example : <http://www.southgreen.fr/agrold/resource/rapdb/5/oryza_sativa/IRGSP-1.0/chromosome/IRGSP-1.0:1:1-43270923:1
