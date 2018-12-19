@@ -22,6 +22,15 @@ TODO:
 __author__  = "larmande"
 
 
+def getStrandValue(strandVar):
+    if strandVar == "-":
+        strandVar = "-1"
+        positionVar = "ReverseStrandPosition"
+    else:
+        strandVar = "1"
+        positionVar = "ForwardStrandPosition"
+    return (strandVar,positionVar)
+
 def rapdbModeleRDF(rapdb_ds, output_file):
   # The differentes variable declaration
     os_japonica_buffer = ''    # initilised the buffer at zero
@@ -126,11 +135,13 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 #< http: // identifiers.org/ensembl / Os01g0963000 > rdf: type identifiers: ensembl.
                 # < http: // identifiers.org/ensembl/Os01g0963000> sio: SIO_000671[a ident_type: ensembl; sio: SIO_000300 "Os01g0963000"].
                #  < http: // rdf.ebi.ac.uk/resource/ensembl/Os01g0963000> faldo: location < http: // rdf.ebi.ac.uk / resource / ensembl / 41 / oryza_sativa / IRGSP - 1.0 / 1: 42441660 - 42442936:1 >.
-                strand = "1"
-                position = "ForwardStrandPosition"
-                if records['strand'] == "-":
-                    strand = "-1"
-                    position = "ReverseStrandPosition"
+               #  strand = "1"
+               #  position = "ForwardStrandPosition"
+               #  if records['strand'] == "-":
+               #      strand = "-1"
+               #      position = "ReverseStrandPosition"
+                (strand,position) = getStrandValue(records['strand'])
+
                 os_japonica_buffer = ''
 
                 os_japonica_buffer += rapdb_gene_ns + records['attributes']['ID'] + "\n"
@@ -217,6 +228,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
 
             if records['type'] == "mRNA":
+
+                (strand,position) = getStrandValue(records['strand'])
                 os_japonica_buffer = ''
                 os_japonica_buffer += mRNA_ns + records['attributes']['ID'] + "\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "mRNA" + " ;\n"
@@ -365,6 +378,9 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
 
+
+    strand = "1"
+    position = "ForwardStrandPosition"
     print(line_number)
 
 
