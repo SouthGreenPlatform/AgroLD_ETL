@@ -119,15 +119,15 @@ ensembl_plant = 'http://rdf.ebi.ac.uk/ensembl.plant/' # http://rdf.ebi.ac.uk/res
 ensembl_ns = 'ensembl:'
 
 ensembl_gene = 'http://rdf.ebi.ac.uk/resource/ensembl/'
-ensembl_gene_ns = 'ensembl_gene_ns'
+ensembl_gene_ns = 'ensembl_gene:'
 
 
 ensembl_transcript = 'http://rdf.ebi.ac.uk/resource/ensembl.transcript/'
-ensembl_transcript_ns = 'ensembl_gene_ns'
+ensembl_transcript_ns = 'ensembl_transcript:'
 
 
 ensembl_protein = 'http://rdf.ebi.ac.uk/resource/ensembl.protein/'
-ensembl_protein_ns = 'ensembl_gene_ns'
+ensembl_protein_ns = 'ensembl_protein:'
 
 
 tair_l_uri = 'http://identifiers.org/tair.locus/'
