@@ -521,7 +521,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer = ''
                 number_three_prime_UTR += 1
                 os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#three_prime_UTR_" + str(number_three_prime_UTR) + "\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Threee_prime_UTR" + " ;\n"
+                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "three_prime_UTR" + " ;\n"
                 #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000205" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
@@ -575,7 +575,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer = ''
                 number_five_prime_UTR += 1
                 os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#five_prime_UTR_" + str(number_five_prime_UTR) + "\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Five_prime_UTR" + " ;\n"
+                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "five_prime_UTR" + " ;\n"
                 #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000204" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
