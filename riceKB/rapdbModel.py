@@ -519,8 +519,10 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
             if records['type'] == "three_prime_UTR":
                 os_japonica_buffer = ''
-                number_three_prime_UTR += 1
-                os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#three_prime_UTR_" + str(number_three_prime_UTR) + "\n"
+                #number_three_prime_UTR += 1
+                # only one 3_prime_UTR
+                #os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#three_prime_UTR_" + str(number_three_prime_UTR) + "\n"
+                os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#three_prime_UTR" + "\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "three_prime_UTR" + " ;\n"
                 #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000205" + " ;\n"
@@ -573,8 +575,9 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
             if records['type'] == "five_prime_UTR":
                 os_japonica_buffer = ''
-                number_five_prime_UTR += 1
-                os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#five_prime_UTR_" + str(number_five_prime_UTR) + "\n"
+                #number_five_prime_UTR += 1
+                #os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#five_prime_UTR_" + str(number_five_prime_UTR) + "\n"
+                os_japonica_buffer += OrygenesDB_ns + records['attributes']['Parent'] + "#five_prime_UTR" + "\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "five_prime_UTR" + " ;\n"
                 #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000204" + " ;\n"
