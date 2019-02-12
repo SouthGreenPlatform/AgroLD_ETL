@@ -17,6 +17,7 @@ TODO:
     1) Add documentation
     2) Fix Gramene record trailing space in the parser, now it is being handled in the RDF converter
     3) better Error handling
+    4) put @en at label
 @author: larmande
 '''
 __author__  = "larmande"
@@ -247,7 +248,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "develops_from" + "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
-                os_japonica_buffer += "\t" + obo_ns +  "SO_transcribed_from" +  "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
+                os_japonica_buffer += "\t" + sio_ns +  "SIO_010081" +  "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
                 # <http://rdf.ebi.ac.uk/resource/ensembl.transcript/Os09t0372700-01> obo:SO_translates_to <http://rdf.ebi.ac.uk/resource/ensembl.protein/Os09t0372700-01> .
                 ## os_japonica_buffer += "\t" + obo_ns + "SO_translates_to" + "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
 
