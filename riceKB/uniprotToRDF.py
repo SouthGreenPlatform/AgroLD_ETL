@@ -55,16 +55,16 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
                         prim_accession = record.accessions.pop(0)
                         prot_counter += 1 
                         rdf_buffer += up_ns + prim_accession + "\n" #output_writer.write(up_ns + prim_accession + "\n")
-                        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n" #output_writer.write("\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein" + " ;\n")
-                        rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n" #output_writer.write("\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n")
+                        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein" + " ;\n" #output_writer.write("\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein" + " ;\n")
+                        #rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n" #output_writer.write("\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n")
                         for altID in record.accessions:
                             rdf_buffer += "\t" + base_vocab_ns + "has_alternative_id" + "\t" + up_ns + altID + " ;\n" #output_writer.write("\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n")
                     else:
                         prim_accession = record.accessions[0]
                         prot_counter += 1
                         rdf_buffer += up_ns + prim_accession + "\n"
-                        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                        rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n"
+                        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein" + " ;\n"
+                        #rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n"
                          
                     # Label
                     print record.entry_name
@@ -99,6 +99,7 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
 
                     # Taxon
                     rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + taxID + " ;\n"
+                    rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
 #                   taxID
                    
                     # Comments
@@ -126,7 +127,8 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
                         if key != "GO":
                             db_namespace = key.lower()
                             for dbid in xrefs[key]:
-                                rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
+                                #rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
+                                rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                     
                     # Corss references using blank node
 #                    for key in xrefs:
