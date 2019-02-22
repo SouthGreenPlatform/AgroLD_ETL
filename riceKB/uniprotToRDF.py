@@ -35,9 +35,10 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
     output_writer.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     output_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     output_writer.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
-#    output_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
+    output_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
 #    output_writer.write(pr + "\t" + up_base_ns + "<" + up_base_uri + "> .\n")
     output_writer.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n\n")
+
     
     for upfile in up_files:
         file_handle = open(upfile, "r")
