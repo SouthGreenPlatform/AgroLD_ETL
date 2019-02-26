@@ -84,10 +84,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
     rdf_writer.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     rdf_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + protein_ns + "<" + protein_uri + "> .\n")
     rdf_writer.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-    rdf_writer.write(pr + "\t" + mRNA_ns + "<" + mRNA_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + cDNA_ns + "<" + cDNA_uri + "> .\n")
     rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
     rdf_writer.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n")
     rdf_writer.write(pr + "\t" + embl_ns + "<" + embl_uri + "> .\n")
@@ -96,10 +93,9 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n")
     rdf_writer.write(pr + "\t" + tenor_ns + "<" + tenor_uri + "> .\n")
     rdf_writer.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n")
     # Ajout du prefix pour la realese des donnees
-    rdf_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n\n")
-    rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n\n")
+    rdf_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
+    rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
     rdf_writer.write(pr + "\t" + dosa_ns + "<" + dosa_uri + "> .\n\n")
 # In here we buil the modele and writer in file with ttl format
 
@@ -109,8 +105,9 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     os_japonica_buffer = ''
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "Oryza sativa Japonica Group" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "Japanese rice" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
     # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
@@ -134,12 +131,12 @@ def rapdbModeleRDF(rapdb_ds, output_file):
             chromosome_list[records['seqid']]= "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1"
             os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + "\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
-            os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Chromosome" + " ;\n"
+            os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + "Oryza sativa Japonica Group chromosome:" + "IRGSP-1.0:" + str(
-                ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\" ;\n"
+                ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
             os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + "\" ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" ;\n"
+            os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" .\n\n"
 
             print(os_japonica_buffer)
             # os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
@@ -170,10 +167,11 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_biotype" + "\t" + "\"protein_coding\" ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                os_japonica_buffer += "\t" + dc_ns + "identifier" + "\t" + " \"" + records['attributes']['Name'] + "\"@en ;\n"
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\"@en ;\n"
+                os_japonica_buffer += "\t" + dc_ns + "identifier" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
 
                 os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
 
@@ -261,6 +259,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
                 if 'Note' in records['attributes']:
                     os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + '"%s"' % (records['attributes']['Note']) + " ;\n"
+                    os_japonica_buffer += "\t" +  dc_ns + "description" + "\t" + '"%s"' % (records['attributes']['Note']) + " ;\n"
 
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
