@@ -297,7 +297,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                     os_japonica_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" +  "\"%s" % (sym_term) + "\" ;\n"
                 if 'Literature_PMID' in records['attributes']:
                     if pubmed_pattern.match(records['attributes']['Literature_PMID']):
-                        os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + pubmed_ns + records['attributes']['Literature_PMID'] + " ;\n"
+                        os_japonica_buffer += "\t" + dc_ns + "references" + "\t\t" + pubmed_ns + records['attributes']['Literature_PMID'] + " ;\n"
                 if 'ORF_evidence' in records['attributes']:
                     if '(UniProt)' in records['attributes']['ORF_evidence']:
                         uni_term = records['attributes']['ORF_evidence'].split(' ')[0]
