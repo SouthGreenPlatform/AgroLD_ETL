@@ -306,20 +306,20 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                     os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + oryzabase_ns + records['attributes']['Oryzabase'] + " ;\n"
                 if 'Oryzabase Gene Name Synonym(s)' in records['attributes']:
                     for syn_term in records['attributes']['Oryzabase Gene Name Synonym(s)'].split(","):
-                        syn_term = re.sub('"', '', syn_term)
+                        syn_term = re.sub(r'"|^\s', '', syn_term)
                         os_japonica_buffer += "\t" + base_vocab_ns + "has_synonym" + "\t" + "\"%s" % (syn_term) + "\" ;\n"
                 if 'Oryzabase Gene Symbol Synonym(s)' in records['attributes']:
                     for syn_term in records['attributes']['Oryzabase Gene Symbol Synonym(s)'].split(","):
-                        syn_term = re.sub('"', '', syn_term)
+                        syn_term = re.sub(r'"|^\s', '', syn_term)
                         os_japonica_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + "\"%s" % (syn_term) + "\" ;\n"
                         #os_japonica_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records['attributes']['Oryzabase Gene Symbol Synonym(s)']) + " ;\n"
                 if 'RAP-DB Gene Name Synonym(s)' in records['attributes']:
                     for syn_term in records['attributes']['RAP-DB Gene Name Synonym(s)'].split(","):
-                        syn_term = re.sub('"', '', syn_term)
+                        syn_term = re.sub('"|^\s', '', syn_term)
                         os_japonica_buffer += "\t" + base_vocab_ns + "has_synonym" + "\t" + "\"%s" % (syn_term) + "\" ;\n"
                 if 'RAP-DB Gene Symbol Synonym(s)' in records['attributes']:
                     for syn_term in records['attributes']['RAP-DB Gene Symbol Synonym(s)'].split(","):
-                        syn_term = re.sub('"', '', syn_term)
+                        syn_term = re.sub(r'"|^\s', '', syn_term)
                         os_japonica_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + "\"%s" % (syn_term) + "\" ;\n"
                         #os_japonica_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records['attributes']['RAP-DB Gene Symbol Synonym(s)']) + " ;\n"
                 if 'Transcript_evidence' in records['attributes']:
@@ -664,8 +664,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/all.gff'
-path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica.ttl' # The output
+path = '/Users/plarmande/Downloads/IRGSP-1.0_predicted/all.gff'
+path_output = '/Users/plarmande/Downloads/IRGSP-1.0_predicted/Oryza_sativa_Japonica_predicted.ttl' # The output
 
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
