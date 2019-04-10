@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 '''
 Created on Jun 19, 2014
+Updated on Apr 17, 2019
 The grameneParsers module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic tools for handling Gramene data
@@ -8,10 +9,11 @@ This module contains Parsers, RDF converters and generic tools for handling Gram
 TODO:
     1) Add documentation
     2) better Error handling
-@author: venkatesan
+@author: larmande
 '''
 import pprint
 from globalVars import *
+from globalVars import base_vocab_ns
 import re
 import os 
 #from __builtin__ import map
@@ -112,6 +114,7 @@ def genomeParser(infile):
     return geneHash
   '''
 # TODO modify the "has_start_position" and  "has_end_position"
+# TODO Handle String ID to transform
 
 def geneParser(infile):
     
@@ -134,21 +137,34 @@ def geneParser(infile):
         # Building data structure
         if gene_id not in gene_hash:
             gene_hash[gene_id] = {
-                                  'Name': records[0],
-                                  'Description': records[1],
-                                  'Chromosome': records[3],
-                                  'Start': records[4],
-                                  'End': records[5],
-                                  'Biotype': records[2],
+                                  'Name': records[1],
+                                  'Description': records[0],
+                                  'Chromosome': records[4],
+                                  'Start': records[2],
+                                  'End': records[3],
+                                  'Strand': records[5],
+                                  'Biotype': records[6],
                                   'RapID': '',
                                   'TairLocus': '',
                                   'TIGRlocus': {},
                                   'ProtID': {},
-                                  'Ontology': {}
+                                  'Ontology': {},
+                                  'StringID':''
                                   }
         
         if gene_id in gene_hash:
-            # Records of sps: A.thaliana            
+            # Records of sps:  O.s.japonica
+            if len(records) == 11 and rap_pattern.match(gene_id):
+                if records[9]:
+                    if prot_pattern.match(records[10]):
+                        gene_hash[gene_id]['ProtID'][records[9]] = '-'
+                if records[10]:
+                    if prot_pattern.match(records[11]):
+                        gene_hash[gene_id]['ProtID'][records[10]] = '-'
+                if records[11]:
+                    gene_hash[gene_id]['StringID'] = records[11]
+
+            # Records of sps: A.thaliana
             if len(records) == 11:
                 if records[6]:
                     gene_hash[gene_id]['TairLocus'] = records[6]
@@ -332,7 +348,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
     output_opener.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     output_opener.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     output_opener.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-    output_opener.write(pr + "\t" + rapdb_ns + "<" + rapdb_uri + "> .\n")
+    output_opener.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
     output_opener.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
     output_opener.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")                
     output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n\n")
@@ -664,11 +680,11 @@ def removeDuplicates(in_list):
     newlist = list(set(in_list))
     return newlist
 
-ROOT_DIR='/Users/plarmande/Downloads'
+ROOT_DIR='/Users/plarmande/Downloads/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + '/data/gramene_genes/Zea mays.txt']
-gramene_genes_out = ROOT_DIR + '/rdf/gramene_genes_ttl/'
+gramene_genes_files = [ROOT_DIR + 'gramene.os.sample.txt']
+gramene_genes_out = ROOT_DIR + ''
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
 
