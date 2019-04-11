@@ -115,7 +115,7 @@ def genomeParser(infile):
   '''
 # TODO modify the "has_start_position" and  "has_end_position"
 # TODO Handle String ID to transform
-
+# TODO fix taxon assignation currently based on file naming
 def geneParser(infile):
     
 #    pp = pprint.PrettyPrinter(indent=4)
@@ -355,7 +355,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
     '''
     Ajout du prefix pour la release des donnees
     '''
-    output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    #output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
 
     
     for gene_file in files:
@@ -382,16 +382,18 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 #        print "*************************************\n\n"
         
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
+        print output_file_name
+        print taxon_ids
         
         for gene_id in gene_ds:
             gene_counter += 1
             rdf_buffer += ensembl_ns + gene_id + "\n"
-            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             # rdf_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             # rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             for tax_id in taxon_ids:
-                if output_file_name == taxon_ids[tax_id]:
-                    rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + tax_id + " ;\n"
+                if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name)== taxon_ids[tax_id]:
+                    rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + tax_id + " ;\n"
             for record_item in gene_ds[gene_id]:
                 if record_item == 'Name':
                     if gene_ds[gene_id][record_item]: 
@@ -487,7 +489,7 @@ def grameneQTLRDF(infile, output_dir):
     '''
     Ajout du prefix pour la realese des donnees
     '''
-    outHandle.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    #outHandle.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
 
 
     for records in qtl_ds:
@@ -497,7 +499,7 @@ def grameneQTLRDF(infile, output_dir):
         to_id = records['TOid'].replace(":", "_")
         
         qtl_buffer += gr_qtl_ns + records['QTLid'] + "\n"
-        qtl_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "QTL" + " ;\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "QTL" + " ;\n"
         #qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
         #qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
         qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records['Name']) + " ;\n"
@@ -563,7 +565,7 @@ def CycRDF(data_stuc, output_dir):
     '''
     Ajout du prefix pour la realese des donnees
     '''
-    outputWriter.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    #outputWriter.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
 
 
     # Genes
@@ -578,7 +580,7 @@ def CycRDF(data_stuc, output_dir):
             r_locus[8] = "g"
             gene_locus = "".join(r_locus)            
             gene_buffer += tigr_ns + gene_locus + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
@@ -595,7 +597,7 @@ def CycRDF(data_stuc, output_dir):
             s_g_id[4] = "g"
             sorghum_gene_locus = "".join(s_g_id)            
             gene_buffer += ensembl_ns + sorghum_gene_locus + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
@@ -610,7 +612,7 @@ def CycRDF(data_stuc, output_dir):
             alt_s_g_id[6] = "s"
             alt_sorghum_gene_locus = "".join(alt_s_g_id)
             gene_buffer += ensembl_ns + alt_sorghum_gene_locus + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
@@ -623,7 +625,7 @@ def CycRDF(data_stuc, output_dir):
         #Data from MaizeCyc                    
         if maize_pattern.match(gene):
             gene_buffer += ensembl_ns + gene + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
@@ -633,7 +635,7 @@ def CycRDF(data_stuc, output_dir):
                 pw_hash[pw] = data_stuc[gene]['Pathways'][pw]
         if alt_maize_match.match(gene):
             gene_buffer += ensembl_ns + gene + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
@@ -645,7 +647,7 @@ def CycRDF(data_stuc, output_dir):
         # Data from AraCyc (Gramene)
         if arabidopsis_pattern.match(gene): 
             gene_buffer += ensembl_ns + gene + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
@@ -661,7 +663,7 @@ def CycRDF(data_stuc, output_dir):
     for pw_id in pw_hash:
         pw_counter += 1
         outputWriter.write(pathway_ns +  pw_id + "\n")
-        outputWriter.write("\t" + rdf_ns + "type" + "\t" + res_ns + "Pathway_Identifier" + " ;\n")
+        outputWriter.write("\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Pathway_Identifier" + " ;\n")
         #outputWriter.write("\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n")
         #outputWriter.write("\t" + rdfs_ns + "subClassOf" + "\t" + sio_ns + met_pw_sio_term + " ;\n")
         #outputWriter.write("\t" + rdfs_ns + "subClassOf" + "\t" + swo_ns + biocyc_pw_term + " ;\n")
@@ -680,10 +682,10 @@ def removeDuplicates(in_list):
     newlist = list(set(in_list))
     return newlist
 
-ROOT_DIR='/Users/plarmande/Downloads/'
+ROOT_DIR='/Users/plarmande/Downloads/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'gramene.os.sample.txt']
+gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
 gramene_genes_out = ROOT_DIR + ''
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
