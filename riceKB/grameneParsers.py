@@ -154,12 +154,14 @@ def geneParser(infile):
         
         if gene_id in gene_hash:
             # Records of sps:  O.s.japonica
-            if len(records) == 11 and rap_pattern.match(gene_id):
+            if len(records) == 12 and rap_pattern.match(gene_id):
+                if records[8]:
+                    gene_hash[gene_id]['Ontology'][records[8]] = records[7]
                 if records[9]:
-                    if prot_pattern.match(records[10]):
+                    if prot_pattern.match(records[9]):
                         gene_hash[gene_id]['ProtID'][records[9]] = '-'
                 if records[10]:
-                    if prot_pattern.match(records[11]):
+                    if prot_pattern.match(records[10]):
                         gene_hash[gene_id]['ProtID'][records[10]] = '-'
                 if records[11]:
                     gene_hash[gene_id]['StringID'] = records[11]
@@ -235,8 +237,9 @@ def geneParser(infile):
                     gene_hash[gene_id]['ProtID'][records[6]] = '-'
 #                    prot_list.append(records[6])
 #                    gene_hash[gene_id]['ProtID'].extend(prot_list)
-                                                       
-    return gene_hash                    
+    print gene_hash
+    return gene_hash
+
     file_reader.close()
 
 
@@ -382,13 +385,12 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 #        print "*************************************\n\n"
         
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
-        print output_file_name
-        print taxon_ids
-        
+
         for gene_id in gene_ds:
             gene_counter += 1
             rdf_buffer += ensembl_ns + gene_id + "\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
+            rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
             # rdf_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             # rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             for tax_id in taxon_ids:
@@ -442,7 +444,11 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_in" + "\t" + obo_ns + ont_id + " ;\n"
                             if ont[1] == 'plant_structure_development_stage':
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_at" + "\t" + obo_ns + ont_id + " ;\n"
-                
+                if record_item == 'StringID':
+                    if gene_ds[gene_id][record_item]:
+                        string_id = gene_ds[gene_id][record_item]
+                        rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "string:" + string_id + " ;\n"
+
             rdf_buffer = re.sub(' ;$', ' .', rdf_buffer)
             
         output_opener.write(rdf_buffer)
