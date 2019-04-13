@@ -144,6 +144,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
             os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + "\" ;\n"
+            os_japonica_buffer += "\t" + base_vcab_ns + "chromosomeNumber" + "\t" + "\"" + int(records['seqid']) + "\"^^xsd:integer ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" .\n\n"
 
             print(os_japonica_buffer)
@@ -214,39 +215,6 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
-                ## <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> rdfs:label "chromosome 1:42441701-42442930:1" .
-                ## <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> rdf:type faldo:Region .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> faldo:begin <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> faldo:end <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> .
-                # question #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> faldo:reference <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1> .
-
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> rdf:type faldo:ExactPosition .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> rdf:type faldo:ForwardStrandPosition .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> faldo:position 42441701 .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701:1> faldo:reference <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1> .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> rdf:type faldo:ExactPosition .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> rdf:type faldo:ForwardStrandPosition .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> faldo:position 42442930 .
-                #<http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42442930:1> faldo:reference <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1> .
-
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.transcript / Os01t0963000 - 01 > sio: SIO_000974 < http: // rdf.ebi.ac.uk / resource / ensembl.transcript / Os01t0963000 - 01  # Exon_1> .
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.transcript / Os01t0963000 - 01  # Exon_1> rdf:type sio:SIO_001261 .
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.transcript / Os01t0963000 - 01  # Exon_1> sio:SIO_000628 <http://rdf.ebi.ac.uk/resource/ensembl.exon/Os01t0963000-01.exon1> .
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.transcript / Os01t0963000 - 01  # Exon_1> sio:SIO_000300 1 .
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.protein / Os01t0963000 - 01 > obo: RO_0002162 taxon: 39947.
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.protein / Os01t0963000 - 01 > dc: identifier "Os01t0963000-01".
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.protein / Os01t0963000 - 01 > rdfs: seeAlso < http: // identifiers.org / ensembl / Os01t0963000 - 01 >.
-                # < http: // identifiers.org / ensembl / Os01t0963000 - 01 > rdf: type identifiers: ensembl.
-                # < http: // identifiers.org / ensembl / Os01t0963000 - 01 > sio: SIO_000671[a ident_type: ensembl; sio: SIO_000300 "Os01t0963000-01"].
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.transcript / Os01t0963000 - 01 > obo: SO_translates_to < http: // rdf.ebi.ac.uk / resource / ensembl.protein / Os01t0963000 - 01 >.
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.protein / Os01t0963000 - 01 > rdf: type term: protein.
-                # < http: // rdf.ebi.ac.uk / resource / ensembl.protein / Os01t0963000 - 01 > rdfs: seeAlso gene3d: 1.10.420.10.
-                # ...
-                # describing the ressource gene < http: // rdf.ebi.ac.uk / resource / ensembl / Os01g0963000 > sio: SIO_000558 ensembl: Os01g0962900.
-                # <http://rdf.ebi.ac.uk/resource/ensembl.transcript/Os01t0963000-01> obo:SO_transcribed_from <http://rdf.ebi.ac.uk/resource/ensembl/Os01g0963000> .
-                # <http://rdf.ebi.ac.uk/resource/ensembl.protein/Os01t0963000-01> rdf:type term:protein .
-                # <http://rdf.ebi.ac.uk/resource/ensembl.transcript/Os01t0963000-01> obo:SO_translates_to <http://rdf.ebi.ac.uk/resource/ensembl.protein/Os01t0963000-01> .
-                # <http://rdf.ebi.ac.uk/resource/ensembl/Os01g0963000> sio:SIO_000558 ensembl:Os01g0962900 . # is orthologuos to
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
 
@@ -269,7 +237,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                     os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + "\"%s" % (records['attributes']['Note']) + "\" ;\n"
                     os_japonica_buffer += "\t" +  dc_ns + "description" + "\t" + "\"%s" % (records['attributes']['Note']) + "\" ;\n"
 
-                # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "develops_from" + "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
                 os_japonica_buffer += "\t" + sio_ns +  "SIO_010081" +  "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
@@ -315,7 +283,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                         #os_japonica_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records['attributes']['Oryzabase Gene Symbol Synonym(s)']) + " ;\n"
                 if 'RAP-DB Gene Name Synonym(s)' in records['attributes']:
                     for syn_term in records['attributes']['RAP-DB Gene Name Synonym(s)'].split(","):
-                        syn_term = re.sub('"|^\s', '', syn_term)
+                        syn_term = re.sub('"|\s', '', syn_term)
                         os_japonica_buffer += "\t" + base_vocab_ns + "has_synonym" + "\t" + "\"%s" % (syn_term) + "\" ;\n"
                 if 'RAP-DB Gene Symbol Synonym(s)' in records['attributes']:
                     for syn_term in records['attributes']['RAP-DB Gene Symbol Synonym(s)'].split(","):
@@ -664,8 +632,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/Downloads/IRGSP-1.0_predicted/all.gff'
-path_output = '/Users/plarmande/Downloads/IRGSP-1.0_predicted/Oryza_sativa_Japonica_predicted.ttl' # The output
+path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/all.gff'
+path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica.ttl' # The output
 
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
