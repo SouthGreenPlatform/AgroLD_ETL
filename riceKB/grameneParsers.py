@@ -6,7 +6,9 @@ The grameneParsers module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic tools for handling Gramene data
 
-TODO:
+TODO: check entitites types for Faldo Region, Position
+TODO fix taxon assignation currently based on file naming
+
     1) Add documentation
     2) better Error handling
 @author: larmande
@@ -113,9 +115,6 @@ def genomeParser(infile):
     fileReader.close()
     return geneHash
   '''
-# TODO modify the "has_start_position" and  "has_end_position"
-# TODO Handle String ID to transform
-# TODO fix taxon assignation currently based on file naming
 def geneParser(infile):
     
 #    pp = pprint.PrettyPrinter(indent=4)
@@ -467,23 +466,23 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + string_id + " ;\n"
                 if record_item == 'Chromosome':
                     rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand']) +  " ;\n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand +  " ;\n"
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             # Region
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand']) + "  \n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand + "  \n"
             rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand']) + "\";\n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand + "\";\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
             rdf_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + str(gene_ds[gene_id]['Strand']) + "  ;\n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + strand + "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand'])+ "  .\n\n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + strand + "  .\n\n"
 
             # Position
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + str(gene_ds[gene_id]['Strand']) + "  \n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + strand
             rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
             rdf_buffer += "  ;\n"
@@ -493,7 +492,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 
             # # Position 2
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand'])+ "  \n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + strand
             rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
             rdf_buffer += "  ;\n"
