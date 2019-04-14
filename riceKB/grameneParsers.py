@@ -327,7 +327,17 @@ def CycParser(in_files):
 #            pp.pprint(reactions) #reactions pathways
     fileHandle.close()
     return pw_datastucture             
-      
+
+
+def getStrandValue(strandVar):
+    if strandVar == "-":
+        strandVar = "-1"
+        positionVar = "ReverseStrandPosition"
+    else:
+        strandVar = "1"
+        positionVar = "ForwardStrandPosition"
+    return (strandVar,positionVar)
+
 ''' 
  RDF Converters 
 '''             
@@ -338,11 +348,13 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 #    rapdb_prefix = ''
 #    tair_prefix = ''
     gene_counter = 0
+    current_taxon_id = ''
+    genome_assembly = 'IRGSP-1.0'
 #    pp = pprint.PrettyPrinter(indent=4)
     turtle_file = "gramene_genes.ttl"
     output_file = os.path.join(output_dir, turtle_file)
     output_opener = open(output_file, "w")
-    
+
     # Printing Prefixes
     output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
     output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -388,6 +400,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 
         for gene_id in gene_ds:
             gene_counter += 1
+            (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
             rdf_buffer += ensembl_ns + gene_id + "\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
@@ -395,7 +408,8 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
             # rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             for tax_id in taxon_ids:
                 if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name)== taxon_ids[tax_id]:
-                    rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + tax_id + " ;\n"
+                    current_taxon_id = tax_id
+                    rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
             for record_item in gene_ds[gene_id]:
                 if record_item == 'Name':
                     if gene_ds[gene_id][record_item]: 
@@ -405,10 +419,10 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                         rdf_buffer += "\t" + base_vocab_ns + "description" + "\t" + '"%s"' % (gene_ds[gene_id][record_item].replace("'", "")) + " ;\n"
                 # if record_item == 'Chromosome':
                 #     rdf_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
-                if record_item == 'Start':
-                    rdf_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
-                if record_item == 'End':
-                    rdf_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
+                # if record_item == 'Start':
+                #     rdf_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
+                # if record_item == 'End':
+                #     rdf_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'Biotype':
                     rdf_buffer += "\t" + base_vocab_ns + "has_biotype" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'ProtID':
@@ -450,54 +464,44 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                 if record_item == 'StringID':
                     if gene_ds[gene_id][record_item]:
                         string_id = gene_ds[gene_id][record_item]
-                        rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "string:" + string_id + " ;\n"
+                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + string_id + " ;\n"
                 if record_item == 'Chromosome':
-                    gene_ds[gene_id][record_item]
+                    rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand']) +  " ;\n"
 
-                    rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
-                                          chromosome_dict[records['seqid']]['number'] + ':' + str(
-                        records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
+            rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
+            # Region
+            rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand']) + "  \n"
+            rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand']) + "\";\n"
+            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
+            rdf_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + str(gene_ds[gene_id]['Strand']) + "  ;\n"
+            rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand'])+ "  .\n\n"
 
-                    # Region
-                    os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + \
-                                          chromosome_dict[records['seqid']]['number'] + ':' + str(
-                        records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                    os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
-                                          chromosome_dict[records['seqid']]['number'] + ':' + str(
-                        records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
-                    os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                    os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
-                                          chromosome_dict[records['seqid']]['number'] + ":" + str(
-                        records['start']) + ":" + strand + "  ;\n"
-                    os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
-                                          chromosome_dict[records['seqid']]['number'] + ":" + str(
-                        records['end']) + ":" + strand + "  .\n\n"
+            # Position
+            rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + str(gene_ds[gene_id]['Strand']) + "  \n"
+            rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+            rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+            rdf_buffer += "  ;\n"
+            rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(gene_ds[gene_id]['Start']) + " ;\n"
+            rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + "1" + " .\n\n"
 
-                    rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
-                                      chromosome_dict[records['seqid']]['number'] + ":" + str(
-                    records['end']) + ":" + strand + "  .\n\n"
+            # # Position 2
+            rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + str(gene_ds[gene_id]['Strand'])+ "  \n"
+            rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+            rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+            rdf_buffer += "  ;\n"
+            rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(gene_ds[gene_id]['End']) + " ;\n"
+            rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + "1" + " .\n\n"
 
-                # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
-                    'number'] + ":" + str(records['start']) + ":" + strand
-                os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
-                os_japonica_buffer += "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
-                    ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
-
-                # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
-                    'number'] + ":" + str(records['end']) + ":" + strand
-                os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
-                os_japonica_buffer += "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
-                    ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
-
-            rdf_buffer = re.sub(' ;$', ' .', rdf_buffer)
+            rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             
         output_opener.write(rdf_buffer)
     output_opener.close()
