@@ -12,7 +12,7 @@ TODO:
 global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc_ns, dc_uri, faldo, faldo_ns,\
     ncbi_tax_ns, ncbi_tax_uri, owl, owl_ns, xsd, xsd_ns, base_uri, base_ns, base_vocab_uri, base_vocab_ns,\
     sio_uri, sio_ns, obo_uri, obo_ns, ncbi_tax_uri, ncbi_tax_ns, uniprot, up_ns, chromosome_ns, chromosome_uri,\
-    ensembl_gene, ensembl_gene_ns, ensembl_transcript, ensembl_transcript_ns, ensembl_protein, ensembl_protein_ns,\
+    ensembl_gene_uri, ensembl_gene_ns, ensembl_transcript_uri, ensembl_transcript_ns, ensembl_protein_uri, ensembl_protein_ns,\
     ensembl_ns, ensembl_plant, gramene_gene, gr_g_ns, gramene_qtl, gr_qtl_ns, sio_term, go_aspects, ont_aspects,\
     gene_term, protein_term, tigr_uri, tigr_ns, rapdb_gene_uri, rapdb_gene_ns, rapdb_mrna_ns, rapdb_mrna_uri,\
     plant_trait_term,orygene_uri, orygene_ns, goa_uri, goa_ns, gr_assoc, gr_assoc_ns, tair_l_uri, tair_l_ns,\
@@ -70,8 +70,8 @@ skos_ns = 'skos:'
 owl_uri = 'http://www.w3.org/2002/07/owl#'
 owl_ns = 'owl:'
 
-dc_uri = 'http://purl.org/dc/elements/1.1/'
-dc_ns = 'dc:'
+dc_uri = 'http://purl.org/dc/terms/'
+dc_ns = 'dcterms:'
 
 doi_uri = 'http://dx.doi.org/'
 doi_ns = 'doi:'
@@ -101,7 +101,7 @@ gramene_gene =  'http://www.identifiers.org/gramene.gene/'
 gr_g_ns = 'gramene_gene:'
 
 resource = 'http://www.southgreen.fr/agrold/resource/'
-res_ns = 'agrold_schema:'
+res_ns = 'agrold_resource:'
 
 gramene_qtl = 'http://www.identifiers.org/gramene.qtl/'
 gr_qtl_ns = 'gramene_qtl:' 
@@ -115,18 +115,18 @@ qtaro_qtl_ns = 'qtaro_qtl:'
 qtaro_gene = 'http://www.southgreen.fr/agrold/qtaro.gene/'
 qtaro_gene_ns = 'qtaro_gene:'
 
-ensembl_plant = 'http://rdf.ebi.ac.uk/ensembl.plant/' # http://rdf.ebi.ac.uk/resource/ensembl/
+ensembl_plant = 'http://identifiers.org/ensembl.plant' # http://rdf.ebi.ac.uk/resource/ensembl/
 ensembl_ns = 'ensembl:'
 
-ensembl_gene = 'http://rdf.ebi.ac.uk/resource/ensembl/'
+ensembl_gene_uri = 'http://rdf.ebi.ac.uk/resource/ensembl/'
 ensembl_gene_ns = 'ensembl_gene:'
 
 
-ensembl_transcript = 'http://rdf.ebi.ac.uk/resource/ensembl.transcript/'
+ensembl_transcript_uri = 'http://rdf.ebi.ac.uk/resource/ensembl.transcript/'
 ensembl_transcript_ns = 'ensembl_transcript:'
 
 
-ensembl_protein = 'http://rdf.ebi.ac.uk/resource/ensembl.protein/'
+ensembl_protein_uri = 'http://rdf.ebi.ac.uk/resource/ensembl.protein/'
 ensembl_protein_ns = 'ensembl_protein:'
 
 
@@ -243,6 +243,7 @@ marker_ns = 'marker:'
 kegg_uri='http://identifiers.org/kegg/'
 kegg_ns='kegg:'
 
+
 kegg_path_uri='http://identifiers.org/kegg.pathway/'
 kegg_path_ns= 'kegg_path:'
 
@@ -252,8 +253,8 @@ metacyc_ns='metacyc:'
 osa_uri='http://www.genome.jp/dbget-bin/www_bget?'
 osa_ns='osa:'
 
-dosa_uri='ttp://www.genome.jp/dbget-bin/www_bget?'
-dosa_ns='dosa:'
+dosa_uri='http://www.genome.jp/dbget-bin/www_bget?'
+dosa_ns='kegg_gene:'
 #TROPGENE
 
 study_uri = 'http://www.southgreen.fr/agrold/tropgene.study/'
