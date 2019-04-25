@@ -22,6 +22,8 @@ TODO:
 '''
 #  check  agrold_vocabulary:go_term property mapping rdfs:seeAlso + other predicate = en fait uniprot a son propre predicat
 #  put @en at label and all string literal - fait pour les labels mais pas pour les autres
+# TODO assign assembly version (IRGSP-1.0) in a Var
+# TODO think how to design a function to output faldo entities
 
 __author__  = "larmande"
 
@@ -135,14 +137,14 @@ def rapdbModeleRDF(rapdb_ds, output_file):
             os_japonica_buffer = ''
             ch_number += 1
             chromosome_dict[records['seqid']] = {}
-            chromosome_dict[records['seqid']] = { 'uri': "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1", 'seqid': records['seqid'], 'number' : str(ch_number), 'nucleotide' : str(chromosome), 'assembly':'IRGSP-1.0'}
-            chromosome_list[records['seqid']]= "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1"
-            os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + "\n"
+            chromosome_dict[records['seqid']] = { 'uri': "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1", 'seqid': records['seqid'], 'number' : str(ch_number), 'nucleotide' : str(chromosome), 'assembly':'IRGSP-1.0'}
+            chromosome_list[records['seqid']]= "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1"
+            os_japonica_buffer += chromosome_ns + "39947:" + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + "\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + "Oryza sativa Japonica Group chromosome:" + "IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
-            os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "IRGSP-1.0:" + str(
+            os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "39947:IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" .\n\n"
 
@@ -167,9 +169,9 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
                 os_japonica_buffer = ''
 
-                os_japonica_buffer += rapdb_gene_ns + records['attributes']['ID'] + "\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  ensembl_gene_ns + records['attributes']['ID'] + " ;\n"
-                os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + ensembl_gene_ns + records['attributes']['ID'] + " ;\n"
+                os_japonica_buffer += ensembl_ns + records['attributes']['ID'] + "\n"
+                os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns  + records['attributes']['ID'] + " ;\n"
+                os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + rapdb_gene_ns + records['attributes']['ID'] + " ;\n"
 
                 # rapdb..ID  skos:closeMatch ensembl:id  ## important ##
                 os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + records['source'] + "\" ;\n"
@@ -183,36 +185,36 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
 
-                os_japonica_buffer +=  "\t" + faldo_ns + "location" + "\t"  + chromosome_ns + "IRGSP-1.0:"+ \
+                os_japonica_buffer +=  "\t" + faldo_ns + "location" + "\t"  + chromosome_ns + "39947:IRGSP-1.0:"+ \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:"+ \
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:"+ \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(records['start']) + '-' + str(records['end']) + ":" + strand +  "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t"  + " \"" + chromosome_ns + "IRGSP-1.0:"+ \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t"  + " \"" + chromosome_ns + "39947:IRGSP-1.0:"+ \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" +  "\t" + chromosome_ns + "IRGSP-1.0:"+ \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" +  "\t" + chromosome_ns + "39947:IRGSP-1.0:"+ \
                                       chromosome_dict[records['seqid']]['number']+":"+str(records['start'])+":"+ strand + "  ;\n"
-                os_japonica_buffer +=  "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer +=  "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(records['end']) + ":" + strand + "  .\n\n"
 
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ":" + str(records['start']) + ":" + strand
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer +=  "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ":" + str(records['end']) + ":" + strand
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" +"\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 ## <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> rdfs:label "chromosome 1:42441701-42442930:1" .
                 ## <http://rdf.ebi.ac.uk/resource/ensembl/41/oryza_sativa/IRGSP-1.0/1:42441701-42442930:1> rdf:type faldo:Region .
@@ -275,7 +277,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + sio_ns +  "SIO_010081" +  "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
                 # <http://rdf.ebi.ac.uk/resource/ensembl.transcript/Os09t0372700-01> obo:SO_translates_to <http://rdf.ebi.ac.uk/resource/ensembl.protein/Os09t0372700-01> .
                 ## os_japonica_buffer += "\t" + obo_ns + "SO_translates_to" + "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] +\
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] +\
                                       ':' + str(records['start']) + '-' + str(records['end']) + ":" + strand + " ;\n"
 
                 # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + re.sub('Os', '', records['seqid']) + " ;\n"
@@ -347,37 +349,37 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' +\
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' +\
                                       str(records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['start']) + ":" + strand + "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['end']) + ":" + strand + "  .\n\n"
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
@@ -398,42 +400,42 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 # os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
                 #     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
                                       str(records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['start']) + ":" + strand + "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['end']) + ":" + strand + "  .\n\n"
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
@@ -452,42 +454,42 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + rapdb_mrna_ns + records['attributes']['Parent'] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
 
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
                                       str(records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['start']) + ":" + strand + "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['end']) + ":" + strand + "  .\n\n"
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
@@ -506,42 +508,42 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + rapdb_mrna_ns + records['attributes']['Parent'] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
 
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
                                       str(records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['start']) + ":" + strand + "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['end']) + ":" + strand + "  .\n\n"
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
@@ -561,42 +563,42 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + rapdb_mrna_ns + records['attributes']['Parent'] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
                                       str(records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['start']) + ":" + strand + "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['end']) + ":" + strand + "  .\n\n"
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 print(os_japonica_buffer)
@@ -617,42 +619,42 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + rapdb_mrna_ns + records['attributes']['Parent'] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
 
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
 
                 # Region
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
                                       str(records['start']) + '-' + str(records['end']) + ":" + strand + "  \n"
-                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + "\";\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['start']) + ":" + strand + "  ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                os_japonica_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ":" + str(
                     records['end']) + ":" + strand + "  .\n\n"
 
                 # Position 1
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['start']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['start']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
 
                 # Position 2
-                os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']][
+                os_japonica_buffer += chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']][
                     'number'] + ":" + str(records['end']) + ":" + strand
                 os_japonica_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
                 os_japonica_buffer += "  ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "position" + "\t" + str(records['end']) + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
+                os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + str(
                     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
                 print(os_japonica_buffer)
                 rdf_writer.write(os_japonica_buffer)
@@ -664,8 +666,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/Downloads/IRGSP-1.0_predicted/all.gff'
-path_output = '/Users/plarmande/Downloads/IRGSP-1.0_predicted/Oryza_sativa_Japonica_predicted.ttl' # The output
+path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/all.gff'
+path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica.ttl' # The output
 
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
