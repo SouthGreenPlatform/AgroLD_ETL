@@ -7,7 +7,8 @@ The grameneParsers module is created as part of the Rice Knowledge Base project.
 This module contains Parsers, RDF converters and generic tools for handling Gramene data
 
 TODO: check entitites types for Faldo Region, Position
-TODO fix taxon assignation currently based on file naming
+TODO : fix taxon assignation currently based on file naming
+TODO : use panda DF to parse tsv file and use more generic headers to build the dictionnary
 
     1) Add documentation
     2) better Error handling
@@ -415,7 +416,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                         rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'Description':
                     if gene_ds[gene_id][record_item]: 
-                        rdf_buffer += "\t" + base_vocab_ns + "description" + "\t" + '"%s"' % (gene_ds[gene_id][record_item].replace("'", "")) + " ;\n"
+                        rdf_buffer += "\t" + dc_ns + "description" + "\t" + '"%s"' % (gene_ds[gene_id][record_item].replace("'", "")) + " ;\n"
                 # if record_item == 'Chromosome':
                 #     rdf_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 # if record_item == 'Start':
