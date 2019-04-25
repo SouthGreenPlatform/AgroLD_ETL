@@ -51,7 +51,6 @@ def getCDSNumber(transcript, start, number_cds):
         number_cds += 1
         return number_cds
 
-
 def rapdbModeleRDF(rapdb_ds, output_file):
   # The differentes variable declaration
     os_japonica_buffer = ''    # initilised the buffer at zero
@@ -182,7 +181,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + dc_ns + "identifier" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
                 if 'Note' in records['attributes']:
                     os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
-                    os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
+                    # os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
 
@@ -269,7 +268,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + ensembl_transcript_ns + records['attributes']['Name'] + ";\n"
 
                 if 'Note' in records['attributes']:
-                    os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + "\"%s" % (records['attributes']['Note']) + "\" ;\n"
+                    # os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + "\"%s" % (records['attributes']['Note']) + "\" ;\n"
                     os_japonica_buffer += "\t" +  dc_ns + "description" + "\t" + "\"%s" % (records['attributes']['Note']) + "\" ;\n"
 
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
