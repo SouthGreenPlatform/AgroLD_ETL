@@ -24,6 +24,7 @@ TODO:
 #  put @en at label and all string literal - fait pour les labels mais pas pour les autres
 # TODO assign assembly version (IRGSP-1.0) in a Var
 # TODO think how to design a function to output faldo entities
+# TODO function that assigne predicates according GO_ID (e.g. participate_in, has_function,...)
 
 __author__  = "larmande"
 
@@ -273,8 +274,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "develops_from" + "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
-                os_japonica_buffer += "\t" + sio_ns +  "SIO_010081" +  "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "develops_from" + "\t\t" + ensembl_ns + records['attributes']['Locus_id'] + " ;\n"
+                os_japonica_buffer += "\t" + sio_ns +  "SIO_010081" +  "\t\t" + ensembl_ns + records['attributes']['Locus_id'] + " ;\n"
                 # <http://rdf.ebi.ac.uk/resource/ensembl.transcript/Os09t0372700-01> obo:SO_translates_to <http://rdf.ebi.ac.uk/resource/ensembl.protein/Os09t0372700-01> .
                 ## os_japonica_buffer += "\t" + obo_ns + "SO_translates_to" + "\t\t" + rapdb_gene_ns + records['attributes']['Locus_id'] + " ;\n"
                 os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "39947:IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] +\
