@@ -347,11 +347,13 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 #    tigr_prefix = ''
 #    rapdb_prefix = ''
 #    tair_prefix = ''
+    output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
     current_taxon_id = ''
+    rdf_buffer = ''
     genome_assembly = 'IRGSP-1.0'
 #    pp = pprint.PrettyPrinter(indent=4)
-    turtle_file = "gramene_genes.ttl"
+    turtle_file = output_file_name + ".ttl"
     output_file = os.path.join(output_dir, turtle_file)
     output_opener = open(output_file, "w")
     chromosome_size = {'39947':[43270923, 35937250, 36413819, 35502694, 29958434, 31248787, 29697621, 28443022, 23012720,
@@ -372,8 +374,25 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
     Ajout du prefix pour la release des donnees
     '''
     #output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    chromosome_nb = 1
+    for tax_id in taxon_ids:
+        if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
+            current_taxon_id = tax_id
 
-    
+    for ch_size in chromosome_size[current_taxon_id]:
+        rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
+            chromosome_nb) + ":1-" + str(
+            ch_size) + ":1" + "\n"
+        rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + str(
+            chromosome_nb) + ":1-" + str(ch_size) + ":1" + "\"@en ;\n"
+        rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + str(
+            chromosome_nb) + ":1-" + str(ch_size) + ":1" + "\" ;\n"
+        rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
+        chromosome_nb += 1
+    output_opener.write(rdf_buffer)
+
     for gene_file in files:
 
         rdf_buffer = ''
@@ -381,8 +400,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 #        rapdb_prefix = ''
 #        geneId_prefix = ''
 #        tair_prefix = ''
-        
-        output_file_name = os.path.split(os.path.splitext(gene_file)[0])[1]
+
 #        turtle_file = "gramene_" + output_file_name + "_genes" + ".ttl"
 #        output_file = os.path.join(output_dir, turtle_file)
 #        output_file = "gramene_genes.ttl"
@@ -400,7 +418,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
 
         for gene_id in gene_ds:
-            current_taxon_id
+
             chromosome_nb = 1
             gene_counter += 1
             (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
@@ -507,8 +525,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                                   gene_ds[gene_id]['Chromosome']+ ':' + '1' + '-' + str(chromosome_size[current_taxon_id][int(chromosome_nb)]) + ":" + "1" + " .\n\n"
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
-            
-        output_opener.write(rdf_buffer)
+            output_opener.write(rdf_buffer)
     output_opener.close()
 #        if geneId_prefix:
 #            output_opener.write(geneId_prefix)
