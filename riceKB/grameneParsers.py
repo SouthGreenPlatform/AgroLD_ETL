@@ -414,29 +414,30 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 
 #        print "%s data has been parsed!\n" % (output_file_name)
 #        print "*************************************\n\n"
-        
+        #ict(gene_ds)
+        print(str(len(gene_ds.keys())) + " Genes parsed")
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
 
         for gene_id in gene_ds:
-
+            rdf_buffer =''
             chromosome_nb = 1
             gene_counter += 1
             (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
             rdf_buffer += ensembl_ns + gene_id + "\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
-            # rdf_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            # rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+
             for tax_id in taxon_ids:
                 if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name)== taxon_ids[tax_id]:
                     current_taxon_id = tax_id
                     rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
+
             for record_item in gene_ds[gene_id]:
                 if record_item == 'Name':
-                    if gene_ds[gene_id][record_item]: 
+                    if gene_ds[gene_id][record_item]:
                         rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'Description':
-                    if gene_ds[gene_id][record_item]: 
+                    if gene_ds[gene_id][record_item]:
                         rdf_buffer += "\t" + dc_ns + "description" + "\t" + '"%s"' % (gene_ds[gene_id][record_item].replace("'", "")) + " ;\n"
                 # if record_item == 'Chromosome':
                 #     rdf_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
@@ -456,7 +457,7 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
                         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + rapdb_ns + gene_ds[gene_id][record_item] + " ;\n"
                 if record_item == 'TairLocus':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tair_l_ns + gene_ds[gene_id][record_item] + " ;\n"                          
+                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tair_l_ns + gene_ds[gene_id][record_item] + " ;\n"
                 if record_item == 'TIGRlocus':
                     if gene_ds[gene_id][record_item]:
 #                        tigr_prefix = pr + "\t" + tigr_ns + "<" + tigr_uri + "> .\n"
@@ -778,7 +779,7 @@ ROOT_DIR='/Users/plarmande/Downloads/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
 gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
-gramene_genes_out = ROOT_DIR + ''
+gramene_genes_out =  '/Users/plarmande/Downloads/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
 
