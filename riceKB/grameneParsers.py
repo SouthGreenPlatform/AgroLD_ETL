@@ -6,10 +6,9 @@ The grameneParsers module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic tools for handling Gramene data
 
-TODO: check entitites types for Faldo Region, Position
 TODO : fix taxon assignation currently based on file naming
 TODO : use panda DF to parse tsv file and use more generic headers to build the dictionnary
-
+TODO : fill up the chromosome size for all gramene species used - using NCBI API Call ?
     1) Add documentation
     2) better Error handling
 @author: larmande
@@ -341,7 +340,7 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
+def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir):
     rdf_buffer = ''
 #    geneId_prefix = ''
 #    tigr_prefix = ''
@@ -357,7 +356,11 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
     output_file = os.path.join(output_dir, turtle_file)
     output_opener = open(output_file, "w")
     chromosome_size = {'39947':[43270923, 35937250, 36413819, 35502694, 29958434, 31248787, 29697621, 28443022, 23012720,
-                       23207287, 29021106, 27531856]}
+                       23207287, 29021106, 27531856],
+                       '65489': [43270923, 35937250, 36413819, 35502694, 29958434, 31248787, 29697621, 28443022,
+                                 23012720,
+                                 23207287, 29021106, 27531856]
+                       }
     # Printing Prefixes
     output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
     output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -539,6 +542,8 @@ def grameneGeneRDF(files, output_dir): #def grameneGeneRDF(files, output_dir):
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             output_opener.write(rdf_buffer)
+            if type == 'test': break
+
     output_opener.close()
 #        if geneId_prefix:
 #            output_opener.write(geneId_prefix)
@@ -778,7 +783,7 @@ def removeDuplicates(in_list):
 ROOT_DIR='/Users/plarmande/Downloads/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
+gramene_genes_files = [ROOT_DIR + 'Oryza_barthii.txt']
 gramene_genes_out =  '/Users/plarmande/Downloads/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
