@@ -9,6 +9,7 @@ This module contains Parsers, RDF converters and generic tools for handling Gram
 TODO : fix taxon assignation currently based on file naming
 TODO : use panda DF to parse tsv file and use more generic headers to build the dictionnary
 TODO : fill up the chromosome size for all gramene species used - using NCBI API Call ?
+TODO : put all information chromosome such as Assembly name into the dictionnary of size
     1) Add documentation
     2) better Error handling
 @author: larmande
@@ -17,7 +18,9 @@ import pprint
 from globalVars import *
 from globalVars import base_vocab_ns
 import re
-import os 
+import os
+import pandas as pd
+import numpy as np
 #from __builtin__ import map
 
 '''
@@ -241,6 +244,10 @@ def geneParser(infile):
 
     file_reader.close()
 
+def geneParserPandas(infile):
+    array = pd.read_csv(infile, sep="\t", delimiter=None, dtype='str')
+    print array
+    return array
 
 def qtlParser(infile):
     headers = ['QTLid', 'Name', 'Symbol', 'TOid', 'Category', 'TraitName','TraitSymbol', 'Chromosome', 'Start', 'End']
@@ -340,26 +347,42 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir):
+def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir):
     rdf_buffer = ''
-#    geneId_prefix = ''
-#    tigr_prefix = ''
-#    rapdb_prefix = ''
-#    tair_prefix = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
     current_taxon_id = ''
     rdf_buffer = ''
-    genome_assembly = 'IRGSP-1.0'
+    #genome_assembly = ''
 #    pp = pprint.PrettyPrinter(indent=4)
     turtle_file = output_file_name + ".ttl"
     output_file = os.path.join(output_dir, turtle_file)
     output_opener = open(output_file, "w")
-    chromosome_size = {'39947':[43270923, 35937250, 36413819, 35502694, 29958434, 31248787, 29697621, 28443022, 23012720,
-                       23207287, 29021106, 27531856],
-                       '65489': [43270923, 35937250, 36413819, 35502694, 29958434, 31248787, 29697621, 28443022,
-                                 23012720,
-                                 23207287, 29021106, 27531856]
+    chromosome_size = {'39947': {'size' : ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
+                                         '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
+                                         '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1', 'Mt:1-402710:1', 'Pt:1-134481:1'],
+                                 'genome_assembly' : 'IRGSP-1.0'},
+                       '65489': {'size' : ['1:1-36915442:1', '2:1-31686972:1', '3:1-33311619:1', '4:1-27574323:1',
+                                         '5:1-24206129:1', '6:1-25711811:1', '7:1-24128185:1', '8:1-22678724:1',
+                                         '9:1-19219615:1', '10:1-19274048:1', '11:1-23014695:1', '12:1-20550741:1'],
+                                 'genome_assembly': 'O.barthii_v1'}, #  O.barthii_v1
+                       '4533': [33916305, 27085147, 29620734, 21479432, 20131956, 21794218, 18603524, 18224760,
+                                14107269, 14643570, 16001410, 15318893], # Oryza_brachyantha.v1.4b
+                       '4538': [33916305, 27085147, 29620734, 21479432, 20131956, 21794218, 18603524, 18224760,
+                                14107269, 14643570, 16001410, 15318893], # Oryza_glaberrima_V1
+#                       '40149': [ pas assemble en Chromosome], #  Oryza_meridionalis_v1.3
+                       '39946': [47283185, 38103930, 41884883, 34718618, 31240961, 32913967, 27957088, 30396518, 21757032,
+                                 22204031, 23035369, 23049917],  # ASM465v1
+                       '4558': [80884392, 77742459, 74386277, 68658214, 71854669, 61277060, 65505356, 62686529,
+                                59416394, 61233695],  # Sorghum_bicolor_NCBIv3
+                       '4565': [33916305, 27085147, 29620734, 21479432, 20131956, 21794218, 18603524, 18224760,
+                                14107269, 14643570, 16001410, 15318893],  # IWGSC
+                       '4565': [33916305, 27085147, 29620734, 21479432, 20131956, 21794218, 18603524, 18224760,
+                                14107269, 14643570, 16001410, 15318893],  # Oryza_glaberrima_V1
+                       '4565': [33916305, 27085147, 29620734, 21479432, 20131956, 21794218, 18603524, 18224760,
+                                14107269, 14643570, 16001410, 15318893],  # Oryza_glaberrima_V1
+                       '3702': [30427671, 19698289, 23459830, 18585056, 26975502], # TAIR10
+
                        }
     # Printing Prefixes
     output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
@@ -381,17 +404,16 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
     for tax_id in taxon_ids:
         if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
             current_taxon_id = tax_id
-
-    for ch_size in chromosome_size[current_taxon_id]:
-        rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
-            chromosome_number) + ":1-" + str(
-            ch_size) + ":1" + "\n"
+    genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
+    for ch_size in chromosome_size[current_taxon_id]['size']:
+        # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
+        #     chromosome_number) + ":1-" + str(
+        #     ch_size) + ":1" + "\n"
+        rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\n"
         rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
         rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
-        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + str(
-            chromosome_number) + ":1-" + str(ch_size) + ":1" + "\"@en ;\n"
-        rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + str(
-            chromosome_number) + ":1-" + str(ch_size) + ":1" + "\" ;\n"
+        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + ch_size + "\"@en ;\n"
+        rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\" ;\n"
         rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
         chromosome_number += 1
     output_opener.write(rdf_buffer)
@@ -412,7 +434,7 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
         print "*************Parsing %s genome data ***********\n" % (output_file_name)
         
         gene_ds = geneParser(gene_file)
-#        gene_ds = genomeParser(gene_file)
+        #gene_ds = geneParserPandas(gene_file)
 #        pp.pprint(gene_ds)
 
 #        print "%s data has been parsed!\n" % (output_file_name)
@@ -420,9 +442,10 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
         #ict(gene_ds)
         print(str(len(gene_ds.keys())) + " Genes parsed")
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
-
+        reference_ch = ''
         for gene_id in gene_ds:
             rdf_buffer =''
+            regex_ch =''
             chromosome_nb = 1
             gene_counter += 1
             (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
@@ -491,14 +514,15 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                         string_id = gene_ds[gene_id][record_item]
                         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + string_id + " ;\n"
                 if record_item == 'Chromosome':
-                    if isinstance(gene_ds[gene_id]['Chromosome'],int):
-                        chromosome_nb = int(gene_ds[gene_id]['Chromosome'])-1
-                        rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                    for item in chromosome_size[current_taxon_id]['size']:
+                        if gene_ds[gene_id]['Chromosome'] == item.split(':')[0]:
+                            reference_ch = item
+
+                    # if not gene_ds[gene_id]['Chromosome']=='Mt':
+                    chromosome_nb = gene_ds[gene_id]['Chromosome']
+                    rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
                                   str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand +  " ;\n"
-                    else:
-                        rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                      str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(
-                            gene_ds[gene_id]['End']) + ":" + strand + " ;\n"
+
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             # Region
@@ -511,7 +535,7 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                                   gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + strand + "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
                                   gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + strand + "  .\n\n"
-            # print(str(chromosome_nb)  + "\n\n" + str(gene_ds[gene_id]['Chromosome'])+'\n')
+
             # Position
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
                                   gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + strand
@@ -519,12 +543,8 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
             rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
             rdf_buffer += "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(gene_ds[gene_id]['Start']) + " ;\n"
-            if isinstance(gene_ds[gene_id]['Chromosome'],int):
-                rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + '1' + '-' + str(chromosome_size[current_taxon_id][int(chromosome_nb)]) + ":" + "1" + " .\n\n"
-            else:
-                rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                              gene_ds[gene_id]['Chromosome'] + ':' + '1' + '-$'  + ":" + "1" + " .\n\n"
+            rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                              reference_ch + " .\n\n"
 
             # # Position 2
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
@@ -533,12 +553,8 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
             rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
             rdf_buffer += "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(gene_ds[gene_id]['End']) + " ;\n"
-            if isinstance(gene_ds[gene_id]['Chromosome'],int):
-                rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + '1' + '-' + str(chromosome_size[current_taxon_id][int(chromosome_nb)]) + ":" + "1" + " .\n\n"
-            else:
-                rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                              gene_ds[gene_id]['Chromosome'] + ':' + '1' + '-$' + ":" + "1" + " .\n\n"
+            rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                             reference_ch + " .\n\n"
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             output_opener.write(rdf_buffer)
@@ -783,7 +799,7 @@ def removeDuplicates(in_list):
 ROOT_DIR='/Users/plarmande/Downloads/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'Oryza_barthii.txt']
+gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
 gramene_genes_out =  '/Users/plarmande/Downloads/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
