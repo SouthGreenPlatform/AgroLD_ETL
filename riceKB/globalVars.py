@@ -17,7 +17,7 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     gene_term, protein_term, tigr_uri, tigr_ns, rapdb_gene_uri, rapdb_gene_ns, rapdb_mrna_ns, rapdb_mrna_uri,\
     plant_trait_term,orygene_uri, orygene_ns, goa_uri, goa_ns, gr_assoc, gr_assoc_ns, tair_l_uri, tair_l_ns,\
     met_pw_sio_term, ec_code_uri, ec_code_ns,reaction_uri, reaction_ns, pathway_uri, pathway_ns, otl_uri, otl_ns,\
-    plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term\
+    plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
     string_ns, string_uri
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
