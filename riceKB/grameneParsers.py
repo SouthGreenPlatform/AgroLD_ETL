@@ -8,9 +8,7 @@ This module contains Parsers, RDF converters and generic tools for handling Gram
 
 TODO : fix taxon assignation currently based on file naming
 TODO : use panda DF to parse tsv file and use more generic headers to build the dictionnary
-TODO : fill up the chromosome size for all gramene species used - using NCBI API Call ?
-TODO : put all information chromosome such as Assembly name into the dictionnary of size
-TODO : CHeck when we have column name if we output RDFS label
+T
     1) Add documentation
     2) better Error handling
 @author: larmande
@@ -138,7 +136,7 @@ def geneParser(infile):
         records = line.split('\t')
 
         gene_id = records.pop(0)
-        # print(len(records))
+        print(len(records))
         # Building data structure
         if gene_id not in gene_hash:
             gene_hash[gene_id] = {
@@ -156,32 +154,36 @@ def geneParser(infile):
                                   'Ontology': {},
                                   'StringID':''
                                   }
-        
+
         if gene_id in gene_hash:
             # Records of sps:  O.s.japonica
             if len(records) == 12 and rap_pattern.match(gene_id):
+                if rap_pattern.match(gene_id):
+                    gene_hash[gene_id]['RapID'] = gene_id
+                if records[7]:
+                    if prot_pattern.match(records[7]):
+                        gene_hash[gene_id]['ProtID'][records[7]] = '-'
                 if records[8]:
-                    gene_hash[gene_id]['Ontology'][records[8]] = records[7]
+                    if prot_pattern.match(records[8]):
+                        gene_hash[gene_id]['ProtID'][records[8]] = '-'
                 if records[9]:
-                    if prot_pattern.match(records[9]):
-                        gene_hash[gene_id]['ProtID'][records[9]] = '-'
-                if records[10]:
-                    if prot_pattern.match(records[10]):
-                        gene_hash[gene_id]['ProtID'][records[10]] = '-'
+                    gene_hash[gene_id]['Ontology'][records[10]] = records[9]
                 if records[11]:
                     gene_hash[gene_id]['StringID'] = records[11]
+            else: # Arabidopsis
+                if tair_pattern.match(gene_id):
+                    if records[7]:
+                        gene_hash[gene_id]['TairLocus'] = records[7]
+                    if records[8]:
+                        gene_hash[gene_id]['ProtID'][records[8]] = '-'
+                    if records[9]:
+                        gene_hash[gene_id]['ProtID'][records[9]] = '-'
+                    if records[10]:
+                        gene_hash[gene_id]['Ontology'][records[11]] = records[10]
 
-            # Records of sps: A.thaliana & O. Glaberrima & O.s.indica,
-            if len(records) == 11 and tair_pattern.match(gene_id):
-                if records[6]:
-                    gene_hash[gene_id]['TairLocus'] = records[6]
-                if records[7]:
-                    gene_hash[gene_id]['ProtID'][records[7]] = '-'
-                if records[8]:
-                    gene_hash[gene_id]['ProtID'][records[8]] = '-'
-                if records[9]:
-                    gene_hash[gene_id]['Ontology'][records[9]] = records[10]
-            else:
+            # Records of sps: & O. Glaberrima & O.s.indica, T. Aestivum, S.bicolor, T. urartu, O. Nivara
+            if len(records) == 11:
+
                 if records[7]:
                     gene_hash[gene_id]['ProtID'][records[7]] = '-'
                 if records[8]:
@@ -193,19 +195,20 @@ def geneParser(infile):
                         gene_hash[gene_id]['ProtID'][records[9]] = '-'
                     #                        prot_list.append(records[7])
                     # gene_hash[gene_id]['Ontology'][records[10]] = records[9]
-            # Records of sps: S.bicolor
+            # Records of sps: O. Glumaepatula, Oryza_punctata
             if len(records) == 10:
-                if records[6]:
-                    gene_hash[gene_id]['ProtID'][records[6]] = '-'
-#                    prot_list.append(records[6])
-#                    gene_hash[gene_id]['ProtID'].extend(prot_list)
                 if records[7]:
-                    gene_hash[gene_id]['ProtID'][records[7]] = '-'
-#                    prot_list.append(records[7])
-#                    gene_hash[gene_id]['ProtID'].extend(prot_list)
+                    if prot_pattern.match(records[7]):
+                        gene_hash[gene_id]['ProtID'][records[7]] = '-'
                 if records[8]:
-                    gene_hash[gene_id]['Ontology'][records[8]] = records[9]
-            # Records of sps: O.barthii, O.meridionalis, O.s.japonica
+                    if prot_pattern.match(records[8]):
+                        gene_hash[gene_id]['ProtID'][records[8]] = '-'
+                    if ont_pattern.match(records[8]):
+                        gene_hash[gene_id]['Ontology'][records[9]] = records[8]
+                if records[9]:
+                    if ont_pattern.match(records[9]):
+                        gene_hash[gene_id]['Ontology'][records[10]] = records[9]
+            # Records of sps: O.barthii, O.meridionalis, O.longistaminata,
             if len(records) == 9:
                 if records[6]:
                     if tigr_pattern.match(records[6]):
@@ -346,13 +349,13 @@ def CycParser(in_files):
 
 
 def getStrandValue(strandVar):
-    if strandVar == "-":
-        strandVar = "-1"
+    if strandVar == "-1":
+        strand = "-1"
         positionVar = "ReverseStrandPosition"
     else:
-        strandVar = "1"
+        strand = "1"
         positionVar = "ForwardStrandPosition"
-    return (strandVar,positionVar)
+    return (strand,positionVar)
 
 ''' 
  RDF Converters 
@@ -384,12 +387,24 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                                            '5:1-23192814:1', '6:1-24174485:1', '7:1-21799424:1', '8:1-20292731:1',
                                            '9:1-17607432:1', '10:1-16910673:1', '11:1-20796451:1', '12:1-19154523:1'],
                                  'genome_assembly' : 'Oryza_glaberrima_V1'},
-#                       '40149': [ pas assemble en Chromosome], #  Oryza_meridionalis_v1.3
+                       '40149':  {'size' :[],'genome_assembly' : 'Oryza_meridionalis_v1.3'},  #  Oryza_meridionalis_v1.3
+                       '4572' :  {'size' :[],'genome_assembly' : 'ASM34745v1'},  # t. urartu
                        '39946':  {'size' : ['1:1-47283185:1', '2:1-38103930:1', '3:1-41884883:1', '4:1-34718618:1',
                                             '5:1-31240961:1', '6:1-32913967:1', '7:1-27957088:1', '8:1-30396518:1',
                                             '9:1-21757032:1', '10:1-22204031:1', '11:1-23035369:1', '12:1-23049917:1'],
                                   'genome_assembly' : 'ASM465v1'},  # O.s indica
-
+                       '40148': {'size': ['1:1-46529941:1', '2:1-38039368:1', '3:1-37594838:1', '4:1-32884216:1',
+                                          '5:1-30429317:1', '6:1-31548187:1', '7:1-28350858:1', '8:1-27185770:1',
+                                          '9:1-23490084:1', '10:1-22967634:1', '11:1-27098305:1', '12:1-26741765:1'],
+                                 'genome_assembly': 'Oryza_glumaepatula_v1.5'},  # # Oryza_glumaepatula_v1.5
+                       '4536': {'size': ['1:1-42845077:1', '2:1-35065507:1', '3:1-36134596:1', '4:1-28646061:1',
+                                          '5:1-28014461:1', '6:1-29411429:1', '7:1-24717764:1', '8:1-26703665:1',
+                                          '9:1-20407407:1', '10:1-21549876:1', '11:1-24378308:1', '12:1-20076173:1'],
+                                 'genome_assembly': 'Oryza_nivara_v1.0'},  #
+                       '4537': {'size': ['1:1-46096743:1', '2:1-39559433:1', '3:1-38925377:1', '4:1-33711903:1',
+                                         '5:1-31082981:1', '6:1-34615992:1', '7:1-31244610:1', '8:1-29853973:1',
+                                         '9:1-26294017:1', '10:1-25992119:1', '11:1-28494620:1', '12:1-27944835:1'],
+                                'genome_assembly': 'Oryza_punctata_v1.2'},  #
                        '4558':  {'size' : ['1:1-80884392:1', '2:1-77742459:1', '3:1-74386277:1', '4:1-68658214:1',
                                            '5:1-71854669:1', '6:1-61277060:1', '7:1-65505356:1', '8:1-62686529:1',
                                            '9:1-59416394:1', '10:1-61233695:1'],  'genome_assembly' : 'Sorghum_bicolor_NCBIv3'},  # Sorghum_bicolor_NCBIv3
@@ -398,7 +413,7 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                                            '3D:1-615552423:1', '4A:1-744588157:1', '4B:1-673617499:1', '4D:1-509857067:1',
                                            '5A:1-709773743:1', '5B:1-713149757:1', '5D:1-566080677:1', '6A:1-618079260:1',
                                            '6B:1-720988478:1', '6D:1-473592718:1', '7A:1-736706236:1', '7B:1-750620385:1',
-                                           '7D:1-638686055:1', 'Un:1-480980714:1'],   'genome_assembly' : 'IWGSC'}, # Triticum aevestivum
+                                           '7D:1-638686055:1', 'Un:1-480980714:1'],   'genome_assembly' : 'IWGSC'},  # Triticum aevestivum
                        '4529':  {'size' : ['1:1-39866532:1', '2:1-33962743:1', '3:1-34446443:1', '4:1-30521686:1',
                                            '5:1-26652778:1', '6:1-27870862:1', '7:1-26200591:1' , '8:1-25958679:1',
                                            '9:1-20482102:1', '10:1-20731201:1', '11:1-27785585:1', '12:1-23561512:1'],
@@ -406,9 +421,10 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                        '4577':  {'size' : ['1:1-307041717:1' , '2:1-244442276:1', '3:1-235667834:1', '4:1-246994605:1',
                                            '5:1-223902240:1', '6:1-174033170:1' , '7:1-182381542:1', '8:1-181122637:1',
                                            '9:1-159769782:1',  '10:1-150982314:1', 'Pt:1-140384:1', 'Mt:1-569630:1'],
-                                 'genome_assembly' : 'B73_RefGen_v4'}, # Zea Mays
+                                 'genome_assembly' : 'B73_RefGen_v4'},  # Zea Mays
                        '3702':  {'size' : ['1:1-30427671:1', '2:1-19698289:1', '3:1-23459830:1', '4:1-18585056:1',
-                                           '5:1-26975502:1'],  'genome_assembly' : 'TAIR10'},
+                                           '5:1-26975502:1'],  'genome_assembly' : 'TAIR10'},  # Arabidopsis
+                       '4528': {'size': [], 'genome_assembly': 'O_longistaminata_v1.0'},  # Arabidopsis
 
                        }
     # Printing Prefixes
@@ -423,6 +439,8 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
     output_opener.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
     output_opener.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")                
     output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n\n")
+    output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n\n")
+    output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n\n")
     '''
     Ajout du prefix pour la release des donnees
     '''
@@ -432,17 +450,19 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
         if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
             current_taxon_id = tax_id
     genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
-    for ch_size in chromosome_size[current_taxon_id]['size']:
+    if chromosome_size[current_taxon_id]['size']:
+        print('test chromo')
+        for ch_size in chromosome_size[current_taxon_id]['size']:
         # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
         #     chromosome_number) + ":1-" + str(
         #     ch_size) + ":1" + "\n"
-        rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\n"
-        rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
-        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
-        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + ch_size + "\"@en ;\n"
-        rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\" ;\n"
-        rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
-        chromosome_number += 1
+            rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\n"
+            rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
+            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+            rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + ch_size + "\"@en ;\n"
+            rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\" ;\n"
+            rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
+            chromosome_number += 1
     output_opener.write(rdf_buffer)
 
     for gene_file in files:
@@ -478,7 +498,6 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
             (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
             rdf_buffer += ensembl_ns + gene_id + "\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
 
             for tax_id in taxon_ids:
                 if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name)== taxon_ids[tax_id]:
@@ -507,7 +526,8 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                             rdf_buffer += "\t" + base_vocab_ns + "encodes" + "\t" + up_ns + protein + " ;\n"
                 if record_item == 'RapID':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + rapdb_ns + gene_ds[gene_id][record_item] + " ;\n"
+                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
+                        rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
                 if record_item == 'TairLocus':
                     if gene_ds[gene_id][record_item]:
                         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tair_l_ns + gene_ds[gene_id][record_item] + " ;\n"
@@ -526,15 +546,15 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                             ont_id = ont[1].replace(":", "_")
                             # print(ont[0])
                             if ont[0] == 'molecular_function':
-                                rdf_buffer += "\t" + obo_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
+                                rdf_buffer += "\t" + base_vocab_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
                                 rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
                                 # print('1 ...')
                             if ont[0] == 'biological_process':
-                                rdf_buffer += "\t" + obo_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
+                                rdf_buffer += "\t" + base_vocab_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
                                 rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
                                 # print('2 ...')
                             if ont[0] == 'cellular_component':
-                                rdf_buffer += "\t" + obo_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
+                                rdf_buffer += "\t" + base_vocab_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
                                 rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
                                 # print('3 ...')
                             if ont[0] == 'plant_anatomy':
@@ -547,19 +567,24 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + string_id + " ;\n"
                 if record_item == 'Chromosome':
                     if gene_ds[gene_id][record_item]:
-                        for item in chromosome_size[current_taxon_id]['size']:
-                            if gene_ds[gene_id]['Chromosome'] == item.split(':')[0]:
-                                reference_ch = item
+                        if chromosome_size[current_taxon_id]['size']:
+                            for item in chromosome_size[current_taxon_id]['size']:
+                                if gene_ds[gene_id]['Chromosome'] == item.split(':')[0]:
+                                    reference_ch = item
                     # if not gene_ds[gene_id]['Chromosome']=='Mt':
-                        chromosome_nb = gene_ds[gene_id]['Chromosome']
-                        rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand +  " ;\n"
-
+                            chromosome_nb = gene_ds[gene_id]['Chromosome']
+                            rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                  str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] +  " ;\n"
+                        else:
+                            reference_ch = str(chromosome_nb) + ':1-$:1'
+                            rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
+                                          str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(
+                                gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] + " ;\n"
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             # Region
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand + "  \n"
+                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] + "  \n"
             rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + \
                                   gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand + "\";\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
@@ -831,7 +856,7 @@ def removeDuplicates(in_list):
 ROOT_DIR='/Users/plarmande/Downloads/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'Oryza_rufipogon.txt']
+gramene_genes_files = [ROOT_DIR + 'Oryza_meridionalis.txt']
 gramene_genes_out =  '/Users/plarmande/Downloads/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
