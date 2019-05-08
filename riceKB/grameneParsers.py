@@ -441,6 +441,17 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
     output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n\n")
     output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n\n")
     output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n\n")
+    output_opener.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n\n")
+    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo_uri + "> .\n\n")
+    output_opener.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
+    output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+    output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
+    output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
+    output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
+    output_opener.write(pr + "\t" + ncbi_gene_ns + "<" + ncbi_gene_uri + "> .\n")
+    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
+    output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n")
+    
     '''
     Ajout du prefix pour la release des donnees
     '''
