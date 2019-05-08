@@ -117,16 +117,18 @@ def genomeParser(infile):
     fileReader.close()
     return geneHash
   '''
+tigr_pattern = re.compile(r'^LOC\_Os\d{1,2}g\d{5}\.\d$')
+rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
+tair_pattern = re.compile(r'^AT[1-5]G\d{5}$')
+prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
+ont_pattern = re.compile(r'^\w+\:\d{7}$')
+string_pattern = re.compile(r'^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$')
+
+
 def geneParser(infile):
     
 #    pp = pprint.PrettyPrinter(indent=4)
     gene_hash = {}
-    tigr_pattern = re.compile(r'^LOC\_Os\d{1,2}g\d{5}\.\d$')
-    rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
-    tair_pattern = re.compile(r'^AT[1-5]G\d{5}$')
-    prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
-    ont_pattern = re.compile(r'^\w+\:\d{7}$')
-    
     file_reader = open(infile, "r")
     lines = file_reader.readlines()
     lines.pop(0) # remove header
@@ -442,16 +444,15 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
     output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n\n")
     output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n\n")
     output_opener.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n\n")
-    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo_uri + "> .\n\n")
+    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n\n")
     output_opener.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
     output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
     output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
     output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
     output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
     output_opener.write(pr + "\t" + ncbi_gene_ns + "<" + ncbi_gene_uri + "> .\n")
-    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
     output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n")
-    
+    output_opener.write(pr + "\t" + string_ns + "<" + string_uri + "> .\n")
     '''
     Ajout du prefix pour la release des donnees
     '''
@@ -535,6 +536,8 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                         proteins = gene_ds[gene_id][record_item].keys()
                         for protein in proteins:
                             rdf_buffer += "\t" + base_vocab_ns + "encodes" + "\t" + up_ns + protein + " ;\n"
+                            if string_pattern.match(protein):
+                                rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + protein + " ;\n"
                 if record_item == 'RapID':
                     if gene_ds[gene_id][record_item]:
                         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
@@ -572,10 +575,10 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_in" + "\t" + obo_ns + ont_id + " ;\n"
                             if ont[0] == 'plant_structure_development_stage':
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_at" + "\t" + obo_ns + ont_id + " ;\n"
-                if record_item == 'StringID':
-                    if gene_ds[gene_id][record_item]:
-                        string_id = gene_ds[gene_id][record_item]
-                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + string_id + " ;\n"
+                # if record_item == 'StringID':
+                #     if gene_ds[gene_id][record_item]:
+                #         string_id = gene_ds[gene_id][record_item]
+                #         rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" "\t" + "string:" + string_id + " ;\n"
                 if record_item == 'Chromosome':
                     if gene_ds[gene_id][record_item]:
                         if chromosome_size[current_taxon_id]['size']:
@@ -867,7 +870,7 @@ def removeDuplicates(in_list):
 ROOT_DIR='/Users/plarmande/Downloads/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'Oryza_meridionalis.txt']
+gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
 gramene_genes_out =  '/Users/plarmande/Downloads/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
