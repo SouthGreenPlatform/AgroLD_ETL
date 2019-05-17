@@ -72,6 +72,13 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     ncbi_pattern = re.compile(r'^[A-Z]{2}\d{6}$')
 
     chromosome_size = [43270923,35937250,36413819,35502694,29958434,31248787,29697621,28443022,23012720,23207287,29021106,27531856]
+
+
+    chromosome_size = {'39947': {'size': ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
+                                      '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
+                                      '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1',
+                                      'Mt:1-402710:1', 'Pt:1-134481:1'],
+                             'genome_assembly': 'IRGSP-1.0'}}
     # chromosome_size.reverse()
     # The first wrinting in the file is the prefix
 
@@ -119,7 +126,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
-    # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
     rdf_writer.write(os_japonica_buffer)
 # Chromosome triple
@@ -137,13 +144,15 @@ def rapdbModeleRDF(rapdb_ds, output_file):
             os_japonica_buffer = ''
             ch_number += 1
             chromosome_dict[records['seqid']] = {}
-            chromosome_dict[records['seqid']] = { 'uri': "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1", 'seqid': records['seqid'], 'number' : str(ch_number), 'nucleotide' : str(chromosome), 'assembly':'IRGSP-1.0'}
+            chromosome_dict[records['seqid']] = { 'uri': "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) +
+                                                         ":1", 'seqid': records['seqid'], 'number' : str(ch_number),
+                                                  'nucleotide' : str(chromosome), 'assembly':'IRGSP-1.0'}
             chromosome_list[records['seqid']]= "39947:IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1"
             os_japonica_buffer += chromosome_ns + "39947:" + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + "\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+            os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" +  obo_ns + "NCBITaxon_39947" + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
-            os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + "Oryza sativa Japonica Group chromosome:" + "IRGSP-1.0:" + str(
-                ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
+            os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + "Oryza sativa Japonica Group chromosome:" +\
+                                  "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
             os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "39947:IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" .\n\n"
@@ -182,7 +191,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 if 'Note' in records['attributes']:
                     os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                     # os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_39947" + " ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
 
                 os_japonica_buffer +=  "\t" + faldo_ns + "location" + "\t"  + chromosome_ns + "39947:IRGSP-1.0:"+ \
@@ -666,8 +675,8 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/all.gff'
-path_output = '/Users/plarmande/Downloads/IRGSP-1.0_representative_12-18/Oryza_sativa_Japonica.ttl' # The output
+path = '/Users/plarmande/workspace2015/IRGSP-1.0_representative/all.gff'
+path_output = '/Users/plarmande/workspace2015/IRGSP-1.0_representative/Oryza_sativa_Japonica.ttl' # The output
 
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
