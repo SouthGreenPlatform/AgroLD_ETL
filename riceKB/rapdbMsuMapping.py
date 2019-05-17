@@ -75,7 +75,7 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer = ''
             os_japonica_buffer += tigr_g_ns + records[1].split('.')[0] + "\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+            # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[0] + " ;\n"
             # os_japonica_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t" + ensembl_ns + records[0] + " ;\n"
             os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + ensembl_ns + records[0]+ " .\n\n"
@@ -83,7 +83,7 @@ def msuModeleRDF(msu_ds, output_file):
 
             os_japonica_buffer += ensembl_ns + records[0] + "\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+            # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
             # os_japonica_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
             os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + tigr_g_ns + records[1].split('.')[0] + " .\n\n"
