@@ -48,7 +48,11 @@ def msuModeleRDF(msu_ds, output_file):
     rdf_writer = open(output_file, "w")
     chromosome_list = list()
     gene_list = list()
-
+    chromosome_size = {'39947': {'size': ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
+                                      '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
+                                      '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1',
+                                      'Mt:1-402710:1', 'Pt:1-134481:1'],
+                             'genome_assembly': 'IRGSP-1.0'}}
 # The first wrinting in the file is the prefix
 
 
@@ -63,11 +67,22 @@ def msuModeleRDF(msu_ds, output_file):
     rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
     rdf_writer.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n")
     rdf_writer.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
+    rdf_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
 
     # Ajout du prefix pour la realese des donnees
     rdf_writer.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
 
 # In here we buil the modele and writer in file with ttl format
+    os_japonica_buffer = ''
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
+    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
+    print(os_japonica_buffer)
+    rdf_writer.write(os_japonica_buffer)
 
     for records in msu_ds.as_matrix(columns=None):
         line_number+=1
@@ -77,7 +92,7 @@ def msuModeleRDF(msu_ds, output_file):
             chromosome_list.append(records[0])
             os_japonica_buffer += chromosome_ns + re.sub('Os|Chr', '', records[0]) + "\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-            os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Chromosome" + " ;\n"
+            os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "genome_assembly_name" + "\t" +  "\"Os-Nipponbare-Reference-IRGSP-1.0\"" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "genome_assembly_version" + "\t"  + "\"7\"" + " ;\n"
            # os_japonica_buffer += "\t" + base_vocab_ns + "type" + "\t" + res_ns + "Chromosome" + " ;\n\n"
@@ -93,7 +108,7 @@ def msuModeleRDF(msu_ds, output_file):
                 gene_list.append(records[1])
                 os_japonica_buffer += msu_ns + records[1] + "\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "source_project" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
                 # os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[1] + "\" ;\n"
                 # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
