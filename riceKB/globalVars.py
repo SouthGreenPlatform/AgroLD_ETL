@@ -18,7 +18,9 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     plant_trait_term,orygene_uri, orygene_ns, goa_uri, goa_ns, gr_assoc, gr_assoc_ns, tair_l_uri, tair_l_ns,\
     met_pw_sio_term, ec_code_uri, ec_code_ns,reaction_uri, reaction_ns, pathway_uri, pathway_ns, otl_uri, otl_ns,\
     plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
-    string_ns, string_uri
+    string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
+    string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
+    pubmed_pattern, ncbi_pattern
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -45,6 +47,17 @@ taxon_ids = {
 rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
 gramene_pattern = re.compile(r'^GR\:\d{7}$')
 prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
+tigr_pattern = re.compile(r'^LOC\_Os\d{1,2}g\d{5}\.\d$')
+tair_pattern = re.compile(r'^AT[1-5]G\d{5}$')
+ont_pattern = re.compile(r'^\w+\:\d{7}$')
+string_pattern = re.compile(r'^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$')
+sorghum_pattern = re.compile(r'^SB\d{2}G\d{6}\.\d$')
+alt_sorghum_match = re.compile(r'^SB\d{4}S\d{6}\.\d$')
+arabidopsis_pattern = re.compile(r'^AT[1-5]G\d{5}$')
+maize_pattern = re.compile(r'^GRMZM\d{1}G\d{6}')
+alt_maize_match = re.compile(r'^\w+\d{6}\.\d{1}\_\w+\d{3}')
+pubmed_pattern = re.compile(r'^\d+$')
+ncbi_pattern = re.compile(r'^[A-Z]{2}\d{6}$')
 
 # Resolvable URIs
 db_obj_type = {
