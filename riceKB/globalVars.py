@@ -3,7 +3,7 @@
 This file contains all global variables i.e. URI patterns, Ontological terms and predicates to be used by the various parsers
  
 '''
-
+import re
 '''
 TODO:
     1) Add variables for common predicates used in the Rdf converters
@@ -40,6 +40,12 @@ taxon_ids = {
          '4565' : 'Triticum aestivum',
          '4572' : 'Triticum urartu'
          }
+
+# RegEX patterns
+rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
+gramene_pattern = re.compile(r'^GR\:\d{7}$')
+prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
+
 # Resolvable URIs
 db_obj_type = {
               'protein' : 'http://www.identifiers.org/uniprot/', # Note: assumes protein accessions are from UniProt
@@ -89,7 +95,7 @@ base_vocab_ns = 'agrold_vocabulary:'
 ncbi_gene_uri = 'http://identifiers.org/ncbigene/'
 ncbi_gene_ns = 'ncbigene:'
 
-ncbi_tax_uri = 'http://identifiers.org/taxonomy/'
+ncbi_tax_uri = 'http://purl.obolibrary.org/obo/NCBITaxon_'
 ncbi_tax_ns = 'taxon:'
 
 #uniprot = 'http://www.identifiers.org/uniprot/'
