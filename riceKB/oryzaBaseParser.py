@@ -208,7 +208,7 @@ def oryzaBaseRDF(infile, output_file):
                     for rap_id in orygene_ds[oryid][item]:
                         if re.match(rap_pattern, rap_id):
                             ttl_buffer += "\t" + base_vocab_ns + "has_rap_identifier" + "\t" + ensembl_ns + re.sub('\s+', '', rap_id)  + " ;\n"
-            if item == 'Gramene_id':
+                            ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + ensembl_ns + re.sub('\s+', '', rap_id)  + " ;\n"
                 if orygene_ds[oryid][item]:
                     for gr_id in orygene_ds[oryid][item]:
                         if re.match(gramene_pattern,gr_id):
@@ -273,6 +273,7 @@ def RDF_validation(ttl_buffer,ttl_handle,oryid):
         try_handle.write(base + "\t" + "<" + base_uri + "> .\n")
         try_handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
         try_handle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+        try_handle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
         try_handle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
         try_handle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
         try_handle.write(pr + "\t" + gr_g_ns + "<" + gramene_gene + "> .\n")
