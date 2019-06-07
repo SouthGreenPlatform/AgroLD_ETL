@@ -144,6 +144,7 @@ def oryzaBaseRDF(infile, output_file):
     ttl_handle.write(base + "\t" + "<" + base_uri + "> .\n")    
     ttl_handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
     ttl_handle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+    ttl_handle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
     ttl_handle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     ttl_handle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     ttl_handle.write(pr + "\t" + gr_g_ns + "<" + gramene_gene + "> .\n")
