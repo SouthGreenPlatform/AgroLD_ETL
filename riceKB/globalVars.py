@@ -20,7 +20,7 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
     string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
     string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
-    pubmed_pattern, ncbi_pattern
+    pubmed_pattern, ncbi_pattern, interpro_pattern
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -58,6 +58,7 @@ maize_pattern = re.compile(r'^GRMZM\d{1}G\d{6}')
 alt_maize_match = re.compile(r'^\w+\d{6}\.\d{1}\_\w+\d{3}')
 pubmed_pattern = re.compile(r'^\d+$')
 ncbi_pattern = re.compile(r'^[A-Z]{2}\d{6}$')
+interpro_pattern = re.compile(r'^IPR[0-9]{6}$')
 
 # Resolvable URIs
 db_obj_type = {
