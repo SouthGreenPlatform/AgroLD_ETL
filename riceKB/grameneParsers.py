@@ -29,6 +29,10 @@ import numpy as np
 from pandas.io.json import json_normalize
 import rdflib
 from rdflib.graph import Graph
+import urllib3
+import requests
+from bs4 import BeautifulSoup
+
 #from __builtin__ import map
 
 '''
@@ -957,11 +961,13 @@ def removeDuplicates(in_list):
     return newlist
 
 def CallAPI(gene):
-    url = 'http://data.gramene.org/v60/genes?_id='
+    url = 'http://data.gramene.org/v60/genes?_id='+gene
     # genes = 'q='+gene
     # genes = 'q=os11g0559200'
     print('*******'+gene+'**********')
-    req = requests.get(url + 'Os04g0471100').json()[0]
+    result = connectionError(url)
+    #req = requests.get(url + gene).json()[0]
+    req = result.json()[0]
     print(req)
     # print(req.json())
     # test3 = json.load(req)
@@ -1067,6 +1073,33 @@ def RDF_validation(ttl_buffer, ttl_handle, oryid):
         handle.write(ttl_buffer)
         pass
 
+
+def connectionError(link, data=""):
+    """
+    Return requests.get(link) with post request and test website issues
+
+    :param link: URL
+    :param data: data to give to the form
+
+    :return: requests.get(link)
+    """
+    try:
+        urllib3.disable_warnings()
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+        if data!= "":
+            res = requests.post(link, data=data, headers=headers,verify=False)
+        else:
+            res = requests.get(link, allow_redirects=False,stream=True,verify=False)
+        if res.status_code != 200:
+            print('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
+            #raise Exception('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
+            # sys.exit(1)
+        return res
+    except requests.exceptions.RequestException as error:
+        print("Can't connect: {} - Eror: {}".format(link,error))
+        return
+
+
 ROOT_DIR='/Volumes/LaCie/AGROLD/data_update_2019/Gramene.genes/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
@@ -1089,3 +1122,7 @@ print gramene_genes_files
 grameneGeneRDF(gramene_genomes, gramene_genes_out)
 print "********************************************************\n\n"
 
+# if __name__ == '__main__':
+# 	link = "http://data.gramene.org/v60/genes?q=Os08g0494375"
+# 	result = connectionError(link)
+# 	print(result.content)
