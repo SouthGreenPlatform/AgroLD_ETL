@@ -371,7 +371,7 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir): for test > type='test'
+def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
@@ -598,38 +598,39 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                             if ont[0] == 'plant_structure_development_stage':
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_at" + "\t" + obo_ns + ont_id + " ;\n"
                 if record_item == 'annotations':
-                # if gene_ds[gene_id]['annotations']['GO']['entries']:
-                    for entry in  gene_ds[gene_id]['annotations']['GO']['entries']:
-                        ont_id = entry['id'].replace(":", "_")
-                        if ont_id not in onto_dic:
-                            if entry['namespace']== 'molecular_function':
-                                rdf_buffer += "\t" + base_vocab_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
+                    if 'GO' in gene_ds[gene_id]['annotations'].keys():
+                        for entry in  gene_ds[gene_id]['annotations']['GO']['entries']:
+                            ont_id = entry['id'].replace(":", "_")
+                            if ont_id not in onto_dic:
+                                if entry['namespace']== 'molecular_function':
+                                    rdf_buffer += "\t" + base_vocab_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry['evidence_code'] + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene"  + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime("%Y-%m-%d") + "^^xsd:date ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
+                                    rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
 
-                            if entry['namespace'] == 'biological_process':
-                                rdf_buffer += "\t" + base_vocab_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
+                                if entry['namespace'] == 'biological_process':
+                                    rdf_buffer += "\t" + base_vocab_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry[
                                 #     'evidence_code'] + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene" + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime(
                                 #     "%Y-%m-%d") + "^^xsd:date ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
+                                    rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
 
-                            if entry['namespace'] == 'cellular_component':
-                                rdf_buffer += "\t" + base_vocab_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
+                                if entry['namespace'] == 'cellular_component':
+                                    rdf_buffer += "\t" + base_vocab_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry[
                                 #     'evidence_code'] + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene" + " ;\n"
                                 # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime(
                                 #     "%Y-%m-%d") + "^^xsd:date ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
-                    for domain in  gene_ds[gene_id]['annotations']['domains']['entries']:
-                        if interpro_pattern.match(domain['id']):
-                            rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + domain['id'] + " ;\n"
-                            rdf_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + interpro_ns + domain['id'] + " ;\n"
+                                    rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
+                    if 'domains' in gene_ds[gene_id]['annotations'].keys():
+                        for domain in  gene_ds[gene_id]['annotations']['domains']['entries']:
+                            if interpro_pattern.match(domain['id']):
+                                rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + domain['id'] + " ;\n"
+                                rdf_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + interpro_ns + domain['id'] + " ;\n"
                 if record_item == 'xrefs':
                     for xref in gene_ds[gene_id]['xrefs']:
                         if xref['db'] == 'Uniprot/SPTREMBL':
@@ -956,11 +957,12 @@ def removeDuplicates(in_list):
     return newlist
 
 def CallAPI(gene):
-    url = "http://data.gramene.org/v60/genes?"
-    genes = 'q='+gene
+    url = 'http://data.gramene.org/v60/genes?_id='
+    # genes = 'q='+gene
     # genes = 'q=os11g0559200'
-    req = requests.get(url + genes).json()[0]
-
+    print('*******'+gene+'**********')
+    req = requests.get(url + 'Os04g0471100').json()[0]
+    print(req)
     # print(req.json())
     # test3 = json.load(req)
     #test = json.dumps(req, sort_keys=True, indent=4)
