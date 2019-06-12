@@ -299,7 +299,9 @@ def riceCyc(input_files):
     
     pw_ds = list()
 
-    
+    *******Os05g0378800**********
+*******Os03g0262400**********
+    *******Os12g0131266**********
     
     for input_file in input_files:
         fileHandle = open(input_file, "r")
@@ -375,7 +377,7 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir): for test > type='test'
+def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
@@ -631,10 +633,11 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                                 #     "%Y-%m-%d") + "^^xsd:date ;\n"
                                     rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
                     if 'domains' in gene_ds[gene_id]['annotations'].keys():
-                        for domain in  gene_ds[gene_id]['annotations']['domains']['entries']:
-                            if interpro_pattern.match(domain['id']):
-                                rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + domain['id'] + " ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + interpro_ns + domain['id'] + " ;\n"
+                        if 'entries' in gene_ds[gene_id]['annotations']['domains'].keys():
+                            for domain in  gene_ds[gene_id]['annotations']['domains']['entries']:
+                                if interpro_pattern.match(domain['id']):
+                                    rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + domain['id'] + " ;\n"
+                                    rdf_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + interpro_ns + domain['id'] + " ;\n"
                 if record_item == 'xrefs':
                     for xref in gene_ds[gene_id]['xrefs']:
                         if xref['db'] == 'Uniprot/SPTREMBL':
@@ -962,6 +965,7 @@ def removeDuplicates(in_list):
 
 def CallAPI(gene):
     url = 'http://data.gramene.org/v60/genes?_id='+gene
+    #url = 'http://data.gramene.org/v60/genes?_id=Os10g0561200'
     # genes = 'q='+gene
     # genes = 'q=os11g0559200'
     print('*******'+gene+'**********')
@@ -1113,7 +1117,7 @@ pp = pprint.PrettyPrinter(indent=4)
 gramene_genomes = gramene_genes_files #gramene_genes_files
 # g_parse = grameneParsers#oryzaBaseParser
 print "***************** Gramene Genes data ********************\n"
-print gramene_genes_files
+
 # g_parse = geneParser(gramene_genomes)
 # input_f = '/Oryza brachyantha.txt' #Oryza_barthii.txt' Oryza_sativa_japonica
 # input_f = '/home/venkatesan/workspace/explore/test_files/gramene_genes/Oryza_brachyantha.txt' #Oryza_barthii.txt' Oryza_sativa_japonica
