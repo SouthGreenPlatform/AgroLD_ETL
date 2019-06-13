@@ -378,7 +378,7 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir): for test > type='test'
+def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
@@ -497,10 +497,6 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
     for gene_file in files:
 
         rdf_buffer = ''
-#        tigr_prefix = ''
-#        rapdb_prefix = ''
-#        geneId_prefix = ''
-#        tair_prefix = ''
 
 #        turtle_file = "gramene_" + output_file_name + "_genes" + ".ttl"
 #        output_file = os.path.join(output_dir, turtle_file)
@@ -520,7 +516,7 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
         reference_ch = ''
         for gene_id in gene_ds:
-            #gene_id='Os12g0131266'
+            gene_id='Os05g0420800'
             rdf_buffer =''
             regex_ch =''
             chromosome_nb = 1
@@ -977,8 +973,13 @@ def CallAPI(gene):
     print('*******'+gene+'**********')
     result = connectionError(url)
     #req = requests.get(url + gene).json()[0]
-    req = result.json()[0]
-    print(req)
+    req = {}
+    if len(result.json())>0:
+        req=result.json()[0]
+    else:
+        req={'_id':gene}
+        pass
+    #print(req)
     # print(req.json())
     # test3 = json.load(req)
     #test = json.dumps(req, sort_keys=True, indent=4)
@@ -1108,6 +1109,7 @@ def connectionError(link, data=""):
             res = requests.get(link, allow_redirects=False,stream=True,verify=False)
         if res.status_code != 200:
             print('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
+            pass
             #raise Exception('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
             # sys.exit(1)
         return res
@@ -1143,14 +1145,8 @@ gramene_genes_out =  '/Users/plarmande/workspace2015/data/'
 pp = pprint.PrettyPrinter(indent=4)
 
 gramene_genomes = gramene_genes_files #gramene_genes_files
-# g_parse = grameneParsers#oryzaBaseParser
 print "***************** Gramene Genes data ********************\n"
 
-# g_parse = geneParser(gramene_genomes)
-# input_f = '/Oryza brachyantha.txt' #Oryza_barthii.txt' Oryza_sativa_japonica
-# input_f = '/home/venkatesan/workspace/explore/test_files/gramene_genes/Oryza_brachyantha.txt' #Oryza_barthii.txt' Oryza_sativa_japonica
-#geneHash = geneParser(gramene_genomes)#grameneQTLRDF(gramene_qtl_dir, gramene_qtl_out) oryzaBaseRDF(oryzabase_file, oryzaBase_output) grameneGeneRDF(gramene_genomes, gramene_genes_out)
-#pp.pprint(geneHash)
 grameneGeneRDF(gramene_genomes, gramene_genes_out)
 print "********************************************************\n\n"
 
