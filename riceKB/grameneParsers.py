@@ -24,6 +24,7 @@ import os, sys
 import datetime
 import json
 import copy
+import time
 import pandas as pd
 import numpy as np
 from pandas.io.json import json_normalize
@@ -377,7 +378,7 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir): for test > type='test'
+def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
@@ -480,7 +481,6 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
             current_taxon_id = tax_id
     genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
     if chromosome_size[current_taxon_id]['size']:
-        print('test chromo')
         for ch_size in chromosome_size[current_taxon_id]['size']:
         # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
         #     chromosome_number) + ":1-" + str(
@@ -520,6 +520,7 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
         reference_ch = ''
         for gene_id in gene_ds:
+            #gene_id='Os12g0131266'
             rdf_buffer =''
             regex_ch =''
             chromosome_nb = 1
@@ -603,6 +604,10 @@ def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, out
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_in" + "\t" + obo_ns + ont_id + " ;\n"
                             if ont[0] == 'plant_structure_development_stage':
                                 rdf_buffer += "\t" + base_vocab_ns + "expressed_at" + "\t" + obo_ns + ont_id + " ;\n"
+                if record_item == 'synonyms':
+                    for id in gene_ds[gene_id]['synonyms']:
+                        rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (
+                            re.sub('\s+', '', id)) + " ;\n"
                 if record_item == 'annotations':
                     if 'GO' in gene_ds[gene_id]['annotations'].keys():
                         for entry in  gene_ds[gene_id]['annotations']['GO']['entries']:
@@ -964,8 +969,9 @@ def removeDuplicates(in_list):
     return newlist
 
 def CallAPI(gene):
+
     url = 'http://data.gramene.org/v60/genes?_id='+gene
-    #url = 'http://data.gramene.org/v60/genes?_id=Os10g0561200'
+    #url = 'http://data.gramene.org/v61/genes?_id=Os03g0262400'
     # genes = 'q='+gene
     # genes = 'q=os11g0559200'
     print('*******'+gene+'**********')
@@ -1089,10 +1095,16 @@ def connectionError(link, data=""):
     """
     try:
         urllib3.disable_warnings()
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+        header_test=get_random_ua()
+        header_test = re.sub('\n$', '', header_test)
+        headers = {'User-Agent': header_test}
+        delays = [1, 4, 3, 2, 5, 6]
+        delay = np.random.choice(delays)
         if data!= "":
+            time.sleep(delay)
             res = requests.post(link, data=data, headers=headers,verify=False)
         else:
+            time.sleep(delay)
             res = requests.get(link, allow_redirects=False,stream=True,verify=False)
         if res.status_code != 200:
             print('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
@@ -1103,12 +1115,28 @@ def connectionError(link, data=""):
         print("Can't connect: {} - Eror: {}".format(link,error))
         return
 
+def get_random_ua():
+    random_ua = ''
+    ua_file = 'user_agent.txt'
+    try:
+        with open(ua_file) as f:
+            lines = f.readlines()
+        if len(lines) > 0:
+            prng = np.random.RandomState()
+            index = prng.permutation(len(lines) - 1)
+            idx = np.asarray(index, dtype=np.integer)[0]
+            random_ua = lines[int(idx)]
+    except Exception as ex:
+        print('Exception in random_ua')
+        print(str(ex))
+    finally:
+        return random_ua
 
-ROOT_DIR='/Volumes/LaCie/AGROLD/data_update_2019/Gramene.genes/'
+ROOT_DIR='/Users/plarmande/workspace2015/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
 gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
-gramene_genes_out =  '/Volumes/LaCie/AGROLD/data_update_2019/Gramene.genes/'
+gramene_genes_out =  '/Users/plarmande/workspace2015/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
 
