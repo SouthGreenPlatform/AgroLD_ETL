@@ -30,6 +30,7 @@ import numpy as np
 from pandas.io.json import json_normalize
 import rdflib
 from rdflib.graph import Graph
+from rdflib import URIRef
 import urllib3
 import requests
 from bs4 import BeautifulSoup
@@ -140,6 +141,8 @@ string_pattern = re.compile(r'^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([
 
 now = datetime.datetime.now()
 rdf_prefix = ""
+current_taxon_id = ''
+genome_assembly = ''
 def geneParser(infile):
     
 #    pp = pprint.PrettyPrinter(indent=4)
@@ -153,7 +156,7 @@ def geneParser(infile):
         records = line.split('\t')
 
         gene_id = records.pop(0)
-        print(len(records))
+        #print(len(records))
         # Building data structure
         if gene_id not in gene_hash:
             gene_hash[gene_id] = {
@@ -378,121 +381,130 @@ def getStrandValue(strandVar):
 ''' 
  RDF Converters 
 '''             
-def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir): for test > type='test'
+def grameneGeneRDF(files, output_dir,type='run'): #def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
     current_taxon_id = ''
     rdf_buffer = ''
-    #genome_assembly = ''
-#    pp = pprint.PrettyPrinter(indent=4)
-    turtle_file = output_file_name + ".ttl"
-    output_file = os.path.join(output_dir, turtle_file)
-    output_opener = open(output_file, "w")
-    chromosome_size = {'39947': {'size' : ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
-                                         '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
-                                         '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1', 'Mt:1-402710:1', 'Pt:1-134481:1'],
-                                 'genome_assembly' : 'IRGSP-1.0'},
-                       '65489': {'size' : ['1:1-36915442:1', '2:1-31686972:1', '3:1-33311619:1', '4:1-27574323:1',
-                                         '5:1-24206129:1', '6:1-25711811:1', '7:1-24128185:1', '8:1-22678724:1',
-                                         '9:1-19219615:1', '10:1-19274048:1', '11:1-23014695:1', '12:1-20550741:1'],
+    genome_assembly = ''
+    chromosome_size = {'39947': {'size': ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
+                                          '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
+                                          '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1',
+                                          'Mt:1-402710:1', 'Pt:1-134481:1'],
+                                 'genome_assembly': 'IRGSP-1.0'},
+                       '65489': {'size': ['1:1-36915442:1', '2:1-31686972:1', '3:1-33311619:1', '4:1-27574323:1',
+                                          '5:1-24206129:1', '6:1-25711811:1', '7:1-24128185:1', '8:1-22678724:1',
+                                          '9:1-19219615:1', '10:1-19274048:1', '11:1-23014695:1', '12:1-20550741:1'],
                                  'genome_assembly': 'O.barthii_v1'},
-                       '4533': {'size' : ['1:1-33916305:1', '2:1-27085147:1', '3:1-29620734:1', '4:1-21479432:1',
-                                          '5:1-20131956:1', '6:1-21794218:1', '7:1-18603524:1', '8:1-18224760:1',
-                                          '9:1-14107269:1', '10:1-14643570:1', '11:1-16001410:1', '12:1-15318893:1'],
-                                 'genome_assembly' : 'Oryza_brachyantha.v1.4b'},
-                       '4538':  {'size' : ['1:1-32613412:1', '2:1-29142869:1', '3:1-33053699:1', '4:1-26299011:1',
-                                           '5:1-23192814:1', '6:1-24174485:1', '7:1-21799424:1', '8:1-20292731:1',
-                                           '9:1-17607432:1', '10:1-16910673:1', '11:1-20796451:1', '12:1-19154523:1'],
-                                 'genome_assembly' : 'Oryza_glaberrima_V1'},
-                       '40149':  {'size' :[],'genome_assembly' : 'Oryza_meridionalis_v1.3'},  #  Oryza_meridionalis_v1.3
-                       '4572' :  {'size' :[],'genome_assembly' : 'ASM34745v1'},  # t. urartu
-                       '39946':  {'size' : ['1:1-47283185:1', '2:1-38103930:1', '3:1-41884883:1', '4:1-34718618:1',
-                                            '5:1-31240961:1', '6:1-32913967:1', '7:1-27957088:1', '8:1-30396518:1',
-                                            '9:1-21757032:1', '10:1-22204031:1', '11:1-23035369:1', '12:1-23049917:1'],
-                                  'genome_assembly' : 'ASM465v1'},  # O.s indica
+                       '4533': {'size': ['1:1-33916305:1', '2:1-27085147:1', '3:1-29620734:1', '4:1-21479432:1',
+                                         '5:1-20131956:1', '6:1-21794218:1', '7:1-18603524:1', '8:1-18224760:1',
+                                         '9:1-14107269:1', '10:1-14643570:1', '11:1-16001410:1', '12:1-15318893:1'],
+                                'genome_assembly': 'Oryza_brachyantha.v1.4b'},
+                       '4538': {'size': ['1:1-32613412:1', '2:1-29142869:1', '3:1-33053699:1', '4:1-26299011:1',
+                                         '5:1-23192814:1', '6:1-24174485:1', '7:1-21799424:1', '8:1-20292731:1',
+                                         '9:1-17607432:1', '10:1-16910673:1', '11:1-20796451:1', '12:1-19154523:1'],
+                                'genome_assembly': 'Oryza_glaberrima_V1'},
+                       '40149': {'size': [], 'genome_assembly': 'Oryza_meridionalis_v1.3'},  # Oryza_meridionalis_v1.3
+                       '4572': {'size': [], 'genome_assembly': 'ASM34745v1'},  # t. urartu
+                       '39946': {'size': ['1:1-47283185:1', '2:1-38103930:1', '3:1-41884883:1', '4:1-34718618:1',
+                                          '5:1-31240961:1', '6:1-32913967:1', '7:1-27957088:1', '8:1-30396518:1',
+                                          '9:1-21757032:1', '10:1-22204031:1', '11:1-23035369:1', '12:1-23049917:1'],
+                                 'genome_assembly': 'ASM465v1'},  # O.s indica
                        '40148': {'size': ['1:1-46529941:1', '2:1-38039368:1', '3:1-37594838:1', '4:1-32884216:1',
                                           '5:1-30429317:1', '6:1-31548187:1', '7:1-28350858:1', '8:1-27185770:1',
                                           '9:1-23490084:1', '10:1-22967634:1', '11:1-27098305:1', '12:1-26741765:1'],
                                  'genome_assembly': 'Oryza_glumaepatula_v1.5'},  # # Oryza_glumaepatula_v1.5
                        '4536': {'size': ['1:1-42845077:1', '2:1-35065507:1', '3:1-36134596:1', '4:1-28646061:1',
-                                          '5:1-28014461:1', '6:1-29411429:1', '7:1-24717764:1', '8:1-26703665:1',
-                                          '9:1-20407407:1', '10:1-21549876:1', '11:1-24378308:1', '12:1-20076173:1'],
-                                 'genome_assembly': 'Oryza_nivara_v1.0'},  #
+                                         '5:1-28014461:1', '6:1-29411429:1', '7:1-24717764:1', '8:1-26703665:1',
+                                         '9:1-20407407:1', '10:1-21549876:1', '11:1-24378308:1', '12:1-20076173:1'],
+                                'genome_assembly': 'Oryza_nivara_v1.0'},  #
                        '4537': {'size': ['1:1-46096743:1', '2:1-39559433:1', '3:1-38925377:1', '4:1-33711903:1',
                                          '5:1-31082981:1', '6:1-34615992:1', '7:1-31244610:1', '8:1-29853973:1',
                                          '9:1-26294017:1', '10:1-25992119:1', '11:1-28494620:1', '12:1-27944835:1'],
                                 'genome_assembly': 'Oryza_punctata_v1.2'},  #
-                       '4558':  {'size' : ['1:1-80884392:1', '2:1-77742459:1', '3:1-74386277:1', '4:1-68658214:1',
-                                           '5:1-71854669:1', '6:1-61277060:1', '7:1-65505356:1', '8:1-62686529:1',
-                                           '9:1-59416394:1', '10:1-61233695:1'],  'genome_assembly' : 'Sorghum_bicolor_NCBIv3'},  # Sorghum_bicolor_NCBIv3
-                       '4565':  {'size' : ['1A:1-594102056:1', '1B:1-689851870:1',  '1D:1-495453186:1', '2A:1-780798557:1',
-                                           '2B:1-801256715:1', '2D:1-651852609:1' , '3A:1-750843639:1', '3B:1-830829764:1',
-                                           '3D:1-615552423:1', '4A:1-744588157:1', '4B:1-673617499:1', '4D:1-509857067:1',
-                                           '5A:1-709773743:1', '5B:1-713149757:1', '5D:1-566080677:1', '6A:1-618079260:1',
-                                           '6B:1-720988478:1', '6D:1-473592718:1', '7A:1-736706236:1', '7B:1-750620385:1',
-                                           '7D:1-638686055:1', 'Un:1-480980714:1'],   'genome_assembly' : 'IWGSC'},  # Triticum aevestivum
-                       '4529':  {'size' : ['1:1-39866532:1', '2:1-33962743:1', '3:1-34446443:1', '4:1-30521686:1',
-                                           '5:1-26652778:1', '6:1-27870862:1', '7:1-26200591:1' , '8:1-25958679:1',
-                                           '9:1-20482102:1', '10:1-20731201:1', '11:1-27785585:1', '12:1-23561512:1'],
-                                 'genome_assembly' : 'OR_W1943'},  # Oryza_rufipogon
-                       '4577':  {'size' : ['1:1-307041717:1' , '2:1-244442276:1', '3:1-235667834:1', '4:1-246994605:1',
-                                           '5:1-223902240:1', '6:1-174033170:1' , '7:1-182381542:1', '8:1-181122637:1',
-                                           '9:1-159769782:1',  '10:1-150982314:1', 'Pt:1-140384:1', 'Mt:1-569630:1'],
-                                 'genome_assembly' : 'B73_RefGen_v4'},  # Zea Mays
-                       '3702':  {'size' : ['1:1-30427671:1', '2:1-19698289:1', '3:1-23459830:1', '4:1-18585056:1',
-                                           '5:1-26975502:1'],  'genome_assembly' : 'TAIR10'},  # Arabidopsis
+                       '4558': {'size': ['1:1-80884392:1', '2:1-77742459:1', '3:1-74386277:1', '4:1-68658214:1',
+                                         '5:1-71854669:1', '6:1-61277060:1', '7:1-65505356:1', '8:1-62686529:1',
+                                         '9:1-59416394:1', '10:1-61233695:1'],
+                                'genome_assembly': 'Sorghum_bicolor_NCBIv3'},  # Sorghum_bicolor_NCBIv3
+                       '4565': {'size': ['1A:1-594102056:1', '1B:1-689851870:1', '1D:1-495453186:1', '2A:1-780798557:1',
+                                         '2B:1-801256715:1', '2D:1-651852609:1', '3A:1-750843639:1', '3B:1-830829764:1',
+                                         '3D:1-615552423:1', '4A:1-744588157:1', '4B:1-673617499:1', '4D:1-509857067:1',
+                                         '5A:1-709773743:1', '5B:1-713149757:1', '5D:1-566080677:1', '6A:1-618079260:1',
+                                         '6B:1-720988478:1', '6D:1-473592718:1', '7A:1-736706236:1', '7B:1-750620385:1',
+                                         '7D:1-638686055:1', 'Un:1-480980714:1'], 'genome_assembly': 'IWGSC'},
+                       # Triticum aevestivum
+                       '4529': {'size': ['1:1-39866532:1', '2:1-33962743:1', '3:1-34446443:1', '4:1-30521686:1',
+                                         '5:1-26652778:1', '6:1-27870862:1', '7:1-26200591:1', '8:1-25958679:1',
+                                         '9:1-20482102:1', '10:1-20731201:1', '11:1-27785585:1', '12:1-23561512:1'],
+                                'genome_assembly': 'OR_W1943'},  # Oryza_rufipogon
+                       '4577': {'size': ['1:1-307041717:1', '2:1-244442276:1', '3:1-235667834:1', '4:1-246994605:1',
+                                         '5:1-223902240:1', '6:1-174033170:1', '7:1-182381542:1', '8:1-181122637:1',
+                                         '9:1-159769782:1', '10:1-150982314:1', 'Pt:1-140384:1', 'Mt:1-569630:1'],
+                                'genome_assembly': 'B73_RefGen_v4'},  # Zea Mays
+                       '3702': {'size': ['1:1-30427671:1', '2:1-19698289:1', '3:1-23459830:1', '4:1-18585056:1',
+                                         '5:1-26975502:1'], 'genome_assembly': 'TAIR10'},  # Arabidopsis
                        '4528': {'size': [], 'genome_assembly': 'O_longistaminata_v1.0'},  # Arabidopsis
 
                        }
-    # Printing Prefixes
+#    pp = pprint.PrettyPrinter(indent=4)
+    turtle_file = output_file_name + ".ttl"
+    output_file = os.path.join(output_dir, turtle_file)
+    global output_opener, RDFgraph
+    if output_file:
+        output_opener = open(output_file, "a+")
+        RDFgraph = Graph()
+        RDFgraph.parse(output_file,format='turtle')
+        print('RDF file exists ****')
+    else:
+        output_opener = open(output_file, "w+")
+        # Printing Prefixes
+        output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
+        output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
+        output_opener.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+        output_opener.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+        output_opener.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
+        output_opener.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
+        output_opener.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
+        output_opener.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
+        output_opener.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
+        output_opener.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")
+        output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n")
+        output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
+        output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
+        output_opener.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
+        output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
+        output_opener.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
+        output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+        output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
+        output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
+        output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
+        output_opener.write(pr + "\t" + ncbi_gene_ns + "<" + ncbi_gene_uri + "> .\n")
+        output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n")
+        output_opener.write(pr + "\t" + string_ns + "<" + string_uri + "> .\n")
+        output_opener.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n\n")
 
-    output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
-    output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
-    output_opener.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
-    output_opener.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
-    output_opener.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
-    output_opener.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    output_opener.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-    output_opener.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
-    output_opener.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
-    output_opener.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")                
-    output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n")
-    output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
-    output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
-    output_opener.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
-    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
-    output_opener.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
-    output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
-    output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
-    output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
-    output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
-    output_opener.write(pr + "\t" + ncbi_gene_ns + "<" + ncbi_gene_uri + "> .\n")
-    output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n")
-    output_opener.write(pr + "\t" + string_ns + "<" + string_uri + "> .\n")
-    output_opener.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n\n")
-    '''
-    Ajout du prefix pour la release des donnees
-    '''
-    #output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
-    chromosome_number = 1
-    for tax_id in taxon_ids:
-        if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
-            current_taxon_id = tax_id
-    genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
-    if chromosome_size[current_taxon_id]['size']:
-        for ch_size in chromosome_size[current_taxon_id]['size']:
-        # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
-        #     chromosome_number) + ":1-" + str(
-        #     ch_size) + ":1" + "\n"
-            rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\n"
-            rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
-            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
-            rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + ch_size + "\"@en ;\n"
-            rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\" ;\n"
-            rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
-            chromosome_number += 1
-    output_opener.write(rdf_buffer)
+        '''
+        Adding  prefixes
+        '''
+        chromosome_number = 1
+        for tax_id in taxon_ids:
+            if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
+                current_taxon_id = tax_id
+        genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
+        if chromosome_size[current_taxon_id]['size']:
+            for ch_size in chromosome_size[current_taxon_id]['size']:
+            # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
+            #     chromosome_number) + ":1-" + str(
+            #     ch_size) + ":1" + "\n"
+                rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\n"
+                rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
+                rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+                rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + output_file_name + ":" + genome_assembly + ":" + ch_size + "\"@en ;\n"
+                rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + ch_size + "\" ;\n"
+                rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
+                chromosome_number += 1
+        output_opener.write(rdf_buffer)
 
     for gene_file in files:
 
@@ -516,7 +528,13 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
         print "************* %s RDF conversion begins***********\n" % (output_file_name)
         reference_ch = ''
         for gene_id in gene_ds:
-            gene_id='Os05g0420800'
+            #gene_id='Os05g0420800'
+            print("****\t evaluating\t****\t\t"+gene_id+"\t*******\n")
+            subject = URIRef(ensembl_plant + gene_id)
+
+            if (subject, None, None) in RDFgraph:
+                print("triple exist \n\n******")
+                continue
             rdf_buffer =''
             regex_ch =''
             chromosome_nb = 1
