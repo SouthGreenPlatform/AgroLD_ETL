@@ -42,10 +42,10 @@ def pubParser(infile):
                                   'Synonym': []
                                   }
         if records[7]:
-                pub_hash[reference_id]['Symbol'] = records[7]
+                pub_hash[reference_id]['Symbol'] = records[7].split(',')
         if records[8]:
             if prot_pattern.match(records[8]):
-                pub_hash[reference_id]['ProtID'] = records[8]
+                pub_hash[reference_id]['ProtID'] = records[8].split(',')
     return pub_hash
 
 def printGenes(file):
@@ -62,7 +62,7 @@ def referenceRDF(file, rdf_file, output_dir,type='run'):
     output_file = os.path.join(output_dir, turtle_file)
     print "*************Parsing %s genome data ***********\n" % (file)
 
-    output_opener = open(output_file, "w+")
+    output_opener = open(output_file, "w")
     # Printing Prefixes
     output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
     output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -82,6 +82,7 @@ def referenceRDF(file, rdf_file, output_dir,type='run'):
     output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
     output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
     output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
+    output_opener.write(pr + "\t" + bibo_ns + "<" + bibo_uri + "> .\n")
     output_opener.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n\n")
 
     pub_ds = pubParser(file)
@@ -92,12 +93,101 @@ def referenceRDF(file, rdf_file, output_dir,type='run'):
     #     print('RDF file exists ****')
 
     print(str(len(pub_ds.keys())) + " Reference parsed")
+    output = open('/Users/plarmande/Downloads/error.txt', "w")
     print "************* %s RDF conversion begins***********\n" % (file)
-    for pub_id in pub_ds:
-        if pubmed_pattern.match(pub_ds[pub_id]['PubMedId']):
-            print(pub_ds[pub_id]['PubMedId'])
-            rdf_buffer += pubmed_ns + pub_id + "\n"
-            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
+    count = 0
+    for pub_id in pub_ds.keys():
+        #print(pub_id)
+        if pub_ds[pub_id]['PubMedId'] !=0 :
+            if pubmed_pattern.match(pub_ds[pub_id]['PubMedId']):
+
+                count += 1
+                rdf_buffer =''
+                rdf_buffer += pubmed_ns + pub_ds[pub_id]['PubMedId'] + "\n"
+                rdf_buffer += "\t" + rdf_ns + "type" + "\t" + bibo_ns + "Article" + " ;\n"
+                rdf_buffer += "\t" + dc_ns + "title" + "\t" + '"%s"' % (pub_ds[pub_id]['Title']) + " ;\n"
+                rdf_buffer += "\t" + dc_ns + "date" + "\t" + '"%s"' % (pub_ds[pub_id]['Year']) + " ;\n"
+                rdf_buffer += "\t" + dc_ns + "volume" + "\t" + '"%s"' % (pub_ds[pub_id]['Volume']) + " ;\n"
+                rdf_buffer += "\t" + dc_ns + "issue" + "\t" + '"%s"' % (pub_ds[pub_id]['Volume']) + " ;\n"
+                if re.search(r'-', pub_ds[pub_id]['Pages']):
+                    rdf_buffer += "\t" + dc_ns + "pageStart" + "\t" + '"%s"' % (pub_ds[pub_id]['Pages'].split('-')[0]) + " ;\n"
+                    rdf_buffer += "\t" + dc_ns + "pageEnd" + "\t" + '"%s"' % (pub_ds[pub_id]['Pages'].split('-')[1]) + " ;\n"
+                else:
+                    rdf_buffer += "\t" + dc_ns + "pageStart" + "\t" + '"%s"' % (pub_ds[pub_id]['Pages']) + " ;\n"
+                    rdf_buffer += "\t" + dc_ns + "pageEnd" + "\t" + '"%s"' % (pub_ds[pub_id]['Pages']) + " ;\n"
+                for symbol in pub_ds[pub_id]['Symbol']:
+                    if not re.search(r'_', symbol):
+                        rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (re.sub('\s+', '',symbol)) + " ;\n"
+                for synonym in pub_ds[pub_id]['Synonym']:
+                    if not re.search(r'_', synonym):
+                        rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (re.sub('\s+', '',synonym)) + " ;\n"
+                rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
+                output_opener.write(rdf_buffer)
+    print(count)
+
+
+def RDF_validation(ttl_buffer, ttl_handle, oryid):
+    try:
+        temp_file = os.path.join(ROOT_DIR+'temp_graph.ttl')
+        try_handle = open(temp_file, "w")
+        try_handle.write(base + "\t" + "<" + base_uri + "> .\n")
+        try_handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
+        try_handle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+        try_handle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+        try_handle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
+        try_handle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
+        try_handle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
+        try_handle.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
+        try_handle.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
+        try_handle.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")
+        try_handle.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n")
+        try_handle.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
+        try_handle.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
+        try_handle.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
+        try_handle.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
+        try_handle.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+        try_handle.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
+        try_handle.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
+        try_handle.write(pr + "\t" + bibo_ns + "<" + bibo_uri + "> .\n")
+        try_handle.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n\n")
+        try_handle.write(ttl_buffer)
+        try_handle.close()
+
+        g = Graph()
+        g.parse(temp_file, format="turtle")
+        # output = open(output_file, "w")
+        # w = Graph()
+        # g.serialize(destination="file:/Users/plarmande/Downloads/oryzabase_test.ttl", format='xml')
+        ttl_handle.write(ttl_buffer)
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        temp =  oryid + '.ttl'
+        temp_file = os.path.join(ROOT_DIR + temp)
+        handle = open(temp_file, "w")
+        handle.write(base + "\t" + "<" + base_uri + "> .\n")
+        handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
+        handle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+        handle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+        handle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
+        handle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
+        handle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
+        handle.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
+        handle.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
+        handle.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")
+        handle.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n")
+        handle.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
+        handle.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
+        handle.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
+        handle.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
+        handle.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+        handle.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
+        handle.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
+        handle.write(pr + "\t" + bibo_ns + "<" + bibo_uri + "> .\n")
+        handle.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n\n")
+        # tigr_g_ns tigr_g_uri
+        handle.write(ttl_buffer)
+        pass
+
 
 
 file = '/Users/plarmande/Downloads/Reference_20190617000959.txt'
