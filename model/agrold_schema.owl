@@ -44,7 +44,9 @@
                                              
                                              owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/part_of> .
 
-
+###   http://purl.obolibrary.org/obo/BFO_0000051
+<http://purl.obolibrary.org/obo/BFO_0000051> rdf:type owl:ObjectProperty ;
+                                               owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/has_part>
 
 ###  http://purl.obolibrary.org/obo/BFO_0000056
 
