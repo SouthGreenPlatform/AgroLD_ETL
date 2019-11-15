@@ -5,6 +5,7 @@ Created on Sep 18, 2014
 '''
 import pprint
 from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 import re
 import os 
 
