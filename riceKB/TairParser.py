@@ -6,6 +6,7 @@ Created on Aug 27, 2014
 '''
 import pprint
 from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 from riceKB.globalMods import removeDuplicates
 import re
 import os 
@@ -20,7 +21,7 @@ def araCycParser(input_file):
 
     fileOpener = open(input_file, "r")
     
-    print "*****Parsing AraCyc data **********\n"
+    print("*****Parsing AraCyc data **********\n")
     
     lines = fileOpener.readlines()
     lines.pop(0)
@@ -31,8 +32,8 @@ def araCycParser(input_file):
         pw_ds.append(dict(zip(headers, records)))
     return pw_ds #pw_hash
     fileOpener.close()
-    print "AraCyc data has been parsed!\n"
-    print "**********************************\n\n"
+    print("AraCyc data has been parsed!\n")
+    print("**********************************\n\n")
 
 '''
 RDF Converter
@@ -61,7 +62,7 @@ def araCycRDF(pw_ds, output_dir):
     react_buffer = ''
     previous_pw_id = ''
     
-    print "*************AraCyc RDF conversion begins***********\n"
+    print("*************AraCyc RDF conversion begins***********\n")
     
     rdf_writer.write(base + "\t" + "<" + base_uri + "> .\n")
     rdf_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -135,7 +136,7 @@ def araCycRDF(pw_ds, output_dir):
 #                            gene_hash[gene_split] = 1
                         else:
                             prot_buffer += "\t" + base_vocab_ns + "encoded_by" + "\t" + aracyc_gene_ns + gene + " ;\n"
-                            print "unmapped gene ID and gene name: %s %s\n" % (gene, gene_name)
+                            print("unmapped gene ID and gene name: %s %s\n" % (gene, gene_name))
                             unmapped_gene_counter += 1
 #                            continue
                         prot_buffer = re.sub(' ;$', ' .', prot_buffer)                            
@@ -151,7 +152,7 @@ def araCycRDF(pw_ds, output_dir):
         rdf_writer.write(rdf_buffer)
         
     rdf_writer.close()
-    print "Total number of unmapped genes: %s\n" % (str(unmapped_gene_counter))    
-    print "Number of AraCyc pathways: %s\n" % (str(pw_counter))
-    print "******************Aracyc RDF completed***********************\n"
+    print("Total number of unmapped genes: %s\n" % (str(unmapped_gene_counter))   )
+    print("Number of AraCyc pathways: %s\n" % (str(pw_counter)))
+    print("******************Aracyc RDF completed***********************\n")
         
