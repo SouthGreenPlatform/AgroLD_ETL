@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import print_function
+
 '''
 Created on Jun 19, 2014
 Updated on Apr 17, 2019
@@ -19,28 +21,16 @@ import pprint
 from globalVars import *
 from globalVars import base_vocab_ns
 import re
-import requests
 import os, sys
 import datetime
-import json
-import copy
-import time
 import pandas as pd
-import numpy as np
-from pandas.io.json import json_normalize
-import rdflib
 from rdflib.graph import Graph
-from rdflib import URIRef
-import urllib3
-import requests
-from multiprocessing import Process,Lock,Manager,active_children,Pool,cpu_count
-from bs4 import BeautifulSoup
 
-#from __builtin__ import map
+# from __builtin__ import map
 
 '''
  Parsers 
-''' 
+'''
 '''
 def genomeParser(infile):
     pp = pprint.PrettyPrinter(indent=4)
@@ -136,45 +126,48 @@ def genomeParser(infile):
 tigr_pattern = re.compile(r'^LOC\_Os\d{1,2}g\d{5}\.\d$')
 rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
 tair_pattern = re.compile(r'^AT[1-5]G\d{5}$')
-prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
+prot_pattern = re.compile(
+    r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
 ont_pattern = re.compile(r'^\w+\:\d{7}$')
-string_pattern = re.compile(r'^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$')
+string_pattern = re.compile(
+    r'^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$')
 
 now = datetime.datetime.now()
 rdf_prefix = ""
 current_taxon_id = ''
 genome_assembly = ''
+
+
 def geneParser(infile):
-    
-#    pp = pprint.PrettyPrinter(indent=4)
+    #    pp = pprint.PrettyPrinter(indent=4)
     gene_hash = {}
     file_reader = open(infile, "r")
     lines = file_reader.readlines()
-    lines.pop(0) # remove header
-    
+    lines.pop(0)  # remove header
+
     for line in lines:
         line = re.sub('\n$', '', line)
         records = line.split('\t')
 
         gene_id = records.pop(0)
-        #print(len(records))
+        # print(len(records))
         # Building data structure
         if gene_id not in gene_hash:
             gene_hash[gene_id] = {
-                                  'Name': records[0],
-                                  'Description': records[1],
-                                  'Chromosome': records[3],
-                                  'Start': records[4],
-                                  'End': records[5],
-                                  'Strand': records[6],
-                                  'Biotype': records[2],
-                                  'RapID': '',
-                                  'TairLocus': '',
-                                  'TIGRlocus': {},
-                                  'ProtID': {},
-                                  'Ontology': {},
-                                  'StringID':''
-                                  }
+                'Name': records[0],
+                'Description': records[1],
+                'Chromosome': records[3],
+                'Start': records[4],
+                'End': records[5],
+                'Strand': records[6],
+                'Biotype': records[2],
+                'RapID': '',
+                'TairLocus': '',
+                'TIGRlocus': {},
+                'ProtID': {},
+                'Ontology': {},
+                'StringID': ''
+            }
 
         if gene_id in gene_hash:
             # Records of sps:  O.s.japonica
@@ -191,7 +184,7 @@ def geneParser(infile):
                     gene_hash[gene_id]['Ontology'][records[10]] = records[9]
                 if records[11]:
                     gene_hash[gene_id]['StringID'] = records[11]
-            else: # Arabidopsis
+            else:  # Arabidopsis
                 if tair_pattern.match(gene_id):
                     if records[7]:
                         gene_hash[gene_id]['TairLocus'] = records[7]
@@ -204,7 +197,6 @@ def geneParser(infile):
 
             # Records of sps: & O. Glaberrima & O.s.indica, T. Aestivum, S.bicolor, T. urartu, O. Nivara
             if len(records) == 11:
-
                 if records[7]:
                     gene_hash[gene_id]['ProtID'][records[7]] = '-'
                 if records[8]:
@@ -218,6 +210,9 @@ def geneParser(infile):
                     # gene_hash[gene_id]['Ontology'][records[10]] = records[9]
             # Records of sps: O. Glumaepatula, Oryza_punctata
             if len(records) == 10:
+                if records[6]:
+                    if prot_pattern.match(records[6]):
+                        gene_hash[gene_id]['ProtID'][records[6]] = '-'
                 if records[7]:
                     if prot_pattern.match(records[7]):
                         gene_hash[gene_id]['ProtID'][records[7]] = '-'
@@ -234,112 +229,119 @@ def geneParser(infile):
                 if records[6]:
                     if tigr_pattern.match(records[6]):
                         gene_hash[gene_id]['TIGRlocus'][records[6]] = '-'
-#                        tigr_loci.append(records[6])
-#                        gene_hash[gene_id]['TIGRlocus'].extend(tigr_loci)
+                    #                        tigr_loci.append(records[6])
+                    #                        gene_hash[gene_id]['TIGRlocus'].extend(tigr_loci)
                     if rap_pattern.match(records[6]):
                         gene_hash[gene_id]['RapID'] = records[6]
-#                    elif tair_pattern.match(records[6]):
-#                        gene_hash[gene_id]['Tairlocus'] = records[6]
+                    #                    elif tair_pattern.match(records[6]):
+                    #                        gene_hash[gene_id]['Tairlocus'] = records[6]
                     if prot_pattern.match(records[6]):
                         gene_hash[gene_id]['ProtID'][records[6]] = '-'
-#                        prot_list.append(records[6])
-#                        gene_hash[gene_id]['ProtID'].extend(prot_list)
+                #                        prot_list.append(records[6])
+                #                        gene_hash[gene_id]['ProtID'].extend(prot_list)
                 if records[7]:
                     if ont_pattern.match(records[7]):
                         gene_hash[gene_id]['Ontology'][records[8]] = records[7]
                     else:
-                        gene_hash[gene_id]['ProtID'][records[7]] = '-'
-#                        prot_list.append(records[7])
-#                        gene_hash[gene_id]['ProtID'].extend(prot_list)
+                        if prot_pattern.match(records[7]):
+                            gene_hash[gene_id]['ProtID'][records[7]] = '-'
+                #                        prot_list.append(records[7])
+                #                        gene_hash[gene_id]['ProtID'].extend(prot_list)
                 if records[8]:
-                    if prot_pattern.match(records[8]):
-                        gene_hash[gene_id]['ProtID'][records[8]] = '-'
-#                        prot_list.append(records[8])
-#                        gene_hash[gene_id]['ProtID'].extend(prot_list)
-            # Records of sps: O.glaberrima, T.aestivum, T.urartu, Z.mays 
+                    if ont_pattern.match(records[8]):
+                        gene_hash[gene_id]['Ontology'][records[9]] = records[8]
+                    else:
+                        if prot_pattern.match(records[8]):
+                            gene_hash[gene_id]['ProtID'][records[8]] = '-'
+                        # prot_list.append(records[8])
+            #                        gene_hash[gene_id]['ProtID'].extend(prot_list)
+            # Records of sps: Z.mays
             if len(records) == 8:
                 if records[5]:
                     gene_hash[gene_id]['ProtID'][records[5]] = '-'
-#                    prot_list.append(records[6])
-#                    gene_hash[gene_id]['ProtID'].extend(prot_list)
+                #                    prot_list.append(records[6])
+                #                    gene_hash[gene_id]['ProtID'].extend(prot_list)
                 if records[6]:
-                    gene_hash[gene_id]['Ontology'][records[6]] = records[7]
-                    #gene_hash[gene_id]['ProtID'][records[7]] = '-'
-#                    prot_list.append(records[7])
-#                    gene_hash[gene_id]['ProtID'].extend(prot_list)
+                    if ont_pattern.match(records[6]):
+                        gene_hash[gene_id]['Ontology'][records[7]] = records[6]
+                    else:
+                        if prot_pattern.match(records[6]):
+                            gene_hash[gene_id]['ProtID'][records[6]] = '-'
+                    # gene_hash[gene_id]['ProtID'][records[7]] = '-'
+            #                    prot_list.append(records[7])
+            #                    gene_hash[gene_id]['ProtID'].extend(prot_list)
             #  Records of sps: O.brachyantha
             if len(records) == 7:
                 if records[6]:
                     gene_hash[gene_id]['ProtID'][records[6]] = '-'
-#
-#     print(gene_hash)
+    #
     return gene_hash
 
     file_reader.close()
 
+
 def geneParserPandas(infile):
     array = pd.read_csv(infile, sep="\t", delimiter=None, dtype='str')
-    print array
     return array
 
+
 def qtlParser(infile):
-    headers = ['QTLid', 'Name', 'Symbol', 'TOid', 'Category', 'TraitName','TraitSymbol', 'Chromosome', 'Start', 'End']
+    headers = ['QTLid', 'Name', 'Symbol', 'TOid', 'Category', 'TraitName', 'TraitSymbol', 'Chromosome', 'Start', 'End']
     qtl_ds = list()
-#    pp = pprint.PrettyPrinter(indent=4)
-     
+
     fileHandle = open(infile, "r")
     lines = fileHandle.readlines()
-    lines.pop(0) # remove header
+    lines.pop(0)  # remove header
     for line in lines:
         line = re.sub('\n$', '', line)
-        items = line.split('\t')        
+        items = line.split('\t')
         qtl_ds.append(dict(zip(headers, items)))
-    
-    fileHandle.close()  
-    return qtl_ds    
-    
+
+    fileHandle.close()
+    return qtl_ds
 
 
 def CycParser(in_files):
     pp = pprint.PrettyPrinter(indent=4)
     pw_datastucture = {}
-        
+
     for in_file in in_files:
         fileHandle = open(in_file, "r")
         lines = fileHandle.readlines()
         lines.pop(0)
 
         for line in lines:
-#            ec_codes = {} #list()
-#            reactions = {}
-            pathways = {} 
+            #            ec_codes = {} #list()
+            #            reactions = {}
+            pathways = {}
             line = re.sub('\n$', '', line)
             records = line.split('\t')
             gene_id = records.pop(0)
-            
 
-#            reactions[records[1]] = {'ReactionName': records[2], 'EC': {records[3]: '-'}}
-            
-#            pathways[records[4]] = {'PathwayName': records[5], 'Reactions': reactions}
-#            if records[4] not in pathways:
-#                pathways[records[4]] = {'PathwayName': records[5], 'Reactions': {}}
-#            if records[4] in pathways:
-#                pathways[records[4]]['Reactions'].update(reactions)
+            #            reactions[records[1]] = {'ReactionName': records[2], 'EC': {records[3]: '-'}}
+
+            #            pathways[records[4]] = {'PathwayName': records[5], 'Reactions': reactions}
+            #            if records[4] not in pathways:
+            #                pathways[records[4]] = {'PathwayName': records[5], 'Reactions': {}}
+            #            if records[4] in pathways:
+            #                pathways[records[4]]['Reactions'].update(reactions)
 
             pathways[records[4]] = records[5]
             if gene_id in pw_datastucture:
-                pw_datastucture[gene_id]['Pathways'].update(pathways)#= {records[4]: {'PathwayName': records[5], 'Reactions': []} }
-                
+                pw_datastucture[gene_id]['Pathways'].update(
+                    pathways)  # = {records[4]: {'PathwayName': records[5], 'Reactions': []} }
+
             if gene_id not in pw_datastucture:
                 pw_datastucture[gene_id] = {
-                                            'Name': records[0],
-                                            'Pathways': {}
-                                            }
+                    'Name': records[0],
+                    'Pathways': {}
+                }
             if gene_id in pw_datastucture:
-                pw_datastucture[gene_id]['Pathways'].update(pathways)#= {records[4]: {'PathwayName': records[5], 'Reactions': []} }
-#            pp.pprint(reactions) #reactions pathways
+                pw_datastucture[gene_id]['Pathways'].update(
+                    pathways)  # = {records[4]: {'PathwayName': records[5], 'Reactions': []} }
+    #            pp.pprint(reactions) #reactions pathways
     fileHandle.close()
-    return pw_datastucture             
+    return pw_datastucture
 
 
 def getStrandValue(strandVar):
@@ -349,8 +351,7 @@ def getStrandValue(strandVar):
     else:
         strand = "1"
         positionVar = "ForwardStrandPosition"
-    return (strand,positionVar)
-
+    return (strand, positionVar)
 
 
 '''
@@ -372,8 +373,10 @@ Multi-processing
 #         p.join()
 ''' 
  RDF Converters 
-'''             
-def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, output_dir): for test > type='test'
+'''
+
+
+def grameneGeneRDF(files, output_dir, type='run'):  # def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
@@ -397,7 +400,10 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                                          '5:1-23192814:1', '6:1-24174485:1', '7:1-21799424:1', '8:1-20292731:1',
                                          '9:1-17607432:1', '10:1-16910673:1', '11:1-20796451:1', '12:1-19154523:1'],
                                 'genome_assembly': 'Oryza_glaberrima_V1'},
-                       '40149': {'size': [], 'genome_assembly': 'Oryza_meridionalis_v1.3'},  # Oryza_meridionalis_v1.3
+                       '40149': {'size': ['1:1-36915442:1', '2:1-31686972:1', '3:1-33311619:1', '4:1-27574323:1',
+                                          '5:1-24206129:1', '6:1-25711811:1', '7:1-24128185:1', '8:1-22678724:1',
+                                          '9:1-19219615:1', '10:1-19274048:1', '11:1-23014695:1', '12:1-20550741:1'],
+                                 'genome_assembly': 'Oryza_meridionalis_v1.3'},  # Oryza_meridionalis_v1.3
                        '4572': {'size': [], 'genome_assembly': 'ASM34745v1'},  # t. urartu
                        '39946': {'size': ['1:1-47283185:1', '2:1-38103930:1', '3:1-41884883:1', '4:1-34718618:1',
                                           '5:1-31240961:1', '6:1-32913967:1', '7:1-27957088:1', '8:1-30396518:1',
@@ -439,7 +445,7 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                        '4528': {'size': [], 'genome_assembly': 'O_longistaminata_v1.0'},  # Arabidopsis
 
                        }
-#    pp = pprint.PrettyPrinter(indent=4)
+    #    pp = pprint.PrettyPrinter(indent=4)
     turtle_file = output_file_name + ".ttl"
     output_file = os.path.join(output_dir, turtle_file)
     # if os.path.isfile(output_file):
@@ -452,7 +458,7 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
     #     RDFgraph = Graph()
     #     output_opener = open(output_file, "w+")
 
-        # Printing Prefixes
+    # Printing Prefixes
     output_opener = open(output_file, "w")
     output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
     output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -506,59 +512,62 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
 
         rdf_buffer = ''
 
-#        turtle_file = "gramene_" + output_file_name + "_genes" + ".ttl"
-#        output_file = os.path.join(output_dir, turtle_file)
-#        output_file = "gramene_genes.ttl"
-#        output_opener = open(output_file, "w")
-        
-        print "*************Parsing %s genome data ***********\n" % (output_file_name)
-        
-        gene_ds = geneParser(gene_file)
-        #gene_ds = geneParserPandas(gene_file)
-#        pp.pprint(gene_ds)
+        #        turtle_file = "gramene_" + output_file_name + "_genes" + ".ttl"
+        #        output_file = os.path.join(output_dir, turtle_file)
+        #        output_file = "gramene_genes.ttl"
+        #        output_opener = open(output_file, "w")
 
-#        print "%s data has been parsed!\n" % (output_file_name)
-#        print "*************************************\n\n"
-        #ict(gene_ds)
+        print("*************Parsing %s genome data ***********\n" % (output_file_name))
+
+        gene_ds = geneParser(gene_file)
+        # gene_ds = geneParserPandas(gene_file)
+        #        pp.pprint(gene_ds)
+
+        #        print "%s data has been parsed!\n" % (output_file_name)
+        #        print "*************************************\n\n"
+        # ict(gene_ds)
         print(str(len(gene_ds.keys())) + " Genes parsed")
-        print "************* %s RDF conversion begins***********\n" % (output_file_name)
+        print("************* %s RDF conversion begins***********\n" % (output_file_name))
         reference_ch = ''
         for gene_id in gene_ds:
-            #gene_id='Os05g0420800'
-            print("****\t evaluating gene \t****\t\t"+gene_id+"\t*******\n")
+            # gene_id='Os05g0420800'
+            print("****\t evaluating gene \t****\t\t" + gene_id + "\t*******\n")
 
             # subject = URIRef(ensembl_plant + gene_id)
 
             # if (subject, None, None) in RDFgraph:
             #     print("triple exist \n\n******")
             #     continue
-            rdf_buffer =''
-            regex_ch =''
+            rdf_buffer = ''
+            regex_ch = ''
             chromosome_nb = 1
             gene_counter += 1
             onto_dic = {}
             (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
-            #gene_id_dic = copy.deepcopy(gene_ds[gene_id])
-            #gene_id_dic.update(CallAPI(gene_id))
+            # gene_id_dic = copy.deepcopy(gene_ds[gene_id])
+            # gene_id_dic.update(CallAPI(gene_id))
             # gene_ds[gene_id].update(CallAPI(gene_id))
             rdf_buffer += ensembl_ns + gene_id + "\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
 
             for tax_id in taxon_ids:
-                if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name)== taxon_ids[tax_id]:
+                if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
                     current_taxon_id = tax_id
                     rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
 
             for record_item in gene_ds[gene_id]:
                 if record_item == 'Name':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
+                        rdf_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (
+                        gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'name':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + rdfs_ns + "Label" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
+                        rdf_buffer += "\t" + rdfs_ns + "Label" + "\t" + '"%s"' % (
+                        gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'Description':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + base_vocab_ns + "comment" + "\t" + '"%s"' % (gene_ds[gene_id][record_item].replace("'", "")) + " ;\n"
+                        rdf_buffer += "\t" + base_vocab_ns + "comment" + "\t" + '"%s"' % (
+                            gene_ds[gene_id][record_item].replace("'", "")) + " ;\n"
                 # if record_item == 'Chromosome':
                 #     rdf_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 # if record_item == 'Start':
@@ -566,7 +575,8 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                 # if record_item == 'End':
                 #     rdf_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'Biotype':
-                    rdf_buffer += "\t" + base_vocab_ns + "has_biotype" + "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
+                    rdf_buffer += "\t" + base_vocab_ns + "has_biotype" + "\t" + '"%s"' % (
+                    gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'ProtID':
                     if gene_ds[gene_id][record_item]:
                         proteins = gene_ds[gene_id][record_item].keys()
@@ -580,80 +590,84 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                         rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + rapdb_gene_ns + gene_id + " ;\n"
                 if record_item == 'TairLocus':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tair_l_ns + gene_ds[gene_id][record_item] + " ;\n"
+                        rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tair_l_ns + gene_ds[gene_id][
+                            record_item] + " ;\n"
                 if record_item == 'TIGRlocus':
                     if gene_ds[gene_id][record_item]:
-#                        tigr_prefix = pr + "\t" + tigr_ns + "<" + tigr_uri + "> .\n"
+                        #                        tigr_prefix = pr + "\t" + tigr_ns + "<" + tigr_uri + "> .\n"
                         tigr_loci = gene_ds[gene_id][record_item].keys()
                         rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + msu_ns + tigr_loci[0].split('.')[0] + " ;\n"
                         # for locus in tigr_loci:
                         #     rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + msu_ns + locus + " ;\n"
                 if record_item == 'description':
                     if gene_ds[gene_id][record_item]:
-                        rdf_buffer += "\t" + dc_ns + "description" +  "\t" + '"%s"' % (gene_ds[gene_id][record_item]) + " ;\n"
+                        rdf_buffer += "\t" + dc_ns + "description" + "\t" + '"%s"' % (
+                        gene_ds[gene_id][record_item]) + " ;\n"
                 if record_item == 'Ontology':
                     # if gene_ds[gene_id][record_item]:
                     #     print('Ok ontology ...')
-                        ont_terms = gene_ds[gene_id][record_item].items()
-                        for ont in ont_terms:
-                            ont_id = ont[1].replace(":", "_")
-                            onto_dic[ont_id]=''
-                            # print(ont[0])
-                            if ont[0] == 'molecular_function':
-                                rdf_buffer += "\t" + base_vocab_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
-                                # print('1 ...')
-                            if ont[0] == 'biological_process':
-                                rdf_buffer += "\t" + base_vocab_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
-                                # print('2 ...')
-                            if ont[0] == 'cellular_component':
-                                rdf_buffer += "\t" + base_vocab_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
-                                rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
-                                # print('3 ...')
-                            if ont[0] == 'plant_anatomy':
-                                rdf_buffer += "\t" + base_vocab_ns + "expressed_in" + "\t" + obo_ns + ont_id + " ;\n"
-                            if ont[0] == 'plant_structure_development_stage':
-                                rdf_buffer += "\t" + base_vocab_ns + "expressed_at" + "\t" + obo_ns + ont_id + " ;\n"
+                    ont_terms = gene_ds[gene_id][record_item].items()
+                    for ont in ont_terms:
+                        ont_id = ont[1].replace(":", "_")
+                        onto_dic[ont_id] = ''
+                        # print(ont[0])
+                        if ont[0] == 'molecular_function':
+                            rdf_buffer += "\t" + base_vocab_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
+                            rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
+                            # print('1 ...')
+                        if ont[0] == 'biological_process':
+                            rdf_buffer += "\t" + base_vocab_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
+                            rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
+                            # print('2 ...')
+                        if ont[0] == 'cellular_component':
+                            rdf_buffer += "\t" + base_vocab_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
+                            rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
+                            # print('3 ...')
+                        if ont[0] == 'plant_anatomy':
+                            rdf_buffer += "\t" + base_vocab_ns + "expressed_in" + "\t" + obo_ns + ont_id + " ;\n"
+                        if ont[0] == 'plant_structure_development_stage':
+                            rdf_buffer += "\t" + base_vocab_ns + "expressed_at" + "\t" + obo_ns + ont_id + " ;\n"
                 if record_item == 'synonyms':
                     for id in gene_ds[gene_id]['synonyms']:
                         rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (
                             re.sub('\s+', '', id)) + " ;\n"
                 if record_item == 'annotations':
                     if 'GO' in gene_ds[gene_id]['annotations'].keys():
-                        for entry in  gene_ds[gene_id]['annotations']['GO']['entries']:
+                        for entry in gene_ds[gene_id]['annotations']['GO']['entries']:
                             ont_id = entry['id'].replace(":", "_")
                             if ont_id not in onto_dic:
-                                if entry['namespace']== 'molecular_function':
+                                if entry['namespace'] == 'molecular_function':
                                     rdf_buffer += "\t" + base_vocab_ns + "has_function" + "\t" + obo_ns + ont_id + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry['evidence_code'] + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene"  + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime("%Y-%m-%d") + "^^xsd:date ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry['evidence_code'] + " ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene"  + " ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime("%Y-%m-%d") + "^^xsd:date ;\n"
                                     rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
 
                                 if entry['namespace'] == 'biological_process':
                                     rdf_buffer += "\t" + base_vocab_ns + "participates_in" + "\t" + obo_ns + ont_id + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry[
-                                #     'evidence_code'] + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene" + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime(
-                                #     "%Y-%m-%d") + "^^xsd:date ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry[
+                                    #     'evidence_code'] + " ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene" + " ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime(
+                                    #     "%Y-%m-%d") + "^^xsd:date ;\n"
                                     rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
 
                                 if entry['namespace'] == 'cellular_component':
                                     rdf_buffer += "\t" + base_vocab_ns + "located_in" + "\t" + obo_ns + ont_id + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry[
-                                #     'evidence_code'] + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene" + " ;\n"
-                                # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime(
-                                #     "%Y-%m-%d") + "^^xsd:date ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "evidence_code" + "\t" + '"%s"' % entry[
+                                    #     'evidence_code'] + " ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "assigned_by" + "\t" + "Gramene" + " ;\n"
+                                    # rdf_buffer += "\t" + base_vocab_ns + "date" + "\t" + now.strftime(
+                                    #     "%Y-%m-%d") + "^^xsd:date ;\n"
                                     rdf_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + ont_id + " ;\n"
                     if 'domains' in gene_ds[gene_id]['annotations'].keys():
                         if 'entries' in gene_ds[gene_id]['annotations']['domains'].keys():
-                            for domain in  gene_ds[gene_id]['annotations']['domains']['entries']:
+                            for domain in gene_ds[gene_id]['annotations']['domains']['entries']:
                                 if interpro_pattern.match(domain['id']):
-                                    rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + domain['id'] + " ;\n"
-                                    rdf_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + interpro_ns + domain['id'] + " ;\n"
+                                    rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + domain[
+                                        'id'] + " ;\n"
+                                    rdf_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + interpro_ns + domain[
+                                        'id'] + " ;\n"
                 if record_item == 'xrefs':
                     for xref in gene_ds[gene_id]['xrefs']:
                         if xref['db'] == 'Uniprot/SPTREMBL':
@@ -661,10 +675,12 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                                 rdf_buffer += "\t" + base_vocab_ns + "encodes" + "\t" + uniprot_ns + id + " ;\n"
                         elif xref['db'] == 'protein_id':
                             for id in xref['ids']:
-                                rdf_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t\t" + '"%s:%s"' % (xref['db'],id) + " ;\n"
+                                rdf_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t\t" + '"%s:%s"' % (
+                                xref['db'], id) + " ;\n"
                         elif xref['db'] == 'Oryzabase':
                             for id in xref['ids'][0].split(','):
-                                rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (re.sub('\s+', '', id)) + " ;\n"
+                                rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (
+                                    re.sub('\s+', '', id)) + " ;\n"
                         elif xref['db'] == 'CGSNL':
                             for id in xref['ids']:
                                 rdf_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t\t" + '"%s"' % (id) + " ;\n"
@@ -676,7 +692,8 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                                 rdf_buffer += "\t" + rdfs_ns + "seeAlso" "\t" + ncbi_gene_ns + id + " ;\n"
                         else:
                             for id in xref['ids']:
-                                rdf_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t\t" + '"%s:%s"' % (xref['db'], id) + " ;\n"
+                                rdf_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t\t" + '"%s:%s"' % (
+                                xref['db'], id) + " ;\n"
                 if record_item == 'homology':
                     # for homologous in gene_ds[gene_id]['homology']:
                     for homo_key, values in gene_ds[gene_id]['homology']['homologous_genes'].items():
@@ -696,10 +713,11 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
                             for item in chromosome_size[current_taxon_id]['size']:
                                 if gene_ds[gene_id]['Chromosome'] == item.split(':')[0]:
                                     reference_ch = item
-                    # if not gene_ds[gene_id]['Chromosome']=='Mt':
+                            # if not gene_ds[gene_id]['Chromosome']=='Mt':
                             chromosome_nb = gene_ds[gene_id]['Chromosome']
                             rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] +  " ;\n"
+                                          str(chromosome_nb) + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(
+                                gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] + " ;\n"
                         else:
                             reference_ch = str(chromosome_nb) + ':1-$:1'
                             rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
@@ -709,34 +727,36 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             # Region
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] + "  \n"
+                          gene_ds[gene_id]['Chromosome'] + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(
+                gene_ds[gene_id]['End']) + ":" + gene_ds[gene_id]['Strand'] + "  \n"
             rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start']) + '-' + str(gene_ds[gene_id]['End']) + ":" + strand + "\";\n"
+                          gene_ds[gene_id]['Chromosome'] + ':' + str(gene_ds[gene_id]['Start']) + '-' + str(
+                gene_ds[gene_id]['End']) + ":" + strand + "\";\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
             rdf_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + strand + "  ;\n"
+                          gene_ds[gene_id]['Chromosome'] + ':' + str(gene_ds[gene_id]['Start']) + ":" + strand + "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + strand + "  .\n\n"
+                          gene_ds[gene_id]['Chromosome'] + ':' + str(gene_ds[gene_id]['End']) + ":" + strand + "  .\n\n"
 
             # Position
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['Start'])  + ":" + strand
+                          gene_ds[gene_id]['Chromosome'] + ':' + str(gene_ds[gene_id]['Start']) + ":" + strand
             rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
             rdf_buffer += "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(gene_ds[gene_id]['Start']) + " ;\n"
             rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                              str(reference_ch.split(':')[0]) + " .\n\n"
+                          str(reference_ch.split(':')[0]) + " .\n\n"
 
             # # Position 2
             rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                                  gene_ds[gene_id]['Chromosome']+ ':' + str(gene_ds[gene_id]['End']) + ":" + strand
+                          gene_ds[gene_id]['Chromosome'] + ':' + str(gene_ds[gene_id]['End']) + ":" + strand
             rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
             rdf_buffer += "  ;\n"
             rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(gene_ds[gene_id]['End']) + " ;\n"
             rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + \
-                             str(reference_ch.split(':')[0]) + " .\n\n"
+                          str(reference_ch.split(':')[0]) + " .\n\n"
 
             rdf_buffer = re.sub(' ;$', ' .\n\n', rdf_buffer)
             RDF_validation(rdf_buffer, output_opener, gene_id)
@@ -744,37 +764,39 @@ def grameneGeneRDF(files, output_dir,type='test'): #def grameneGeneRDF(files, ou
             if type == 'test': break
 
     output_opener.close()
-#        if geneId_prefix:
-#            output_opener.write(geneId_prefix)
-#        if tigr_prefix:
-#            output_opener.write(tigr_prefix)
-#        if rapdb_prefix:
-#            output_opener.write(rapdb_prefix)
-#        if tair_prefix:
-#            output_opener.write(tair_prefix)                            
-        
-    print "Number of genes in %s are: %s\n" % (output_file_name, str(gene_counter))
+    #        if geneId_prefix:
+    #            output_opener.write(geneId_prefix)
+    #        if tigr_prefix:
+    #            output_opener.write(tigr_prefix)
+    #        if rapdb_prefix:
+    #            output_opener.write(rapdb_prefix)
+    #        if tair_prefix:
+    #            output_opener.write(tair_prefix)
+
+    print("Number of genes in %s are: %s\n" % (output_file_name, str(gene_counter)))
+
+
 #    print "************* %s RDF completed ************\n" % (output_file_name)
 #    print "Gramene gene data has been converted to RDF!\n"
 
 
 def grameneQTLRDF(infile, output_dir):
-    qtl_buffer = '' 
+    qtl_buffer = ''
     to_hash = dict()
-    qtl_counter = 0   
+    qtl_counter = 0
     turtle_file_name = "gramene.qtl.ttl"
     outfile = os.path.join(output_dir, turtle_file_name)
     outHandle = open(outfile, "w")
-    
-    print "*********** Parsing Gramene QTL data ***************\n"
-    
+
+    print("*********** Parsing Gramene QTL data ***************\n")
+
     qtl_ds = qtlParser(infile)
-    
-#    print "Gramene QTL data has been parsed!\n"
-#    print "*************************************\n" 
-    
-    print "************* Gramene QTL RDF conversion begins***********\n"
-    
+
+    #    print "Gramene QTL data has been parsed!\n"
+    #    print "*************************************\n"
+
+    print("************* Gramene QTL RDF conversion begins***********\n")
+
     outHandle.write(base + "\t" + "<" + base_uri + "> .\n")
     outHandle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
     outHandle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
@@ -786,19 +808,18 @@ def grameneQTLRDF(infile, output_dir):
     '''
     Ajout du prefix pour la realese des donnees
     '''
-    #outHandle.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
-
+    # outHandle.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
 
     for records in qtl_ds:
         qtl_buffer = ''
         qtl_counter += 1
         chrm = records['Chromosome'].replace("Chr. ", "")
         to_id = records['TOid'].replace(":", "_")
-        
+
         qtl_buffer += gr_qtl_ns + records['QTLid'] + "\n"
         qtl_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "QTL" + " ;\n"
-        #qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-        #qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
+        # qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+        # qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
         qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records['Name']) + " ;\n"
         if records['Symbol']:
             qtl_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records['Symbol']) + " ;\n"
@@ -806,29 +827,30 @@ def grameneQTLRDF(infile, output_dir):
         qtl_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records['Start']) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (records['End']) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + obo_ns + to_id + " ;\n"
-            
-#        if to_id not in to_hash:
-#            outHandle.write(obo_ns + to_id + "\n")
-#            outHandle.write("\t" + rdf_ns + "type" + "\t" + obo_ns + plant_trait_term + " ;\n") #base_vocab_ns + "Concept"
-#            outHandle.write("\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + plant_trait_term + " ;\n")
-#            outHandle.write("\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records['TraitName']) + " ;\n")
-#            outHandle.write("\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records['TraitSymbol']) + " ;\n")
-#            outHandle.write("\t" + base_vocab_ns + "has_category" + "\t" + '"%s"' % (records['Category']) + " .\n")
-#            to_hash[to_id] = 1
+
+        #        if to_id not in to_hash:
+        #            outHandle.write(obo_ns + to_id + "\n")
+        #            outHandle.write("\t" + rdf_ns + "type" + "\t" + obo_ns + plant_trait_term + " ;\n") #base_vocab_ns + "Concept"
+        #            outHandle.write("\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + plant_trait_term + " ;\n")
+        #            outHandle.write("\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records['TraitName']) + " ;\n")
+        #            outHandle.write("\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records['TraitSymbol']) + " ;\n")
+        #            outHandle.write("\t" + base_vocab_ns + "has_category" + "\t" + '"%s"' % (records['Category']) + " .\n")
+        #            to_hash[to_id] = 1
         qtl_buffer = re.sub(' ;$', ' .', qtl_buffer)
         outHandle.write(qtl_buffer)
     outHandle.close()
-    print "Number of QTLs: %s\n" % (str(qtl_counter))
-    print "********* Gramene QTL RDF completed ***********\n"
+    print("Number of QTLs: %s\n" % (str(qtl_counter)))
+    print("********* Gramene QTL RDF completed ***********\n")
+
 
 def CycRDF(data_stuc, output_dir):
     pw_hash = {}
-#    react_hash = {}
-#    gene_hash = {} 
-#    previous_gene_id = ''
-#    pw_buffer = ''
+    #    react_hash = {}
+    #    gene_hash = {}
+    #    previous_gene_id = ''
+    #    pw_buffer = ''
     gene_buffer = ''
-#    react_buffer = ''
+    #    react_buffer = ''
     pw_counter = 0
     gene_counter = 0
     tigr_pattern = re.compile(r'^LOC\_OS\d{1,2}G\d{5}\.\d$')
@@ -837,13 +859,13 @@ def CycRDF(data_stuc, output_dir):
     arabidopsis_pattern = re.compile(r'^AT[1-5]G\d{5}$')
     maize_pattern = re.compile(r'^GRMZM\d{1}G\d{6}')
     alt_maize_match = re.compile(r'^\w+\d{6}\.\d{1}\_\w+\d{3}')
-    
+
     cyc_turtle = "gramene.cyc.ttl"
     outfile = os.path.join(output_dir, cyc_turtle)
     outputWriter = open(outfile, "w")
-    
-    print "*************Cyc RDF conversion begins***********\n"
-    
+
+    print("*************Cyc RDF conversion begins***********\n")
+
     outputWriter.write(base + "\t" + "<" + base_uri + "> .\n")
     outputWriter.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
     outputWriter.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
@@ -853,33 +875,32 @@ def CycRDF(data_stuc, output_dir):
     outputWriter.write(pr + "\t" + swo_ns + "<" + swo_uri + "> .\n")
     outputWriter.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
     outputWriter.write(pr + "\t" + pathway_ns + "<" + pathway_uri + "> .\n")
-#    outputWriter.write(pr + "\t" + reaction_ns + "<" + reaction_uri + "> .\n")
+    #    outputWriter.write(pr + "\t" + reaction_ns + "<" + reaction_uri + "> .\n")
     outputWriter.write(pr + "\t" + tigr_ns + "<" + tigr_uri + "> .\n")
     outputWriter.write(pr + "\t" + tigr_g_ns + "<" + tigr_g_uri + "> .\n")
     outputWriter.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n\n")
-#    outputWriter.write(pr + "\t" + ec_code_ns + "<" + ec_code_uri + "> .\n\n")
+    #    outputWriter.write(pr + "\t" + ec_code_ns + "<" + ec_code_uri + "> .\n\n")
 
     '''
     Ajout du prefix pour la realese des donnees
     '''
-    #outputWriter.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
-
+    # outputWriter.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
 
     # Genes
     for gene in data_stuc:
         gene_buffer = ''
         gene_counter += 1
-        
+
         # Data from RiceCyc
         if tigr_pattern.match(gene):
             r_locus = list(gene)
             r_locus[5] = "s"
             r_locus[8] = "g"
-            gene_locus = "".join(r_locus)            
+            gene_locus = "".join(r_locus)
             gene_buffer += tigr_ns + gene_locus + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
+            # gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+            # gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "develops_from" + "\t" + tigr_g_ns + gene_locus[:14] + " ;\n"
@@ -892,11 +913,11 @@ def CycRDF(data_stuc, output_dir):
             s_g_id = list(gene)
             s_g_id[1] = "b"
             s_g_id[4] = "g"
-            sorghum_gene_locus = "".join(s_g_id)            
+            sorghum_gene_locus = "".join(s_g_id)
             gene_buffer += ensembl_ns + sorghum_gene_locus + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
+            # gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+            # gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + "4558" + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "develops_from" + "\t" + ensembl_ns + sorghum_gene_locus[:11] + " ;\n"
@@ -910,21 +931,22 @@ def CycRDF(data_stuc, output_dir):
             alt_sorghum_gene_locus = "".join(alt_s_g_id)
             gene_buffer += ensembl_ns + alt_sorghum_gene_locus + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
+            # gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+            # gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + mrna_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + "4558" + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "develops_from" + "\t" + ensembl_ns + alt_sorghum_gene_locus[:13] + " ;\n"
+            gene_buffer += "\t" + base_vocab_ns + "develops_from" + "\t" + ensembl_ns + alt_sorghum_gene_locus[
+                                                                                        :13] + " ;\n"
             for pw in data_stuc[gene]['Pathways']:
                 gene_buffer += "\t" + base_vocab_ns + "is_agent_in" + "\t" + pathway_ns + pw + " ;\n"
                 pw_hash[pw] = data_stuc[gene]['Pathways'][pw]
 
-        #Data from MaizeCyc                    
+        # Data from MaizeCyc
         if maize_pattern.match(gene):
             gene_buffer += ensembl_ns + gene + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+            # gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+            # gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + "4577" + " ;\n"
             for pw in data_stuc[gene]['Pathways']:
@@ -933,8 +955,8 @@ def CycRDF(data_stuc, output_dir):
         if alt_maize_match.match(gene):
             gene_buffer += ensembl_ns + gene + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+            # gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+            # gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + "4577" + " ;\n"
             for pw in data_stuc[gene]['Pathways']:
@@ -942,42 +964,45 @@ def CycRDF(data_stuc, output_dir):
                 pw_hash[pw] = data_stuc[gene]['Pathways'][pw]
 
         # Data from AraCyc (Gramene)
-        if arabidopsis_pattern.match(gene): 
+        if arabidopsis_pattern.match(gene):
             gene_buffer += ensembl_ns + gene + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            #gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            #gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+            # gene_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
+            # gene_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (data_stuc[gene]['Name']) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + "3702" + " ;\n"
             for pw in data_stuc[gene]['Pathways']:
                 gene_buffer += "\t" + base_vocab_ns + "is_agent_in" + "\t" + pathway_ns + pw + " ;\n"
                 pw_hash[pw] = data_stuc[gene]['Pathways'][pw]
-        
-        gene_buffer = re.sub(' ;$', ' .', gene_buffer)        
+
+        gene_buffer = re.sub(' ;$', ' .', gene_buffer)
         outputWriter.write(gene_buffer)
 
-    #Pathways
+    # Pathways
     for pw_id in pw_hash:
         pw_counter += 1
-        outputWriter.write(pathway_ns +  pw_id + "\n")
+        outputWriter.write(pathway_ns + pw_id + "\n")
         outputWriter.write("\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Pathway_Identifier" + " ;\n")
-        #outputWriter.write("\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n")
-        #outputWriter.write("\t" + rdfs_ns + "subClassOf" + "\t" + sio_ns + met_pw_sio_term + " ;\n")
-        #outputWriter.write("\t" + rdfs_ns + "subClassOf" + "\t" + swo_ns + biocyc_pw_term + " ;\n")
+        # outputWriter.write("\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n")
+        # outputWriter.write("\t" + rdfs_ns + "subClassOf" + "\t" + sio_ns + met_pw_sio_term + " ;\n")
+        # outputWriter.write("\t" + rdfs_ns + "subClassOf" + "\t" + swo_ns + biocyc_pw_term + " ;\n")
         outputWriter.write("\t" + rdfs_ns + "label" + "\t" + '"%s"' % (pw_hash[pw_id]) + " .\n")
-        
-    outputWriter.close()
-    
-    print "Number pathways and genes: %s and %s\n" % (str(pw_counter), str(gene_counter))
-    print "******* Cyc RDF completed **********\n" 
 
-    
+    outputWriter.close()
+
+    print("Number pathways and genes: %s and %s\n" % (str(pw_counter), str(gene_counter)))
+    print("******* Cyc RDF completed **********\n")
+
+
 '''
  Tools                    
-'''        
+'''
+
+
 def removeDuplicates(in_list):
     newlist = list(set(in_list))
     return newlist
+
 
 # def CallAPI(gene):
 #
@@ -994,44 +1019,44 @@ def removeDuplicates(in_list):
 #     else:
 #         req={'_id':gene}
 #         pass
-    #print(req)
-    # print(req.json())
-    # test3 = json.load(req)
-    #test = json.dumps(req, sort_keys=True, indent=4)
-    # print(test)
-    # test.pop("bins")
+# print(req)
+# print(req.json())
+# test3 = json.load(req)
+# test = json.dumps(req, sort_keys=True, indent=4)
+# print(test)
+# test.pop("bins")
 
-    # df = json_normalize(req.json())
-    # df= pd.read_json(db)
-    # print(df.head())
+# df = json_normalize(req.json())
+# df= pd.read_json(db)
+# print(df.head())
 
-    # test = copy.deepcopy(df)
-    # print(test.head())
+# test = copy.deepcopy(df)
+# print(test.head())
 
-    # filter_ = ["gene_structure", "bins" ]
-    # annotations = ["taxonomy", "familyRoot"]
-    # go = ["ancestors"]
-    # entries = ["subset"]
-    # homology = ["gene_tree"]
-    # homologous_genes = ["ortholog_many2many"]
-    # for att in filter_:
-    #     req.pop(att, None)
-    #
-    # for i in req.keys():
-    #     # print(i)
-    #     if i == "annotations":
-    #         for att in annotations:
-    #             req["annotations"].pop(att, None)
-    #     if i == "homology":
-    #         for att in homology:
-    #             req["homology"].pop(att, None)
-    #         req["homology"]["homologous_genes"].pop("ortholog_many2many", None)
-    #
-    # return req
+# filter_ = ["gene_structure", "bins" ]
+# annotations = ["taxonomy", "familyRoot"]
+# go = ["ancestors"]
+# entries = ["subset"]
+# homology = ["gene_tree"]
+# homologous_genes = ["ortholog_many2many"]
+# for att in filter_:
+#     req.pop(att, None)
+#
+# for i in req.keys():
+#     # print(i)
+#     if i == "annotations":
+#         for att in annotations:
+#             req["annotations"].pop(att, None)
+#     if i == "homology":
+#         for att in homology:
+#             req["homology"].pop(att, None)
+#         req["homology"]["homologous_genes"].pop("ortholog_many2many", None)
+#
+# return req
 
 def RDF_validation(ttl_buffer, ttl_handle, oryid):
     try:
-        temp_file = os.path.join(ROOT_DIR+'temp_graph.ttl')
+        temp_file = os.path.join(ROOT_DIR + 'temp_graph.ttl')
         try_handle = open(temp_file, "w")
         try_handle.write(base + "\t" + "<" + base_uri + "> .\n")
         try_handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -1068,7 +1093,7 @@ def RDF_validation(ttl_buffer, ttl_handle, oryid):
         ttl_handle.write(ttl_buffer)
     except:
         print("Unexpected error:", sys.exc_info()[0])
-        temp =  oryid + '.ttl'
+        temp = oryid + '.ttl'
         temp_file = os.path.join(ROOT_DIR + temp)
         handle = open(temp_file, "w")
         handle.write(base + "\t" + "<" + base_uri + "> .\n")
@@ -1098,6 +1123,7 @@ def RDF_validation(ttl_buffer, ttl_handle, oryid):
         # tigr_g_ns tigr_g_uri
         handle.write(ttl_buffer)
         pass
+
 
 #
 # def connectionError(link, data=""):
@@ -1149,21 +1175,21 @@ def RDF_validation(ttl_buffer, ttl_handle, oryid):
 #     finally:
 #         return random_ua
 
-ROOT_DIR='/Users/plarmande/workspace2015/data/'
+ROOT_DIR = '/Users/plarmande/workspace2015/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
-gramene_genes_out =  '/Users/plarmande/workspace2015/data/'
+gramene_genes_files = [ROOT_DIR + 'Oryza_meridionalis.txt']
+gramene_genes_out = '/Users/plarmande/workspace2015/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 
 
 pp = pprint.PrettyPrinter(indent=4)
 
-gramene_genomes = gramene_genes_files #gramene_genes_files
-print "***************** Gramene Genes data ********************\n"
+gramene_genomes = gramene_genes_files  # gramene_genes_files
+print("***************** Gramene Genes data ********************\n")
 
 grameneGeneRDF(gramene_genomes, gramene_genes_out)
-print "********************************************************\n\n"
+print("********************************************************\n\n")
 
 # if __name__ == '__main__':
 # 	link = "http://data.gramene.org/v60/genes?q=Os08g0494375"
