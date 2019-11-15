@@ -12,7 +12,7 @@ This module contains Parsers, RDF converters and generic functions for handling 
 @author: venkatesan
 '''
 import pprint
-from globalVars import *
+from riceKB.globalVars import *
 import re
 import os, sys
 import rdflib
@@ -44,7 +44,7 @@ gramene_pattern = re.compile(r'^GR\:\d{7}$')
 prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
 def oryzaBaseParser(input_file):
     oryGene_ds = dict()
-    fileHandle = open(input_file, "rU")
+    fileHandle = open(input_file, 'r')
     lines  = fileHandle.readlines()
     lines.pop(0)
 #    pp = pprint.PrettyPrinter(indent=4)
@@ -127,19 +127,19 @@ def oryzaBaseParser(input_file):
 def oryzaBaseRDF(infile, output_file):
 #    pp = pprint.PrettyPrinter(indent=4)
 
-    print "*************Parsing OryzaBase gene data ***********\n" 
+    print("*************Parsing OryzaBase gene data ***********\n")
     
     orygene_ds = oryzaBaseParser(infile)
     gene_count = len(orygene_ds)
     
-    print "Number of genes: %s\n" % (str(gene_count))
-    print "OryzaBase gene data has been parsed!\n"
-    print "*************************************\n\n"
+    print("Number of genes: %s\n" % (str(gene_count)))
+    print("OryzaBase gene data has been parsed!\n")
+    print("*************************************\n\n")
     
     ttl_handle = open(output_file, "w")
     ttl_buffer = ''
     
-    print "************* OryzaBase RDF conversion begins***********\n" 
+    print("************* OryzaBase RDF conversion begins***********\n")
     
     ttl_handle.write(base + "\t" + "<" + base_uri + "> .\n")    
     ttl_handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
