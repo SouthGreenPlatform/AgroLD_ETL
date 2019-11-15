@@ -1,17 +1,19 @@
 from __future__ import with_statement
+from riceKB.globalVars import *
 from collections import namedtuple
 import gzip
 import urllib
 import pprint
 
 
-__author__ = 'elhassouni'
+
+__author__ = 'larmande'
 
 
 #Initialized GeneInfo named tuple. Note: namedtuple is immutable
 gffInfoFields = ["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes"]
 GFFRecord = namedtuple("GFFRecord", gffInfoFields)
-
+attrib = {}
 def parseGFFAttributes(attributeString):
     """Parse the GFF3 attribute column and return a dict"""
     if attributeString == ".": return {}
@@ -19,6 +21,7 @@ def parseGFFAttributes(attributeString):
     for attribute in attributeString.split(";"):
         key, value = attribute.split("=")
         ret[urllib.unquote(key)] = urllib.unquote(value)
+        attrib[key]=value
     return ret
 
 def parseGFF3(filename):
@@ -55,7 +58,7 @@ def parseGFF3(filename):
             #yield GFFRecord(**normalizedInfo)
         return map_ds
 
-
+print(attrib)
 #pp = pprint.PrettyPrinter(indent=4)
 #path = '/Users/plarmande/Downloads/IRGSP-1.0_representative/transcripts_mRNA.gff'
 
