@@ -1,8 +1,8 @@
 import sys
-print sys.path
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+print(sys.path)
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.gffParser import *
 import pprint
 import re
 import os
@@ -37,7 +37,7 @@ def geneParser(infile):
     array = pd.read_csv(infile, sep="\t", delimiter=None, dtype='str')
     #array['locus_id'].replace('', np.nan, inplace=True)
     #array.dropna(subset=['locus_id'], inplace=True)
-    print array
+    print(array)
     return array
 
 def msuModeleRDF(msu_ds, output_file):
