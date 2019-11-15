@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import print_function
+
 '''
 Created on Jun 19, 2014
 Updated on Apr 17, 2019
@@ -283,7 +285,6 @@ def geneParser(infile):
 
 def geneParserPandas(infile):
     array = pd.read_csv(infile, sep="\t", delimiter=None, dtype='str')
-    print array
     return array
 
 
@@ -546,7 +547,7 @@ def grameneGeneRDF(files, output_dir, type='test'):  # def grameneGeneRDF(files,
         #        output_file = "gramene_genes.ttl"
         #        output_opener = open(output_file, "w")
 
-        print "*************Parsing %s genome data ***********\n" % (output_file_name)
+        print("*************Parsing %s genome data ***********\n" % (output_file_name))
 
         gene_ds = geneParser(gene_file)
         # gene_ds = geneParserPandas(gene_file)
@@ -556,7 +557,7 @@ def grameneGeneRDF(files, output_dir, type='test'):  # def grameneGeneRDF(files,
         #        print "*************************************\n\n"
         # ict(gene_ds)
         print(str(len(gene_ds.keys())) + " Genes parsed")
-        print "************* %s RDF conversion begins***********\n" % (output_file_name)
+        print("************* %s RDF conversion begins***********\n" % (output_file_name))
         reference_ch = ''
         for gene_id in gene_ds:
             # gene_id='Os05g0420800'
@@ -802,7 +803,7 @@ def grameneGeneRDF(files, output_dir, type='test'):  # def grameneGeneRDF(files,
     #        if tair_prefix:
     #            output_opener.write(tair_prefix)
 
-    print "Number of genes in %s are: %s\n" % (output_file_name, str(gene_counter))
+    print("Number of genes in %s are: %s\n" % (output_file_name, str(gene_counter)))
 
 
 #    print "************* %s RDF completed ************\n" % (output_file_name)
@@ -817,14 +818,14 @@ def grameneQTLRDF(infile, output_dir):
     outfile = os.path.join(output_dir, turtle_file_name)
     outHandle = open(outfile, "w")
 
-    print "*********** Parsing Gramene QTL data ***************\n"
+    print("*********** Parsing Gramene QTL data ***************\n")
 
     qtl_ds = qtlParser(infile)
 
     #    print "Gramene QTL data has been parsed!\n"
     #    print "*************************************\n"
 
-    print "************* Gramene QTL RDF conversion begins***********\n"
+    print("************* Gramene QTL RDF conversion begins***********\n")
 
     outHandle.write(base + "\t" + "<" + base_uri + "> .\n")
     outHandle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -868,8 +869,8 @@ def grameneQTLRDF(infile, output_dir):
         qtl_buffer = re.sub(' ;$', ' .', qtl_buffer)
         outHandle.write(qtl_buffer)
     outHandle.close()
-    print "Number of QTLs: %s\n" % (str(qtl_counter))
-    print "********* Gramene QTL RDF completed ***********\n"
+    print("Number of QTLs: %s\n" % (str(qtl_counter)))
+    print("********* Gramene QTL RDF completed ***********\n")
 
 
 def CycRDF(data_stuc, output_dir):
@@ -893,7 +894,7 @@ def CycRDF(data_stuc, output_dir):
     outfile = os.path.join(output_dir, cyc_turtle)
     outputWriter = open(outfile, "w")
 
-    print "*************Cyc RDF conversion begins***********\n"
+    print("*************Cyc RDF conversion begins***********\n")
 
     outputWriter.write(base + "\t" + "<" + base_uri + "> .\n")
     outputWriter.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -1019,8 +1020,8 @@ def CycRDF(data_stuc, output_dir):
 
     outputWriter.close()
 
-    print "Number pathways and genes: %s and %s\n" % (str(pw_counter), str(gene_counter))
-    print "******* Cyc RDF completed **********\n"
+    print("Number pathways and genes: %s and %s\n" % (str(pw_counter), str(gene_counter)))
+    print("******* Cyc RDF completed **********\n")
 
 
 '''
@@ -1216,10 +1217,10 @@ gramene_genes_out = '/Users/plarmande/workspace2015/data/'
 pp = pprint.PrettyPrinter(indent=4)
 
 gramene_genomes = gramene_genes_files  # gramene_genes_files
-print "***************** Gramene Genes data ********************\n"
+print("***************** Gramene Genes data ********************\n")
 
 grameneGeneRDF(gramene_genomes, gramene_genes_out)
-print "********************************************************\n\n"
+print("********************************************************\n\n")
 
 # if __name__ == '__main__':
 # 	link = "http://data.gramene.org/v60/genes?q=Os08g0494375"
