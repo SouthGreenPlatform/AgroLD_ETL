@@ -43,7 +43,7 @@ TODO: 1) Reification needs fixing - additional rdf statement required to link as
 
 import re
 from Bio.UniProt import GOA
-from globalVars import *
+from riceKB.globalVars import *
 import pprint
 import glob
 import os
@@ -455,7 +455,7 @@ prot_gaf_files = glob.glob(prot_assoc_test_dir) #gene_assoc_dir stores file name
 mapping = gafEcoMap(eco_map_file)
 allGafRDF(prot_gaf_files, mapping, prot_test_output, 'protein') #
 ProteinGafRDF(prot_gaf_files, mapping, prot_test_output) # allGafRDF(prot_gaf_files, protein_assoc_ttl, 'protein')
-print "************** Protein-ontology associations RDF converted *************\n\n"
+print("************** Protein-ontology associations RDF converted *************\n\n")
 
 
 
