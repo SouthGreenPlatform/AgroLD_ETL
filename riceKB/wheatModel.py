@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.globalVars import *
+from riceKB.gffParser import *
 import urllib2
 import json
 import uuid
@@ -118,9 +118,9 @@ def line_pre_adder(filename, line_to_prepend):
     f = fileinput.input(filename, inplace=1)
     for xline in f:
         if f.isfirstline():
-            print line_to_prepend.rstrip('\r\n') + '\n' + xline,
+            print(line_to_prepend.rstrip('\r\n') + '\n' + xline,)
         else:
-            print xline,
+            print(xline)
 
 
 def searchParents(Parent, ds):
@@ -156,7 +156,7 @@ ds = parseGFF3(path)
 bleModel(ds, path_output,"Oryza sativa Indica Group", "http://www.southgreen.fr/agrold/whead_graph", path_alias_file)  # The tranformation fonction tropGeneToRdf(input, output)
 
 interval = time.time() - start_time
-print 'Total time in seconds:', interval
+print('Total time in seconds:', interval)
 
 
 #IDPrents = searchParents("TRAES3BF007400010CFD_t1", ds)
