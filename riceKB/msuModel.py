@@ -2,9 +2,8 @@ from __future__ import print_function
 import sys
 
 print(sys.path)
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+from riceKB.globalVars import *
+from riceKB.gffParser import *
 import pprint
 import re
 import os
