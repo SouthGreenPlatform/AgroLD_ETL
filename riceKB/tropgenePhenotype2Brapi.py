@@ -2,7 +2,8 @@ __author__ = 'elhassouni'
 
 import sys
 print (sys.path)
-from globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.globalVars import *
 import pprint
 import re
 import os
@@ -66,7 +67,7 @@ def tropgene2brapi(map_ds):
                           '    "data": [ \n ' \
                           '      { \n '
     for data in map_ds:
-        print data['study_type']
+        print(data['study_type'])
 
         brapi_buffer += '{"observationUnitDbId": 2880513,  \n ' \
                         '"observationUnitPUI": null, \n ' \
