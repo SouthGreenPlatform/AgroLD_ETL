@@ -4,7 +4,7 @@ Created on Sep 18, 2014
 @author: venkatesan
 '''
 import pprint
-from globalVars import *
+from riceKB.globalVars import *
 import re
 import os 
 
@@ -45,7 +45,7 @@ def otlParser(otl_file):
     
     # Data Structure for Map file
     map_ds = list()
-    print "*****Parsing OryzaTagLine data **********\n"
+    print("*****Parsing OryzaTagLine data **********\n")
     lines = map_reader.readlines()
     lines.pop(0) # remove header
 #    pp.pprint(lines[0])
@@ -56,8 +56,8 @@ def otlParser(otl_file):
             
     return map_ds
     map_reader.close()
-    print "OryzaTagLine data has been parsed!\n"
-    print "*************************************\n\n"
+    print("OryzaTagLine data has been parsed!\n")
+    print("*************************************\n\n")
 
         
 '''
@@ -80,7 +80,7 @@ def otlRDF(otl_ds, output_file):
     ont_pattern = re.compile(r'^\w+\:\d{7}$')
     rdf_writer = open(output_file, "w")
     
-    print "*************OryzaTagLine RDF conversion begins***********\n"
+    print("*************OryzaTagLine RDF conversion begins***********\n")
     
     rdf_writer.write(base + "\t" + "<" + base_uri + "> .\n")
     rdf_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -196,8 +196,8 @@ def otlRDF(otl_ds, output_file):
         otl_buffer = re.sub(' ;$', ' .', otl_buffer)
         rdf_writer.write(otl_buffer)
     rdf_writer.close()
-    print "Number of line IDs: %s\n" % (str(germplasm_counter))
-    print "*************OryzaTagLine RDF completed***********\n\n"
+    print("Number of line IDs: %s\n" % (str(germplasm_counter)))
+    print("*************OryzaTagLine RDF completed***********\n\n")
 
 '''
 #otl_test_input = '/media/elhassouni/donnees/Noeud-plante-projet/workspace/AgroLD/AgroLD_ETL/test_files/oryzaTagLine/OTL_export_pheno+trait.csv'
