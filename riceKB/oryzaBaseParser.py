@@ -262,9 +262,9 @@ def oryzaBaseRDF(infile, output_file):
         RDF_validation(ttl_buffer,ttl_handle,oryid)
 
     ttl_handle.close()
-    print "************* OryzaBase RDF completed ************!\n\n"
+    print("************* OryzaBase RDF completed ************!\n\n")
 
-    print "************* OryzaBase RDF Testing Graph ************!\n\n"
+    print("************* OryzaBase RDF Testing Graph ************!\n\n")
 
 def RDF_validation(ttl_buffer,ttl_handle,oryid):
 
