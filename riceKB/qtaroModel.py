@@ -1,14 +1,12 @@
 import sys
-#print sys.path
-from globalVars import *
-from globalVars import base_vocab_ns
-import pprint
+print(sys.path)
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 import re
 import os
 import pandas as pd
 import numpy as np
-import urllib
-import json
+
 
 '''
 Created on May, 2017
@@ -39,7 +37,7 @@ def geneParser(infile):
     array = pd.read_csv(infile, sep=";", delimiter=None, dtype='str')
     array['locus_id'].replace('', np.nan, inplace=True)
     array.dropna(subset=['locus_id'], inplace=True)
-    print array
+    print(array)
     return array
 
 #id|qtl_gene_name|character_major|character_minor|marker_volume|chromosome|start|end|source|lod|crossed_a|crossed_b|direction|references|ref_number|marker|marker_physical|marker_fine_1|marker_fine_2|marker_fine_3|marker_interval_1|marker_interval_2|marker_interval_3|marker_single|analytic_group|group_size|trait_name|contribution_rate|synergy_effect|publication_year
@@ -61,7 +59,7 @@ def qtlParser(infile):
     #     qtl_ds.append(dict(zip(headers, items)))
     #
     # fileHandle.close()
-    print qtl_ds
+    print(qtl_ds)
     return qtl_ds
 
 
@@ -77,11 +75,11 @@ def qtaroGeneRDF(infile, output_dir):
     outfile = os.path.join(output_dir, turtle_file_name)
     outHandle = open(outfile, "w")
     rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
-    print "*********** Parsing Qtaro Gene data ***************\n"
+    print("*********** Parsing Qtaro Gene data ***************\n")
 
     gene_ds = geneParser(infile)
 
-    print "************* Qtaro Gene RDF conversion begins***********\n"
+    print("************* Qtaro Gene RDF conversion begins***********\n")
 
     '''
     Ajout du prefix pour la release des donnees
@@ -105,7 +103,7 @@ def qtaroGeneRDF(infile, output_dir):
         gene_counter += 1
 
         # ogro_id;gene;gene_symbol;character_major;character_minor;chromosome;start;end;locus_id;browse;isolation;objective;doi
-        print records
+        print(records)
         if rap_pattern.match(records[8]) and isinstance(records[8],str):
             gene_buffer += ensembl_ns + records[8] + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
@@ -125,8 +123,8 @@ def qtaroGeneRDF(infile, output_dir):
             gene_buffer = re.sub(' ;$', ' .\n', gene_buffer)
             outHandle.write(gene_buffer)
     outHandle.close()
-    print "Number of Genes: %s\n" % (str(gene_counter))
-    print "********* Qtaro GENE RDF completed ***********\n"
+    print("Number of Genes: %s\n" % (str(gene_counter)))
+    print("********* Qtaro GENE RDF completed ***********\n")
 
 def qtaroQTLRDF(infile, output_dir):
     qtl_buffer = ''
@@ -136,7 +134,7 @@ def qtaroQTLRDF(infile, output_dir):
     outfile = os.path.join(output_dir, turtle_file_name)
     outHandle = open(outfile, "w")
 
-    print "*********** Parsing Qtaro QTL data ***************\n"
+    print("*********** Parsing Qtaro QTL data ***************\n")
 
     qtl_ds = qtlParser(infile)
 
@@ -144,7 +142,7 @@ def qtaroQTLRDF(infile, output_dir):
     #    print "Gramene QTL data has been parsed!\n"
     #    print "*************************************\n"
 
-    print "************* Qtaro QTL RDF conversion begins***********\n"
+    print("************* Qtaro QTL RDF conversion begins***********\n")
 
     outHandle.write(base + "\t" + "<" + base_uri + "> .\n")
     outHandle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -164,7 +162,7 @@ def qtaroQTLRDF(infile, output_dir):
         qtl_counter += 1
         #chrm = records['Chromosome'].replace("Chr. ", "")
         #to_id = records['TOid'].replace(":", "_")
-        print records
+        print(records)
         qtl_buffer += qtaro_qtl_ns + records[0] + "\n"
         qtl_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "QTL" + " ;\n"
         # qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
@@ -192,8 +190,8 @@ def qtaroQTLRDF(infile, output_dir):
         qtl_buffer = re.sub(' ;$', ' .\n', qtl_buffer)
         outHandle.write(qtl_buffer)
     outHandle.close()
-    print "Number of QTLs: %s\n" % (str(qtl_counter))
-    print "********* Qtaro QTL RDF completed ***********\n"
+    print("Number of QTLs: %s\n" % (str(qtl_counter)))
+    print("********* Qtaro QTL RDF completed ***********\n")
 
 #geneParser('../test_files/qtaro/Qtaro-Gene-export.csv')
 
