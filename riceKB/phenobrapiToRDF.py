@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pprint
 import re
-from globalVars import *
-from globalVars import base_vocab_ns
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 import json
 import json as simplejson
 import requests
