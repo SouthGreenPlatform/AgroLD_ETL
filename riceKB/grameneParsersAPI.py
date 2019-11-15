@@ -18,8 +18,7 @@ T
 @author: larmande
 '''
 import pprint
-from globalVars import *
-from globalVars import base_vocab_ns
+from riceKB.globalVars import *
 import re
 import requests
 import os, sys
