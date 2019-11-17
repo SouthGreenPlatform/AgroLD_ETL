@@ -1,6 +1,6 @@
 from __future__ import with_statement
 import pprint
-from globalVars import *
+from riceKB.globalVars import *
 import re
 import os
 import time
@@ -415,6 +415,6 @@ def sniplayPaserModel():
     writeIndividu()
     writeAllele()
     writeStudy()
-    print 'Time execution : ',time.clock() - avant
+    print('Time execution : ',time.clock() - avant)
 
 

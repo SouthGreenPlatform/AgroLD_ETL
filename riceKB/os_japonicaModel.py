@@ -1,8 +1,8 @@
 import sys
-print sys.path
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+print(sys.path)
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.gffParser import *
 import pprint
 import re
 import os

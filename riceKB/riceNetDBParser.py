@@ -12,13 +12,11 @@ TODO:
 @author: venkatesan
 '''
 import pprint
-from globalVars import *
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 import re
 import os
 import sys
-#print sys.path
-from globalVars import *
-from globalVars import base_vocab_ns
 import pprint
 import re
 import os
@@ -61,7 +59,7 @@ def riceNeTDBParser(infile):
     array = pd.read_csv(infile, sep=",", dtype='str')
     #array['locus_id'].replace('', np.nan, inplace=True)
     #array.dropna(subset=['locus_id'], inplace=True)
-    print array.head()
+    print(array.head())
     return array
 
 
@@ -115,8 +113,8 @@ def riceNetGeneDBModelRDF(ricenetdb_ds, output_file):
 #TODO uniformiser entites choromosomes les valeurs integer ou string ? associer la source.
 #TODO has_synonym do we set up URIs for linking ?
     for index, records in ricenetdb_ds.iterrows():
-        print records['gene'] + "\n"
-        print records['gene'].split(".")[0] + "\n"
+        print(records['gene'] + "\n")
+        print(records['gene'].split(".")[0] + "\n")
 
         line_number+=1
         os_japonica_buffer = ''

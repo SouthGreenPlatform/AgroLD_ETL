@@ -1,8 +1,9 @@
 import pprint
 import re
 import os
-from globalVars import base_vocab_ns
-from TropgeneParser import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.globalVars import *
+from riceKB.TropgeneParser import *
 __author__ = 'elhassouni'
 
 

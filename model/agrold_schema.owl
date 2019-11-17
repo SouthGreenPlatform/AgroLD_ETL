@@ -4,11 +4,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.southgreen.fr/agrold/agrold-schema> .
+@base <http://www.southgreen.fr/agrold/vocabulary> .
 
-<http://www.southgreen.fr/agrold/agrold-schema> rdf:type owl:Ontology ;
+<http://www.southgreen.fr/agrold/vocabulary> rdf:type owl:Ontology ;
                                                 
-                                                owl:versionIRI <http://www.southgreen.fr/agrold/agrold-schema/1.0> .
+                                                owl:versionIRI <http://www.southgreen.fr/agrold/vocabulary/1.0> .
 
 
 #################################################################
@@ -18,14 +18,14 @@
 #################################################################
 
 
-###  http://www.southgreen.fr/agrold/resource/
+###  http://www.southgreen.fr/agrold/vocabulary/
 
-<http://www.southgreen.fr/agrold/resource/> rdf:type owl:AnnotationProperty ;
+<http://www.southgreen.fr/agrold/vocabulary/> rdf:type owl:AnnotationProperty ;
                                             
-                                            rdfs:domain <http://www.southgreen.fr/agrold/resource/Gene> ,
-                                                        <http://www.southgreen.fr/agrold/resource/Protein> ,
-                                                        <http://www.southgreen.fr/agrold/resource/Protein_Family> ,
-                                                        <http://www.southgreen.fr/agrold/resource/QTL> .
+                                            rdfs:domain <http://www.southgreen.fr/agrold/vocabulary/Gene> ,
+                                                        <http://www.southgreen.fr/agrold/vocabulary/Protein> ,
+                                                        <http://www.southgreen.fr/agrold/vocabulary/Protein_Family> ,
+                                                        <http://www.southgreen.fr/agrold/vocabulary/QTL> .
 
 
 
@@ -44,7 +44,9 @@
                                              
                                              owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/part_of> .
 
-
+###   http://purl.obolibrary.org/obo/BFO_0000051
+<http://purl.obolibrary.org/obo/BFO_0000051> rdf:type owl:ObjectProperty ;
+                                               owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/has_part>
 
 ###  http://purl.obolibrary.org/obo/BFO_0000056
 
@@ -582,7 +584,7 @@
                                     
                                     rdfs:label "data_1157"@en ;
                                     
-                                    owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Pathway_Identifier> .
+                                    owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Pathway_Identifier> .
 
 
 
@@ -592,7 +594,7 @@
                                     
                                     rdfs:label "data_1865"@en ;
                                     
-                                    owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Map_feature> .
+                                    owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Map_feature> .
 
 
 
@@ -602,7 +604,7 @@
                                              
                                              rdfs:label "OBI:0000073"^^xsd:string ;
                                              
-                                             owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Study> .
+                                             owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Study> .
 
 
 
@@ -612,7 +614,7 @@
                                              
                                              rdfs:label "OBI:0000181"^^xsd:string ;
                                              
-                                             owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Population> .
+                                             owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Population> .
 
 
 
@@ -622,7 +624,7 @@
                                              
                                              rdfs:label "OBI:0000251"^^xsd:string ;
                                              
-                                             owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Protein_Family> .
+                                             owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Protein_Family> .
 
 
 
@@ -632,7 +634,7 @@
                                             
                                             rdfs:label "SO:0000039"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Match_part> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Match_part> .
 
 
 
@@ -642,7 +644,7 @@
                                             
                                             rdfs:label "SO:0000104"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Protein> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Protein> .
 
 
 
@@ -652,7 +654,7 @@
                                             
                                             rdfs:label "SO:0000147"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Exon> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Exon> .
 
 
 
@@ -662,7 +664,7 @@
                                             
                                             rdfs:label "SO:0000204"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Five_prime_UTR> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Five_prime_UTR> .
 
 
 
@@ -672,7 +674,7 @@
                                             
                                             rdfs:label "SO:0000205"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Threee_prime_UTR> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Threee_prime_UTR> .
 
 
 
@@ -682,7 +684,7 @@
                                             
                                             rdfs:label "SO:0000234"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/mRNA> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/mRNA> .
 
 
 
@@ -692,7 +694,7 @@
                                             
                                             rdfs:label "SO:0000239"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Flanking_region> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Flanking_region> .
 
 
 
@@ -702,7 +704,7 @@
                                             
                                             rdfs:label "SO:0000276"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/miRNA> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/miRNA> .
 
 
 
@@ -712,7 +714,7 @@
                                             
                                             rdfs:label "SO:0000316"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/CDS> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/CDS> .
 
 
 
@@ -722,7 +724,7 @@
                                             
                                             rdfs:label "SO:0000343"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Match> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Match> .
 
 
 
@@ -732,7 +734,7 @@
                                             
                                             rdfs:label "SO:0000430"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Chromosome> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Chromosome> .
 
 
 
@@ -742,7 +744,7 @@
                                             
                                             rdfs:label "SO:0000647"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/miRNA_primary_transcript> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/miRNA_primary_transcript> .
 
 
 
@@ -752,7 +754,7 @@
                                             
                                             rdfs:label "SO:0000668"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/EST_match> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/EST_match> .
 
 
 
@@ -762,7 +764,7 @@
                                             
                                             rdfs:label "SO:0000689"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/cDNA_match> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/cDNA_match> .
 
 
 
@@ -772,7 +774,7 @@
                                             
                                             rdfs:label "SO:0000704"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Gene> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Gene> .
 
 
 
@@ -782,7 +784,7 @@
                                             
                                             rdfs:label "SO:0000771"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/QTL> .
+                                            owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/QTL> .
 
 
 
@@ -792,7 +794,7 @@
                                                  
                                                  rdfs:label "SIO:010532"^^xsd:string ;
                                                  
-                                                 owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Metabolic_Pathway> .
+                                                 owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Metabolic_Pathway> .
 
 
 
@@ -802,189 +804,189 @@
                                                  
                                                  rdfs:label "CO_715:0000225"^^xsd:string ;
                                                  
-                                                 owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Germplasm> .
+                                                 owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Germplasm> .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/CDS
+###  http://www.southgreen.fr/agrold/vocabulary/CDS
 
-<http://www.southgreen.fr/agrold/resource/CDS> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/CDS> rdf:type owl:Class ;
                                                
                                                rdfs:label "CDS"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Chromosome
+###  http://www.southgreen.fr/agrold/vocabulary/Chromosome
 
-<http://www.southgreen.fr/agrold/resource/Chromosome> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Chromosome> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "Chromosome"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/EST_match
+###  http://www.southgreen.fr/agrold/vocabulary/EST_match
 
-<http://www.southgreen.fr/agrold/resource/EST_match> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/EST_match> rdf:type owl:Class ;
                                                      
                                                      rdfs:label "EST match"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Exon
+###  http://www.southgreen.fr/agrold/vocabulary/Exon
 
-<http://www.southgreen.fr/agrold/resource/Exon> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Exon> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "Exon"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Five_prime_UTR
+###  http://www.southgreen.fr/agrold/vocabulary/Five_prime_UTR
 
-<http://www.southgreen.fr/agrold/resource/Five_prime_UTR> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Five_prime_UTR> rdf:type owl:Class ;
                                                           
                                                           rdfs:label "Five prime UTR"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Flanking_region
+###  http://www.southgreen.fr/agrold/vocabulary/Flanking_region
 
-<http://www.southgreen.fr/agrold/resource/Flanking_region> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Flanking_region> rdf:type owl:Class ;
                                                            
                                                            rdfs:label "Flanking region"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Gene
+###  http://www.southgreen.fr/agrold/vocabulary/Gene
 
-<http://www.southgreen.fr/agrold/resource/Gene> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Gene> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "Gene"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Germplasm
+###  http://www.southgreen.fr/agrold/vocabulary/Germplasm
 
-<http://www.southgreen.fr/agrold/resource/Germplasm> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Germplasm> rdf:type owl:Class ;
                                                      
                                                      rdfs:label "Germplasm"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Map_feature
+###  http://www.southgreen.fr/agrold/vocabulary/Map_feature
 
-<http://www.southgreen.fr/agrold/resource/Map_feature> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Map_feature> rdf:type owl:Class ;
                                                        
                                                        rdfs:label "Map feature"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Match
+###  http://www.southgreen.fr/agrold/vocabulary/Match
 
-<http://www.southgreen.fr/agrold/resource/Match> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Match> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "Match"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Match_part
+###  http://www.southgreen.fr/agrold/vocabulary/Match_part
 
-<http://www.southgreen.fr/agrold/resource/Match_part> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Match_part> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "Match part"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Metabolic_Pathway
+###  http://www.southgreen.fr/agrold/vocabulary/Metabolic_Pathway
 
-<http://www.southgreen.fr/agrold/resource/Metabolic_Pathway> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Metabolic_Pathway> rdf:type owl:Class ;
                                                              
                                                              rdfs:label "Metabolic Pathway"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Pathway_Identifier
+###  http://www.southgreen.fr/agrold/vocabulary/Pathway_Identifier
 
-<http://www.southgreen.fr/agrold/resource/Pathway_Identifier> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Pathway_Identifier> rdf:type owl:Class ;
                                                               
                                                               rdfs:label "Pathway Identifier"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Population
+###  http://www.southgreen.fr/agrold/vocabulary/Population
 
-<http://www.southgreen.fr/agrold/resource/Population> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Population> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "Population"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Protein
+###  http://www.southgreen.fr/agrold/vocabulary/Protein
 
-<http://www.southgreen.fr/agrold/resource/Protein> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Protein> rdf:type owl:Class ;
                                                    
                                                    rdfs:label "Protein"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Protein_Family
+###  http://www.southgreen.fr/agrold/vocabulary/Protein_Family
 
-<http://www.southgreen.fr/agrold/resource/Protein_Family> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Protein_Family> rdf:type owl:Class ;
                                                           
                                                           rdfs:label "Protein Family"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/QTL
+###  http://www.southgreen.fr/agrold/vocabulary/QTL
 
-<http://www.southgreen.fr/agrold/resource/QTL> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/QTL> rdf:type owl:Class ;
                                                
                                                rdfs:label "QTL"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Study
+###  http://www.southgreen.fr/agrold/vocabulary/Study
 
-<http://www.southgreen.fr/agrold/resource/Study> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Study> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "Study"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Threee_prime_UTR
+###  http://www.southgreen.fr/agrold/vocabulary/Threee_prime_UTR
 
-<http://www.southgreen.fr/agrold/resource/Threee_prime_UTR> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/Threee_prime_UTR> rdf:type owl:Class ;
                                                             
                                                             rdfs:label "Three prime UTR"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/cDNA_match
+###  http://www.southgreen.fr/agrold/vocabulary/cDNA_match
 
-<http://www.southgreen.fr/agrold/resource/cDNA_match> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/cDNA_match> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "cDNA match"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/mRNA
+###  http://www.southgreen.fr/agrold/vocabulary/mRNA
 
-<http://www.southgreen.fr/agrold/resource/mRNA> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/mRNA> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "mRNA"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/miRNA
+###  http://www.southgreen.fr/agrold/vocabulary/miRNA
 
-<http://www.southgreen.fr/agrold/resource/miRNA> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/miRNA> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "miRNA"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/miRNA_primary_transcript
+###  http://www.southgreen.fr/agrold/vocabulary/miRNA_primary_transcript
 
-<http://www.southgreen.fr/agrold/resource/miRNA_primary_transcript> rdf:type owl:Class ;
+<http://www.southgreen.fr/agrold/vocabulary/miRNA_primary_transcript> rdf:type owl:Class ;
                                                                     
                                                                     rdfs:label "miRNA primary transcript"^^xsd:string .
 

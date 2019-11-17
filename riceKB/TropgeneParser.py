@@ -1,6 +1,7 @@
 import sys
 print (sys.path)
-from globalVars import *
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 import pprint
 import re
 import os

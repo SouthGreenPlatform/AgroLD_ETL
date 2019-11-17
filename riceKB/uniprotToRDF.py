@@ -8,7 +8,8 @@ Created on Mar 23, 2015
 
 from Bio import SwissProt
 
-from globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.globalVars import *
 import pprint
 import re
 import os
@@ -25,7 +26,7 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
     up_base_uri = "http://purl.uniprot.org/"
 #    up_base_ns = "uniprot_base:"
     
-    print "************* Converting Uniprot data to RDF ***************\n"
+    print("************* Converting Uniprot data to RDF ***************\n")
     
     output_writer.write(base + "\t" + "<" + base_uri + "> .\n")
     output_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -68,7 +69,7 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
                         #rdf_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + protein_term + " ;\n"
                          
                     # Label
-                    print record.entry_name
+                    print(record.entry_name)
                     rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (record.entry_name) + " ;\n"
                     
                     # Description
@@ -99,7 +100,7 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
 #                        print name
 
                     # Taxon
-                    rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t" + obo_ns + "NCBITaxon_" + taxID + " ;\n"
+                    rdf_buffer += "\t" + base_vocab_ns + "taxon" +  "\t\t" + obo_ns + "NCBITaxon_" + taxID + " ;\n"
                     rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
 #                   taxID
                    
@@ -140,12 +141,12 @@ def upToRDF(up_files, rdf_out_dir): #, output_file
 #                        rdf_buffer = re.sub(' ;$', '', rdf_buffer)    
 #                        rdf_buffer += "\t" + "\t" + "]" + " ;\n" 
 
-                    rdf_buffer = re.sub(' ;$', ' .', rdf_buffer)
+                    rdf_buffer = re.sub(' ;$', ' .\n"', rdf_buffer)
                     output_writer.write(rdf_buffer)
         file_handle.close()
     output_writer.close()
-    print "Number of Proteins: %s\n" % (str(prot_counter))
-    print "*************** UniProt RDF conversion completed ************\n"
+    print("Number of Proteins: %s\n" % (str(prot_counter)))
+    print("*************** UniProt RDF conversion completed ************\n")
                 
 #                   pp.pprint(record.cross_references) #taxonomy_id cross_references comments description keywords gene_name molecule_type
 

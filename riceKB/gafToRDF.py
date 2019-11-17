@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import print_function
+
 '''
 Created on Jun 4, 2014
 The gafToRDF module is created as part of the Rice Knowledge Base project. 
@@ -41,7 +43,7 @@ TODO: 1) Reification needs fixing - additional rdf statement required to link as
 
 import re
 from Bio.UniProt import GOA
-from globalVars import *
+from riceKB.globalVars import *
 import pprint
 import glob
 import os
@@ -294,7 +296,7 @@ def allGafRDF(files, map_ds, output_file, flag):
         rdf_buffer = re.sub(' ;$', ' .', rdf_buffer) 
         outputWriter.write(rdf_buffer)
     outputWriter.close()
-    print "Total number of associations: %s\n" % (str(assoc_line))
+    print("Total number of associations: %s\n" % (str(assoc_line)))
 #    print "Ontology associations has been converted to RDF!\n"
 #    pp.pprint(uniq_obj_id) 
 
@@ -415,10 +417,9 @@ def ProteinGafRDF(files, map_ds, output_file):
         rdf_buffer = re.sub(' ;$', ' .', rdf_buffer) 
         outputWriter.write(rdf_buffer)
     outputWriter.close()
-    print "Total number of associations: %s\n" % (str(assoc_line))
+    print("Total number of associations: %s\n" % (str(assoc_line)))
 
 
-       
 def gafEcoMap(map_file):
     fileHandle = open(map_file, "r")
     map_ds = {}
@@ -454,7 +455,7 @@ prot_gaf_files = glob.glob(prot_assoc_test_dir) #gene_assoc_dir stores file name
 mapping = gafEcoMap(eco_map_file)
 allGafRDF(prot_gaf_files, mapping, prot_test_output, 'protein') #
 ProteinGafRDF(prot_gaf_files, mapping, prot_test_output) # allGafRDF(prot_gaf_files, protein_assoc_ttl, 'protein')
-print "************** Protein-ontology associations RDF converted *************\n\n"
+print("************** Protein-ontology associations RDF converted *************\n\n")
 
 
 
