@@ -53,10 +53,6 @@ def ensemblParser(files):
                         line = re.sub('http://rdf\.ebi\.ac\.uk/resource/ensembl/\d*/?', 'http://www.southgreen.fr/agrold/resource/', line)
                         if re.findall('rdfs:subClassOf <http://www.southgreen.fr/agrold/resource/',line):
                             line = ''
-                        #     string1,string2 = re.split('rdfs:subClassOf',line)
-                        #     string2 = re.sub('\.$','',string2)
-                        #     if (string1==string2)
-                        #     line = string2
                     if re.findall("term:inEnsemblAssembly",line):
                         line = re.sub('term:inEnsemblAssembly',
                                       'term:inAssembly', line)
