@@ -10,10 +10,6 @@ from riceKB.globalVars import *
 import pprint
 import re
 import os
-import pandas as pd
-import numpy as np
-import urllib
-import json
 
 '''
 Created on Sept, 2019
@@ -32,8 +28,6 @@ for now its all after http://www.southgreen.fr/agrold/resource/
 @author: larmande
 '''
 
-#todo modify term:Gene to agrold_vocab:Gene > check all the terms use in Ensembl vocabulary and aling with agrold vocabulary
-#todo check the chromosome URI and decide how to modify
 
 __author__  = "larmande"
 
@@ -56,7 +50,13 @@ def ensemblParser(files):
                     prefixes[prefix]=value
                 else:
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl/",line):
-                        line = re.sub('<http://rdf\.ebi\.ac\.uk/resource/ensembl/\d*/?', 'http://www.southgreen.fr/agrold/resource/', line)
+                        line = re.sub('http://rdf\.ebi\.ac\.uk/resource/ensembl/\d*/?', 'http://www.southgreen.fr/agrold/resource/', line)
+                        if re.findall('rdfs:subClassOf <http://www.southgreen.fr/agrold/resource/',line):
+                            line = ''
+                        #     string1,string2 = re.split('rdfs:subClassOf',line)
+                        #     string2 = re.sub('\.$','',string2)
+                        #     if (string1==string2)
+                        #     line = string2
                     if re.findall("term:inEnsemblAssembly",line):
                         line = re.sub('term:inEnsemblAssembly',
                                       'term:inAssembly', line)
@@ -84,14 +84,24 @@ def ensemblParser(files):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/dataset/ensemblgenomes/\d*/?',
                                       '<http://www.southgreen.fr/agrold/dataset/ensemblgenomes/', line)
                     # change   obo:SO_has_part >  term:has_part
+                    if re.findall("obo:SO_has_part", line):
+                        line = re.sub('obo:SO_has_part', 'obo:so#has_part', line)
                     # obo:SO_transcribed_from > term:transcribed_from ou term:develops_from
+                    if re.findall("obo:SO_transcribed_from", line):
+                        line = re.sub('obo:SO_transcribed_from', 'obo:so#transcribed_from', line)
                     # obo:SO_translates_to > term:translates_to ou term:encodes
-
+                    if re.findall("obo:SO_translates_to", line):
+                        line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
+                    # delete ?o where <http://semanticscience.org/resource/SIO_000671>
+                    if re.findall("sio:SIO_000671 \[a ", line):
+                        #line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
+                        line = ''
+                    # taxon:39947 rdfs:subClassOf obo:OBI_0100026 . + add taxon:39947 owl:sameAs ncbiTaxon:39947
+                    # delete http://www.southgreen.fr/agrold/resource/oryza_sativa/IRGSP-1.0/chromosome:IRGSP-1.0:1:1:43270923:1> rdfs:subClassOf http://www.southgreen.fr/agrold/resource/oryza_sativa/IRGSP-1.0/chromosome:IRGSP-1.0:1:1:43270923:1> .
+                    # in taxon = http://purl.obolibrary.org/obo/RO_0002162 ; change taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source) to http://purl.obolibrary.org/obo/RO_0002162
+                    # <http://identifiers.org/ensembl/Os12t0534500-00-E1> rdf:type identifiers:ensembl
+                    # rdfs:seeAlso panther: <http://purl.uniprot.org/panther/>
                     print(line)
-
-
-
-
     else:
         print("***************** File not found ********************\n")
         print(files)
