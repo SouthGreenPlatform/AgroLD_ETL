@@ -41,14 +41,36 @@ def ensemblParser(files):
     """
     if(os.path.isfile(str(files))):
         print("***************** Parsing Esembl RDF data ********************\n")
+        ttl_handle = open(ensembl_out, "w")
         with open(files) as fp:
             for line in fp:
                 if(re.match(r'^@prefix', line)):
                     #print line
                     prefix, value = re.split(':\s+', line)
+                    prefix = re.sub('@prefix\s+', '', prefix)
                     value = re.sub('\.\n$', '', value)
                     prefixes[prefix]=value
+                    if prefix == 'dataset':
+                        value = '<http://www.southgreen.fr/agrold/dataset/>'
+                    if prefix == 'ensembl':
+                        value = '<http://www.southgreen.fr/agrold/resource/>'
+                    if prefix == 'ensembl_variant':
+                            value = '<http://www.southgreen.fr/agrold/resource/variant/>'
+                    if prefix == 'ensemblvariation':
+                        value = '<http://www.southgreen.fr/agrold/vocabulary/variation/>'
+                    if prefix == 'exon':
+                        value = '<http://www.southgreen.fr/agrold/resource/exon/>'
+                    if prefix == 'protein':
+                        value = '<http://www.southgreen.fr/agrold/resource/protein/>'
+                    if prefix == 'term':
+                        value = '<http://www.southgreen.fr/agrold/vocabulary/>'
+                    if prefix == 'transcript':
+                        value = '<http://www.southgreen.fr/agrold/resource/transcript/>'
+
+                    ttl_handle.write("@prefix " + prefix + ": " + value + ".\n")
+                    print("@prefix " + prefix + ": " + value + ".\n")
                 else:
+
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl/",line):
                         line = re.sub('http://rdf\.ebi\.ac\.uk/resource/ensembl/\d*/?', 'http://www.southgreen.fr/agrold/resource/', line)
                         if re.findall('rdfs:subClassOf <http://www.southgreen.fr/agrold/resource/',line):
@@ -81,13 +103,13 @@ def ensemblParser(files):
                                       '<http://www.southgreen.fr/agrold/dataset/ensemblgenomes/', line)
                     # change   obo:SO_has_part >  term:has_part
                     if re.findall("obo:SO_has_part", line):
-                        line = re.sub('obo:SO_has_part', 'obo:so#has_part', line)
+                        line = re.sub('obo:SO_has_part', 'term:has_part', line)
                     # obo:SO_transcribed_from > term:transcribed_from ou term:develops_from
                     if re.findall("obo:SO_transcribed_from", line):
-                        line = re.sub('obo:SO_transcribed_from', 'obo:so#transcribed_from', line)
+                        line = re.sub('obo:SO_transcribed_from', 'term:develops_from', line)
                     # obo:SO_translates_to > term:translates_to ou term:encodes
                     if re.findall("obo:SO_translates_to", line):
-                        line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
+                        line = re.sub('obo:SO_translates_to', 'term:encodes', line)
                     # delete ?o where <http://semanticscience.org/resource/SIO_000671>
                     if re.findall("sio:SIO_000671 \[a ", line):
                         #line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
@@ -98,15 +120,17 @@ def ensemblParser(files):
                     # <http://identifiers.org/ensembl/Os12t0534500-00-E1> rdf:type identifiers:ensembl
                     # rdfs:seeAlso panther: <http://purl.uniprot.org/panther/>
                     print(line)
+                    ttl_handle.write(line)
+
     else:
         print("***************** File not found ********************\n")
         print(files)
 
 
-ROOT_DIR = '/Users/plarmande/Downloads/larmande/'
-
-ensembl_files =  os.path.join(ROOT_DIR+'sample.os.ttl')
-ensembl_out = '/Users/plarmande/Downloads/larmande/'
+ROOT_DIR = '/Users/plarmande/workspace2015/datasets/'
+file_input = 'oryza_sativa.ttl'
+ensembl_files =  os.path.join(ROOT_DIR + file_input)
+ensembl_out = os.path.join(ROOT_DIR + 'output.' + file_input)
 
 
 pp = pprint.PrettyPrinter(indent=4)
