@@ -14,7 +14,7 @@
 #########
 # Class #
 #########
-Chromosome	Chromosome	Class	SO_0000430	exact match
+Chromosome	Chromosome	Class	SO_0000340	exact match
 Gene	Gene	Class	SO_0000704	exact match
 Protein	Protein	Class	SO_0000104	exact match
 QTL	QTL	Class	SO_0000771	exact match

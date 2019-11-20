@@ -730,9 +730,9 @@
 
 ###  http://purl.obolibrary.org/obo/SO_0000430
 
-<http://purl.obolibrary.org/obo/SO_0000430> rdf:type owl:Class ;
+<http://purl.obolibrary.org/obo/SO_0000340> rdf:type owl:Class ;
                                             
-                                            rdfs:label "SO:0000430"^^xsd:string ;
+                                            rdfs:label "SO:0000340"^^xsd:string ;
                                             
                                             owl:equivalentClass <http://www.southgreen.fr/agrold/vocabulary/Chromosome> .
 
