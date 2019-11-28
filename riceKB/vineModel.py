@@ -1,8 +1,7 @@
 import sys
-print sys.path
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.globalVars import *
+from riceKB.gffParser import *
 import pprint
 import re
 import os
@@ -74,5 +73,5 @@ def wineModeleRDF(wine_ds, output_file):
 path = '/media/elhassouni/donnees/Noeud-plante-projet/workspace/AgroLD/AgroLD_ETL/test_files/plant_breeding_db/wine_db/florendovirus_Vitis_12X_V0.gff3'    # The input
 path_output = '/media/elhassouni/donnees/Noeud-plante-projet/workspace/AgroLD/AgroLD_ETL/rdf_ttl/Wine.ttl' # The output
 ds = parseGFF3(path)
-pp.pprint(ds)   # For to see in teminal the parsing
+print(ds)   # For to see in teminal the parsing
 wineModeleRDF(ds, path_output)

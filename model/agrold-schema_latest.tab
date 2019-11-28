@@ -14,10 +14,11 @@
 #########
 # Class #
 #########
-Chromosome	Chromosome	Class	SO_0000430	exact match
+Chromosome	Chromosome	Class	SO_0000340	exact match
 Gene	Gene	Class	SO_0000704	exact match
 Protein	Protein	Class	SO_0000104	exact match
 QTL	QTL	Class	SO_0000771	exact match
+Taxon	Taxon	Class
 mRNA	mRNA	Class	SO_0000234	exact match
 CDS	CDS	Class	SO_0000316	exact match
 Exon	Exon	Class	SO_0000147	exact match
@@ -55,6 +56,7 @@ is_located_on	is located on	ObjectProperty
 encodes	encodes	ObjectProperty	SIO_010078	exact match (SIO_010078:encodes)
 develops_from	develops from	ObjectProperty	RO_0002202	exact match (RO_0002202:develops from)
 is_agent_in	is agent in	ObjectProperty	SIO_000063	exact match (SIO_000063:is agent in)
+has_part	has_part	ObjectProperty	BFO_0000051	exact match (BFO_0000051:has part)
 part_of	part of	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
 is_member_of	is member of	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
 is_orthologous_to	is orthologous to	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
@@ -77,8 +79,8 @@ has_total_number	has total number	DataTypeProperty	(Gene)	Integer
 abbreviation	abbreviation	DataTypeProperty	(Gene)	String
 has_mutant_type	has mutant type	DataTypeProperty	(Gene)	String
 observation	observation	DataTypeProperty	(Gene)	String
-has_phynotype_class	has phynotype class	DataTypeProperty	(Gene)	String
-has_phynotype_subclass	has phynotype subclass	DataTypeProperty	(Gene)	String
+has_phenotype_class	has phynotype class	DataTypeProperty	(Gene)	String
+has_phenotype_subclass	has phynotype subclass	DataTypeProperty	(Gene)	String
 classified_with	classified with	DataTypeProperty	Protein	String
 comment	comment	DataTypeProperty	Protein	String
 source_project	source project	DataTypeProperty	(Gene)	String

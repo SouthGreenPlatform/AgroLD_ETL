@@ -3,15 +3,11 @@ import pprint
 
 import re
 import os
-from globalVars import *
-from globalVars import base_vocab_ns
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
 import json
-import io
-import urllib2
 import requests
 from pprint import pprint
-import urllib2
-import uuid
 
 __author__ = 'elhassouni'
 

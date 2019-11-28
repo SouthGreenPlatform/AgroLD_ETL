@@ -3,9 +3,9 @@ import urllib
 import pprint
 import re
 import os
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.gffParser import *
 
 __author__  = "el hassouni"
 

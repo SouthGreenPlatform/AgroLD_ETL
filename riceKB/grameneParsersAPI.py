@@ -20,10 +20,22 @@ T
 import pprint
 from riceKB.globalVars import *
 import re
+import requests
 import os, sys
 import datetime
+import json
+import copy
+import time
 import pandas as pd
+import numpy as np
+from pandas.io.json import json_normalize
+import rdflib
 from rdflib.graph import Graph
+from rdflib import URIRef
+import urllib3
+import requests
+from multiprocessing import Process, Lock, Manager, active_children, Pool, cpu_count
+from bs4 import BeautifulSoup
 
 # from __builtin__ import map
 
@@ -101,7 +113,7 @@ def genomeParser(infile):
                                     'ProtID': [],
                                     'GO': {}
                                     }
-                    
+
             if geneId in geneHash:
                 if records[7]:
                     tigr_loci_pattern = re.match(r'^LOC_', records[7]) #(^LOC_)|(^No)
@@ -196,6 +208,7 @@ def geneParser(infile):
 
             # Records of sps: & O. Glaberrima & O.s.indica, T. Aestivum, S.bicolor, T. urartu, O. Nivara
             if len(records) == 11:
+
                 if records[7]:
                     gene_hash[gene_id]['ProtID'][records[7]] = '-'
                 if records[8]:
@@ -209,9 +222,6 @@ def geneParser(infile):
                     # gene_hash[gene_id]['Ontology'][records[10]] = records[9]
             # Records of sps: O. Glumaepatula, Oryza_punctata
             if len(records) == 10:
-                if records[6]:
-                    if prot_pattern.match(records[6]):
-                        gene_hash[gene_id]['ProtID'][records[6]] = '-'
                 if records[7]:
                     if prot_pattern.match(records[7]):
                         gene_hash[gene_id]['ProtID'][records[7]] = '-'
@@ -242,30 +252,22 @@ def geneParser(infile):
                     if ont_pattern.match(records[7]):
                         gene_hash[gene_id]['Ontology'][records[8]] = records[7]
                     else:
-                        if prot_pattern.match(records[7]):
-                            gene_hash[gene_id]['ProtID'][records[7]] = '-'
+                        gene_hash[gene_id]['ProtID'][records[7]] = '-'
                 #                        prot_list.append(records[7])
                 #                        gene_hash[gene_id]['ProtID'].extend(prot_list)
                 if records[8]:
-                    if ont_pattern.match(records[8]):
-                        gene_hash[gene_id]['Ontology'][records[9]] = records[8]
-                    else:
-                        if prot_pattern.match(records[8]):
-                            gene_hash[gene_id]['ProtID'][records[8]] = '-'
-                        # prot_list.append(records[8])
+                    if prot_pattern.match(records[8]):
+                        gene_hash[gene_id]['ProtID'][records[8]] = '-'
+            #                        prot_list.append(records[8])
             #                        gene_hash[gene_id]['ProtID'].extend(prot_list)
-            # Records of sps: Z.mays
+            # Records of sps: O.glaberrima, T.aestivum, T.urartu, Z.mays
             if len(records) == 8:
                 if records[5]:
                     gene_hash[gene_id]['ProtID'][records[5]] = '-'
                 #                    prot_list.append(records[6])
                 #                    gene_hash[gene_id]['ProtID'].extend(prot_list)
                 if records[6]:
-                    if ont_pattern.match(records[6]):
-                        gene_hash[gene_id]['Ontology'][records[7]] = records[6]
-                    else:
-                        if prot_pattern.match(records[6]):
-                            gene_hash[gene_id]['ProtID'][records[6]] = '-'
+                    gene_hash[gene_id]['Ontology'][records[6]] = records[7]
                     # gene_hash[gene_id]['ProtID'][records[7]] = '-'
             #                    prot_list.append(records[7])
             #                    gene_hash[gene_id]['ProtID'].extend(prot_list)
@@ -274,6 +276,7 @@ def geneParser(infile):
                 if records[6]:
                     gene_hash[gene_id]['ProtID'][records[6]] = '-'
     #
+    #     print(gene_hash)
     return gene_hash
 
     file_reader.close()
@@ -287,6 +290,7 @@ def geneParserPandas(infile):
 def qtlParser(infile):
     headers = ['QTLid', 'Name', 'Symbol', 'TOid', 'Category', 'TraitName', 'TraitSymbol', 'Chromosome', 'Start', 'End']
     qtl_ds = list()
+    #    pp = pprint.PrettyPrinter(indent=4)
 
     fileHandle = open(infile, "r")
     lines = fileHandle.readlines()
@@ -298,6 +302,37 @@ def qtlParser(infile):
 
     fileHandle.close()
     return qtl_ds
+
+
+'''
+def riceCyc(input_files):
+    headers = ['Gene', 'Name', 'ReationId', 'ReactionName', 'EC', 'PathwayId', 'PathwayName']
+
+    pw_ds = list()
+
+    *******Os05g0378800**********
+*******Os03g0262400**********
+    *******Os12g0131266**********
+
+    for input_file in input_files:
+        fileHandle = open(input_file, "r")
+
+#    print "*****Parsing RiceCyc data **********\n"
+
+        lines = fileHandle.readlines()
+        lines.pop(0)    
+        for line in lines:
+            line = re.sub('\n$', '', line)
+            records = line.split('\t')
+            pw_ds.append(dict(zip(headers, records)))
+
+#    pw_ds.sort(key=lambda x: (x['PathwayId'], x['ReationId']))
+
+    fileHandle.close()
+    return pw_ds
+    print "AraCyc data has been parsed!\n"
+    print "**********************************\n\n"
+'''
 
 
 def CycParser(in_files):
@@ -375,7 +410,7 @@ Multi-processing
 '''
 
 
-def grameneGeneRDF(files, output_dir, type='run'):  # def grameneGeneRDF(files, output_dir): for test > type='test'
+def grameneGeneRDF(files, output_dir, type='test'):  # def grameneGeneRDF(files, output_dir): for test > type='test'
     rdf_buffer = ''
     output_file_name = os.path.split(os.path.splitext((files)[0])[0])[1]
     gene_counter = 0
@@ -399,10 +434,7 @@ def grameneGeneRDF(files, output_dir, type='run'):  # def grameneGeneRDF(files, 
                                          '5:1-23192814:1', '6:1-24174485:1', '7:1-21799424:1', '8:1-20292731:1',
                                          '9:1-17607432:1', '10:1-16910673:1', '11:1-20796451:1', '12:1-19154523:1'],
                                 'genome_assembly': 'Oryza_glaberrima_V1'},
-                       '40149': {'size': ['1:1-36915442:1', '2:1-31686972:1', '3:1-33311619:1', '4:1-27574323:1',
-                                          '5:1-24206129:1', '6:1-25711811:1', '7:1-24128185:1', '8:1-22678724:1',
-                                          '9:1-19219615:1', '10:1-19274048:1', '11:1-23014695:1', '12:1-20550741:1'],
-                                 'genome_assembly': 'Oryza_meridionalis_v1.3'},  # Oryza_meridionalis_v1.3
+                       '40149': {'size': [], 'genome_assembly': 'Oryza_meridionalis_v1.3'},  # Oryza_meridionalis_v1.3
                        '4572': {'size': [], 'genome_assembly': 'ASM34745v1'},  # t. urartu
                        '39946': {'size': ['1:1-47283185:1', '2:1-38103930:1', '3:1-41884883:1', '4:1-34718618:1',
                                           '5:1-31240961:1', '6:1-32913967:1', '7:1-27957088:1', '8:1-30396518:1',
@@ -447,65 +479,63 @@ def grameneGeneRDF(files, output_dir, type='run'):  # def grameneGeneRDF(files, 
     #    pp = pprint.PrettyPrinter(indent=4)
     turtle_file = output_file_name + ".ttl"
     output_file = os.path.join(output_dir, turtle_file)
-    # if os.path.isfile(output_file):
-    #     global output_opener, RDFgraph
-    #     output_opener = open(output_file, "a+")
-    #     RDFgraph = Graph()
-    #     RDFgraph.parse(output_file,format='turtle')
-    #     print('RDF file exists ****')
-    # else:
-    #     RDFgraph = Graph()
-    #     output_opener = open(output_file, "w+")
+    if os.path.isfile(output_file):
+        global output_opener, RDFgraph
+        output_opener = open(output_file, "a+")
+        RDFgraph = Graph()
+        RDFgraph.parse(output_file, format='turtle')
+        print('RDF file exists ****')
+    else:
+        RDFgraph = Graph()
+        output_opener = open(output_file, "w+")
+        # Printing Prefixes
+        output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
+        output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
+        output_opener.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+        output_opener.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+        output_opener.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
+        output_opener.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
+        output_opener.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
+        output_opener.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
+        output_opener.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
+        output_opener.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")
+        output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n")
+        output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
+        output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
+        output_opener.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
+        output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
+        output_opener.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
+        output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+        output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
+        output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
+        output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
+        output_opener.write(pr + "\t" + ncbi_gene_ns + "<" + ncbi_gene_uri + "> .\n")
+        output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n")
+        output_opener.write(pr + "\t" + string_ns + "<" + string_uri + "> .\n")
+        output_opener.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n\n")
 
-    # Printing Prefixes
-    output_opener = open(output_file, "w")
-    output_opener.write(base + "\t" + "<" + base_uri + "> .\n")
-    output_opener.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
-    output_opener.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
-    output_opener.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
-    output_opener.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
-    output_opener.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    output_opener.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-    output_opener.write(pr + "\t" + rapdb_gene_ns + "<" + rapdb_gene_uri + "> .\n")
-    output_opener.write(pr + "\t" + msu_ns + "<" + msu_uri + "> .\n")
-    output_opener.write(pr + "\t" + tair_l_ns + "<" + tair_l_uri + "> .\n")
-    output_opener.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n")
-    output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
-    output_opener.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
-    output_opener.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
-    output_opener.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
-    output_opener.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
-    output_opener.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
-    output_opener.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
-    output_opener.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
-    output_opener.write(pr + "\t" + uniprot_ns + "<" + uniprot_uri + "> .\n")
-    output_opener.write(pr + "\t" + ncbi_gene_ns + "<" + ncbi_gene_uri + "> .\n")
-    output_opener.write(pr + "\t" + res_ns + "<" + resource + "> .\n")
-    output_opener.write(pr + "\t" + string_ns + "<" + string_uri + "> .\n")
-    output_opener.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n\n")
-
-    '''
-    Adding  prefixes
-    '''
-    chromosome_number = 1
-    for tax_id in taxon_ids:
-        if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
-            current_taxon_id = tax_id
-            genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
-    if chromosome_size[current_taxon_id]['size']:
-        for ch_size in chromosome_size[current_taxon_id]['size']:
-            # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
-            #     chromosome_number) + ":1-" + str(
-            #     ch_size) + ":1" + "\n"
-            chr_nb = ch_size.split(':')[0]
-            rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + chr_nb + "\n"
-            rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
-            rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
-            rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chr_nb + "\" ;\n"
-            rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + chr_nb + "\" ;\n"
-            rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
-            chromosome_number += 1
-    output_opener.write(rdf_buffer)
+        '''
+        Adding  prefixes
+        '''
+        chromosome_number = 1
+        for tax_id in taxon_ids:
+            if output_file_name == taxon_ids[tax_id] or re.sub('_', ' ', output_file_name) == taxon_ids[tax_id]:
+                current_taxon_id = tax_id
+                genome_assembly = chromosome_size[current_taxon_id]['genome_assembly']
+        if chromosome_size[current_taxon_id]['size']:
+            for ch_size in chromosome_size[current_taxon_id]['size']:
+                # rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + str(
+                #     chromosome_number) + ":1-" + str(
+                #     ch_size) + ":1" + "\n"
+                chr_nb = ch_size.split(':')[0]
+                rdf_buffer += chromosome_ns + current_taxon_id + ":" + genome_assembly + ":" + chr_nb + "\n"
+                rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + current_taxon_id + " ;\n"
+                rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+                rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chr_nb + "\" ;\n"
+                rdf_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + current_taxon_id + ":" + genome_assembly + ":" + chr_nb + "\" ;\n"
+                rdf_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + genome_assembly + "\" .\n\n"
+                chromosome_number += 1
+        output_opener.write(rdf_buffer)
 
     for gene_file in files:
 
@@ -530,13 +560,13 @@ def grameneGeneRDF(files, output_dir, type='run'):  # def grameneGeneRDF(files, 
         reference_ch = ''
         for gene_id in gene_ds:
             # gene_id='Os05g0420800'
-            print("****\t evaluating gene \t****\t\t" + gene_id + "\t*******\n")
+            print("****\t evaluating\t****\t\t" + gene_id + "\t*******\n")
 
-            # subject = URIRef(ensembl_plant + gene_id)
+            subject = URIRef(ensembl_plant + gene_id)
 
-            # if (subject, None, None) in RDFgraph:
-            #     print("triple exist \n\n******")
-            #     continue
+            if (subject, None, None) in RDFgraph:
+                print("triple exist \n\n******")
+                continue
             rdf_buffer = ''
             regex_ch = ''
             chromosome_nb = 1
@@ -545,7 +575,7 @@ def grameneGeneRDF(files, output_dir, type='run'):  # def grameneGeneRDF(files, 
             (strand, position) = getStrandValue(gene_ds[gene_id]['Strand'])
             # gene_id_dic = copy.deepcopy(gene_ds[gene_id])
             # gene_id_dic.update(CallAPI(gene_id))
-            # gene_ds[gene_id].update(CallAPI(gene_id))
+            gene_ds[gene_id].update(CallAPI(gene_id))
             rdf_buffer += ensembl_ns + gene_id + "\n"
             rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
 
@@ -907,7 +937,7 @@ def CycRDF(data_stuc, output_dir):
                 gene_buffer += "\t" + base_vocab_ns + "is_agent_in" + "\t" + pathway_ns + pw + " ;\n"
                 pw_hash[pw] = data_stuc[gene]['Pathways'][pw]
 
-        # Data from SorghumCyc        
+        # Data from SorghumCyc
         if sorghum_pattern.match(gene):
             s_g_id = list(gene)
             s_g_id[1] = "b"
@@ -1003,55 +1033,55 @@ def removeDuplicates(in_list):
     return newlist
 
 
-# def CallAPI(gene):
-#
-#     url = 'http://data.gramene.org/v60/genes?_id='+gene
-#     #url = 'http://data.gramene.org/v61/genes?_id=Os03g0262400'
-#     # genes = 'q='+gene
-#     # genes = 'q=os11g0559200'
-#     print('*******'+gene+'**********')
-#     result = connectionError(url)
-#     #req = requests.get(url + gene).json()[0]
-#     req = {}
-#     if len(result.json())>0:
-#         req=result.json()[0]
-#     else:
-#         req={'_id':gene}
-#         pass
-# print(req)
-# print(req.json())
-# test3 = json.load(req)
-# test = json.dumps(req, sort_keys=True, indent=4)
-# print(test)
-# test.pop("bins")
+def CallAPI(gene):
+    url = 'http://data.gramene.org/v60/genes?_id=' + gene
+    # url = 'http://data.gramene.org/v61/genes?_id=Os03g0262400'
+    # genes = 'q='+gene
+    # genes = 'q=os11g0559200'
+    print('*******' + gene + '**********')
+    result = connectionError(url)
+    # req = requests.get(url + gene).json()[0]
+    req = {}
+    if len(result.json()) > 0:
+        req = result.json()[0]
+    else:
+        req = {'_id': gene}
+        pass
+    # print(req)
+    # print(req.json())
+    # test3 = json.load(req)
+    # test = json.dumps(req, sort_keys=True, indent=4)
+    # print(test)
+    # test.pop("bins")
 
-# df = json_normalize(req.json())
-# df= pd.read_json(db)
-# print(df.head())
+    # df = json_normalize(req.json())
+    # df= pd.read_json(db)
+    # print(df.head())
 
-# test = copy.deepcopy(df)
-# print(test.head())
+    # test = copy.deepcopy(df)
+    # print(test.head())
 
-# filter_ = ["gene_structure", "bins" ]
-# annotations = ["taxonomy", "familyRoot"]
-# go = ["ancestors"]
-# entries = ["subset"]
-# homology = ["gene_tree"]
-# homologous_genes = ["ortholog_many2many"]
-# for att in filter_:
-#     req.pop(att, None)
-#
-# for i in req.keys():
-#     # print(i)
-#     if i == "annotations":
-#         for att in annotations:
-#             req["annotations"].pop(att, None)
-#     if i == "homology":
-#         for att in homology:
-#             req["homology"].pop(att, None)
-#         req["homology"]["homologous_genes"].pop("ortholog_many2many", None)
-#
-# return req
+    filter_ = ["gene_structure", "bins"]
+    annotations = ["taxonomy", "familyRoot"]
+    go = ["ancestors"]
+    entries = ["subset"]
+    homology = ["gene_tree"]
+    homologous_genes = ["ortholog_many2many"]
+    for att in filter_:
+        req.pop(att, None)
+
+    for i in req.keys():
+        # print(i)
+        if i == "annotations":
+            for att in annotations:
+                req["annotations"].pop(att, None)
+        if i == "homology":
+            for att in homology:
+                req["homology"].pop(att, None)
+            req["homology"]["homologous_genes"].pop("ortholog_many2many", None)
+
+    return req
+
 
 def RDF_validation(ttl_buffer, ttl_handle, oryid):
     try:
@@ -1124,60 +1154,61 @@ def RDF_validation(ttl_buffer, ttl_handle, oryid):
         pass
 
 
-#
-# def connectionError(link, data=""):
-#     """
-#     Return requests.get(link) with post request and test website issues
-#
-#     :param link: URL
-#     :param data: data to give to the form
-#
-#     :return: requests.get(link)
-#     """
-#     try:
-#         urllib3.disable_warnings()
-#         header_test=get_random_ua()
-#         header_test = re.sub('\n$', '', header_test)
-#         headers = {'User-Agent': header_test}
-#         delays = [1, 4, 3, 2, 5, 6]
-#         delay = np.random.choice(delays)
-#         if data!= "":
-#             time.sleep(delay)
-#             res = requests.post(link, data=data, headers=headers,verify=False)
-#         else:
-#             time.sleep(delay)
-#             res = requests.get(link, allow_redirects=False,stream=True,verify=False)
-#         if res.status_code != 200:
-#             print('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
-#             pass
-#             #raise Exception('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
-#             # sys.exit(1)
-#         return res
-#     except requests.exceptions.RequestException as error:
-#         print("Can't connect: {} - Eror: {}".format(link,error))
-#         return
-#
-# def get_random_ua():
-#     random_ua = ''
-#     ua_file = 'user_agent.txt'
-#     try:
-#         with open(ua_file) as f:
-#             lines = f.readlines()
-#         if len(lines) > 0:
-#             prng = np.random.RandomState()
-#             index = prng.permutation(len(lines) - 1)
-#             idx = np.asarray(index, dtype=np.integer)[0]
-#             random_ua = lines[int(idx)]
-#     except Exception as ex:
-#         print('Exception in random_ua')
-#         print(str(ex))
-#     finally:
-#         return random_ua
+def connectionError(link, data=""):
+    """
+    Return requests.get(link) with post request and test website issues
+
+    :param link: URL
+    :param data: data to give to the form
+
+    :return: requests.get(link)
+    """
+    try:
+        urllib3.disable_warnings()
+        header_test = get_random_ua()
+        header_test = re.sub('\n$', '', header_test)
+        headers = {'User-Agent': header_test}
+        delays = [1, 4, 3, 2, 5, 6]
+        delay = np.random.choice(delays)
+        if data != "":
+            time.sleep(delay)
+            res = requests.post(link, data=data, headers=headers, verify=False)
+        else:
+            time.sleep(delay)
+            res = requests.get(link, allow_redirects=False, stream=True, verify=False)
+        if res.status_code != 200:
+            print('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
+            pass
+            # raise Exception('Server Error: ' + str(res.status_code) + '\n' + 'For url:' + link)
+            # sys.exit(1)
+        return res
+    except requests.exceptions.RequestException as error:
+        print("Can't connect: {} - Eror: {}".format(link, error))
+        return
+
+
+def get_random_ua():
+    random_ua = ''
+    ua_file = 'user_agent.txt'
+    try:
+        with open(ua_file) as f:
+            lines = f.readlines()
+        if len(lines) > 0:
+            prng = np.random.RandomState()
+            index = prng.permutation(len(lines) - 1)
+            idx = np.asarray(index, dtype=np.integer)[0]
+            random_ua = lines[int(idx)]
+    except Exception as ex:
+        print('Exception in random_ua')
+        print(str(ex))
+    finally:
+        return random_ua
+
 
 ROOT_DIR = '/Users/plarmande/workspace2015/data/'
 
 # ROOT_DIR='/Volumes/LaCie/AGROLD/agroLD_data_update_mai_2017'
-gramene_genes_files = [ROOT_DIR + 'Oryza_meridionalis.txt']
+gramene_genes_files = [ROOT_DIR + 'Oryza_sativa_japonica.txt']
 gramene_genes_out = '/Users/plarmande/workspace2015/data/'
 # gramene_qtl_out = ROOT_DIR + '/rdf/gramene_qtl_ttl/'
 

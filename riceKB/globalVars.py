@@ -3,7 +3,7 @@
 This file contains all global variables i.e. URI patterns, Ontological terms and predicates to be used by the various parsers
  
 '''
-
+import re
 '''
 TODO:
     1) Add variables for common predicates used in the Rdf converters
@@ -12,12 +12,15 @@ TODO:
 global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc_ns, dc_uri, faldo, faldo_ns,\
     ncbi_tax_ns, ncbi_tax_uri, owl, owl_ns, xsd, xsd_ns, base_uri, base_ns, base_vocab_uri, base_vocab_ns,\
     sio_uri, sio_ns, obo_uri, obo_ns, ncbi_tax_uri, ncbi_tax_ns, uniprot, up_ns, chromosome_ns, chromosome_uri,\
-    ensembl_gene, ensembl_gene_ns, ensembl_transcript, ensembl_transcript_ns, ensembl_protein, ensembl_protein_ns,\
+    ensembl_gene_uri, ensembl_gene_ns, ensembl_transcript_uri, ensembl_transcript_ns, ensembl_protein_uri, ensembl_protein_ns,\
     ensembl_ns, ensembl_plant, gramene_gene, gr_g_ns, gramene_qtl, gr_qtl_ns, sio_term, go_aspects, ont_aspects,\
     gene_term, protein_term, tigr_uri, tigr_ns, rapdb_gene_uri, rapdb_gene_ns, rapdb_mrna_ns, rapdb_mrna_uri,\
     plant_trait_term,orygene_uri, orygene_ns, goa_uri, goa_ns, gr_assoc, gr_assoc_ns, tair_l_uri, tair_l_ns,\
     met_pw_sio_term, ec_code_uri, ec_code_ns,reaction_uri, reaction_ns, pathway_uri, pathway_ns, otl_uri, otl_ns,\
-    plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term
+    plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
+    string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
+    string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
+    pubmed_pattern, ncbi_pattern, interpro_pattern
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -27,17 +30,36 @@ taxon_ids = {
          '39947' : 'Oryza sativa japonica',
          '39946' : 'Oryza sativa indica',
          '65489' : 'Oryza barthii',
-#         '40148' : 'Oryza_glumaepatula',
+         '4528': 'Oryza longistaminata',
+         '40148' : 'Oryza_glumaepatula',
          '40149' : 'Oryza meridionalis',
-#         '4536' : 'Oryza_nivara',
-#         '4537' : 'Oryza_punctata',
-#         '4529' : 'Oryza_rufipogon3s',
+         '4536' : 'Oryza_nivara',
+         '4537' : 'Oryza_punctata',
+         '4529' : 'Oryza rufipogon',
          '3702' : 'Arabidopsis thaliana',
          '4577' : 'Zea mays',
          '4558' : 'Sorghum bicolor',
          '4565' : 'Triticum aestivum',
          '4572' : 'Triticum urartu'
          }
+
+# RegEX patterns
+rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
+gramene_pattern = re.compile(r'^GR\:\d{7}$')
+prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
+tigr_pattern = re.compile(r'^LOC\_Os\d{1,2}g\d{5}\.\d$')
+tair_pattern = re.compile(r'^AT[1-5]G\d{5}$')
+ont_pattern = re.compile(r'^\w+\:\d{7}$')
+string_pattern = re.compile(r'^([A-N,R-Z][0-9][A-Z][A-Z, 0-9][A-Z, 0-9][0-9])|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])|([0-9][A-Za-z0-9]{3})$')
+sorghum_pattern = re.compile(r'^SB\d{2}G\d{6}\.\d$')
+alt_sorghum_match = re.compile(r'^SB\d{4}S\d{6}\.\d$')
+arabidopsis_pattern = re.compile(r'^AT[1-5]G\d{5}$')
+maize_pattern = re.compile(r'^GRMZM\d{1}G\d{6}')
+alt_maize_match = re.compile(r'^\w+\d{6}\.\d{1}\_\w+\d{3}')
+pubmed_pattern = re.compile(r'^\d+$')
+ncbi_pattern = re.compile(r'^[A-Z]{2}\d{6}$')
+interpro_pattern = re.compile(r'^IPR[0-9]{6}$')
+
 # Resolvable URIs
 db_obj_type = {
               'protein' : 'http://www.identifiers.org/uniprot/', # Note: assumes protein accessions are from UniProt
@@ -70,8 +92,8 @@ skos_ns = 'skos:'
 owl_uri = 'http://www.w3.org/2002/07/owl#'
 owl_ns = 'owl:'
 
-dc_uri = 'http://purl.org/dc/elements/1.1/'
-dc_ns = 'dc:'
+dc_uri = 'http://purl.org/dc/terms/'
+dc_ns = 'dcterms:'
 
 doi_uri = 'http://dx.doi.org/'
 doi_ns = 'doi:'
@@ -87,7 +109,7 @@ base_vocab_ns = 'agrold_vocabulary:'
 ncbi_gene_uri = 'http://identifiers.org/ncbigene/'
 ncbi_gene_ns = 'ncbigene:'
 
-ncbi_tax_uri = 'http://identifiers.org/taxonomy/'
+ncbi_tax_uri = 'http://purl.obolibrary.org/obo/NCBITaxon_'
 ncbi_tax_ns = 'taxon:'
 
 #uniprot = 'http://www.identifiers.org/uniprot/'
@@ -101,7 +123,7 @@ gramene_gene =  'http://www.identifiers.org/gramene.gene/'
 gr_g_ns = 'gramene_gene:'
 
 resource = 'http://www.southgreen.fr/agrold/resource/'
-res_ns = 'agrold_schema:'
+res_ns = 'agrold_resource:'
 
 gramene_qtl = 'http://www.identifiers.org/gramene.qtl/'
 gr_qtl_ns = 'gramene_qtl:' 
@@ -115,18 +137,18 @@ qtaro_qtl_ns = 'qtaro_qtl:'
 qtaro_gene = 'http://www.southgreen.fr/agrold/qtaro.gene/'
 qtaro_gene_ns = 'qtaro_gene:'
 
-ensembl_plant = 'http://rdf.ebi.ac.uk/ensembl.plant/' # http://rdf.ebi.ac.uk/resource/ensembl/
+ensembl_plant = 'http://identifiers.org/ensembl.plant/' # http://rdf.ebi.ac.uk/resource/ensembl/
 ensembl_ns = 'ensembl:'
 
-ensembl_gene = 'http://rdf.ebi.ac.uk/resource/ensembl/'
+ensembl_gene_uri = 'http://rdf.ebi.ac.uk/resource/ensembl/'
 ensembl_gene_ns = 'ensembl_gene:'
 
 
-ensembl_transcript = 'http://rdf.ebi.ac.uk/resource/ensembl.transcript/'
+ensembl_transcript_uri = 'http://rdf.ebi.ac.uk/resource/ensembl.transcript/'
 ensembl_transcript_ns = 'ensembl_transcript:'
 
 
-ensembl_protein = 'http://rdf.ebi.ac.uk/resource/ensembl.protein/'
+ensembl_protein_uri = 'http://rdf.ebi.ac.uk/resource/ensembl.protein/'
 ensembl_protein_ns = 'ensembl_protein:'
 
 
@@ -243,6 +265,7 @@ marker_ns = 'marker:'
 kegg_uri='http://identifiers.org/kegg/'
 kegg_ns='kegg:'
 
+
 kegg_path_uri='http://identifiers.org/kegg.pathway/'
 kegg_path_ns= 'kegg_path:'
 
@@ -252,8 +275,11 @@ metacyc_ns='metacyc:'
 osa_uri='http://www.genome.jp/dbget-bin/www_bget?'
 osa_ns='osa:'
 
-dosa_uri='ttp://www.genome.jp/dbget-bin/www_bget?'
-dosa_ns='dosa:'
+string_uri = 'http://identifiers.org/string:'
+string_ns = 'string:'
+
+dosa_uri='http://www.genome.jp/dbget-bin/www_bget?'
+dosa_ns='kegg_gene:'
 #TROPGENE
 
 study_uri = 'http://www.southgreen.fr/agrold/tropgene.study/'
