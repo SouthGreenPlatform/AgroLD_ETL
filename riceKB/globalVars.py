@@ -109,7 +109,7 @@ base_vocab_ns = 'agrold_vocabulary:'
 ncbi_gene_uri = 'http://identifiers.org/ncbigene/'
 ncbi_gene_ns = 'ncbigene:'
 
-ncbi_tax_uri = 'http://purl.obolibrary.org/obo/NCBITaxon_'
+ncbi_tax_uri = 'http://identifiers.org/taxonomy/'
 ncbi_tax_ns = 'taxon:'
 
 #uniprot = 'http://www.identifiers.org/uniprot/'
