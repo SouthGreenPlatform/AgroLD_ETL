@@ -9,7 +9,7 @@ TODO:
     1) Add variables for common predicates used in the Rdf converters
     2) Cleanup cleanup the script and add comments
 '''
-global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc_ns, dc_uri, faldo, faldo_ns,\
+global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc_ns, dc_uri, dcterms_ns, dcterms_uri, faldo, faldo_ns,\
     ncbi_tax_ns, ncbi_tax_uri, owl, owl_ns, xsd, xsd_ns, base_uri, base_ns, base_vocab_uri, base_vocab_ns,\
     sio_uri, sio_ns, obo_uri, obo_ns, ncbi_tax_uri, ncbi_tax_ns, uniprot, up_ns, chromosome_ns, chromosome_uri,\
     ensembl_gene_uri, ensembl_gene_ns, ensembl_transcript_uri, ensembl_transcript_ns, ensembl_protein_uri, ensembl_protein_ns,\
@@ -92,8 +92,11 @@ skos_ns = 'skos:'
 owl_uri = 'http://www.w3.org/2002/07/owl#'
 owl_ns = 'owl:'
 
-dc_uri = 'http://purl.org/dc/terms/'
-dc_ns = 'dcterms:'
+dc_uri = 'http://purl.org/dc/elements/1.1/'
+dc_ns = 'dc:'
+
+dcterms_uri = 'http://purl.org/dc/terms/'
+dcterms_ns = 'dcterms:'
 
 doi_uri = 'http://dx.doi.org/'
 doi_ns = 'doi:'
