@@ -40,7 +40,14 @@ taxon_ids = {
          '4577' : 'Zea mays',
          '4558' : 'Sorghum bicolor',
          '4565' : 'Triticum aestivum',
-         '4572' : 'Triticum urartu'
+         '4572' : 'Triticum urartu',
+         '49390': 'Coffea canephora str. DH200-94',
+         '3983' : 'Manihot esculenta',
+         '214687': 'Musa acuminata subsp. malaccensis',
+         '4555'  : 'Setaria italica',
+         '3641' : 'Theobroma cacao',
+        '85692' : 'Triticum dicoccoides',
+        '29760' : 'Vitis vinifera'
          }
 
 # RegEX patterns
