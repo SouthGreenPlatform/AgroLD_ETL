@@ -1,14 +1,12 @@
 '''
-Created on Mar 23, 2015
+Updated on Dec 4, 2019
 
-@author: venkatesan
+@author: larmande
 '''
 # import sys
 # sys.path.append("/home/venkatesan/Downloads/biopython-1.65/Bio")
 # TODO chercher dans les synonyms les pattern RAPDB et MSU pour creer une nouvelle relation
-# TODO AJouter les nouveaux taxons dans le dictionnaire taxon
 # TODO ajouter Prot:uri encodedBy Gene:uri
-# TODO Ajouter pubmed et DOI
 from Bio import SwissProt
 
 from riceKB.globalVars import base_vocab_ns
@@ -50,17 +48,19 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     output_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     output_writer.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
     output_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
-    #    output_writer.write(pr + "\t" + up_base_ns + "<" + up_base_uri + "> .\n")
+    output_writer.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n")
     output_writer.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n\n")
 
 #    for upfile in up_files:
 #        file_handle = open(upfile, "r")
     with open(up_files, 'r') as file_handle:
         up_records = SwissProt.parse(file_handle)
+
         #        xrefs = defaultdict(list)
         #        xref_ids = list()
         for record in up_records:
             xrefs = defaultdict(list)
+            #ref_record = SwissProt._read_rx(record.references,'RX')
             rdf_buffer = ''
             for taxID in record.taxonomy_id:
                 if taxID in taxon_ids or record.entry_name in lookup_list:
@@ -127,24 +127,8 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     symbol = re.sub('\s+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                    #         raw_strings = ""
-                    #         string_name = raw_strings[0]
-                    #         gene_names = string_name.split('=')  # record.gene_name.lstrip('Name=')
-                    #         search_pattern = re.search("\s{", gene_names[1])
-                    #         if search_pattern:
-                    #             names = re.split("\s{", gene_names[1])
-                    #             symbol = names[0]
-                    #             rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
-                    #             symbol) + " ;\n"  # gene_names[0].lstrip('Name=')
-                    #         else:
-                    #             symbol = gene_names[1]
-                    #             rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (symbol) + " ;\n"
-                    # #                    print symbol #gene_names[0].lstrip('Name=')
-                    #                    for name in gene_names:
-                    #                        name = name.lstrip(' ')
-                    #                        print name
+
                     # Taxon
-                    # rdf_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + taxID + " ;\n"
                     rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
                     #                   taxID
 
@@ -179,6 +163,15 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                             for dbid in xrefs[key]:
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns+ re.sub(':','_',dbid) + " ;\n"
 
+                    # reference citation
+
+                    #print(dir(record.references))
+                    for obj in record.references.__iter__():
+                        for citation in obj.references:
+                            if citation[0] == "PubMed":
+                                rdf_buffer += "\t" + dcterms_ns + "references" + "\t" + pubmed_ns+ citation[1]  + " ;\n"
+                            if citation[0] == "DOI":
+                                rdf_buffer += "\t" + dc_ns + "identifiers" + "\t" + pubmed_ns + citation[1] + " ;\n"
                     # Corss references using blank node
                     #                    for key in xrefs:
                     #                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "[" + "\n"
