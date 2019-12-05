@@ -3,13 +3,10 @@ Updated on Dec 4, 2019
 
 @author: larmande
 '''
-# import sys
-# sys.path.append("/home/venkatesan/Downloads/biopython-1.65/Bio")
 # TODO chercher dans les synonyms les pattern RAPDB et MSU pour creer une nouvelle relation
 # TODO ajouter Prot:uri encodedBy Gene:uri
 from Bio import SwissProt
 
-from riceKB.globalVars import base_vocab_ns
 from riceKB.globalVars import *
 import pprint
 import re
