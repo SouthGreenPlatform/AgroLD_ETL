@@ -20,7 +20,7 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
     string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
     string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
-    pubmed_pattern, ncbi_pattern, interpro_pattern
+    pubmed_pattern, ncbi_pattern, interpro_pattern, base_resource_uri, base_resource_ns
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -113,8 +113,9 @@ doi_ns = 'doi:'
 
 base_vocab_uri = 'http://www.southgreen.fr/agrold/vocabulary/'
 base_vocab_ns = 'agrold_vocabulary:'
-#ont_uri = 'http://purl.obolibrary.org/obo/' # Ontology term URI
 
+base_resource_uri = 'http://www.southgreen.fr/agrold/resource/'
+base_resource_ns = 'resource:'
 # Datasource specific URIs
 ncbi_gene_uri = 'http://identifiers.org/ncbigene/'
 ncbi_gene_ns = 'ncbigene:'
