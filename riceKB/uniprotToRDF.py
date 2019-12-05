@@ -197,3 +197,9 @@ up_dir = '/Users/plarmande/workspace2015/AgroLD.old/test_files/uniprot/uniprot_s
 ROOT_DIR = '/Users/plarmande/Downloads'
 # upToRDF(up_dir, ROOT_DIR,'/Volumes/LaCie/AGROLD/data_update_2019/Rice_Genome_Hub/uniprot_id.txt')
 upToRDF(up_dir, ROOT_DIR, '/Users/plarmande/workspace2015/datasets/uniprot_id.txt')
+
+# code running on bioinfo-inter
+# up_dir = ['/scratch/larmande/uniprot_trembl.dat']
+# ROOT_DIR='/scratch/larmande'
+# upToRDF(up_dir, ROOT_DIR )
+# os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')
