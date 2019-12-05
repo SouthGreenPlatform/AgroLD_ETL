@@ -73,30 +73,30 @@ def msuModeleRDF(msu_ds, output_file):
         if not (records[0] == "None" or records[1] == "None"):
             print("test passed \n")
             os_japonica_buffer = ''
-            os_japonica_buffer += tigr_g_ns + records[1].split('.')[0] + "\n"
+            os_japonica_buffer += "<" + resource + records[1].split('.')[0] + ">\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
-            os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[0] + " ;\n"
+            os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tigr_g_ns + records[0] + " ;\n"
             # os_japonica_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t" + ensembl_ns + records[0] + " ;\n"
-            os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + ensembl_ns + records[0]+ " .\n\n"
+            os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + "<" + resource + records[0]+ "> .\n\n"
 
 
-            os_japonica_buffer += ensembl_ns + records[0] + "\n"
+            os_japonica_buffer += "<" + resource + records[0] + ">\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
-            os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
+            os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[1].split('.')[0] + " ;\n"
             # os_japonica_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
-            os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + tigr_g_ns + records[1].split('.')[0] + " .\n\n"
+            os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + "<"+ resource + records[1].split('.')[0] + "> .\n\n"
 
             #os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
             for gene in records[1].split(','):
-                os_japonica_buffer += tigr_ns + gene + "\n"
-                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
+                os_japonica_buffer += "<"+ resource + gene + ">\n"
+                os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
                 os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[0] + " ;\n"
+                #os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[0] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + ensembl_ns + records[0] + " ;\n"
-                os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + tigr_g_ns + records[1].split('.')[0] + " .\n\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "develops_from" + "\t" + "<" + resource + records[1].split('.')[0] + "> .\n\n"
             rdf_writer.write(os_japonica_buffer)
             print(os_japonica_buffer)
 
@@ -108,12 +108,12 @@ pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
 #path = '/Users/plarmande/Downloads/IRGSP-1.0_representative/transcripts_mRNA.gff'
-path_output = '/Users/plarmande/Downloads/RAP-MSU_2019-03-22.ttl' # The output
+path_output = '/Users/plarmande/Downloads/RAP-MSU_2019-08-29.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 #ds = parseGFF3(path)   # The parsing file withe tropGeneParser()
 #pp.pprint(ds)    # For to see in teminal the parsing
 
 #ds = os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
-ds = geneParser('/Users/plarmande/Downloads/RAP-MSU_2019-03-22.txt')
+ds = geneParser('/Users/plarmande/Downloads/RAP-MSU_2019-08-29.txt')
 msuModeleRDF(ds, path_output)
