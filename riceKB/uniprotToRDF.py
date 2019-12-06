@@ -168,7 +168,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                             if citation[0] == "PubMed":
                                 rdf_buffer += "\t" + dcterms_ns + "references" + "\t" + pubmed_ns+ citation[1]  + " ;\n"
                             if citation[0] == "DOI":
-                                rdf_buffer += "\t" + dc_ns + "identifiers" + "\t" + pubmed_ns + citation[1] + " ;\n"
+                                rdf_buffer += "\t" + dc_ns + "identifiers" + "\t" + '"http://dx.doi.org/%s"' %  (citation[1])   + " ;\n"
                     # Corss references using blank node
                     #                    for key in xrefs:
                     #                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "[" + "\n"
@@ -198,5 +198,5 @@ upToRDF(up_dir, ROOT_DIR, '/Users/plarmande/workspace2015/datasets/uniprot_id.tx
 # code running on bioinfo-inter
 # up_dir = ['/scratch/larmande/uniprot_trembl.dat']
 # ROOT_DIR='/scratch/larmande'
-# upToRDF(up_dir, ROOT_DIR )
+# upToRDF(up_dir, ROOT_DIR, '/scratch/larmande/uniprot_id.txt' )
 # os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')
