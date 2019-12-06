@@ -145,8 +145,6 @@ msu_ns = 'msu:'
 qtaro_qtl = 'http://www.southgreen.fr/agrold/qtaro.qtl/'
 qtaro_qtl_ns = 'qtaro_qtl:'
 
-qtaro_gene = 'http://www.southgreen.fr/agrold/qtaro.gene/'
-qtaro_gene_ns = 'qtaro_gene:'
 
 ensembl_plant = 'http://identifiers.org/ensembl.plant/' # http://rdf.ebi.ac.uk/resource/ensembl/
 ensembl_ns = 'ensembl:'
