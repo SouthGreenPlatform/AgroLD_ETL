@@ -10,6 +10,7 @@ import numpy as np
 
 '''
 Created on May, 2017
+Updated on Dec, 2019
 The QtaroParsers module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic functions for handling Qtaro data
@@ -34,7 +35,7 @@ def geneParser(infile):
     prot_pattern = re.compile(
         r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
     ont_pattern = re.compile(r'^\w+\:\d{7}$')
-    array = pd.read_csv(infile, sep=";", delimiter=None, dtype='str')
+    array = pd.read_csv(infile, sep="|", delimiter=None, dtype='str')
     array['locus_id'].replace('', np.nan, inplace=True)
     array.dropna(subset=['locus_id'], inplace=True)
     print(array)
@@ -48,7 +49,7 @@ def qtlParser(infile):
     qtl_ds = list()
 
     #    pp = pprint.PrettyPrinter(indent=4)
-    qtl_ds = pd.read_csv(infile, sep="|", delimiter=None, dtype='str')
+    qtl_ds = pd.read_csv(infile, sep="|", delimiter=None, dtype='str', encoding = 'utf-8')
 
     # fileHandle = open(infile, "r")
     # lines = fileHandle.readlines()
@@ -88,15 +89,13 @@ def qtaroGeneRDF(infile, output_dir):
     outHandle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
     outHandle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
     outHandle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+    outHandle.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
     outHandle.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
     outHandle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     outHandle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    outHandle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
-    outHandle.write(pr + "\t" + qtaro_gene_ns + "<" + qtaro_gene + "> .\n")
     outHandle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
     outHandle.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
-    outHandle.write(pr + "\t" + doi_ns + "<" + doi_uri + "> .\n")
-    outHandle.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    outHandle.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
 
     for records in gene_ds.as_matrix(columns=None):
         gene_buffer = ''
@@ -105,19 +104,17 @@ def qtaroGeneRDF(infile, output_dir):
         # ogro_id;gene;gene_symbol;character_major;character_minor;chromosome;start;end;locus_id;browse;isolation;objective;doi
         print(records)
         if rap_pattern.match(records[8]) and isinstance(records[8],str):
-            gene_buffer += ensembl_ns + records[8] + "\n"
-            gene_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
+            gene_buffer += base_resource_ns + records[8] + "\n"
+            gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records[1]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_symbol" + "\t" + '"%s"' % (records[2]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (records[5]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records[6]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (records[7]) + " ;\n"
+            gene_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (records[2]) + " ;\n"
+            # gene_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (records[5]) + " ;\n"
+            # gene_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records[6]) + " ;\n"
+            # gene_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (records[7]) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[3]) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[4]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + ensembl_ns + records[8] + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + qtaro_gene_ns + records[0] + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "description" + "\t" + '"%s"' % (records[11]) + " ;\n"
-            #TODO find out way to represent DOI
+            gene_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[8] + " ;\n"
+            gene_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (records[11]) + " ;\n"
             if records[12] is not np.nan:
                 gene_buffer += "\t" + dc_ns + "identifier" + "\t" +  '"http://dx.doi.org/%s"' %  (records[12]) + " ;\n"
             gene_buffer = re.sub(' ;$', ' .\n', gene_buffer)
@@ -150,30 +147,33 @@ def qtaroQTLRDF(infile, output_dir):
     outHandle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
     outHandle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     outHandle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    outHandle.write(pr + "\t" + qtaro_qtl_ns + "<" + qtaro_qtl + "> .\n")
+    outHandle.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
 
     '''
     Ajout du prefix pour la release des donnees
     '''
-    outHandle.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
+    outHandle.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
 
     for records in qtl_ds.as_matrix(columns=None):
         qtl_buffer = ''
         qtl_counter += 1
         #chrm = records['Chromosome'].replace("Chr. ", "")
         #to_id = records['TOid'].replace(":", "_")
+        trait1 = re.sub('"', '',records[2])
+        trait2 = re.sub('"', '',records[3])
+        trait3 = re.sub('"', '', str(records[26]))
         print(records)
-        qtl_buffer += qtaro_qtl_ns + records[0] + "\n"
-        qtl_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "QTL" + " ;\n"
+        qtl_buffer += "<" + base_resource_uri + "qtaro.qtl/" + records[0] + ">\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "QTL" + " ;\n"
         # qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
         # qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
         qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records[1]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (records[5]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records[6]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (records[7]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[2]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[3]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[26]) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (trait1) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (trait2) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (trait3) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "lod" + "\t" + '"%s"' % (records[9]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "date" + "\t" + '"%s"' % (records[29]) + " ;\n"
 
@@ -195,5 +195,5 @@ def qtaroQTLRDF(infile, output_dir):
 
 #geneParser('../test_files/qtaro/Qtaro-Gene-export.csv')
 
-qtaroGeneRDF('../test_files/qtaro/Qtaro-Gene-export.csv','.')
-#qtaroQTLRDF('../test_files/qtaro/qtaro.qtl.csv','.')
+qtaroGeneRDF('/Users/plarmande/Downloads/qtaro_gene.csv','/Users/plarmande/Downloads')
+#qtaroQTLRDF('/Users/plarmande/Downloads/qtaro_qtl.csv','/Users/plarmande/Downloads')
