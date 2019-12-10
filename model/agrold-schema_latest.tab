@@ -34,6 +34,7 @@ Flanking_region	Flanking region	Class	SO_0000239	exact match
 miRNA_primary_transcript	miRNA_primary_transcript	Class	SO_0000647	exact match
 miRNA	miRNA	Class	SO_0000276	exact match
 Protein_Family	Protein family	Class	OBI_0000251	exact match
+## Protein_complex	Protein complex	Class
 Population	Population	Class	OBI_0000181	exact match
 Map_Feature	Map feature	Class	data_1865	exact match
 Study	Study	Class	OBI_0000073	exact match
@@ -43,54 +44,89 @@ Germplasm	Germplasm	Class	CO_715:0000225	exact match
 # ObjectProperty #
 ##################
 participates_in	participates in	ObjectProperty	BFO_0000056	exact match
+## participatesIn	participatesIn	ObjectProperty	BFO_0000056	exact match
 has_function	has function	ObjectProperty	BFO_0000085	exact match
+## hasFunction	hasFunction	ObjectProperty	BFO_0000085	exact match
 located_in	located in	ObjectProperty	BFO_0000082	exact match
+## locatedIn	locatedIn	ObjectProperty	BFO_0000082	exact match
 expressed_in	expressed in	ObjectProperty	RO_0002206	exact match
+## expressedIn	expressedIn	ObjectProperty	RO_0002206	exact match
 expressed_at	expressed at	ObjectProperty	BFO_0000174	subClassOf (BFO_0000174:has proper continuant part at some time)
+## expressedAt	expressedAt	ObjectProperty	BFO_0000174	subClassOf (BFO_0000174:has proper continuant part at some time)
 has_trait	has trait	ObjectProperty	RO_0002410	subClassOf (RO_0002410:causally related to)
+## hasTrait	hasTrait	ObjectProperty	RO_0002410	subClassOf (RO_0002410:causally related to)
 observed_in	observed in	ObjectProperty
+observedIn	observedIn	ObjectProperty
 taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source)
 evidence	has evidence	ObjectProperty	RO_0002558	exact match (RO_0002558:has evidence)
 has_annotation	has annotation	ObjectProperty	SIO_000255	exact match (SIO_000255:has annotation)
+## hasAnnotation	hasAnnotation	ObjectProperty	SIO_000255	exact match (SIO_000255:has annotation)
 is_located_on	is located on	ObjectProperty
+## isLocatedOn	isLocatedOn	ObjectProperty
 encodes	encodes	ObjectProperty	SIO_010078	exact match (SIO_010078:encodes)
 develops_from	develops from	ObjectProperty	RO_0002202	exact match (RO_0002202:develops from)
+## developsFrom	developsFrom	ObjectProperty	RO_0002202	exact match (RO_0002202:develops from)
 is_agent_in	is agent in	ObjectProperty	SIO_000063	exact match (SIO_000063:is agent in)
+## isAgentIn	isAgentIn	ObjectProperty	SIO_000063	exact match (SIO_000063:is agent in)
 has_part	has_part	ObjectProperty	BFO_0000051	exact match (BFO_0000051:has part)
+## hasPart	hasPart	ObjectProperty	BFO_0000051	exact match (BFO_0000051:has part)
 part_of	part of	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
+## partOf	partOf	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
 is_member_of	is member of	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
+## isMemberOf	isMemberOf	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
 is_orthologous_to	is orthologous to	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
+## isOrthologousTo	isOrthologousTo	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
 is_paralogous_to	is paralogous to	ObjectProperty	SIO_000630	exact match (SIO_000630:is paralogous to)
+## isParalogousTo	isParalogousTo	ObjectProperty	SIO_000630	exact match (SIO_000630:is paralogous to)
 derives_from	derives from	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
+## derivesFrom	derivesFrom	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
 contains	contains	ObjectProperty	RO_0002524	exact match (RO_0002524:contains)
 ####################
 # DataTypeProperty #
 ####################
 description	description	DataTypeProperty	Gene,Protein,QTL	String
+## dcterms:descrription	dcterms:descrription	DataTypeProperty	Gene,Protein,QTL	String
 has_synonym	has synonym	DataTypeProperty	Gene,Protein,QTL	String,Integer
+## skos:altLabel	skos:altLabel	DataTypeProperty	Gene,Protein,QTL	String,Integer
 evidence_code	evidence code	DataTypeProperty	Protein,QTL	String
+## evidenceCode	evidenceCode	DataTypeProperty	Protein,QTL	String
 assigned_by	assigned by	DataTypeProperty	Gene,Protein,QTL	String
+## assignedBy	assignedBy	DataTypeProperty	Gene,Protein,QTL	String
 date	date	DataTypeProperty	Gene,Protein,QTL	Date
 has_start_position	has start position	DataTypeProperty	Gene	Integer
+## hasStartPosition	hasStartPosition	DataTypeProperty	Gene	Integer
 has_end_position	has end position	DataTypeProperty	Gene	Integer
+## hasEndPosition	hasEndPosition	DataTypeProperty	Gene	Integer
 has_biotype	has biotype	DataTypeProperty	Gene	String
-has_number_of_individuals	has number of individuals	DataTypeProperty	(Gene)	Integer
-has_total_number	has total number	DataTypeProperty	(Gene)	Integer
+## hasBiotype	hasBiotype	DataTypeProperty	Gene	String
+has_number_of_individuals	has number of individuals	DataTypeProperty	Gene	Integer
+## hasNumberOfIndividuals	hasNumberOfIndividuals	DataTypeProperty	Gene	Integer
+has_total_number	has total number	DataTypeProperty	Gene	Integer
+## hasTotalNumber	hasTotalNumber	DataTypeProperty	Gene	Integer
 abbreviation	abbreviation	DataTypeProperty	(Gene)	String
-has_mutant_type	has mutant type	DataTypeProperty	(Gene)	String
+has_mutant_type	has mutant type	DataTypeProperty	Gene	String
+## hasMutantType	hasMutantType	DataTypeProperty	Gene	String
 observation	observation	DataTypeProperty	(Gene)	String
-has_phenotype_class	has phynotype class	DataTypeProperty	(Gene)	String
+has_phenotype_class	has phynotype class	DataTypeProperty	Gene	String
+## hasPhenotypeClass	hasPhenotypeClass	DataTypeProperty	Gene	String
 has_phenotype_subclass	has phynotype subclass	DataTypeProperty	(Gene)	String
+## hasPhenotypeSubclass	hasPhenotypeSubclass	DataTypeProperty	Gene	String
 classified_with	classified with	DataTypeProperty	Protein	String
+## classifiedWith	classifiedWith	DataTypeProperty	Protein	String
 comment	comment	DataTypeProperty	Protein	String
 source_project	source project	DataTypeProperty	(Gene)	String
+## sourceProject	sourceProject	DataTypeProperty	Gene	String
 has_symbol	has symbol	DataTypeProperty	(QTL,Protein)	String
-has_evalue	has evalue	DataTypeProperty 
+## skos:prefSymbol	skos:prefSymbol	DataTypeProperty	Gene,mRNA,QTL,Protein	String
+has_evalue	has evalue	DataTypeProperty
+## hasEvalue	hasEvalue	DataTypeProperty
 ######################
 # AnnotationProperty #
 ######################
 has_dbxref	has dbxref		AnnotationProperty	(owl:Class)	String
+## rdfs:seeAlso	rdfs:seeAlso	AnnotationProperty	owl:Class	String
 has_alternative_id	has alternative id	AnnotationProperty	(Gene,Protein,QTL)
+## skos:altLabel	skos:altLabel	AnnotationProperty	Gene,mRNA,Protein,QTL	String
 # MISSED DATA
 #has_score	has score	DataTypeProperty	?	?
 #number_of_sequences	number of sequences	DataTypeProperty	?	?
