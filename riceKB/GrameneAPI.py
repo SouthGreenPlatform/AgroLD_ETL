@@ -21,7 +21,7 @@ The msuModel module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic functions for handling MSU data
 
-
+- status -- deprecated
 @author: larmande
 '''
 __author__  = "larmande"
