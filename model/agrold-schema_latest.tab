@@ -81,6 +81,7 @@ is_paralogous_to	is paralogous to	ObjectProperty	SIO_000630	exact match (SIO_000
 derives_from	derives from	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
 ## derivesFrom	derivesFrom	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
 contains	contains	ObjectProperty	RO_0002524	exact match (RO_0002524:contains)
+inAssembly	inAssembly	ObjectProperty	 	 
 ####################
 # DataTypeProperty #
 ####################
