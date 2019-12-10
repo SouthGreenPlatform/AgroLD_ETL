@@ -96,7 +96,7 @@ def msuModeleRDF(msu_ds, output_file):
                 #os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[0] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
                 # os_japonica_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + ensembl_ns + records[0] + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "develops_from" + "\t" + "<" + resource + records[1].split('.')[0] + "> .\n\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t" + "<" + resource + records[1].split('.')[0] + "> .\n\n"
             rdf_writer.write(os_japonica_buffer)
             print(os_japonica_buffer)
 
