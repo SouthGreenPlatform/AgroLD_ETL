@@ -111,8 +111,8 @@ def qtaroGeneRDF(infile, output_dir):
             # gene_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (records[5]) + " ;\n"
             # gene_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records[6]) + " ;\n"
             # gene_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (records[7]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[3]) + " ;\n"
-            gene_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (records[4]) + " ;\n"
+            gene_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (records[3]) + " ;\n"
+            gene_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (records[4]) + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[8] + " ;\n"
             gene_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (records[11]) + " ;\n"
             if records[12] is not np.nan:
@@ -168,12 +168,12 @@ def qtaroQTLRDF(infile, output_dir):
         # qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
         # qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
         qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records[1]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (records[5]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records[6]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + '"%s"' % (records[7]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (trait1) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (trait2) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + '"%s"' % (trait3) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t" + '"%s"' % (records[5]) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + '"%s"' % (records[6]) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + '"%s"' % (records[7]) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait1) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait2) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait3) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "lod" + "\t" + '"%s"' % (records[9]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "date" + "\t" + '"%s"' % (records[29]) + " ;\n"
 
@@ -195,5 +195,5 @@ def qtaroQTLRDF(infile, output_dir):
 
 #geneParser('../test_files/qtaro/Qtaro-Gene-export.csv')
 
-qtaroGeneRDF('/Users/plarmande/Downloads/qtaro_gene.csv','/Users/plarmande/Downloads')
-#qtaroQTLRDF('/Users/plarmande/Downloads/qtaro_qtl.csv','/Users/plarmande/Downloads')
+#qtaroGeneRDF('/Users/plarmande/Downloads/qtaro_gene.csv','/Users/plarmande/Downloads')
+qtaroQTLRDF('/Users/plarmande/Downloads/qtaro_qtl.csv','/Users/plarmande/Downloads')
