@@ -10,7 +10,7 @@ from riceKB.globalVars import *
 import pprint
 import re
 import os
-
+# TODO modifier dans la base les predicats develops_from et has_trait avec developsFrom hasTrait
 '''
 Created on Sept, 2019
 The ensmbl.rdf module is created as part of the Rice Knowledge Base project.
@@ -133,10 +133,10 @@ def ensemblParser(files, type):
                                       '<http://www.southgreen.fr/agrold/dataset/ensemblgenomes/', line)
                     # change   obo:SO_has_part >  term:has_part
                     if re.findall("obo:SO_has_part", line):
-                        line = re.sub('obo:SO_has_part', 'term:has_part', line)
+                        line = re.sub('obo:SO_has_part', 'term:hasPart', line)
                     # obo:SO_transcribed_from > term:transcribed_from ou term:develops_from
                     if re.findall("obo:SO_transcribed_from", line):
-                        line = re.sub('obo:SO_transcribed_from', 'term:develops_from', line)
+                        line = re.sub('obo:SO_transcribed_from', 'term:developsFrom', line)
                     # obo:SO_translates_to > term:translates_to ou term:encodes
                     if re.findall("obo:SO_translates_to", line):
                         line = re.sub('obo:SO_translates_to', 'term:encodes', line)
