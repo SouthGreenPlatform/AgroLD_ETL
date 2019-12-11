@@ -193,7 +193,7 @@ def msuModeleRDF(msu_ds, output_file):
             df_pfam = pfam.loc[inter[0] == records[2]]
             # extract and print pfam ids from pfam_array
             lookup_list2 = list()
-            for index, row in df_pfam.iterrows():
+            for index, row in df_pfam.iterrows(): # use itertuples() instead
                 pfam_id = row[1].split('.')[0]
                 if pfam_pattern.match(str(pfam_id)) and pfam_id not in lookup_list2:
                     lookup_list2.append(pfam_id)
