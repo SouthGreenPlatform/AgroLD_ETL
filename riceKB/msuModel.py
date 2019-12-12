@@ -51,18 +51,12 @@ def geneParser(infile, interpro, pfam, go):
 
 def msuModeleRDF(msu_ds, output_file):
   # The differentes variable declaration
-    os_japonica_buffer = ''    # initilised the buffer at zero
-    number_match_part_sbgi = 0
-    number_match_part_kome = 0
-    number_exon = 0
-    number_cds = 0
     line_number = 0
-    number_five_prime_UTR = 0
-    number_three_prime_UTR = 0
     rdf_writer = open(output_file, "w")
     chromosome_list = list()
     gene_list = list()
     gene,inter,pfam,go = msu_ds
+    taxon_id="39947"
     chromosome_size = {'39947': {'size': ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
                                       '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
                                       '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1',
@@ -90,11 +84,11 @@ def msuModeleRDF(msu_ds, output_file):
 # In here we buil the modele and writer in file with ttl format
     os_japonica_buffer = ''
     #os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + dc_ns + "identifier" + "\t\t" + taxon_id + " .\n\n"
     # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
     rdf_writer.write(os_japonica_buffer)
