@@ -70,7 +70,9 @@ def msuModeleRDF(msu_ds, output_file):
     rdf_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
     rdf_writer.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
     rdf_writer.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
-    rdf_writer.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+    rdf_writer.write(pr + "\t" + owl_ns + "<" + owl_uri + "> .\n")
+    rdf_writer.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
+    rdf_writer.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
     rdf_writer.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
     rdf_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
@@ -100,7 +102,7 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer = ''
             chromosome_list.append(records[0])
             os_japonica_buffer += chromosome_ns + re.sub('Os|Chr', '', records[0]) + "\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
+            os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" +  "\"Os-Nipponbare-Reference-IRGSP-1.0\"" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "inSchemaNumber" + "\t"  + "\"7\"" + " ;\n"
@@ -122,7 +124,7 @@ def msuModeleRDF(msu_ds, output_file):
                 os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[1] + "\" ;\n"
                 # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "hasAnnotation" + "\t" + " \"" + records[9] + "\" ;\n"
-                os_japonica_buffer += "\t" + obo_ns + "obo:RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "" + chromosome_ns + re.sub(
                     'Os|Chr',
                     '',
@@ -139,7 +141,7 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[2] + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t\t" + base_resource_ns + records[1] + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasAnnotation" + "\t" + " \"" + records[9] + "\" ;\n"
-            os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns  + "39947" + " ;\n"
+            os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns  + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + " \"" + str(
             records[3]) + "\"^^xsd:integer ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + " \"" + str(
