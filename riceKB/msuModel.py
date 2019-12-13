@@ -137,7 +137,6 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer += base_resource_ns + records[2] + "\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
-            # os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[2] + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t\t" + base_resource_ns + records[1] + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasAnnotation" + "\t" + " \"" + records[9] + "\" ;\n"
@@ -146,11 +145,8 @@ def msuModeleRDF(msu_ds, output_file):
             records[3]) + "\"^^xsd:integer ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + " \"" + str(
             records[4]) + "\"^^xsd:integer ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "" + chromosome_ns + re.sub(
-                'Os|Chr',
-                '',
-                records[
-                    0]) + " ;\n"
+            os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "<" + chromosome_uri + "/" + taxon_id + "/" \
+                                  +re.sub('Os|Chr','',records[0]) + "> ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "strand" + "\t" + " \"" + records[5] + "\"^^xsd:string ;\n"
             if records[6] == "Y":
                 os_japonica_buffer += "\t" + base_vocab_ns + "isTE" + "\t" + "\"true\"^^xsd:boolean ;\n"
