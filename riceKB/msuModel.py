@@ -101,7 +101,7 @@ def msuModeleRDF(msu_ds, output_file):
         if not records[0] in chromosome_list:
             os_japonica_buffer = ''
             chromosome_list.append(records[0])
-            os_japonica_buffer += chromosome_ns + re.sub('Os|Chr', '', records[0]) + "\n"
+            os_japonica_buffer += "<" + chromosome_uri + "/" + taxon_id + "/" re.sub('Os|Chr', '', records[0]) + ">\n"
             os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" +  "\"Os-Nipponbare-Reference-IRGSP-1.0\"" + " ;\n"
