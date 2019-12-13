@@ -90,7 +90,7 @@ def msuModeleRDF(msu_ds, output_file):
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + dc_ns + "identifier" + "\t\t" + taxon_id + " .\n\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + dc_ns + "identifier" + "\t\t" + "\""+ taxon_id + "\" .\n\n"
     # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
     rdf_writer.write(os_japonica_buffer)
@@ -101,7 +101,7 @@ def msuModeleRDF(msu_ds, output_file):
         if not records[0] in chromosome_list:
             os_japonica_buffer = ''
             chromosome_list.append(records[0])
-            os_japonica_buffer += "<" + chromosome_uri + "/" + taxon_id + "/" re.sub('Os|Chr', '', records[0]) + ">\n"
+            os_japonica_buffer += "<" + chromosome_uri + taxon_id + "/"+ re.sub('Os|Chr', '', records[0]) + ">\n"
             os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" +  "\"Os-Nipponbare-Reference-IRGSP-1.0\"" + " ;\n"
@@ -123,13 +123,10 @@ def msuModeleRDF(msu_ds, output_file):
                 # os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[1] + "\" ;\n"
                 # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "hasAnnotation" + "\t" + " \"" + records[9] + "\" ;\n"
+                os_japonica_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records[9] + "\" ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "" + chromosome_ns + re.sub(
-                    'Os|Chr',
-                    '',
-                    records[
-                        0]) + " ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "<"+ chromosome_uri  + taxon_id + "/" \
+                                  + re.sub('Os|Chr','',records[0]) + "> ;\n"
                 os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
                 #rdf_writer.write(os_japonica_buffer)
                 #print(os_japonica_buffer)
@@ -139,13 +136,13 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[2] + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t\t" + base_resource_ns + records[1] + " ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "hasAnnotation" + "\t" + " \"" + records[9] + "\" ;\n"
+            os_japonica_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records[9] + "\" ;\n"
             os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns  + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + " \"" + str(
             records[3]) + "\"^^xsd:integer ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + " \"" + str(
             records[4]) + "\"^^xsd:integer ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "<" + chromosome_uri + "/" + taxon_id + "/" \
+            os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "<" + chromosome_uri  + taxon_id + "/" \
                                   +re.sub('Os|Chr','',records[0]) + "> ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "strand" + "\t" + " \"" + records[5] + "\"^^xsd:string ;\n"
             if records[6] == "Y":
@@ -212,7 +209,7 @@ path_output = '/Users/plarmande/Downloads/all.locus_brief_info.7.ttl' # The outp
 #pp.pprint(ds)    # For to see in teminal the parsing
 
 #ds = os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
-ds = geneParser('/Users/plarmande/Downloads/all.locus_brief_info.7.0.txt',\
+ds = geneParser('/Users/plarmande/Downloads/all.locus_brief_info.7.0.sample.txt',\
                 '/Users/plarmande/Downloads/all.interpro.txt',\
                 '/Users/plarmande/Downloads/all.pfam.txt',\
                 '/Users/plarmande/Downloads/all.GOSlim_assignment.txt')
