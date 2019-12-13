@@ -145,7 +145,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
             os_japonica_buffer += "\t" + dc_ns + "identifier " + "\t" + " \"" + "IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + "\" ;\n"
-            os_japonica_buffer += "\t" + base_vcab_ns + "chromosomeNumber" + "\t" + "\"" + int(records['seqid']) + "\"^^xsd:integer ;\n"
+            os_japonica_buffer += "\t" + base_vocab_ns + "chromosomeNumber" + "\t" + "\"" + int(records['seqid']) + "\"^^xsd:integer ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "genomeAssembly " + "\t" + " \"" + "IRGSP-1.0" + "\" .\n\n"
 
             print(os_japonica_buffer)
