@@ -1,8 +1,8 @@
 import sys
 print (sys.path)
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.gffParser import *
 import pprint
 import re
 import os
@@ -63,6 +63,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     number_three_prime_UTR = 0
     rdf_writer = open(output_file, "w")
     chromosome_list = {}
+    taxon_id = "39947"
 
 
 
@@ -111,12 +112,12 @@ def rapdbModeleRDF(rapdb_ds, output_file):
 
 
     os_japonica_buffer = ''
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
-    os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + dc_ns + "identifier" + "\t\t" + "39947" + " .\n\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
+    os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + dc_ns + "identifier" + "\t\t" + taxon_id + " .\n\n"
     # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
     rdf_writer.write(os_japonica_buffer)
@@ -138,7 +139,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
             chromosome_dict[records['seqid']] = { 'uri': "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1", 'seqid': records['seqid'], 'number' : str(ch_number), 'nucleotide' : str(chromosome), 'assembly':'IRGSP-1.0'}
             chromosome_list[records['seqid']]= "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1"
             os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + str(ch_number) + ":1-" + str(chromosome) + ":1" + "\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+            os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + "Oryza sativa Japonica Group chromosome:" + "IRGSP-1.0:" + str(
                 ch_number) + ":1-" + str(chromosome) + ":1" + " (IRGSP-1.0)" + "\"@en ;\n"
