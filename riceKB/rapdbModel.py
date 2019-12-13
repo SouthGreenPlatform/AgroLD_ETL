@@ -182,7 +182,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 if 'Note' in records['attributes']:
                     os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                     os_japonica_buffer += "\t" + base_vocab_ns + "has_annotation" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
+                #os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
 
                 os_japonica_buffer +=  "\t" + faldo_ns + "location" + "\t"  + chromosome_ns + "IRGSP-1.0:"+ \
@@ -355,21 +355,15 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 os_japonica_buffer = ''
                 os_japonica_buffer += protein_ns + records['attributes']['ID'] + "\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000104" + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
-                # os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
-                # os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "derives_from" + "\t\t" + rapdb_mrna_ns + records['attributes']['Derives_from'] + " ; \n"
-                # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + "" + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-                # os_japonica_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "IRGSP-1.0:" + str(
-                #     ch_number) + ":1-" + str(chromosome) + ":1" + " .\n\n"
-
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
-                                      chromosome_dict[records['seqid']]['number'] + ':' + str(
-                    records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
+                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "derives_from" + \
+                                      "\t\t" + rapdb_mrna_ns + records['attributes']['Derives_from'] + " ; \n"
+                os_japonica_buffer += "\t" + faldo_ns + "location" + \
+                                      "\t" + chromosome_ns + "IRGSP-1.0:" + \
+                                      chromosome_dict[records['seqid']]['number'] + ':' + \
+                                      str(records['start']) + '-' + str(records['end']) + ":" \
+                                      + strand + " .\n\n"
 
                 # Region
                 os_japonica_buffer += chromosome_ns + "IRGSP-1.0:" + chromosome_dict[records['seqid']]['number'] + ':' + \
@@ -466,15 +460,11 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 number_exon += 1
                 os_japonica_buffer += res_ns + records['attributes']['Parent'] + "#exon" + str(number_exon) + "\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Exon" + " ;\n"
-                #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000147" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + rapdb_mrna_ns + records['attributes']['Parent'] + " ;\n"
-                # os_japonica_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t\t" + " " + chromosome_ns + re.sub('Os', '', records['seqid']) + " .\n"
-
                 os_japonica_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "IRGSP-1.0:" + \
                                       chromosome_dict[records['seqid']]['number'] + ':' + str(
                     records['start']) + '-' + str(records['end']) + ":" + strand + " .\n\n"
@@ -525,7 +515,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
                 #os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000205" + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "taxon" + "\t\t" + obo_ns + "NCBITaxon_" + "39947" + " ;\n"
-                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + "39947" + " ;\n"
+                os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + str(records['start']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "has_end_position" + "\t" + " \"" + str(records['end']) + "\"^^xsd:integer ;\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "part_of" + "\t\t" + rapdb_mrna_ns + records['attributes']['Parent'] + " ;\n"
