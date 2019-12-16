@@ -51,11 +51,11 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 #    for upfile in up_files:
 #        file_handle = open(upfile, "r")
     with open(up_files, 'r') as file_handle:
-        up_records = SwissProt.parse(file_handle)
+        #up_records = SwissProt.parse(file_handle)
 
         #        xrefs = defaultdict(list)
         #        xref_ids = list()
-        for record in up_records:
+        for record in SwissProt.parse(file_handle): #up_records:
             xrefs = defaultdict(list)
             #ref_record = SwissProt._read_rx(record.references,'RX')
             rdf_buffer = ''
