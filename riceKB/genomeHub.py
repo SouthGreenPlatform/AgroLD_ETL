@@ -189,7 +189,6 @@ def RDFConverter(ds, output_file):
                     'Parent'].split('.')[0]) + "\" ;\n"
                 for terms in records['attributes']['Dbxref'].split(','):
                     genome_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  terms + " ;\n"
-                    if terms.rfind()
                 genome_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
                                  + re.sub('Os|Chr', '', records['seqid']) + ":" + \
                                  str(records['start']) + "-" + str(records['end']) + ":" + \
