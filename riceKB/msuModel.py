@@ -4,6 +4,7 @@ import sys
 print(sys.path)
 from riceKB.globalVars import *
 from riceKB.gffParser import *
+from riceKB.utils import *
 import pprint
 import re
 import os
@@ -77,13 +78,11 @@ def msuModeleRDF(msu_ds, output_file):
     rdf_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
     rdf_writer.write(pr + "\t" + chromosome_ns + "<" + chromosome_uri + "> .\n")
     rdf_writer.write(pr + "\t" + interpro_ns + "<" + interpro_uri + "> .\n")
-    rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n")
     rdf_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
-
+    rdf_writer.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
     # Ajout du prefix pour la realese des donnees
-    #rdf_writer.write(pr + "\t" + res_ns + "<" + resource + "> .\n\n")
-
-# In here we buil the modele and writer in file with ttl format
+    rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
+    # In here we buil the modele and writer in file with ttl format
     os_japonica_buffer = ''
     #os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
@@ -116,6 +115,8 @@ def msuModeleRDF(msu_ds, output_file):
             if not records[1] in gene_list:
                 # print the corresponding gene associated at mRNAs
                 #os_japonica_buffer = ''
+                (strand, position) = getStrandValue(records[5])
+                strand = str(strand)
                 gene_list.append(records[1])
                 os_japonica_buffer += base_resource_ns + records[1] + "\n"
                 os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
@@ -125,9 +126,14 @@ def msuModeleRDF(msu_ds, output_file):
                 # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
                 os_japonica_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records[9] + "\" ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "<"+ chromosome_uri  + taxon_id + "/" \
-                                  + re.sub('Os|Chr','',records[0]) + "> ;\n"
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
+                                 + re.sub('Os|Chr', '', records[0]) + ":" + \
+                                 str(records[3]) + "-" + str(records[4]) + ":" + \
+                                 strand + "> ;\n"
                 os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
+                os_japonica_buffer += getFaldoRegion(taxon_id, records[0], records[3], records[4],
+                                                records[5])
+                #rdf_writer.write(os_japonica_buffer)
                 #rdf_writer.write(os_japonica_buffer)
                 #print(os_japonica_buffer)
             # extact on mRNA ids and associated triples
@@ -138,13 +144,15 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t\t" + base_resource_ns + records[1] + " ;\n"
             os_japonica_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records[9] + "\" ;\n"
             os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns  + taxon_id + " ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + " \"" + str(
-            records[3]) + "\"^^xsd:integer ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + " \"" + str(
-            records[4]) + "\"^^xsd:integer ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t\t" + "<" + chromosome_uri  + taxon_id + "/" \
-                                  +re.sub('Os|Chr','',records[0]) + "> ;\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "strand" + "\t" + " \"" + records[5] + "\"^^xsd:string ;\n"
+            #os_japonica_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + " \"" + str(
+            #records[3]) + "\"^^xsd:integer ;\n"
+            #os_japonica_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + " \"" + str(
+            #records[4]) + "\"^^xsd:integer ;\n"
+            os_japonica_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
+                                 + re.sub('Os|Chr', '', records[0]) + ":" + \
+                                 str(records[3]) + "-" + str(records[4]) + ":" + \
+                                 strand + "> ;\n"
+            #os_japonica_buffer += "\t" + base_vocab_ns + "strand" + "\t" + " \"" + records[5] + "\"^^xsd:string ;\n"
             if records[6] == "Y":
                 os_japonica_buffer += "\t" + base_vocab_ns + "isTE" + "\t" + "\"true\"^^xsd:boolean ;\n"
             else:
@@ -189,7 +197,8 @@ def msuModeleRDF(msu_ds, output_file):
                     os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + "pfam" + "/" + str(pfam_id) + ">" + " ;\n"
             # replace the last . to ; triples
             os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
-
+            os_japonica_buffer += getFaldoRegion(taxon_id, records[0], records[3], records[4],
+                                                 records[5])
             rdf_writer.write(os_japonica_buffer)
             print(os_japonica_buffer)
             # to test remove the comment bellow
@@ -209,7 +218,7 @@ path_output = '/Users/plarmande/Downloads/all.locus_brief_info.7.ttl' # The outp
 #pp.pprint(ds)    # For to see in teminal the parsing
 
 #ds = os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
-ds = geneParser('/Users/plarmande/Downloads/all.locus_brief_info.7.0.sample.txt',\
+ds = geneParser('/Users/plarmande/Downloads/all.locus_brief_info.7.0.txt',\
                 '/Users/plarmande/Downloads/all.interpro.txt',\
                 '/Users/plarmande/Downloads/all.pfam.txt',\
                 '/Users/plarmande/Downloads/all.GOSlim_assignment.txt')
