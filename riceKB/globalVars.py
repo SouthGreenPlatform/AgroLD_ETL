@@ -14,7 +14,7 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     sio_uri, sio_ns, obo_uri, obo_ns, ncbi_tax_uri, ncbi_tax_ns, uniprot, up_ns, chromosome_ns, chromosome_uri,\
     ensembl_gene_uri, ensembl_gene_ns, ensembl_transcript_uri, ensembl_transcript_ns, ensembl_protein_uri, ensembl_protein_ns,\
     ensembl_ns, ensembl_plant, gramene_gene, gr_g_ns, gramene_qtl, gr_qtl_ns, sio_term, go_aspects, ont_aspects,\
-    gene_term, protein_term, tigr_uri, tigr_ns, rapdb_gene_uri, rapdb_gene_ns, rapdb_mrna_ns, rapdb_mrna_uri,\
+    gene_term, protein_term, tigr_uri, tigr_ns, identifiers_uri, rapdb_gene_uri, rapdb_gene_ns, rapdb_mrna_ns, rapdb_mrna_uri,\
     plant_trait_term,orygene_uri, orygene_ns, goa_uri, goa_ns, gr_assoc, gr_assoc_ns, tair_l_uri, tair_l_ns,\
     met_pw_sio_term, ec_code_uri, ec_code_ns,reaction_uri, reaction_ns, pathway_uri, pathway_ns, otl_uri, otl_ns,\
     plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
@@ -230,6 +230,10 @@ pubmed_ns = 'pubmed:'
 # OTL
 otl_uri = 'http://identifiers.org/otl/'
 otl_ns = 'otl:'
+
+# identifiers
+identifiers_uri = 'http://identifiers.org/'
+
 
 #Orygenesdb
 mirbase_uri = 'http://www.identifiers.org/mirbase/'
