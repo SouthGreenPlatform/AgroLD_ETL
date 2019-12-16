@@ -124,7 +124,7 @@ def RDFConverter(ds, output_file):
     rdf_writer.write(pr + "\t" + "EC:" + "<" + identifiers_uri + "ec-code/> .\n")
     rdf_writer.write(pr + "\t" + "InterPro:" + "<" + identifiers_uri + "interpro/> .\n")
     rdf_writer.write(pr + "\t" + "TrEMBL:" + "<" + identifiers_uri + "uniprot/> .\n")
-    rdf_writer.write(pr + "\t" + "MSU:" + "<" + identifiers_uri + "	ricegap/> .\n")
+    rdf_writer.write(pr + "\t" + "MSU:" + "<" + identifiers_uri + "ricegap/> .\n")
     rdf_writer.write(pr + "\t" + "SwissProt:" + "<" + identifiers_uri + "uniprot/> .\n")
     rdf_writer.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
     # Ajout du prefix pour la realese des donnees
@@ -159,7 +159,8 @@ def RDFConverter(ds, output_file):
                 genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
                 genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
+                if 'Note' in records['attributes']:
+                    genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 genome_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
                                  + re.sub('Os|Chr', '', records['seqid']) + ":" + \
@@ -182,13 +183,17 @@ def RDFConverter(ds, output_file):
                 genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
                 genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-                genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes'][
-                    'Note'] + "\" ;\n"
+                if 'Note' in records['attributes']:
+                    genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes'][
+                        'Note'] + "\" ;\n"
+
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
+
                 genome_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t" + " \"" + "%s" % (records['attributes'][
                     'Parent'].split('.')[0]) + "\" ;\n"
-                for terms in records['attributes']['Dbxref'].split(','):
-                    genome_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  terms + " ;\n"
+                if 'Dbxref' in records['attributes']:
+                    for terms in records['attributes']['Dbxref'].split(','):
+                        genome_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  terms + " ;\n"
                 genome_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
                                  + re.sub('Os|Chr', '', records['seqid']) + ":" + \
                                  str(records['start']) + "-" + str(records['end']) + ":" + \
@@ -205,9 +210,15 @@ def RDFConverter(ds, output_file):
             genome_buffer += base_resource_ns + records['attributes']['ID'] + "\n"
             genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
             genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein" + " ;\n"
-            genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
-            genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
-            genome_buffer += "\t" + base_vocab_ns + "derivesFrom" + "\t" + " \"" + records['attributes']['Derives_from'] + "\" ;\n"
+            if 'Name' in records['attributes']:
+                genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
+            else:
+                genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['ID'] + "\" ;\n"
+            if 'Note' in records['attributes']:
+                genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes'][
+                    'Note'] + "\" ;\n"
+            if 'derivesFrom' in records['attributes']:
+                genome_buffer += "\t" + base_vocab_ns + "derivesFrom" + "\t" + " \"" + records['attributes']['Derives_from'] + "\" ;\n"
             genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
             genome_buffer = re.sub(' ;$', ' .\n', genome_buffer)
             rdf_writer.write(genome_buffer)
@@ -217,7 +228,7 @@ def RDFConverter(ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/Downloads/Oryza_sativa_Nipponbare_7.0.sample.gff3'
+path = '/Volumes/LaCie/AGROLD/data_update_2019/Rice_Genome_Hub/Oryza_sativa_Nipponbare_7.0.gff3'
 path_output = '/Users/plarmande/Downloads/Oryza_sativa_Nipponbare_7.0.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
