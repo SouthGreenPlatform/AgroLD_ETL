@@ -66,7 +66,7 @@ is_located_on	is located on	ObjectProperty
 encodes	encodes	ObjectProperty	SIO_010078	exact match (SIO_010078:encodes)
 develops_from	develops from	ObjectProperty	RO_0002202	exact match (RO_0002202:develops from)
 ## developsFrom	developsFrom	ObjectProperty	RO_0002202	exact match (RO_0002202:develops from)
-## derivesFrom	derivesFrom	 	 	
+## derivesFrom	derivesFrom
 is_agent_in	is agent in	ObjectProperty	SIO_000063	exact match (SIO_000063:is agent in)
 ## isAgentIn	isAgentIn	ObjectProperty	SIO_000063	exact match (SIO_000063:is agent in)
 has_part	has_part	ObjectProperty	BFO_0000051	exact match (BFO_0000051:has part)
