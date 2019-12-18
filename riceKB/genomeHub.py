@@ -98,10 +98,10 @@ def RDFConverter(ds, output_file):
     chromosome_list = list()
     gene_list = list()
     mRNA_list = list()
-    taxon_id = "39947"
-    source_project = "IRGSP-1.0"
-    schema_number = "7.0"
-    ssp = ""
+    taxon_id = "1736659"
+    source_project = "OMAP"
+    schema_number = "ASM195236v2"
+    ssp = "Najina_22/"
     print("************* RDF conversion begins***********\n")
     rdf_writer.write(base + "\t" + "<" + base_uri + "> .\n")
     rdf_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -139,13 +139,22 @@ def RDFConverter(ds, output_file):
         if not records['seqid'] in chromosome_list:
             genome_buffer = ""
             chromosome_list.append(records['seqid'])
-            genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp +re.sub('Os|Chr', '', records['seqid']) + ">\n"
-            genome_buffer += "\t" +  obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
-            genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
-            genome_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" + "\"Reference-" + source_project + "\" ;\n"
-            genome_buffer += "\t" + base_vocab_ns + "inSchemaNumber" + "\t" + "\""+ schema_number + "\"" + " ;\n"
-            genome_buffer = re.sub(' ;$', ' .\n\n', genome_buffer)
-            rdf_writer.write(genome_buffer)
+            if 'Os|Chr' in records['seqid']:
+                genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp +re.sub('Os|Chr', '', records['seqid']) + ">\n"
+                genome_buffer += "\t" +  obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
+                genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+                genome_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" + "\"Reference-" + source_project + "\" ;\n"
+                genome_buffer += "\t" + base_vocab_ns + "inSchemaNumber" + "\t" + "\""+ schema_number + "\"" + " ;\n"
+                genome_buffer = re.sub(' ;$', ' .\n\n', genome_buffer)
+                rdf_writer.write(genome_buffer)
+            else:
+                genome_buffer += "<" + chromosome_uri + taxon_id + "/" + ssp + records['seqid'] + ">\n"
+                genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
+                genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+                genome_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" + "\"Reference-" + source_project + "\" ;\n"
+                genome_buffer += "\t" + base_vocab_ns + "inSchemaNumber" + "\t" + "\"" + schema_number + "\"" + " ;\n"
+                genome_buffer = re.sub(' ;$', ' .\n\n', genome_buffer)
+                rdf_writer.write(genome_buffer)
 
         # filtering for gene entries
         if records['type'] == "gene":
@@ -179,6 +188,7 @@ def RDFConverter(ds, output_file):
                 genome_buffer = ''
                 (strand,position) = getStrandValue(records['strand'])
                 strand = str(strand)
+                go_list = list()
                 # print the corresponding gene associated at mRNAs
                 mRNA_list.append(records['attributes']['ID'])
                 genome_buffer += base_resource_ns + records['attributes']['ID'] + "\n"
@@ -196,6 +206,15 @@ def RDFConverter(ds, output_file):
                 if 'Dbxref' in records['attributes']:
                     for terms in records['attributes']['Dbxref'].split(','):
                         genome_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  terms + " ;\n"
+                if 'Ontology_term' in records['attributes']:
+                    for terms in records['attributes']['Ontology_term'].split(','):
+                        if 'GO:' not in terms:
+                            genome_buffer += "\t" + base_vocab_ns + "hasAnnotation" + "\t" + "\"" + terms.split(':')[1] + "\" ;\n"
+                        else:
+                            if terms not in go_list:
+                                genome_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns + \
+                                             re.sub(':', '_', terms) + " ;\n"
+                                go_list.append(terms)
                 genome_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
                                  + re.sub('Os|Chr', '', records['seqid']) + ":" + \
                                  str(records['start']) + "-" + str(records['end']) + ":" + \
@@ -220,7 +239,7 @@ def RDFConverter(ds, output_file):
                 genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes'][
                     'Note'] + "\" ;\n"
             if 'Derives_from' in records['attributes']:
-                genome_buffer += "\t" + base_vocab_ns + "derivesFrom" + "\t" + " \"" + base_resource_ns + records['attributes']['Derives_from'] + "\" ;\n"
+                genome_buffer += "\t" + base_vocab_ns + "derivesFrom" + "\t"  + base_resource_ns + records['attributes']['Derives_from'] + " ;\n"
             genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
             genome_buffer = re.sub(' ;$', ' .\n', genome_buffer)
             rdf_writer.write(genome_buffer)
@@ -230,8 +249,8 @@ def RDFConverter(ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_Nipponbare_7.0.gff3'
-path_output = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_Nipponbare_7.0.ttl' # The output
+path = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_aus_N22.sample.gff3'
+path_output = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_aus_N22.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = parseGFF3(path)   # The parsing file withe tropGeneParser()
