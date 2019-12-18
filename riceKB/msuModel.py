@@ -36,6 +36,60 @@ __author__  = "larmande"
 #TODO better Error handling
 
 
+def getStrandValue(strandVar):
+    if strandVar == "-":
+        strandVar = "-1"
+        positionVar = "ReverseStrandPosition"
+    else:
+        strandVar = "1"
+        positionVar = "ForwardStrandPosition"
+    return (strandVar,positionVar)
+
+def getFaldoRegion(taxon_id,ssp, seqid,start,end,strand):
+    (strand, position) = getStrandValue(strand)
+    strand = str(strand)
+    genome_buffer =''
+    # Region
+
+    genome_buffer += "<" + chromosome_uri + taxon_id + "/" + ssp \
+                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     str(start) + "-" + str(end) + ":" \
+                     + strand + "> \n"
+    genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     str(start) + "-" + str(end) + ":" \
+                     + strand + "\";\n"
+    genome_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
+    genome_buffer += "\t" + faldo_ns + "begin" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     str(start) + ":" + strand + ">;\n"
+    genome_buffer += "\t" + faldo_ns + "end" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     str(end) + ":" + strand + ">  .\n\n"
+
+    # Position 1
+    genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     str(start) + ":" + strand + ">\n"
+    genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+    genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+    genome_buffer += "  ;\n"
+    genome_buffer += "\t" + faldo_ns + "position" + "\t" + str(start) + " ;\n"
+    genome_buffer += "\t" + faldo_ns + "reference" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + "> .\n\n"
+
+    # Position 2
+    genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     str(end) + ":" + strand + "> \n"
+    genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+    genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+    genome_buffer += " ;\n"
+    genome_buffer += "\t" + faldo_ns + "position" + "\t" + str(end) + " ;\n"
+    genome_buffer += "\t" + faldo_ns + "reference" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
+                     + re.sub('Os|Chr', '', seqid) + "> .\n\n"
+    return genome_buffer
+
 def geneParser(infile, interpro, pfam, go):
     #    pp = pprint.PrettyPrinter(indent=4)
     gene_hash = {}
@@ -58,6 +112,8 @@ def msuModeleRDF(msu_ds, output_file):
     gene_list = list()
     gene,inter,pfam,go = msu_ds
     taxon_id="39947"
+    source_project = "IRGSP-1.0"
+    ssp = ""
     chromosome_size = {'39947': {'size': ['1:1-43270923:1', '2:1-35937250:1', '3:1-36413819:1', '4:1-35502694:1',
                                       '5:1-29958434:1', '6:1-31248787:1', '7:1-29697621:1', '8:1-28443022:1',
                                       '9:1-23012720:1', '10:1-23207287:1', '11:1-29021106:1', '12:1-27531856:1',
@@ -84,13 +140,11 @@ def msuModeleRDF(msu_ds, output_file):
     rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
     # In here we buil the modele and writer in file with ttl format
     os_japonica_buffer = ''
-    #os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + sio_ns + "SIO_000253" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "OBI_0100026" + " .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "prefLabel" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + rdfs_ns + "label" + "\t\t" + "\"Oryza sativa Japonica Group\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + skos_ns + "altLabel" + "\t\t" + "\"Japanese rice\"" + "@en .\n"
     os_japonica_buffer += ncbi_tax_ns + taxon_id + "\t\t" + dc_ns + "identifier" + "\t\t" + "\""+ taxon_id + "\" .\n\n"
-    # os_japonica_buffer += ncbi_tax_ns + "39947" + "\t\t" + base_vocab_ns + "taxon" + "\t\t" + ncbi_tax_ns + "39947" + " .\n\n"
     print(os_japonica_buffer)
     rdf_writer.write(os_japonica_buffer)
 
@@ -103,9 +157,9 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer += "<" + chromosome_uri + taxon_id + "/"+ re.sub('Os|Chr', '', records[0]) + ">\n"
             os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
+            os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" +  "\"Os-Nipponbare-Reference-IRGSP-1.0\"" + " ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "inSchemaNumber" + "\t"  + "\"7\"" + " ;\n"
-           # os_japonica_buffer += "\t" + base_vocab_ns + "type" + "\t" + res_ns + "Chromosome" + " ;\n\n"
             os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
             rdf_writer.write(os_japonica_buffer)
             print(os_japonica_buffer)
@@ -119,26 +173,26 @@ def msuModeleRDF(msu_ds, output_file):
                 strand = str(strand)
                 gene_list.append(records[1])
                 os_japonica_buffer += base_resource_ns + records[1] + "\n"
-                os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
                 os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
                 # os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
                 os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[1] + "\" ;\n"
                 # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
                 os_japonica_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records[9] + "\" ;\n"
                 os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
-                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
+                os_japonica_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" + ssp \
                                  + re.sub('Os|Chr', '', records[0]) + ":" + \
                                  str(records[3]) + "-" + str(records[4]) + ":" + \
                                  strand + "> ;\n"
                 os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
-                os_japonica_buffer += getFaldoRegion(taxon_id, records[0], records[3], records[4],
+                os_japonica_buffer += getFaldoRegion(taxon_id, ssp, records[0], records[3], records[4],
                                                 records[5])
                 #rdf_writer.write(os_japonica_buffer)
                 #rdf_writer.write(os_japonica_buffer)
                 #print(os_japonica_buffer)
             # extact on mRNA ids and associated triples
             os_japonica_buffer += base_resource_ns + records[2] + "\n"
-            os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + 'IRGSP-1.0' + "\" ;\n"
+            os_japonica_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
             os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records[2] + "\" ;\n"
             os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t\t" + base_resource_ns + records[1] + " ;\n"
@@ -148,7 +202,7 @@ def msuModeleRDF(msu_ds, output_file):
             #records[3]) + "\"^^xsd:integer ;\n"
             #os_japonica_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + " \"" + str(
             #records[4]) + "\"^^xsd:integer ;\n"
-            os_japonica_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" \
+            os_japonica_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id + "/" + ssp \
                                  + re.sub('Os|Chr', '', records[0]) + ":" + \
                                  str(records[3]) + "-" + str(records[4]) + ":" + \
                                  strand + "> ;\n"
@@ -197,7 +251,7 @@ def msuModeleRDF(msu_ds, output_file):
                     os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + "pfam" + "/" + str(pfam_id) + ">" + " ;\n"
             # replace the last . to ; triples
             os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
-            os_japonica_buffer += getFaldoRegion(taxon_id, records[0], records[3], records[4],
+            os_japonica_buffer += getFaldoRegion(taxon_id, ssp, records[0], records[3], records[4],
                                                  records[5])
             rdf_writer.write(os_japonica_buffer)
             print(os_japonica_buffer)
