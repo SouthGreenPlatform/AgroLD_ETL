@@ -25,6 +25,7 @@ __author__  = "larmande"
 
 # ogro_id;gene;gene_symbol;character_major;character_minor;chromosome;start;end;locus_id;browse;isolation;objective;doi
 
+taxon_id = "39947"
 
 def geneParser(infile):
     #    pp = pprint.PrettyPrinter(indent=4)
@@ -35,7 +36,7 @@ def geneParser(infile):
     prot_pattern = re.compile(
         r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
     ont_pattern = re.compile(r'^\w+\:\d{7}$')
-    array = pd.read_csv(infile, sep="|", delimiter=None, dtype='str')
+    array = pd.read_csv(infile, sep="|", delimiter=None, encoding = "ISO-8859-1", dtype='str')
     array['locus_id'].replace('', np.nan, inplace=True)
     array.dropna(subset=['locus_id'], inplace=True)
     print(array)
@@ -49,7 +50,7 @@ def qtlParser(infile):
     qtl_ds = list()
 
     #    pp = pprint.PrettyPrinter(indent=4)
-    qtl_ds = pd.read_csv(infile, sep="|", delimiter=None, dtype='str', encoding = 'utf-8')
+    qtl_ds = pd.read_csv(infile, sep="|", delimiter=None, header=None, dtype='str', encoding = "ISO-8859-1")
 
     # fileHandle = open(infile, "r")
     # lines = fileHandle.readlines()
@@ -76,6 +77,7 @@ def qtaroGeneRDF(infile, output_dir):
     outfile = os.path.join(output_dir, turtle_file_name)
     outHandle = open(outfile, "w")
     rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
+    taxon_id = "39947"
     print("*********** Parsing Qtaro Gene data ***************\n")
 
     gene_ds = geneParser(infile)
@@ -168,7 +170,7 @@ def qtaroQTLRDF(infile, output_dir):
         # qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
         # qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
         qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records[1]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t" + '"%s"' % (records[5]) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t" + "<"+ chromosome_uri + taxon_id + "/%s>" % (records[5]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + '"%s"' % (records[6]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + '"%s"' % (records[7]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait1) + " ;\n"
@@ -196,4 +198,4 @@ def qtaroQTLRDF(infile, output_dir):
 #geneParser('../test_files/qtaro/Qtaro-Gene-export.csv')
 
 #qtaroGeneRDF('/Users/plarmande/Downloads/qtaro_gene.csv','/Users/plarmande/Downloads')
-qtaroQTLRDF('/Users/plarmande/Downloads/qtaro_qtl.csv','/Users/plarmande/Downloads')
+qtaroQTLRDF('/Users/plarmande/Downloads/qtaro.csv','/Users/plarmande/Downloads')
