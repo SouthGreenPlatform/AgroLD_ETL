@@ -29,7 +29,8 @@ msuModeleRDF(ds, path_output)
 '''
 __author__  = "larmande"
 
-#TODO better Error handling
+# TODO better Error handling
+# TODO modify the help
 
 
 def getStrandValue(strandVar):
@@ -48,43 +49,50 @@ def getFaldoRegion(taxon_id,ssp, seqid,start,end,strand):
     # Region
 
     genome_buffer += "<" + chromosome_uri + taxon_id + "/" + ssp \
-                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     +  seqid + ":" + \
                      str(start) + "-" + str(end) + ":" \
                      + strand + "> \n"
     genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     +  seqid + ":" + \
                      str(start) + "-" + str(end) + ":" \
                      + strand + "\";\n"
     genome_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
     genome_buffer += "\t" + faldo_ns + "begin" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     + seqid + ":" + \
                      str(start) + ":" + strand + ">;\n"
     genome_buffer += "\t" + faldo_ns + "end" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     + seqid + ":" + \
                      str(end) + ":" + strand + ">  .\n\n"
 
     # Position 1
     genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     +  seqid + ":" + \
                      str(start) + ":" + strand + ">\n"
     genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
     genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
     genome_buffer += "  ;\n"
     genome_buffer += "\t" + faldo_ns + "position" + "\t" + str(start) + " ;\n"
     genome_buffer += "\t" + faldo_ns + "reference" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + "> .\n\n"
+                     +  seqid + "> .\n\n"
 
     # Position 2
     genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + ":" + \
+                     +  seqid + ":" + \
                      str(end) + ":" + strand + "> \n"
     genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
     genome_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
     genome_buffer += " ;\n"
     genome_buffer += "\t" + faldo_ns + "position" + "\t" + str(end) + " ;\n"
     genome_buffer += "\t" + faldo_ns + "reference" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                     + re.sub('Os|Chr', '', seqid) + "> .\n\n"
+                     +  seqid + "> .\n\n"
     return genome_buffer
+def getChromosomeNumber(chrString):
+    if 'Chr' in chrString:
+        chromosome_nb = re.sub('Chr', '', chrString)
+        chromosome_nb = re.sub('^0', '', chromosome_nb)
+    else:
+        chromosome_nb = re.sub('^0', '',chrString)
+    return chromosome_nb
 def RDFConverter(ds, output_file):
     os_japonica_buffer = ''  # initilised the buffer at zero
     number_match_part_sbgi = 0
@@ -98,10 +106,10 @@ def RDFConverter(ds, output_file):
     chromosome_list = list()
     gene_list = list()
     mRNA_list = list()
-    taxon_id = "1736659"
-    source_project = "OMAP"
-    schema_number = "ASM195236v2"
-    ssp = "Najina_22/"
+    taxon_id = "39947"
+    source_project = "JGI"
+    schema_number = "3.1"
+    ssp = "kitaake/"
     print("************* RDF conversion begins***********\n")
     rdf_writer.write(base + "\t" + "<" + base_uri + "> .\n")
     rdf_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -139,8 +147,9 @@ def RDFConverter(ds, output_file):
         if not records['seqid'] in chromosome_list:
             genome_buffer = ""
             chromosome_list.append(records['seqid'])
-            if 'Os|Chr' in records['seqid']:
-                genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp +re.sub('Os|Chr', '', records['seqid']) + ">\n"
+            chromosome_nb = getChromosomeNumber(records['seqid'])
+            if 'Chr' in records['seqid']:
+                genome_buffer += "<" + chromosome_uri + taxon_id +"/"+ ssp + chromosome_nb+ ">\n"
                 genome_buffer += "\t" +  obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
                 genome_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" + "\"Reference-" + source_project + "\" ;\n"
@@ -148,7 +157,7 @@ def RDFConverter(ds, output_file):
                 genome_buffer = re.sub(' ;$', ' .\n\n', genome_buffer)
                 rdf_writer.write(genome_buffer)
             else:
-                genome_buffer += "<" + chromosome_uri + taxon_id + "/" + ssp + records['seqid'] + ">\n"
+                genome_buffer += "<" + chromosome_uri + taxon_id + "/" + ssp + chromosome_nb + ">\n"
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + obo_ns + taxon_id + " ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Chromosome" + " ;\n"
                 genome_buffer += "\t" + base_vocab_ns + "inAssembly" + "\t" + "\"Reference-" + source_project + "\" ;\n"
@@ -174,11 +183,11 @@ def RDFConverter(ds, output_file):
                     genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 genome_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                                 + re.sub('Os|Chr', '', records['seqid']) + ":" + \
+                                 + chromosome_nb + ":" + \
                                  str(records['start']) + "-" + str(records['end']) + ":" + \
                                  strand + "> ;\n"
                 genome_buffer = re.sub(' ;$', ' .\n', genome_buffer)
-                genome_buffer += getFaldoRegion(taxon_id, ssp, records['seqid'], records['start'], records['end'],
+                genome_buffer += getFaldoRegion(taxon_id, ssp, chromosome_nb, records['start'], records['end'],
                                                 records['strand'])
                 rdf_writer.write(genome_buffer)
         # filtering for mRNA
@@ -216,11 +225,11 @@ def RDFConverter(ds, output_file):
                                              re.sub(':', '_', terms) + " ;\n"
                                 go_list.append(terms)
                 genome_buffer += "\t" + faldo_ns + "location" + "\t\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
-                                 + re.sub('Os|Chr', '', records['seqid']) + ":" + \
+                                 + chromosome_nb + ":" + \
                                  str(records['start']) + "-" + str(records['end']) + ":" + \
                                  strand + "> ;\n"
                 genome_buffer = re.sub(' ;$', ' .\n', genome_buffer)
-                genome_buffer += getFaldoRegion(taxon_id, ssp, records['seqid'],records['start'],records['end'],records['strand'])
+                genome_buffer += getFaldoRegion(taxon_id, ssp, chromosome_nb,records['start'],records['end'],records['strand'])
                 rdf_writer.write(genome_buffer)
 
         if records['type'] == "polypeptide":
@@ -249,11 +258,11 @@ def RDFConverter(ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_aus_N22.sample.gff3'
-path_output = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_aus_N22.ttl' # The output
+path = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.gff3'
+path_output = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
-ds = parseGFF3(path)   # The parsing file withe tropGeneParser()
+ds = parseGFF3(path)   # The parsing file
 pp.pprint(ds)    # For to see in teminal the parsing
 
 #os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
