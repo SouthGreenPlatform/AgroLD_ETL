@@ -34,6 +34,9 @@ __author__  = "larmande"
 
 
 def getStrandValue(strandVar):
+    '''
+    returns the formated value of strand + predicate
+    '''
     if strandVar == "-":
         strandVar = "-1"
         positionVar = "ReverseStrandPosition"
@@ -43,6 +46,10 @@ def getStrandValue(strandVar):
     return (strandVar,positionVar)
 
 def getFaldoRegion(taxon_id,ssp, seqid,start,end,strand):
+    '''
+    input taxon_if, sub-species name, Chromomose ID, Start, end, strand
+    returns a formated block of Faldo region, positions
+    '''
     (strand, position) = getStrandValue(strand)
     strand = str(strand)
     genome_buffer =''
@@ -86,13 +93,18 @@ def getFaldoRegion(taxon_id,ssp, seqid,start,end,strand):
     genome_buffer += "\t" + faldo_ns + "reference" + "\t" + "<" + chromosome_uri + taxon_id +"/"+ ssp \
                      +  seqid + "> .\n\n"
     return genome_buffer
+
 def getChromosomeNumber(chrString):
+    '''
+    returns the formated chromosome number without Chr string or others
+    '''
     if 'Chr' in chrString:
         chromosome_nb = re.sub('Chr', '', chrString)
         chromosome_nb = re.sub('^0', '', chromosome_nb)
     else:
         chromosome_nb = re.sub('^0', '',chrString)
     return chromosome_nb
+
 def RDFConverter(ds, output_file):
     os_japonica_buffer = ''  # initilised the buffer at zero
     number_match_part_sbgi = 0
