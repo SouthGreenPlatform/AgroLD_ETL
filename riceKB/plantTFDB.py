@@ -40,7 +40,7 @@ def RDFConverter(ds, output_file):
     rdf_writer = open(output_file, "w")
     gene_list = list()
     mRNA_list = list()
-    taxon_id = "39947"
+    taxon_id = "3983"
 
     print("************* RDF conversion begins***********\n")
     rdf_writer.write(str(getRDFHeaders()))
@@ -68,14 +68,14 @@ def RDFConverter(ds, output_file):
         rdf_writer.write(buffer)
         print(buffer)
 
-    print("*************** UniProt RDF conversion completed ************\n")
+    print("*************** PlantTFDB RDF conversion completed ************\n")
 
 
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/workspace2015/datasets/Osj_TF_list.txt'
-path_output = '/Users/plarmande/workspace2015/datasets/Osj_TF_list.ttl' # The output
+path = '/Users/plarmande/workspace2015/datasets/Mes_TF_list.txt'
+path_output = '/Users/plarmande/workspace2015/datasets/Mes_TF_list.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = geneParser(path)   # The parsing file
