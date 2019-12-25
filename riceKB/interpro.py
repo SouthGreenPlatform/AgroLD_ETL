@@ -14,10 +14,10 @@ The interpro module is created as part of the Rice Knowledge Base project.
 This module contains Parsers, RDF converters and generic functions for handling interpro data
 It runs with ParentChildTreeFile.txt file downloaded from EBI interpro website
 
-1 - set up the file input argument
+1 - set up the file input arguments "path" for the input file and "path_output" for the output file
 
 2 - run the program 
-ModeleRDF(ds, path_output)
+fileParser(path,path_output)
 
 @author: larmande
 '''
