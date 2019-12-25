@@ -34,11 +34,13 @@ Flanking_region	Flanking region	Class	SO_0000239	exact match
 miRNA_primary_transcript	miRNA_primary_transcript	Class	SO_0000647	exact match
 miRNA	miRNA	Class	SO_0000276	exact match
 Protein_Family	Protein family	Class	OBI_0000251	exact match
+Trancription_Factor	Trancription_Factor	Class	Protein_Family	SubClassOf
 ## Protein_complex	Protein complex	Class
 Population	Population	Class	OBI_0000181	exact match
 Map_Feature	Map feature	Class	data_1865	exact match
 Study	Study	Class	OBI_0000073	exact match
 Germplasm	Germplasm	Class	CO_715:0000225	exact match
+Domain	Domain	Class
 
 ##################
 # ObjectProperty #
@@ -75,6 +77,7 @@ part_of	part of	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
 ## partOf	partOf	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
 is_member_of	is member of	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
 ## isMemberOf	isMemberOf	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
+## hasMember	hasMember	ObjectProperty	RO_0002351	exact match (RO_0002351:has member)
 is_orthologous_to	is orthologous to	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
 ## isOrthologousTo	isOrthologousTo	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
 is_paralogous_to	is paralogous to	ObjectProperty	SIO_000630	exact match (SIO_000630:is paralogous to)
@@ -87,6 +90,7 @@ inSchemaNumber	inSchemaNumber	ObjectProperty
 isTE	isTE	ObjectProperty
 isExpressed	isExpressed	ObjectProperty
 isRepresentative	isRepresentative	ObjectProperty
+interactsWith	interacts with	RO_0002434	exact match (RO_0002434:interacts with)
 ####################
 # DataTypeProperty #
 ####################
