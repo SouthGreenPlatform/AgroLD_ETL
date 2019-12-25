@@ -102,3 +102,4 @@ def getRDFHeaders():
     headersBuffer += pr + "\t" + faldo_ns + "<" + faldo + "> .\n"
     # Ajout du prefix pour la realese des donnees
     headersBuffer += pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n"
+    return headersBuffer
