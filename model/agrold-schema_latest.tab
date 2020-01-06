@@ -91,6 +91,9 @@ isTE	isTE	ObjectProperty
 isExpressed	isExpressed	ObjectProperty
 isRepresentative	isRepresentative	ObjectProperty
 interactsWith	interacts with	RO_0002434	exact match (RO_0002434:interacts with)
+proteinProteinInteraction	protein-protein interaction	INO_0000311	exact match (INO_0000311:protein-protein interaction)
+functionallyRelatedTo	functionally related to	RO_0002328	exact match (RO_0002328:functionally related to)
+INO_0000231	co-expression	INO_0000231
 ####################
 # DataTypeProperty #
 ####################
