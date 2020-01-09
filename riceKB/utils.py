@@ -93,6 +93,7 @@ def getRDFHeaders():
     headersBuffer += pr + "\t" + xsd_ns + "<" + xsd + "> .\n"
     headersBuffer += pr + "\t" + owl_ns + "<" + owl_uri + "> .\n"
     headersBuffer += pr + "\t" + dc_ns + "<" + dc_uri + "> .\n"
+    headersBuffer += pr + "\t" + dcterms_ns + "<" + dcterms_uri + "> .\n"
     headersBuffer += pr + "\t" + skos_ns + "<" + skos + "> .\n"
     headersBuffer += pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n"
     headersBuffer += pr + "\t" + obo_ns + "<" + obo_uri + "> .\n"
