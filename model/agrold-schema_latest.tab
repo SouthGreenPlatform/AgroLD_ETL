@@ -82,6 +82,7 @@ is_orthologous_to	is orthologous to	ObjectProperty	SIO_000558	exact match (SIO_0
 ## isOrthologousTo	isOrthologousTo	ObjectProperty	SIO_000558	exact match (SIO_000558:is orthologous to)
 is_paralogous_to	is paralogous to	ObjectProperty	SIO_000630	exact match (SIO_000630:is paralogous to)
 ## isParalogousTo	isParalogousTo	ObjectProperty	SIO_000630	exact match (SIO_000630:is paralogous to)
+homologous	homologous	ObjectProperty	SO_0000857	exact match (SO_0000857:homologous)
 derives_from	derives from	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
 ## derivesFrom	derivesFrom	ObjectProperty	RO_0001000	exact match (RO_0001000:derives from)
 contains	contains	ObjectProperty	RO_0002524	exact match (RO_0002524:contains)
