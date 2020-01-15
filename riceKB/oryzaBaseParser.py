@@ -49,6 +49,7 @@ gramene_pattern = re.compile(r'^GR\:\d{7}$')
 prot_pattern = re.compile(r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
 def oryzaBaseParser(input_file):
     array = pd.read_csv(input_file, sep='\t', delimiter=None, dtype='str', skip_blank_lines=True)
+    array.fillna('', inplace=True)
     oryGene_ds = dict()
     #fileHandle = open(input_file, 'r')
     #lines  = fileHandle.readlines()
@@ -58,7 +59,7 @@ def oryzaBaseParser(input_file):
         # current_line = re.sub('\n$', '', current_line)
         #current_line = re.sub('\\r|\\n', '', current_line)
         #records = current_line.split('\t')
-        print(records)
+
         oryGeneID = records[0]
 #        pp.pprint(records)
 #        print oryGeneID + "\t" + records[6] + "\t" + records[7] + "\t" + records[8]
@@ -169,24 +170,30 @@ def oryzaBaseRDF(infile, output_file):
             if item == 'Reco_symbol':
                 if orygene_ds[oryid][item]:
                     label =  re.sub('^\s+|^\t+|\s+$', '', orygene_ds[oryid][item])
-                    ttl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % re.sub('\"|\'', '', label ) + " ;\n"
-                    ttl_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % re.sub('\"|\'', '', label) + " ;\n"
+                    label = re.sub('\"|\'','', label)
+                    label = re.sub(r"\\",'', label)
+                    ttl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % ( label ) + " ;\n"
+                    ttl_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % ( label) + " ;\n"
             if item == 'Reco_name':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' %  re.sub('\"|\'', '',(orygene_ds[oryid][item]))  + " ;\n"
+                    description = re.sub('\"|\'','', (orygene_ds[oryid][item]))
+                    description = re.sub(r"\\",'', description)
+                    ttl_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' %  (description)  + " ;\n"
             ## TODO : fix error - sometimes list of name separate by , check how to turn one name and alternate names, variable have "" so remove them
             if item == 'Name':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' %  re.sub('\"|\'', '',(orygene_ds[oryid][item])) + " ;\n"
+                    altlabel = re.sub('\"|\'','', (orygene_ds[oryid][item]))
+                    altlabel = re.sub(r"\\",'', altlabel)
+                    ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' %  (altlabel) + " ;\n"
             if item == 'Explanation':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + rdfs_ns + "comment" + "\t" + '"%s"' %  re.sub('\"|\'', '',(orygene_ds[oryid][item])) + " ;\n"
-                    m = re.search(tigr_pattern, orygene_ds[oryid][item])
-                    if m:
-                        ttl_buffer += "\t" + rdfs_ns + "sameAs" + "\t" + res_ns + m + " ;\n"
+                    #bad_chars = '|'.join(['\"', '\'', '\\'])
+                    comment = re.sub('\"|\'','', orygene_ds[oryid][item])
+                    comment = re.sub(r"\\",'', comment)
+                    ttl_buffer += "\t" + rdfs_ns + "comment" + "\t" + '"%s"' %  comment + " ;\n"
             if item == 'Chromosome':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + base_vocab_ns + "chromosome" + "\t" + '"%s"' % re.sub('\"|\'', '',(orygene_ds[oryid][item]))  + " ;\n"
+                    ttl_buffer += "\t" + base_vocab_ns + "chromosome" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item])))  + " ;\n"
             # if item == 'Alleles':
             #     if orygene_ds[oryid][item]:
             #         for allele in orygene_ds[oryid][item]:
@@ -194,10 +201,10 @@ def oryzaBaseRDF(infile, output_file):
             #             ttl_buffer += "\t" + base_vocab_ns + "has_allele" + "\t" + '"%s"' % (allele) + " ;\n"
             if item == 'Mutant':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + base_vocab_ns + "has_mutant" + "\t" + '"%s"' %  re.sub('\"|\'', '',(orygene_ds[oryid][item]))  + " ;\n"
+                    ttl_buffer += "\t" + base_vocab_ns + "has_mutant" + "\t" + '"%s"' %  re.sub('\"|\'', '',(str(orygene_ds[oryid][item])))  + " ;\n"
             if item == 'Arm':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + base_vocab_ns + "has_chromosome_arm" + "\t" + '"%s"' % re.sub('\"|\'', '',(orygene_ds[oryid][item])) + " ;\n"
+                    ttl_buffer += "\t" + base_vocab_ns + "has_chromosome_arm" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item]))) + " ;\n"
             if item == 'Locus':
                 if orygene_ds[oryid][item]:
                     ttl_buffer += "\t" + base_vocab_ns + "has_locus" + "\t" + '"%s"' % (orygene_ds[oryid][item]) + " ;\n"                    
@@ -208,14 +215,15 @@ def oryzaBaseRDF(infile, output_file):
                         if symbol is not None:
                             symbol = re.sub(';', '/',(symbol))
                             symbol = re.sub('^\s+|^\t+|\s+|\s+$', '', symbol)
+                            symbol = re.sub(r"\\", '', symbol)
                             ttl_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % re.sub('\"|\'', '', symbol )+ " ;\n"
             if item == 'Alt_names':
                 if orygene_ds[oryid][item]:
                     for alt_name in orygene_ds[oryid][item]:
-                        alt_name = re.sub('^\s+|^\t+|\s+$', '', alt_name)
+                        alt_name = re.sub('^\s+|^\t+|\s+|\s+$', '', alt_name)
                         alt_name = re.sub('\"+', '', alt_name)
-                        # alt_name = re.sub("\\", '', alt_name)
-                        ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % re.sub('\"|\'', '',(alt_name)) + " ;\n"
+                        alt_name = re.sub(r"\\",'', alt_name)
+                        ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (alt_name) + " ;\n"
             if item == 'RAP_id':
                 if orygene_ds[oryid][item]:
                     for rap_id in orygene_ds[oryid][item]:
@@ -226,7 +234,7 @@ def oryzaBaseRDF(infile, output_file):
                 if orygene_ds[oryid][item]:
                     for msu_id in orygene_ds[oryid][item]:
                         if re.match(tigr_pattern, msu_id):
-                            ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + msu_id + re.sub('\s+', '',
+                            ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + res_ns + re.sub('\s+', '',
                                                                                                msu_id) + " ;\n"
             if item == 'Gramene_id':
                 if orygene_ds[oryid][item]:
@@ -237,7 +245,7 @@ def oryzaBaseRDF(infile, output_file):
             if item == 'Protein_name':
                 if orygene_ds[oryid][item]:
                     if re.match(prot_pattern, orygene_ds[oryid][item]):
-                        ttl_buffer += "\t" + base_vocab_ns + "has_protein_name" + "\t" + '"%s"' % re.sub('\"|\'',(orygene_ds[oryid][item])) + " ;\n"
+                        ttl_buffer += "\t" + base_vocab_ns + "has_protein_name" + "\t" + '"%s"' % re.sub('\"|\'',(str(orygene_ds[oryid][item]))) + " ;\n"
             if item == 'Trait_class':
                 if orygene_ds[oryid][item]:
                     for traits in orygene_ds[oryid][item]:
@@ -280,6 +288,7 @@ def oryzaBaseRDF(infile, output_file):
             
         ttl_buffer = re.sub(' ;$', ' .\n', ttl_buffer)
         RDF_validation(ttl_buffer,ttl_handle,oryid)
+        #ttl_handle.write(ttl_buffer)
 
     ttl_handle.close()
     print("************* OryzaBase RDF completed ************!\n\n")
@@ -289,21 +298,12 @@ def oryzaBaseRDF(infile, output_file):
 def RDF_validation(ttl_buffer,ttl_handle,oryid):
 
     try:
-        temp_file = '/Users/plarmande/Downloads/temp_graph.ttl'
+        temp_file = '/Users/plarmande/Downloads/tmp/temp_graph.ttl'
         try_handle = open(temp_file, "w")
-        try_handle.write(base + "\t" + "<" + base_uri + "> .\n")
-        try_handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
-        try_handle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
-        try_handle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
-        try_handle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
-        try_handle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-        try_handle.write(pr + "\t" + gr_g_ns + "<" + gramene_gene + "> .\n")
-        try_handle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-        try_handle.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n\n")  # tigr_g_ns tigr_g_uri
+        try_handle.write(str(getRDFHeaders()))
         try_handle.write(ttl_buffer)
         try_handle.close()
         #output_file = '/Users/plarmande/Downloads/oryzabase.nt'
-
         g = Graph()
         g.parse(temp_file, format="turtle")
         # output = open(output_file, "w")
@@ -312,16 +312,9 @@ def RDF_validation(ttl_buffer,ttl_handle,oryid):
         ttl_handle.write(ttl_buffer)
     except:
         print("Unexpected error:", sys.exc_info()[0])
-        temp = '/Users/plarmande/Downloads/temp_graph'+ oryid +'.ttl'
+        temp = '/Users/plarmande/Downloads/tmp/temp_graph'+ oryid +'.ttl'
         handle = open(temp, "w")
-        handle.write(base + "\t" + "<" + base_uri + "> .\n")
-        handle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
-        handle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
-        handle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
-        handle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-        handle.write(pr + "\t" + gr_g_ns + "<" + gramene_gene + "> .\n")
-        handle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-        handle.write(pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n\n")  # tigr_g_ns tigr_g_uri
+        handle.write(str(getRDFHeaders()))
         handle.write(ttl_buffer)
         pass
 
