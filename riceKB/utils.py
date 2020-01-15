@@ -104,6 +104,7 @@ def getRDFHeaders():
     headersBuffer += pr + "\t" + res_ns + "<" + resource + "> .\n"
     headersBuffer += pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n"
     headersBuffer += pr + "\t" + oryzabase_ns + "<" + oryzabase_uri + "> .\n"
+    headersBuffer += pr + "\t" + gr_g_ns + "<" + gramene_gene + "> .\n"
     # Ajout du prefix pour la realese des donnees
     headersBuffer += pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n"
     return headersBuffer
