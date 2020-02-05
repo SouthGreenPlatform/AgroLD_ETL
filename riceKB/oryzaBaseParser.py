@@ -236,6 +236,7 @@ def oryzaBaseRDF(infile, output_file):
                         if re.match(tigr_pattern, msu_id):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + res_ns + re.sub('\s+', '',
                                                                                                msu_id) + " ;\n"
+                            ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', msu_id) + " ;\n"
             if item == 'Gramene_id':
                 if orygene_ds[oryid][item]:
                     for gr_id in orygene_ds[oryid][item]:
@@ -245,7 +246,7 @@ def oryzaBaseRDF(infile, output_file):
             if item == 'Protein_name':
                 if orygene_ds[oryid][item]:
                     if re.match(prot_pattern, orygene_ds[oryid][item]):
-                        ttl_buffer += "\t" + base_vocab_ns + "has_protein_name" + "\t" + '"%s"' % re.sub('\"|\'',(str(orygene_ds[oryid][item]))) + " ;\n"
+                        ttl_buffer += "\t" + base_vocab_ns + "has_protein_name" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item]))) + " ;\n"
             if item == 'Trait_class':
                 if orygene_ds[oryid][item]:
                     for traits in orygene_ds[oryid][item]:
