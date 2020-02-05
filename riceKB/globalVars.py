@@ -20,7 +20,8 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     plant_dev_term, plant_anatomy_term,germplasm_term, co_uri, co_ns, swo_uri, swo_ns, biocyc_pw_term, biocyc_react_term,\
     string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
     string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
-    pubmed_pattern, ncbi_pattern, interpro_pattern, pfam_pattern, base_resource_uri, base_resource_ns
+    pubmed_pattern, ncbi_pattern, interpro_pattern, pfam_pattern, ena_embl_uri, ena_embl_ns,\
+    base_resource_uri, base_resource_ns
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -273,8 +274,8 @@ RiceNetDB_protein_ns = 'ricenetdb_protein:'
 chromosome_uri = 'http://www.southgreen.fr/agrold/chromosome/'
 chromosome_ns = 'chromosome:'
 
-embl_uri = 'http://identifiers.org/ena.embl/'
-embl_ns = 'ena.embl:'
+ena_embl_uri = 'http://identifiers.org/ena.embl/'
+ena_embl_ns = 'ena.embl:'
 
 marker_uri = 'http://www.southgreen.fr/agrold/orygenesdb.marker/'
 marker_ns = 'marker:'
