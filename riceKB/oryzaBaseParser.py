@@ -152,6 +152,7 @@ def oryzaBaseRDF(infile, output_file):
     print("*************************************\n\n")
     
     ttl_handle = open(output_file, "w")
+    pub_handle = open(pub_dict,'w')
     ttl_buffer = ''
     
     print("************* OryzaBase RDF conversion begins***********\n")
@@ -161,10 +162,10 @@ def oryzaBaseRDF(infile, output_file):
 #    pp.pprint(orygene_ds)
     for oryid in orygene_ds:
         ttl_buffer = ''
-        
+        pub_buffer = ''
         ttl_buffer += oryzabase_ns + oryid + "\n"
         ttl_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-        ttl_buffer += "\t" + dc_ns + "identifier" + "\t" + '"%s"' % (oryid) + " ;\n"
+        ttl_buffer += "\t" + dcterms_ns + "identifier" + "\t" + '"%s"' % (oryid) + " ;\n"
         # ttl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
         for item in orygene_ds[oryid]:
             if item == 'Reco_symbol':
@@ -174,17 +175,20 @@ def oryzaBaseRDF(infile, output_file):
                     label = re.sub(r"\\",'', label)
                     ttl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % ( label ) + " ;\n"
                     ttl_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % ( label) + " ;\n"
+                    pub_buffer += label.lower()  + "\t" + "GENE:Gene or Genome\n"
             if item == 'Reco_name':
                 if orygene_ds[oryid][item]:
                     description = re.sub('\"|\'','', (orygene_ds[oryid][item]))
                     description = re.sub(r"\\",'', description)
                     ttl_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' %  (description)  + " ;\n"
+                    pub_buffer += description.lower() + "\t" + "GENE:Gene or Genome\n"
             ## TODO : fix error - sometimes list of name separate by , check how to turn one name and alternate names, variable have "" so remove them
             if item == 'Name':
                 if orygene_ds[oryid][item]:
                     altlabel = re.sub('\"|\'','', (orygene_ds[oryid][item]))
                     altlabel = re.sub(r"\\",'', altlabel)
                     ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' %  (altlabel) + " ;\n"
+                    pub_buffer += altlabel.lower() + "\t" + "GENE:Gene or Genome\n"
             if item == 'Explanation':
                 if orygene_ds[oryid][item]:
                     #bad_chars = '|'.join(['\"', '\'', '\\'])
@@ -201,35 +205,40 @@ def oryzaBaseRDF(infile, output_file):
             #             ttl_buffer += "\t" + base_vocab_ns + "has_allele" + "\t" + '"%s"' % (allele) + " ;\n"
             if item == 'Mutant':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + base_vocab_ns + "has_mutant" + "\t" + '"%s"' %  re.sub('\"|\'', '',(str(orygene_ds[oryid][item])))  + " ;\n"
+                    ttl_buffer += "\t" + base_vocab_ns + "hasMutant" + "\t" + '"%s"' %  re.sub('\"|\'', '',(str(orygene_ds[oryid][item])))  + " ;\n"
             if item == 'Arm':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + base_vocab_ns + "has_chromosome_arm" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item]))) + " ;\n"
+                    ttl_buffer += "\t" + base_vocab_ns + "hasChromosomeArm" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item]))) + " ;\n"
             if item == 'Locus':
                 if orygene_ds[oryid][item]:
-                    ttl_buffer += "\t" + base_vocab_ns + "has_locus" + "\t" + '"%s"' % (orygene_ds[oryid][item]) + " ;\n"                    
+                    ttl_buffer += "\t" + base_vocab_ns + "hasLocus" + "\t" + '"%s"' % (orygene_ds[oryid][item]) + " ;\n"
             ## TODO : fix empty fields "" test if value is not null ##
             if item == 'Symbols':
                 if orygene_ds[oryid][item]:
                     for symbol in orygene_ds[oryid][item]:
                         if symbol is not None:
                             symbol = re.sub(';', '/',(symbol))
-                            symbol = re.sub('^\s+|^\t+|\s+|\s+$', '', symbol)
+                            symbol = re.sub('^\s+|^\t+|\n+|\s+$', '', symbol)
                             symbol = re.sub(r"\\", '', symbol)
-                            ttl_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % re.sub('\"|\'', '', symbol )+ " ;\n"
+                            if symbol != '_':
+                                ttl_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % re.sub('\"|\'', '', symbol )+ " ;\n"
+                                pub_buffer += symbol.lower() + "\t" + "GENE:Gene or Genome\n"
             if item == 'Alt_names':
                 if orygene_ds[oryid][item]:
                     for alt_name in orygene_ds[oryid][item]:
-                        alt_name = re.sub('^\s+|^\t+|\s+|\s+$', '', alt_name)
+                        alt_name = re.sub('^\s+|^\t+|\n+|\s+$', '', alt_name)
                         alt_name = re.sub('\"+', '', alt_name)
                         alt_name = re.sub(r"\\",'', alt_name)
-                        ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (alt_name) + " ;\n"
+                        if alt_name != '_':
+                            ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (alt_name) + " ;\n"
+                            pub_buffer += alt_name.lower() + "\t" + "GENE:Gene or Genome\n"
             if item == 'RAP_id':
                 if orygene_ds[oryid][item]:
                     for rap_id in orygene_ds[oryid][item]:
                         if re.match(rap_pattern, rap_id):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + re.sub('\s+', '', rap_id)  + " ;\n"
                             ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', rap_id)  + " ;\n"
+                            pub_buffer += rap_id + "\t" + "GENE:Gene or Genome\n"
             if item == 'MSU_id':
                 if orygene_ds[oryid][item]:
                     for msu_id in orygene_ds[oryid][item]:
@@ -237,6 +246,7 @@ def oryzaBaseRDF(infile, output_file):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + res_ns + re.sub('\s+', '',
                                                                                                msu_id) + " ;\n"
                             ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', msu_id) + " ;\n"
+                            pub_buffer += msu_id + "\t" + "GENE:Gene or Genome\n"
             if item == 'Gramene_id':
                 if orygene_ds[oryid][item]:
                     for gr_id in orygene_ds[oryid][item]:
@@ -246,13 +256,13 @@ def oryzaBaseRDF(infile, output_file):
             if item == 'Protein_name':
                 if orygene_ds[oryid][item]:
                     if re.match(prot_pattern, orygene_ds[oryid][item]):
-                        ttl_buffer += "\t" + base_vocab_ns + "has_protein_name" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item]))) + " ;\n"
+                        ttl_buffer += "\t" + sio_ns + "SIO_010078" + "\t" + '"%s"' % re.sub('\"|\'', '',(str(orygene_ds[oryid][item]))) + " ;\n" # encodes
             if item == 'Trait_class':
                 if orygene_ds[oryid][item]:
                     for traits in orygene_ds[oryid][item]:
                          for trait in traits.split('-'):
                             trait = re.sub('^\s+|\s+$', '', trait)
-                            ttl_buffer += "\t" + base_vocab_ns + "has_trait_class" + "\t" + '"%s"' %  re.sub('\"|\'', '',(trait))+ " ;\n"
+                            ttl_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + '"%s"' %  re.sub('\"|\'', '',(trait))+ " ;\n"
             if item == 'TO_id':
                 if orygene_ds[oryid][item]:
                     for to_term in orygene_ds[oryid][item]:
@@ -260,7 +270,7 @@ def oryzaBaseRDF(infile, output_file):
                             to_id = re.sub(':', '_', to_id)
                             to_id = re.sub('^\s|\s$', '', to_id)
                             if re.match(r"^TO_[0-9]{7}$", to_id):
-                                ttl_buffer += "\t" + base_vocab_ns + "has_trait" + "\t" + obo_ns + to_id + " ;\n"
+                                ttl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + obo_ns + to_id + " ;\n"
 
                         # if re.match(r"^TO_[0-9]{7} or TO_[0-9]{7}", to_term):
                         #     TO_oryza = to_term.split(' or ')
@@ -277,7 +287,7 @@ def oryzaBaseRDF(infile, output_file):
                             go_id = re.sub(':', '_', go_id)
                             go_id = re.sub('\s', '', go_id)
                             if re.match(r"^GO_[0-9]{7}$", go_id):
-                                ttl_buffer += "\t" + base_vocab_ns + "go_term" + "\t" + obo_ns + go_id + " ;\n"
+                                ttl_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns + go_id + " ;\n"
             if item == 'PO_id':
                 if orygene_ds[oryid][item]:
                     for po_term in orygene_ds[oryid][item]:
@@ -285,9 +295,10 @@ def oryzaBaseRDF(infile, output_file):
                             po_id = re.sub(':', '_', po_id)
                             po_id = re.sub('\s', '', po_id)
                             if re.match(r"^TO_[0-9]{7} or TO_[0-9]{7}", po_id):
-                                ttl_buffer += "\t" + base_vocab_ns + "expressed_in" + "\t" + obo_ns + po_id + " ;\n"
+                                ttl_buffer += "\t" + obo_ns + "RO_0002206" + "\t" + obo_ns + po_id + " ;\n" # expressed in
             
         ttl_buffer = re.sub(' ;$', ' .\n', ttl_buffer)
+        pub_handle.write(pub_buffer)
         RDF_validation(ttl_buffer,ttl_handle,oryid)
         #ttl_handle.write(ttl_buffer)
 
@@ -323,7 +334,7 @@ oryzabase_file = '/Users/plarmande/workspace2015/datasets/OryzabaseGeneListEn_20
 
 
 oryzaBase_output = '/Users/plarmande/workspace2015/datasets/OryzabaseGeneListEn_20200114010108.ttl'
-
+pub_dict = '/Users/plarmande/workspace2015/datasets/pub_dictionnary.txt'
 oryzaBaseRDF(oryzabase_file, oryzaBase_output)
 
 #
