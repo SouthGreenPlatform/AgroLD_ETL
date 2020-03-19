@@ -191,8 +191,8 @@ def sniplayModel(sniplay_ds):
             if chromosome < 10:
                 sniplay_buffer += chromosome_ns + "0" + str(chromosome) + "\n"
             else:sniplay_buffer += chromosome_ns + str(chromosome) + "\n"
-            sniplay_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            sniplay_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000430" + " . \n"
+            sniplay_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Chromosome" + " ;\n"
+            #sniplay_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000430" + " . \n"
             print(sniplay_buffer)
             output.write(sniplay_buffer)
 
@@ -203,8 +203,8 @@ def sniplayModel(sniplay_ds):
                 gene_list.append(intergenic)
                 sniplay_buffer = ''
                 sniplay_buffer += sniplay_gene_integenic_ns + sniplay_ds['chrom'] +"_" + sniplay_ds['pos'] + "_intergenic" + " \n"
-                sniplay_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-                sniplay_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
+                sniplay_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Gene" + " ;\n"
+                #sniplay_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
                 if sniplay_ds['feature'] != "#":
                     sniplay_buffer += "\t" + base_vocab_ns + "has_feature" + "\t" + sniplay_ds['feature'] + " ;\n"
                 sniplay_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + sniplay_ds['pos'] + "\" ;\n"
@@ -246,8 +246,8 @@ def sniplayModel(sniplay_ds):
             sniplay_buffer = ''
             gene_list.append(sniplay_ds['gene'])
             sniplay_buffer += sniplay_gene_ns + re.sub(':', '', sniplay_ds['gene']) + " \n"
-            sniplay_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
-            sniplay_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
+            sniplay_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Gene" + " ;\n"
+            #sniplay_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000704" + " ;\n"
             if sniplay_ds['feature'] != "#":
                 sniplay_buffer += "\t" + base_vocab_ns + "has_feature" + "\t" + " \"" +sniplay_ds['feature'] + "\" ;\n"
             sniplay_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + " \"" + sniplay_ds['pos'] + "\" ;\n"
