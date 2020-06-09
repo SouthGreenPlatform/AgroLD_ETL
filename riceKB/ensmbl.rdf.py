@@ -26,6 +26,8 @@ for now its all after http://www.southgreen.fr/agrold/resource/
 
 __author__  = "larmande"
 
+ROOT_DIR = ''
+file_input = ''
 prefixes = {}
 patern1 = "^<http://rdf.ebi.ac.uk/resource/ensembl/>"
 def ensemblParser(files, type):
@@ -151,9 +153,13 @@ def ensemblParser(files, type):
         print(files)
 
 
+if len(sys.argv):
+    ROOT_DIR = sys.argv[0]
+    file_input = sys.argv[1]
+else:
+    ROOT_DIR = '/Volumes/LaCie/AGROLD/data_update_2019/ensembl/'
+    file_input = 'zea_mays_xrefs.ttl'
 
-ROOT_DIR = '/Volumes/LaCie/AGROLD/data_update_2019/ensembl/'
-file_input = 'zea_mays_xrefs.ttl'
 ensembl_files =  os.path.join(ROOT_DIR + file_input)
 ensembl_out = os.path.join(ROOT_DIR + 'agrold.' + file_input)
 
