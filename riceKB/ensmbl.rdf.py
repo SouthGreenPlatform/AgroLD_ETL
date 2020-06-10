@@ -170,9 +170,9 @@ ensembl_out = os.path.join(ROOT_DIR + 'agrold.' + file_input)
 pp = pprint.PrettyPrinter(indent=4)
 
 if (re.search(r'xrefs', ensembl_files)):
-    ensemblParser(ensembl_files,type='xref') # type = 'xref' or none
+    ensemblParser(ensembl_files,type='xref') # type = 'xref' or None
 else:
-    ensemblParser(ensembl_files)
+    ensemblParser(ensembl_files,type=None)
 
 print("***************** Esembl RDF data ********************\n")
 
