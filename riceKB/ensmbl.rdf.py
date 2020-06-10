@@ -154,9 +154,11 @@ def ensemblParser(files, type):
 
 
 if len(sys.argv):
-    file_input = sys.argv[0]
-    ROOT_DIR = os.path.dirname(file_input)
-    file_input = os.path.basename(file_input)
+    filepath = sys.argv[0]
+    ROOT_DIR = os.path.dirname(filepath)
+    print(ROOT_DIR)
+    file_input = os.path.basename(filepath)
+    print(file_input)
 else:
     ROOT_DIR = '/Volumes/LaCie/AGROLD/data_update_2019/ensembl/'
     file_input = 'zea_mays_xrefs.ttl'
@@ -167,7 +169,11 @@ ensembl_out = os.path.join(ROOT_DIR + 'agrold.' + file_input)
 
 pp = pprint.PrettyPrinter(indent=4)
 
-ensemblParser(ensembl_files,type='xref') # type = 'xref' or none
+if (re.search(r'xrefs', ensembl_files)):
+    ensemblParser(ensembl_files,type='xref') # type = 'xref' or none
+else:
+    ensemblParser(ensembl_files)
+
 print("***************** Esembl RDF data ********************\n")
 
 print("********************************************************\n\n")
