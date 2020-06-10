@@ -154,7 +154,7 @@ def ensemblParser(files, type):
 
 
 if len(sys.argv):
-    filepath = sys.argv[0]
+    filepath = sys.argv[1]
     ROOT_DIR = os.path.dirname(filepath)
     print(ROOT_DIR)
     file_input = os.path.basename(filepath)
@@ -163,8 +163,8 @@ else:
     ROOT_DIR = '/Volumes/LaCie/AGROLD/data_update_2019/ensembl/'
     file_input = 'zea_mays_xrefs.ttl'
 
-ensembl_files =  os.path.join(ROOT_DIR + file_input)
-ensembl_out = os.path.join(ROOT_DIR + 'agrold.' + file_input)
+ensembl_files =  os.path.join(ROOT_DIR + '/' + file_input)
+ensembl_out = os.path.join(ROOT_DIR + '/' + 'agrold.' + file_input)
 
 
 pp = pprint.PrettyPrinter(indent=4)
