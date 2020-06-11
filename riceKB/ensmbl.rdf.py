@@ -1,7 +1,8 @@
 from __future__ import print_function
 import sys
 #print sys.path
-from riceKB.globalVars import *
+#from riceKB.globalVars import *
+from globalVars import *
 import pprint
 import re
 import os
