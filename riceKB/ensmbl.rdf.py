@@ -67,7 +67,7 @@ def ensemblParser(files, type):
                         value = '<http://www.southgreen.fr/agrold/resource/transcript/>'
 
                     ttl_handle.write("@prefix " + prefix + ": " + value + ".\n")
-                    print("@prefix " + prefix + ": " + value + ".\n")
+                    #print("@prefix " + prefix + ": " + value + ".\n")
                 elif type == 'xref':
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl/",line):
                         line = re.sub('http://rdf\.ebi\.ac\.uk/resource/ensembl/', 'http://www.southgreen.fr/agrold/resource/', line)
@@ -147,7 +147,7 @@ def ensemblParser(files, type):
                     # in taxon = http://purl.obolibrary.org/obo/RO_0002162 ; change taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source) to http://purl.obolibrary.org/obo/RO_0002162
                     # <http://identifiers.org/ensembl/Os12t0534500-00-E1> rdf:type identifiers:ensembl
                     # rdfs:seeAlso panther: <http://purl.uniprot.org/panther/>
-                    print(line)
+                    #print(line)
                     ttl_handle.write(line)
     else:
         print("***************** File not found ********************\n")
