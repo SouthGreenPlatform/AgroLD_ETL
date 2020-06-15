@@ -39,7 +39,7 @@ def ensemblParser(files, type):
     """
 
     if(os.path.isfile(str(files))):
-        print("***************** Parsing Esembl RDF data ********************\n")
+        print("***************** Parsing Esembl RDF data in " + files + " ********************\n")
         ttl_handle = open(ensembl_out, "w")
         with open(files) as fp:
             for line in fp:

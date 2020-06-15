@@ -11,6 +11,7 @@ from riceKB.globalVars import *
 import pprint
 import re
 import os
+import sys
 from _collections import defaultdict
 
 
@@ -190,13 +191,14 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
 # up_dir = '/Volumes/LaCie/AGROLD/argoLD_project_all_data_avril_2017/data/uniport/*.dat'
 # up_dir = '/Volumes/LaCie/AGROLD/argoLD_project_all_data_avril_2017/data/uniport/*.dat'
-up_dir = '/Users/plarmande/workspace2015/AgroLD.old/test_files/uniprot/uniprot_sample.dat'
-ROOT_DIR = '/Users/plarmande/Downloads'
+#up_dir = '/Users/plarmande/workspace2015/AgroLD.old/test_files/uniprot/uniprot_sample.dat'
+#ROOT_DIR = '/Users/plarmande/Downloads'
 # upToRDF(up_dir, ROOT_DIR,'/Volumes/LaCie/AGROLD/data_update_2019/Rice_Genome_Hub/uniprot_id.txt')
-upToRDF(up_dir, ROOT_DIR, '/Users/plarmande/workspace2015/datasets/uniprot_id.txt')
+#upToRDF(up_dir, ROOT_DIR, '/Users/plarmande/workspace2015/datasets/uniprot_id.txt')
 
 # code running on bioinfo-inter
-# up_dir = ['/scratch/larmande/uniprot_trembl.dat']
-# ROOT_DIR='/scratch/larmande'
-# upToRDF(up_dir, ROOT_DIR, '/scratch/larmande/uniprot_id.txt' )
+up_dir = sys.argv.pop() # path to the uniprot dataset
+ROOT_DIR = sys.argv.pop() # path to the root folder
+uniprotid_list = sys.argv.pop() # path
+upToRDF(up_dir, ROOT_DIR, uniprotid_list )
 # os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')

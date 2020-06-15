@@ -238,7 +238,7 @@ def oryzaBaseRDF(infile, output_file):
                         if re.match(rap_pattern, rap_id):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + re.sub('\s+', '', rap_id)  + " ;\n"
                             ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', rap_id)  + " ;\n"
-                            pub_buffer += rap_id + "\t" + "GENE:Gene or Genome\n"
+                            pub_buffer += rap_id + "\t" + rapdb_gene_ns + re.sub('\s+', '', rap_id) +"\n"
             if item == 'MSU_id':
                 if orygene_ds[oryid][item]:
                     for msu_id in orygene_ds[oryid][item]:

@@ -584,13 +584,14 @@ def annotation2RDF(path, path_output):
     print("************* OryzaBase RDF conversion begins***********\n")
 
     ttl_handle = open(path_output, "w")
+    pub_handle = open(pub_dict, 'w')
 
     ttl_handle.write(str(getRDFHeaders()))
     for records in array.as_matrix(columns=None):
         taxon_id = "39947"
 
     #    pp.pprint(orygene_ds)
-
+        pub_buffer = ''
         os_japonica_buffer = ''
         os_japonica_buffer += "<"+ base_resource_uri +  "transcript/" + records[0] + ">\n"
         os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
@@ -598,7 +599,7 @@ def annotation2RDF(path, path_output):
         os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
         os_japonica_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + records[0] + "\" ;\n"
         os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + ensembl_transcript_ns + records[0] + ";\n"
-        os_japonica_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t\t" + res_ns + records[1] + " ;\n"
+        os_japonica_buffer += "\t" + obo_ns + "RO_0002202" + "\t\t" + res_ns + records[1] + " ;\n"
         os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + "\"%s" % (re.sub('\"|\'', '', str(records[2]))) + "\" ;\n"
         if records[3]:
             records[3] = re.sub('\"|\'', '', str(records[3]))
@@ -606,30 +607,35 @@ def annotation2RDF(path, path_output):
             for uni_term in term_list:
                 uni_term = re.sub('^\s+|\s+$', '', uni_term)
                 os_japonica_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (uni_term) + " ;\n"
+                pub_buffer += uni_term.lower() + "\t" + "GENE:Gene or Genome\n"
         if records[4]:
             records[4] = re.sub('\"|\'', '', str(records[4]))
             term_list = records[4].split(',')
             for uni_term in term_list:
                 uni_term = re.sub('^\s+|\s+$', '', uni_term)
                 os_japonica_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (re.sub('\"|\'', '', str(uni_term))) + " ;\n"
+                pub_buffer += uni_term.lower() + "\t" + "GENE:Gene or Genome\n"
         if records[5]:
             records[5] = re.sub('\"|\'', '', str(records[5]))
             term_list = records[5].split(',')
             for uni_term in term_list:
                 uni_term = re.sub('^\s+|\s+$', '', uni_term)
                 os_japonica_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (uni_term) + " ;\n"
+                pub_buffer += uni_term.lower() + "\t" + "GENE:Gene or Genome\n"
         if records[6]:
             records[6] = re.sub('\"|\'', '', str(records[6]))
             term_list = records[6].split(',')
             for uni_term in term_list:
                 uni_term = re.sub('^\s+|\s+$', '', uni_term)
                 os_japonica_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % (re.sub('\"|\'', '', str(uni_term))) + " ;\n"
+                pub_buffer += uni_term.lower() + "\t" + "GENE:Gene or Genome\n"
         if records[7]:
             records[7] = re.sub('\"|\'', '', str(records[7]))
             term_list = records[7].split(',')
             for uni_term in term_list:
                 uni_term = re.sub('^\s+|\s+$', '', uni_term)
                 os_japonica_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (uni_term) + " ;\n"
+                pub_buffer += uni_term.lower() + "\t" + "GENE:Gene or Genome\n"
         if records[8]:
             records[8] = re.sub('\"|\'', '', str(records[8]))
             term_list = records[8].split(',')
@@ -673,7 +679,7 @@ def annotation2RDF(path, path_output):
 
         os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
         ttl_handle.write(os_japonica_buffer)
-
+        pub_handle.write(pub_buffer)
         print(os_japonica_buffer)
 
     ttl_handle.close()
@@ -681,21 +687,21 @@ def annotation2RDF(path, path_output):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/workspace2015/datasets/IRGSP-1.0.gff'
-path_output = '/Users/plarmande/workspace2015/datasets/IRGSP-1.0.ttl' # The output
-
+path = '/Users/plarmande/workspace2015/datasets/IRGSP-1.0_representative_annotation_2019-12-17.tsv'
+path_output = '/Users/plarmande/workspace2015/datasets/IRGSP-1.0_representative_annotation_2019-12-17.ttl' # The output
+pub_dict = '/Users/plarmande/workspace2015/datasets/pub_dictionnary-rapdb.txt'
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 '''
 parse the GFF from predicted and evidence from RAPDB
 '''
-ds = parseGFF3(path)  # call the function in another package
-pp.pprint(ds)    # For to see in teminal the parsing
+#ds = parseGFF3(path)  # call the function in another package
+#pp.pprint(ds)    # For to see in teminal the parsing
 '''
 print the RDF from GFF file parsed
 '''
-rapdbModeleRDF(ds, path_output)
-#annotation2RDF(path,path_output)
+#rapdbModeleRDF(ds, path_output)
+annotation2RDF(path,path_output)
 
 
 # guideline to build resource uri
