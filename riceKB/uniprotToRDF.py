@@ -200,5 +200,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 up_dir = sys.argv.pop() # path to the uniprot dataset
 ROOT_DIR = sys.argv.pop() # path to the root folder
 uniprotid_list = sys.argv.pop() # path
-upToRDF(up_dir, ROOT_DIR, uniprotid_list )
+print("%s .... %s ... %s ..." % (up_dir,ROOT_DIR,uniprotid_list))
+upToRDF(up_dir,ROOT_DIR,uniprotid_list)
 # os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')
