@@ -7,12 +7,13 @@ Updated on Dec 4, 2019
 # TODO ajouter Prot:uri encodedBy Gene:uri
 from Bio import SwissProt
 
-from riceKB.globalVars import *
+#from riceKB.globalVars import *
+from globalVars import *
 import pprint
 import re
 import os
 import sys
-from _collections import defaultdict
+from collections import defaultdict
 
 
 def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
