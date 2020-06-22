@@ -51,21 +51,20 @@ output_writer.write(str(getRDFHeaders()))
 sparql.setReturnFormat(JSON)
 results = sparql.query().convert()
 for result in results["results"]["bindings"]:
-
-    gene_uri = "http://www.southgreen.fr/agrold/resource/" + result["symbol"]["value"]
-    sparql.setQuery("""
-        ASK WHERE { <""" +
+    if result["symbol"]["value"]:
+        gene_uri = "http://www.southgreen.fr/agrold/resource/" + result["symbol"]["value"]
+        sparql.setQuery("""
+            ASK WHERE { <""" +
                     gene_uri +
                     """> 
                     rdf:type <http://www.southgreen.fr/agrold/vocabulary/Gene>
-        }    
-    """)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    if results["boolean"]:
-        ttl_buffer = ''
-        #print("\t".join((result["protein_id"]["value"],result["label"]["value"], result["symbol"]["value"])) )
-        ttl_buffer += "<" + result["protein_id"]["value"] + ">\t" + sio_ns + "SIO_000339" + "\t<" + gene_uri + ">.\n"
-        output_writer.write(ttl_buffer)
-
+            }    
+        """)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+        if results["boolean"]:
+            ttl_buffer = ''
+            print("\t".join((result["protein_id"]["value"],result["label"]["value"], result["symbol"]["value"])) )
+            ttl_buffer += "<" + result["protein_id"]["value"] + ">\t" + sio_ns + "SIO_000339" + "\t<" + gene_uri + ">.\n"
+            output_writer.write(ttl_buffer)
 output_writer.close()
