@@ -14,7 +14,7 @@ The uniprotEnrichment module is created as part of the AgroLD project.
 
 @author: larmande
 '''
-ROOT_DIR = "/Users/plarmande/Downloads"
+ROOT_DIR = sys.argv.pop() # "/Users/plarmande/Downloads"
 sparql = SPARQLWrapper("http://agrold.ird.fr:8890/sparql")
 # IRD : http://agrold.ird.fr:8890/sparql
 # CIRAD : http://agrold.southgreen.fr/sparql
@@ -40,7 +40,7 @@ optional {
 ?protein_id skos:altSymbol ?symbol.
 }
 }
-
+LIMIT 200
 """)
 
 rdf_file = "uniprotEnriched.ttl"
@@ -51,7 +51,7 @@ output_writer.write(str(getRDFHeaders()))
 sparql.setReturnFormat(JSON)
 results = sparql.query().convert()
 for result in results["results"]["bindings"]:
-    if result["symbol"]["value"]:
+    if "symbol" in result:
         gene_uri = "http://www.southgreen.fr/agrold/resource/" + result["symbol"]["value"]
         sparql.setQuery("""
             ASK WHERE { <""" +
