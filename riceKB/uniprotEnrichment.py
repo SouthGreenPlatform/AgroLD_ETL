@@ -31,7 +31,7 @@ PREFIX uniprot:<http://purl.uniprot.org/uniprot/>
 PREFIX sio:<http://semanticscience.org/resource/>
 
 
-SELECT ?protein_id ?label ?symbol FROM <http://www.southgreen.fr/agrold/uniprot.plants>
+SELECT distinct ?protein_id ?label ?symbol FROM <http://www.southgreen.fr/agrold/uniprot.plants>
 WHERE {              
 ?protein_id ?p ?o;       
 rdfs:label ?label ;
