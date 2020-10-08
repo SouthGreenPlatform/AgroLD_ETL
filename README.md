@@ -19,8 +19,8 @@ AgroLD is a RDF knowledge base that consists of data integrated from a variety o
 
 # Contributing
 
-* Intellectual property belongs to IRD, CIRAD, IBC, INRA, IFB, ELIXIR, and SouthGreen development platform.
-* Written by Aravind Venkatesan, Gildas Tagny Ngompe, Nordine El Hassouni, Imene Chentli, Valentin Guignon, Clement Jonquet, Manuel Ruiz, Pierre Larmande. 
+* Intellectual property belongs to IRD, CIRAD and SouthGreen development platform.
+* Written by Aravind Venkatesan, Nordine El Hassouni, Imene Chentli, Valentin Guignon, Manuel Ruiz, Pierre Larmande. 
 * Copyright 2014-2018
 
 
