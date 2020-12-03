@@ -9,7 +9,7 @@ AgroLD is a RDF knowledge base that consists of data integrated from a variety o
 * pierre.larmande_at_ird.fr
 
 
-# Valorization
+# Valorization and How to cite
 
 * [https://doi.org/10.1371/journal.pone.0198270](https://doi.org/10.1371/journal.pone.0198270)
 * [https://tel.archives-ouvertes.fr/IBC/hal-01176903v1](https://tel.archives-ouvertes.fr/IBC/hal-01176903v1) 
@@ -19,9 +19,9 @@ AgroLD is a RDF knowledge base that consists of data integrated from a variety o
 
 # Contributing
 
-* Intellectual property belongs to IRD, CIRAD, IBC, INRA, IFB, ELIXIR, and SouthGreen development platform.
-* Written by Aravind Venkatesan, Gildas Tagny Ngompe, Nordine El Hassouni, Imene Chentli, Valentin Guignon, Clement Jonquet, Manuel Ruiz, Pierre Larmande. 
-* Copyright 2014-2018
+* Intellectual property belongs to IRD, CIRAD and SouthGreen development platform.
+* Written by Aravind Venkatesan, Gildas Tagny Ngompe, Nordine El Hassouni, Manuel Ruiz, Pierre Larmande. 
+* Copyright 2014-2020
 
 
 # The Architecture of project
