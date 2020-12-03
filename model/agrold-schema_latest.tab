@@ -122,7 +122,7 @@ abbreviation	abbreviation	DataTypeProperty	(Gene)	String
 has_mutant_type	has mutant type	DataTypeProperty	Gene	String
 ## hasMutantType	hasMutantType	DataTypeProperty	Gene	String
 observation	observation	DataTypeProperty	(Gene)	String
-has_phenotype_class	has phynotype class	DataTypeProperty	Gene	String
+has_phenotype_class	has phenotype class	DataTypeProperty	Gene	String
 ## hasPhenotypeClass	hasPhenotypeClass	DataTypeProperty	Gene	String
 has_phenotype_subclass	has phynotype subclass	DataTypeProperty	(Gene)	String
 ## hasPhenotypeSubclass	hasPhenotypeSubclass	DataTypeProperty	Gene	String
