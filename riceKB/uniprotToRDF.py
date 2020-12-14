@@ -7,8 +7,8 @@ Updated on Dec 4, 2019
 # TODO ajouter Prot:uri encodedBy Gene:uri
 from Bio import SwissProt
 
-#from riceKB.globalVars import *
-from globalVars import *
+from riceKB.globalVars import *
+#from globalVars import *
 import pprint
 import re
 import os
@@ -170,7 +170,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                             if citation[0] == "PubMed":
                                 rdf_buffer += "\t" + dcterms_ns + "references" + "\t" + pubmed_ns+ citation[1]  + " ;\n"
                             if citation[0] == "DOI":
-                                rdf_buffer += "\t" + dc_ns + "identifiers" + "\t" + '"http://dx.doi.org/%s"' %  (citation[1])   + " ;\n"
+                                rdf_buffer += "\t" + dc_ns + "identifier" + "\t" + '"http://dx.doi.org/%s"' %  (citation[1])   + " ;\n"
                     # Corss references using blank node
                     #                    for key in xrefs:
                     #                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "[" + "\n"
