@@ -23,6 +23,40 @@ for now its all after http://www.southgreen.fr/agrold/resource/
 
 @author: larmande
 '''
+# <http://biohackathon.org/resource/faldo#begin>
+# <http://biohackathon.org/resource/faldo#end>
+# <http://biohackathon.org/resource/faldo#location>
+# <http://biohackathon.org/resource/faldo#position>
+# <http://biohackathon.org/resource/faldo#reference>
+# <http://purl.obolibrary.org/obo/RO_0002162> ## in taxon
+# <http://purl.obolibrary.org/obo/SO_has_part>
+# <http://purl.obolibrary.org/obo/SO_transcribed_from>
+# <http://purl.obolibrary.org/obo/SO_translates_to>
+# <http://rdf.ebi.ac.uk/terms/ensembl/inEnsemblAssembly>
+# <http://rdf.ebi.ac.uk/terms/ensembl/inEnsemblSchemaNumber>
+# dc:description
+# dc:identifier
+# void:subset
+# <http://semanticscience.org/resource/SIO_000300>  ## has value  : subject(string) > gene id
+# <http://semanticscience.org/resource/SIO_000558>  ## 	is orthologous to  : geneUri > geneURI
+# <http://semanticscience.org/resource/SIO_000628>  ## refers to : exon > transcript
+# <http://semanticscience.org/resource/SIO_000671>  ## has identifier  : geneURI > subject(string) <http://identifiers.org/ensembl/Os04t0308600-00>	t1757965
+# <http://semanticscience.org/resource/SIO_000974>  ##	has ordered part  :  transcript > exon
+# rdfs:seeAlso
+# rdfs:label
+# rdfs:subClassOf
+# owl:sameAs
+# rdf:type
+# skos:altLabel
+# skos:altlabel ## Attention a corriger
+# skos:prefLabel
+# <http://rdf.ebi.ac.uk/terms/ensembl/ANNOTATED> ## ?geneURI > other URI such as Uniprot, PFAM etc. istance of <http://rdf.ebi.ac.uk/terms/ensembl/EnsemblDBEntry>
+# <http://rdf.ebi.ac.uk/terms/ensembl/CHECKSUM> ## useless for us
+# <http://rdf.ebi.ac.uk/terms/ensembl/DEPENDENT>
+# <http://rdf.ebi.ac.uk/terms/ensembl/DIRECT>
+# <http://rdf.ebi.ac.uk/terms/ensembl/INFERRED_FROM_TRANSCRIPT>
+# <http://rdf.ebi.ac.uk/terms/ensembl/INFERRED_FROM_TRANSLATION>
+# <http://rdf.ebi.ac.uk/terms/ensembl/SEQUENCE_MATCH>
 
 
 __author__  = "larmande"
