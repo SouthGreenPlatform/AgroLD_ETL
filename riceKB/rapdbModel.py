@@ -56,7 +56,7 @@ def getCDSNumber(transcript, start, number_cds):
 
 
 def rapdbModeleRDF(rapdb_ds, output_file):
-  # The differentes variable declaration
+  # various variable declaration
     os_japonica_buffer = ''    # initilised the buffer at zero
     number_match_part_sbgi = 0
     number_match_part_kome = 0
