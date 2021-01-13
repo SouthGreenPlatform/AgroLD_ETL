@@ -48,7 +48,8 @@ taxon_ids = {
          '4555'  : 'Setaria italica',
          '3641' : 'Theobroma cacao',
         '85692' : 'Triticum dicoccoides',
-        '29760' : 'Vitis vinifera'
+        '29760' : 'Vitis vinifera',
+        '4543'  : 'Cenchrus americanus'
          }
 
 # RegEX patterns
