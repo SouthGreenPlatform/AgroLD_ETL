@@ -84,28 +84,51 @@ def milletParser(files, type):
 
 def annotation2RDF(annotation, output):
     print("************* RDF conversion begins***********\n")
-
+    count = 0
     ttl_handle = open(path_output, "w")
-    pub_handle = open(uniprotid_list, 'w')
-
+    prot_handle = open(uniprotid_list, 'w')
+    prot_buffer = ''
     ttl_handle.write(str(getRDFHeaders()))
 
     for geneid in annotation:
         annotation_list = annotation[geneid]
+        count += 1
+        taxon_id = "4543"
+        rdf_buffer = ''
+        rdf_buffer += "<" + base_resource_uri + "transcript/" + geneid + ">\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
+        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + geneid + "\" ;\n"
+        rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
+        rdf_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + geneid + "\" ;\n"
+        # rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + ensembl_transcript_ns + records[0] + ";\n"
+        rdf_buffer += "\t" + obo_ns + "RO_0002202" + "\t\t" + res_ns + geneid + " ;\n"
+        # rdf_buffer += "\t" + dc_ns + "description" + "\t" + "\"%s" % (
+        #     re.sub('\"|\'', '', str(records[2]))) + "\" ;\n"
         #print(len(annotation_list))
         for i in range(len(annotation_list)):
             annotation_dict = annotation[geneid][i]
-            print(annotation_dict['type'])
+
             if (annotation_dict['type']== 'GO'):
-                print(annotation_dict['value'])
-            elif (annotation_dict['type']== 'InterPro'):
-                print(annotation_dict['value'])
-            elif (annotation_dict['type']== 'KEGG'):
-                print(annotation_dict['value'])
-            elif (annotation_dict['type']== 'Swiss-Prot'): # InterPro #KEGG
-                print(annotation_dict['value'])
-            elif (annotation_dict['type'] == 'TrEMBL'):
-                print(annotation_dict['value'])
+                for go_tuple in annotation_dict['value']:
+                    if go_tuple != '':
+                        go_list = go_tuple.split(';')
+                        if go_list[0] != '':
+                            go_id = re.sub(':', '_', go_list[0])
+                            go_id = re.sub('\s', '', go_id)
+                            if re.match(r"^GO_[0-9]{7}$", go_id):
+                                rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns + go_id + " ;\n"
+                            print(go_id)
+
+
+                #print(annotation_dict['value'])
+            # elif (annotation_dict['type']== 'InterPro'):
+            #     print(annotation_dict['value'])
+            # elif (annotation_dict['type']== 'KEGG'):
+            #     print(annotation_dict['value'])
+            # elif (annotation_dict['type']== 'Swiss-Prot'): # InterPro #KEGG
+            #     print(annotation_dict['value'])
+            # elif (annotation_dict['type'] == 'TrEMBL'):
+            #     print(annotation_dict['value'])
             #for key in annotation_dict.keys():
                 #print(annotation_dict['value'])
             # for annotation_dict in annotation[geneid][i]:
@@ -119,7 +142,11 @@ def annotation2RDF(annotation, output):
     #         if annotation[key]['type'] != 0:
     #             print(value_type)
 
-
+        rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
+        prot_handle.write(prot_buffer)
+        ttl_handle.write(rdf_buffer)
+    ttl_handle.close()
+    prot_handle.close()
 #TEST PARAM
 
 #path = '/Users/pierre/workspace2015/datasets/Pearl_Millet/liste_gene_autre.txt'
