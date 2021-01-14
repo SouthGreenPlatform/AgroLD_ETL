@@ -119,3 +119,26 @@ def getRDFHeaders():
     # Ajout du prefix pour la realese des donnees
     headersBuffer += pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n"
     return headersBuffer
+
+def RDF_validation(ttl_buffer,ttl_handle,oryid):
+
+    try:
+        temp_file = '/Users/pierre/Downloads/tmp/temp_graph.ttl'
+        try_handle = open(temp_file, "w")
+        try_handle.write(str(getRDFHeaders()))
+        try_handle.write(ttl_buffer)
+        try_handle.close()
+        #output_file = '/Users/plarmande/Downloads/oryzabase.nt'
+        g = Graph()
+        g.parse(temp_file, format="turtle")
+        # output = open(output_file, "w")
+        # w = Graph()
+        #g.serialize(destination="file:/Users/plarmande/Downloads/oryzabase_test.ttl", format='xml')
+        ttl_handle.write(ttl_buffer)
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        temp = '/Users/pierre/Downloads/tmp/temp_graph'+ oryid +'.ttl'
+        handle = open(temp, "w")
+        handle.write(str(getRDFHeaders()))
+        handle.write(ttl_buffer)
+        pass
