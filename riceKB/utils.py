@@ -3,6 +3,8 @@ print(sys.path)
 from riceKB.globalVars import *
 from riceKB.globalVars import base_vocab_ns
 from riceKB.gffParser import *
+import rdflib
+from rdflib.graph import Graph
 import pprint
 import re
 import os
