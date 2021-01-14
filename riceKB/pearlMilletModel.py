@@ -117,34 +117,38 @@ def annotation2RDF(annotation, output):
                             go_id = re.sub('\s', '', go_id)
                             if re.match(r"^GO_[0-9]{7}$", go_id):
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns + go_id + " ;\n"
-                            print(go_id)
-
-
-                #print(annotation_dict['value'])
-            # elif (annotation_dict['type']== 'InterPro'):
-            #     print(annotation_dict['value'])
-            # elif (annotation_dict['type']== 'KEGG'):
-            #     print(annotation_dict['value'])
-            # elif (annotation_dict['type']== 'Swiss-Prot'): # InterPro #KEGG
-            #     print(annotation_dict['value'])
-            # elif (annotation_dict['type'] == 'TrEMBL'):
-            #     print(annotation_dict['value'])
-            #for key in annotation_dict.keys():
-                #print(annotation_dict['value'])
-            # for annotation_dict in annotation[geneid][i]:
-            #     print(annotation_dict)
-            #     if annotation_dict['type']=='GO':
-            #         print(annotation_dict['value'])
-    # for key in annotation.keys():
-    #     taxon_id = "4543"
-    #     print(key)
-    #     for value_type in annotation[key]['type']:
-    #         if annotation[key]['type'] != 0:
-    #             print(value_type)
+            elif (annotation_dict['type']== 'InterPro'):
+                for ipr_tuple in annotation_dict['value']:
+                    if ipr_tuple != '':
+                        ipr_list = ipr_tuple.split(';')
+                        if ipr_list[0] != '':
+                            ipr_id = re.sub('\s', '', ipr_list[0])
+                            if re.match(interpro_pattern, ipr_id):
+                                rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + interpro_ns + ipr_id + " ;\n"
+            elif (annotation_dict['type']== 'KEGG'):
+                for kegg_tuple in annotation_dict['value']:
+                    if kegg_tuple != '':
+                        kegg_tuple = re.sub('\r', '', kegg_tuple)
+                        rdf_buffer += "\t" + dcterms_ns + "description" + "\t" '"%s"' % kegg_tuple + " ;\n"
+            elif (annotation_dict['type']== 'Swiss-Prot'):
+                for prot_tuple in annotation_dict['value']:
+                    if prot_tuple != '':
+                        uniprotid = prot_tuple.split(',')[0]
+                        if re.match(prot_pattern, uniprotid):
+                            rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + uniprot_ns + uniprotid + " ;\n"
+                            rdf_buffer += "\t" + base_vocab_ns + "SEQUENCE_MATCH" + "\t" + uniprot_ns + uniprotid + " ;\n"
+            elif (annotation_dict['type'] == 'TrEMBL'):
+                for trembl_tuple in annotation_dict['value']:
+                    if trembl_tuple != '':
+                        tremblid = trembl_tuple.split(',')[0]
+                        if re.match(prot_pattern, tremblid):
+                            rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + uniprot_ns + tremblid + " ;\n"
+                            rdf_buffer += "\t" + base_vocab_ns + "SEQUENCE_MATCH" + "\t" + uniprot_ns + tremblid + " ;\n"
 
         rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
         prot_handle.write(prot_buffer)
-        ttl_handle.write(rdf_buffer)
+        RDF_validation(rdf_buffer, ttl_handle, geneid)
+        #ttl_handle.write(rdf_buffer)
     ttl_handle.close()
     prot_handle.close()
 #TEST PARAM
