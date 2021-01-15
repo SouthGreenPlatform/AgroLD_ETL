@@ -138,10 +138,10 @@ def gene2RDF(gene,output):
 def annotation2RDF(annotation, output):
     print("************* Annotation RDF conversion begins***********\n")
     count = 0
-    ttl_handle = open(path_output, "w")
+    ttl_handle = open(path_output, "a")
     prot_handle = open(uniprotid_list, 'w')
     prot_buffer = ''
-    ttl_handle.write(str(getRDFHeaders()))
+    #ttl_handle.write(str(getRDFHeaders()))
 
     for geneid in annotation:
         annotation_list = annotation[geneid]
