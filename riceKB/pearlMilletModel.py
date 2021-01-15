@@ -88,6 +88,7 @@ def gene2RDF(gene,output):
     ttl_handle.write(str(getRDFHeaders()))
     for records in gene.to_numpy():
         geneid = records[0]
+        (strand, position) = getStrandValue(records[3])
         taxon_id = "4543"
         rdf_buffer = ''
         rdf_buffer += "<" + base_resource_uri +  geneid + ">\n"
@@ -96,9 +97,40 @@ def gene2RDF(gene,output):
         rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + geneid + "\" ;\n"
         rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
         rdf_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + geneid + "\" ;\n"
+        chromosome_number = re.sub('chr','', str(records[4]))
         rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
-                    str(records[4]) + ':' + str(records[1]) + '-' + str(records[2]) + ":" + records[3] + " .\n\n"
-        print(rdf_buffer)
+                    chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + records[3] + " .\n\n"
+
+        # Region
+        rdf_buffer += chromosome_ns + "CEGSBv1.1:" + \
+                              chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + strand + "  \n"
+        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "CEGSBv1.1:" + \
+                              chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + strand + "\";\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
+        rdf_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
+                              chromosome_number + ":" + str(records[1]) + ":" + strand + "  ;\n"
+        rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
+                              chromosome_number + ":" +  str(records[2]) + ":" + strand + "  .\n\n"
+
+        # Position 1
+        rdf_buffer += chromosome_ns + "CEGSBv1.1:" + chromosome_number + ":" + str(records[1]) + ":" + strand
+        rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+        rdf_buffer += "  ;\n"
+        rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(records[1]) + " ;\n"
+        rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "CEGSBv1.1:" + chromosome_number \
+                      +  " .\n\n"
+
+        # Position 2
+        rdf_buffer += chromosome_ns + "CEGSBv1.1:" + chromosome_number + ":" + str(records[2]) + ":" + strand
+        rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+        rdf_buffer += "  ;\n"
+        rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(records[2]) + " ;\n"
+        rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "CEGSBv1.1:" \
+                      + chromosome_number +  " .\n\n"
+
+        #print(rdf_buffer)
         rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
         #RDF_validation(rdf_buffer, ttl_handle, geneid)
         ttl_handle.write(rdf_buffer)
@@ -171,7 +203,7 @@ def annotation2RDF(annotation, output):
 
         rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
         for prot in protlist:
-            print(prot)
+            #print(prot)
             prot_handle.write(prot+"\n")
         #RDF_validation(rdf_buffer, ttl_handle, geneid)
         ttl_handle.write(rdf_buffer)
@@ -192,6 +224,6 @@ print("%s .... %s ...%s .... %s" % (data_dir,ROOT_DIR,uniprotid_list,path_output
 
 gene = milletParser(data_dir,"gene")
 gene2RDF(gene,path_output)
-#annotation = milletParser(data_dir,"annotation")
+annotation = milletParser(data_dir,"annotation")
 #print(annotation)
-#annotation2RDF(annotation,path_output)
+annotation2RDF(annotation,path_output)
