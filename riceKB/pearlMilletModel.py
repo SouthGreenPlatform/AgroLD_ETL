@@ -82,8 +82,29 @@ def milletParser(files, type):
         print("*************************************\n\n")
         return array
 
+def gene2RDF(gene,output):
+    print("************* Gene RDF conversion begins***********\n")
+    ttl_handle = open(path_output, "w")
+    ttl_handle.write(str(getRDFHeaders()))
+    for records in gene.to_numpy():
+        geneid = records[0]
+        taxon_id = "4543"
+        rdf_buffer = ''
+        rdf_buffer += "<" + base_resource_uri +  geneid + ">\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
+        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + obo_ns + "SO_0000704" + " ;\n"
+        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + geneid + "\" ;\n"
+        rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
+        rdf_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + geneid + "\" ;\n"
+        rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
+                    str(records[4]) + ':' + str(records[1]) + '-' + str(records[2]) + ":" + records[3] + " .\n\n"
+        print(rdf_buffer)
+        rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
+        #RDF_validation(rdf_buffer, ttl_handle, geneid)
+        ttl_handle.write(rdf_buffer)
+    ttl_handle.close()
 def annotation2RDF(annotation, output):
-    print("************* RDF conversion begins***********\n")
+    print("************* Annotation RDF conversion begins***********\n")
     count = 0
     ttl_handle = open(path_output, "w")
     prot_handle = open(uniprotid_list, 'w')
@@ -93,6 +114,7 @@ def annotation2RDF(annotation, output):
     for geneid in annotation:
         annotation_list = annotation[geneid]
         count += 1
+        protlist = set()
         taxon_id = "4543"
         rdf_buffer = ''
         rdf_buffer += "<" + base_resource_uri + "transcript/" + geneid + ">\n"
@@ -137,6 +159,7 @@ def annotation2RDF(annotation, output):
                         if re.match(prot_pattern, uniprotid):
                             rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + uniprot_ns + uniprotid + " ;\n"
                             rdf_buffer += "\t" + base_vocab_ns + "SEQUENCE_MATCH" + "\t" + uniprot_ns + uniprotid + " ;\n"
+                            protlist.add(uniprotid)
             elif (annotation_dict['type'] == 'TrEMBL'):
                 for trembl_tuple in annotation_dict['value']:
                     if trembl_tuple != '':
@@ -144,11 +167,14 @@ def annotation2RDF(annotation, output):
                         if re.match(prot_pattern, tremblid):
                             rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + uniprot_ns + tremblid + " ;\n"
                             rdf_buffer += "\t" + base_vocab_ns + "SEQUENCE_MATCH" + "\t" + uniprot_ns + tremblid + " ;\n"
+                            protlist.add(tremblid)
 
         rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
-        prot_handle.write(prot_buffer)
-        RDF_validation(rdf_buffer, ttl_handle, geneid)
-        #ttl_handle.write(rdf_buffer)
+        for prot in protlist:
+            print(prot)
+            prot_handle.write(prot+"\n")
+        #RDF_validation(rdf_buffer, ttl_handle, geneid)
+        ttl_handle.write(rdf_buffer)
     ttl_handle.close()
     prot_handle.close()
 #TEST PARAM
@@ -164,7 +190,8 @@ uniprotid_list = sys.argv.pop() # path
 path_output = os.path.join(ROOT_DIR, rdf_file)
 print("%s .... %s ...%s .... %s" % (data_dir,ROOT_DIR,uniprotid_list,path_output))
 
-
-annotation = milletParser(data_dir,"annotation")
+gene = milletParser(data_dir,"gene")
+gene2RDF(gene,path_output)
+#annotation = milletParser(data_dir,"annotation")
 #print(annotation)
-annotation2RDF(annotation,path_output)
+#annotation2RDF(annotation,path_output)
