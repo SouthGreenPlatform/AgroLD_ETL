@@ -114,35 +114,41 @@ def ensemblParser(files, type):
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl.exon/",line):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/resource/ensembl\.exon/',
                                       '<http://www.southreen.fr/agrold/resource/exon/', line)
-                    if re.findall("rdfs:seeAlso",line):
-                        #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
-                        ttl_handle.write(line)
-                    if re.findall("rdfs:label",line):
-                        #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
-                        ttl_handle.write(line)
-                    if re.findall("dc:description",line):
-                        #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
-                        ttl_handle.write(line)
-                    if re.findall("dc:identifier", line):
-                            # line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
-                            ttl_handle.write(line)
-                    if re.findall("owl:sameAs",line):
-                        #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
-                        ttl_handle.write(line)
-                    if re.findall("term:DEPENDENT", line):
-                            line = re.sub('term:DEPENDENT',   'term:dependent', line)
-                            ttl_handle.write(line)
+                    if re.findall("skos: altlabel",line):
+                        line = re.sub('skos: altlabel',   'skos: altLabel', line)
+                    ttl_handle.write(line)
+
+                    # elif re.findall("rdfs:seeAlso",line):
+                    #     #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
+                    #     ttl_handle.write(line)
+                    # elif re.findall("rdfs:label",line):
+                    #     #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
+                    #     ttl_handle.write(line)
+                    # elif re.findall("dc:description",line):
+                    #     #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
+                    #     ttl_handle.write(line)
+                    # if re.findall("dc:identifier", line):
+                    #         # line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
+                    #         ttl_handle.write(line)
+                    # if re.findall("owl:sameAs",line):
+                    #     #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
+                    #     ttl_handle.write(line)
+
+                    # if re.findall("skos: altLabel",line):
+                    # if re.findall("term:DEPENDENT", line):
+                            # line = re.sub('term:DEPENDENT',   'term:dependent', line)
+                            # ttl_handle.write(line)
                 else :
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl/",line):
                         line = re.sub('http://rdf\.ebi\.ac\.uk/resource/ensembl/\d*/?', 'http://www.southgreen.fr/agrold/resource/', line)
                         if re.findall('rdfs:subClassOf <http://www.southgreen.fr/agrold/resource/',line):
                             line = ''
-                    if re.findall("term:inEnsemblAssembly",line):
-                        line = re.sub('term:inEnsemblAssembly',
-                                      'term:inAssembly', line)
-                    if re.findall("term:inEnsemblSchemaNumber",line):
-                        line = re.sub('term:inEnsemblSchemaNumber',
-                                      'term:inSchemaNumber', line) # a supprimer ou modifier
+                    # if re.findall("term:inEnsemblAssembly",line):
+                    #     line = re.sub('term:inEnsemblAssembly',
+                    #                   'term:inAssembly', line)
+                    # if re.findall("term:inEnsemblSchemaNumber",line):
+                    #     line = re.sub('term:inEnsemblSchemaNumber',
+                    #                   'term:inSchemaNumber', line) # a supprimer ou modifier
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl.transcript/",line):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/resource/ensembl\.transcript/',
                                       '<http://www.southgreen.fr/agrold/resource/transcript/', line)
@@ -153,29 +159,35 @@ def ensemblParser(files, type):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/resource/ensembl\.exon/',
                                       '<http://www.southreen.fr/agrold/resource/exon/', line)
                     if re.findall("term:protein",line):
+                        ttl_handle.write(line)
                         line = re.sub('term:protein', 'term:Protein', line)
                     if re.findall("term:Protein_coding",line):
+                        ttl_handle.write(line)
                         line = re.sub('term:Protein_coding', 'term:Gene', line)
                     if re.findall("term:protein_coding",line):
+                        ttl_handle.write(line)
                         line = re.sub('term:protein_coding', 'term:Gene', line)
-                    if re.findall("term:EnsemblRegion", line):
-                        line = re.sub('term:EnsemblRegion', 'term:Region', line)
+                    # if re.findall("term:EnsemblRegion", line):
+                    #     line = re.sub('term:EnsemblRegion', 'term:Region', line)
                     if re.findall("<http://rdf.ebi.ac.uk/dataset/ensemblgenomes/", line):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/dataset/ensemblgenomes/\d*/?',
                                       '<http://www.southgreen.fr/agrold/dataset/ensemblgenomes/', line)
                     # change   obo:SO_has_part >  term:has_part
                     if re.findall("obo:SO_has_part", line):
+                        ttl_handle.write(line)
                         line = re.sub('obo:SO_has_part', 'term:hasPart', line)
                     # obo:SO_transcribed_from > term:transcribed_from ou term:develops_from
                     if re.findall("obo:SO_transcribed_from", line):
+                        ttl_handle.write(line)
                         line = re.sub('obo:SO_transcribed_from', 'term:developsFrom', line)
                     # obo:SO_translates_to > term:translates_to ou term:encodes
                     if re.findall("obo:SO_translates_to", line):
+                        ttl_handle.write(line)
                         line = re.sub('obo:SO_translates_to', 'term:encodes', line)
                     # delete ?o where <http://semanticscience.org/resource/SIO_000671>
-                    if re.findall("sio:SIO_000671 \[a ", line):
-                        #line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
-                        line = ''
+                    # if re.findall("sio:SIO_000671 \[a ", line):
+                    #     #line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
+                    #     line = ''
                     # taxon:39947 rdfs:subClassOf obo:OBI_0100026 . + add taxon:39947 owl:sameAs ncbiTaxon:39947
                     # delete http://www.southgreen.fr/agrold/resource/oryza_sativa/IRGSP-1.0/chromosome:IRGSP-1.0:1:1:43270923:1> rdfs:subClassOf http://www.southgreen.fr/agrold/resource/oryza_sativa/IRGSP-1.0/chromosome:IRGSP-1.0:1:1:43270923:1> .
                     # in taxon = http://purl.obolibrary.org/obo/RO_0002162 ; change taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source) to http://purl.obolibrary.org/obo/RO_0002162
@@ -189,14 +201,14 @@ def ensemblParser(files, type):
 
 
 if len(sys.argv):
-    filepath = sys.argv[1]
+    filepath = sys.argv[0]
     ROOT_DIR = os.path.dirname(filepath)
     # print(ROOT_DIR)
     file_input = os.path.basename(filepath)
     # print(file_input)
 else:
-    ROOT_DIR = '/Volumes/LaCie/AGROLD/data_update_2019/ensembl/'
-    file_input = 'zea_mays_xrefs.ttl'
+    ROOT_DIR = '/Users/pierre/workspace2015/datasets/'
+    file_input = 'oryza_sativa.ttl'
 
 ensembl_files =  os.path.join(ROOT_DIR + '/' + file_input)
 ensembl_out = os.path.join(ROOT_DIR + '/' + 'agrold.' + file_input)
