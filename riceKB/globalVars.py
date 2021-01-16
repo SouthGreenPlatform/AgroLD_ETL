@@ -130,6 +130,9 @@ ncbi_tax_ns = 'taxon:'
 uniprot = 'http://purl.uniprot.org/uniprot/'
 up_ns = 'uniprot:'
 
+interpro = 'http://purl.uniprot.org/interpro/'
+interpro_ns = 'interpro:'
+
 faldo = 'http://biohackathon.org/resource/faldo#'
 faldo_ns = 'faldo:'
 
