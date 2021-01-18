@@ -114,6 +114,9 @@ def ensemblParser(files, type):
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl.exon/",line):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/resource/ensembl\.exon/',
                                       '<http://www.southreen.fr/agrold/resource/exon/', line)
+                    if re.findall("<http://rdf.ebi.ac.uk/terms/ensembl/",line):
+                        line = re.sub('<http://rdf\.ebi\.ac\.uk/terms/ensembl/',
+                                      '<http://www.southgreen.fr/agrold/vocabulary/', line)
                     if re.findall("skos: altlabel",line):
                         line = re.sub('skos: altlabel',   'skos: altLabel', line)
                     ttl_handle.write(line)
@@ -143,12 +146,9 @@ def ensemblParser(files, type):
                         line = re.sub('http://rdf\.ebi\.ac\.uk/resource/ensembl/\d*/?', 'http://www.southgreen.fr/agrold/resource/', line)
                         if re.findall('rdfs:subClassOf <http://www.southgreen.fr/agrold/resource/',line):
                             line = ''
-                    # if re.findall("term:inEnsemblAssembly",line):
-                    #     line = re.sub('term:inEnsemblAssembly',
-                    #                   'term:inAssembly', line)
-                    # if re.findall("term:inEnsemblSchemaNumber",line):
-                    #     line = re.sub('term:inEnsemblSchemaNumber',
-                    #                   'term:inSchemaNumber', line) # a supprimer ou modifier
+                    if re.findall("<http://rdf.ebi.ac.uk/terms/ensembl/", line):
+                        line = re.sub('<http://rdf\.ebi\.ac\.uk/terms/ensembl/',
+                                      '<http://www.southgreen.fr/agrold/vocabulary/', line)
                     if re.findall("<http://rdf.ebi.ac.uk/resource/ensembl.transcript/",line):
                         line = re.sub('<http://rdf\.ebi\.ac\.uk/resource/ensembl\.transcript/',
                                       '<http://www.southgreen.fr/agrold/resource/transcript/', line)
@@ -163,10 +163,16 @@ def ensemblParser(files, type):
                         line = re.sub('term:protein', 'term:Protein', line)
                     if re.findall("term:Protein_coding",line):
                         ttl_handle.write(line)
-                        line = re.sub('term:Protein_coding', 'term:Gene', line)
+                        if re.findall("<http://rdf.ebi.ac.uk/resource/transcript", line):
+                            line = re.sub('term:Protein_coding', 'term:mRNA', line)
+                        else:
+                            line = re.sub('term:Protein_coding', 'term:Gene', line)
                     if re.findall("term:protein_coding",line):
                         ttl_handle.write(line)
-                        line = re.sub('term:protein_coding', 'term:Gene', line)
+                        if re.findall("<http://rdf.ebi.ac.uk/resource/transcript", line):
+                            line = re.sub('term:protein_coding', 'term:mRNA', line)
+                        else:
+                            line = re.sub('term:protein_coding', 'term:Gene', line)
                     # if re.findall("term:EnsemblRegion", line):
                     #     line = re.sub('term:EnsemblRegion', 'term:Region', line)
                     if re.findall("<http://rdf.ebi.ac.uk/dataset/ensemblgenomes/", line):
@@ -200,19 +206,20 @@ def ensemblParser(files, type):
         print(files)
 
 
-if len(sys.argv):
-    filepath = sys.argv[0]
-    ROOT_DIR = os.path.dirname(filepath)
-    # print(ROOT_DIR)
-    file_input = os.path.basename(filepath)
-    # print(file_input)
-else:
-    ROOT_DIR = '/Users/pierre/workspace2015/datasets/'
-    file_input = 'oryza_sativa.ttl'
+# if len(sys.argv):
+#     filepath = sys.argv[0]
+#     ROOT_DIR = os.path.dirname(filepath)
+#     # print(ROOT_DIR)
+#     file_input = os.path.basename(filepath)
+#     # print(file_input)
+# else:
+ROOT_DIR = '/Users/pierre/workspace2015/datasets'
+file_input = 'oryza_sativa.ttl'
 
 ensembl_files =  os.path.join(ROOT_DIR + '/' + file_input)
 ensembl_out = os.path.join(ROOT_DIR + '/' + 'agrold.' + file_input)
-
+print(ensembl_files)
+print(ensembl_out)
 
 pp = pprint.PrettyPrinter(indent=4)
 
