@@ -9,7 +9,7 @@ import numpy as np
 
 '''
 Created on Dec, 2019
-The interpro module is created as part of the Rice Knowledge Base project.
+The interpro module is created as part of the AgroLD project.
 
 This module contains Parsers, RDF converters and generic functions for handling interpro data
 It runs with ParentChildTreeFile.txt file downloaded from EBI interpro website
@@ -40,7 +40,7 @@ def fileParser(infile,outfile):
                 nb_line += 1
                 key,value,undef = line.split('::')
                 root_item = key
-                buffer += "<" + identifiers_uri + "interpro/" + key + ">\n"
+                buffer += "<" + interpro_ns  + key + ">\n"
                 buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein_Domain" + " ;\n"
                 buffer += "\t" + rdfs_ns + "label" + "\t" + "\"" + value + "\" ;\n"
                 buffer += "\t" + dc_ns + "identifier" + "\t" + "\"" + key + "\" ;\n"
@@ -49,7 +49,7 @@ def fileParser(infile,outfile):
                 key, value, undef = line.split('::')
                 key = re.sub('--','',key)
                 second_item = key
-                buffer += "<" + identifiers_uri + "interpro/" + key + ">\n"
+                buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein_Domain" + " ;\n"
                 buffer += "\t" + rdfs_ns + "label" + "\t" + "\"" + value + "\" ;\n"
                 buffer += "\t" + dc_ns + "identifier" + "\t" + "\"" + key + "\" ;\n"
@@ -59,7 +59,7 @@ def fileParser(infile,outfile):
                 key, value, undef = line.split('::')
                 key = re.sub('--', '', key)
                 third_item = key
-                buffer += "<" + identifiers_uri + "interpro/" + key + ">\n"
+                buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein_Domain" + " ;\n"
                 buffer += "\t" + rdfs_ns + "label" + "\t" + "\"" + value + "\" ;\n"
                 buffer += "\t" + dc_ns + "identifier" + "\t" + "\"" + key + "\" ;\n"
@@ -69,7 +69,7 @@ def fileParser(infile,outfile):
                 key, value, undef = line.split('::')
                 key = re.sub('--', '', key)
                 fourth_item = key
-                buffer += "<" + identifiers_uri + "interpro/" + key + ">\n"
+                buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein_Domain" + " ;\n"
                 buffer += "\t" + rdfs_ns + "label" + "\t" + "\"" + value + "\" ;\n"
                 buffer += "\t" + dc_ns + "identifier" + "\t" + "\"" + key + "\" ;\n"
@@ -80,7 +80,7 @@ def fileParser(infile,outfile):
                 key = re.sub('--', '', key)
                 parent_item = current_item
                 current_item = key
-                buffer += "<" + identifiers_uri + "interpro/" + key + ">\n"
+                buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Protein_Domain" + " ;\n"
                 buffer += "\t" + rdfs_ns + "label" + "\t" + "\"" + value + "\" ;\n"
                 buffer += "\t" + dc_ns + "identifier" + "\t" + "\"" + key + "\" ;\n"

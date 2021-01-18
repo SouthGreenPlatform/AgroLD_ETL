@@ -214,7 +214,7 @@ def ensemblParser(files, type):
 
 
 if len(sys.argv):
-    filepath = sys.argv[0]
+    filepath = sys.argv[1]
     ROOT_DIR = os.path.dirname(filepath)
     # print(ROOT_DIR)
     file_input = os.path.basename(filepath)

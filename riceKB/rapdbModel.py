@@ -101,7 +101,7 @@ def rapdbModeleRDF(rapdb_ds, output_file):
     rdf_writer.write(os_japonica_buffer)
 # Chromosome triple
 # chromosome:IRGSP-1.0:1:1:43270923:1
-#  rdfs:subClassOf obo:SO_0000340
+# rdfs:subClassOf obo:SO_0000340
 # rdfs:label "Oryza sativa Japonica Group chromosome:IRGSP-1.0:1:1:43270923:1 (IRGSP-1.0)" .
 # dc:identifier "chromosome:IRGSP-1.0:1:1:43270923:1" .
 # term:inEnsemblAssembly "IRGSP-1.0" .
