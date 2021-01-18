@@ -166,13 +166,13 @@ def ensemblParser(files, type):
                         line = re.sub('term:protein', 'term:Protein', line)
                     if re.findall("term:Protein_coding",line):
                         ttl_handle.write(line)
-                        if re.findall("<http://www.southreen.fr/agrold/resource/transcript", line):
+                        if re.findall("<http://www.southgreen.fr/agrold/resource/transcript/", line):
                             line = re.sub('term:Protein_coding', 'term:mRNA', line)
                         else:
                             line = re.sub('term:Protein_coding', 'term:Gene', line)
                     if re.findall("term:protein_coding",line):
                         ttl_handle.write(line)
-                        if re.findall("<http://www.southreen.fr/agrold/resource/transcript", line):
+                        if re.findall("<http://www.southgreen.fr/agrold/resource/transcript/", line):
                             line = re.sub('term:protein_coding', 'term:mRNA', line)
                         else:
                             line = re.sub('term:protein_coding', 'term:Gene', line)
@@ -213,15 +213,15 @@ def ensemblParser(files, type):
         print(files)
 
 
-# if len(sys.argv):
-#     filepath = sys.argv[0]
-#     ROOT_DIR = os.path.dirname(filepath)
-#     # print(ROOT_DIR)
-#     file_input = os.path.basename(filepath)
-#     # print(file_input)
-# else:
-ROOT_DIR = '/Users/pierre/workspace2015/datasets'
-file_input = 'oryza_sativa_xrefs.ttl'
+if len(sys.argv):
+    filepath = sys.argv[0]
+    ROOT_DIR = os.path.dirname(filepath)
+    # print(ROOT_DIR)
+    file_input = os.path.basename(filepath)
+    # print(file_input)
+else:
+    ROOT_DIR = '/Users/pierre/workspace2015/datasets'
+    file_input = 'oryza_sativa.ttl'
 
 ensembl_files =  os.path.join(ROOT_DIR + '/' + file_input)
 ensembl_out = os.path.join(ROOT_DIR + '/' + 'agrold.' + file_input)
