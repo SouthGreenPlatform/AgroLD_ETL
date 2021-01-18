@@ -120,7 +120,10 @@ def ensemblParser(files, type):
                     if re.findall("skos: altlabel",line):
                         line = re.sub('skos: altlabel',   'skos: altLabel', line)
                     ttl_handle.write(line)
-
+                    if re.findall("<sub>", line):
+                        line = re.sub('<sub>', '', line)
+                    if re.findall("</sub>", line):
+                        line = re.sub('</sub>', '', line)
                     # elif re.findall("rdfs:seeAlso",line):
                     #     #line = re.sub('term:inEnsemblSchemaNumber',   'term:inSchemaNumber', line)
                     #     ttl_handle.write(line)
@@ -190,6 +193,10 @@ def ensemblParser(files, type):
                     if re.findall("obo:SO_translates_to", line):
                         ttl_handle.write(line)
                         line = re.sub('obo:SO_translates_to', 'term:encodes', line)
+                    if re.findall("<sub>", line):
+                        line = re.sub('<sub>', '', line)
+                    if re.findall("</sub>", line):
+                        line = re.sub('</sub>', '', line)
                     # delete ?o where <http://semanticscience.org/resource/SIO_000671>
                     # if re.findall("sio:SIO_000671 \[a ", line):
                     #     #line = re.sub('obo:SO_translates_to', 'obo:so#translates_to', line)
