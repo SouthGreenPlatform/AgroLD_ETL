@@ -55,7 +55,7 @@ def oryzaBaseParser(input_file):
     #lines  = fileHandle.readlines()
     #lines.pop(0)
 #    pp = pprint.PrettyPrinter(indent=4)
-    for records in array.as_matrix(columns=None):
+    for records in array.to_numpy():
         # current_line = re.sub('\n$', '', current_line)
         #current_line = re.sub('\\r|\\n', '', current_line)
         #records = current_line.split('\t')
@@ -153,6 +153,7 @@ def oryzaBaseRDF(infile, output_file):
     
     ttl_handle = open(output_file, "w")
     pub_handle = open(pub_dict,'w')
+    pub_handle_rapdb = open(pub_dict_RAPDB,'w')
     ttl_buffer = ''
     
     print("************* OryzaBase RDF conversion begins***********\n")
@@ -163,6 +164,7 @@ def oryzaBaseRDF(infile, output_file):
     for oryid in orygene_ds:
         ttl_buffer = ''
         pub_buffer = ''
+        pub_buffer_rapdb = ''
         ttl_buffer += oryzabase_ns + oryid + "\n"
         ttl_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
         ttl_buffer += "\t" + dcterms_ns + "identifier" + "\t" + '"%s"' % (oryid) + " ;\n"
@@ -175,20 +177,24 @@ def oryzaBaseRDF(infile, output_file):
                     label = re.sub(r"\\",'', label)
                     ttl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % ( label ) + " ;\n"
                     ttl_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % ( label) + " ;\n"
-                    pub_buffer += label.lower()  + "\t" + "GENE:Gene or Genome\n"
+                    pub_buffer += label.lower()  + "\t" + oryzabase_uri + oryid + "\n"
+                    if orygene_ds[oryid]['RAP_id']:
+                        for rap_id in orygene_ds[oryid][item]:
+                            if re.match(rap_pattern, rap_id):
+                                pub_buffer_rapdb += label.lower() + "\t" + rapdb_gene_uri + oryid + "\n"
             if item == 'Reco_name':
                 if orygene_ds[oryid][item]:
                     description = re.sub('\"|\'','', (orygene_ds[oryid][item]))
                     description = re.sub(r"\\",'', description)
                     ttl_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' %  (description)  + " ;\n"
-                    pub_buffer += description.lower() + "\t" + "GENE:Gene or Genome\n"
+                    pub_buffer += description.lower() + "\t" + oryzabase_uri + oryid + "\n"
             ## TODO : fix error - sometimes list of name separate by , check how to turn one name and alternate names, variable have "" so remove them
             if item == 'Name':
                 if orygene_ds[oryid][item]:
                     altlabel = re.sub('\"|\'','', (orygene_ds[oryid][item]))
                     altlabel = re.sub(r"\\",'', altlabel)
                     ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' %  (altlabel) + " ;\n"
-                    pub_buffer += altlabel.lower() + "\t" + "GENE:Gene or Genome\n"
+                    pub_buffer += altlabel.lower() + "\t" + oryzabase_uri + oryid + "\n"
             if item == 'Explanation':
                 if orygene_ds[oryid][item]:
                     #bad_chars = '|'.join(['\"', '\'', '\\'])
@@ -222,7 +228,7 @@ def oryzaBaseRDF(infile, output_file):
                             symbol = re.sub(r"\\", '', symbol)
                             if symbol != '_':
                                 ttl_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % re.sub('\"|\'', '', symbol )+ " ;\n"
-                                pub_buffer += symbol.lower() + "\t" + "GENE:Gene or Genome\n"
+                                pub_buffer += symbol.lower() + "\t" + oryzabase_uri + oryid + "\n"
             if item == 'Alt_names':
                 if orygene_ds[oryid][item]:
                     for alt_name in orygene_ds[oryid][item]:
@@ -231,14 +237,14 @@ def oryzaBaseRDF(infile, output_file):
                         alt_name = re.sub(r"\\",'', alt_name)
                         if alt_name != '_':
                             ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (alt_name) + " ;\n"
-                            pub_buffer += alt_name.lower() + "\t" + "GENE:Gene or Genome\n"
+                            pub_buffer += alt_name.lower() + "\t" + oryzabase_uri + oryid + "\n"
             if item == 'RAP_id':
                 if orygene_ds[oryid][item]:
                     for rap_id in orygene_ds[oryid][item]:
                         if re.match(rap_pattern, rap_id):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + re.sub('\s+', '', rap_id)  + " ;\n"
                             ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', rap_id)  + " ;\n"
-                            pub_buffer += rap_id + "\t" + rapdb_gene_ns + re.sub('\s+', '', rap_id) +"\n"
+                            pub_buffer += rap_id + "\t" + rapdb_gene_uri + re.sub('\s+', '', rap_id) +"\n"
             if item == 'MSU_id':
                 if orygene_ds[oryid][item]:
                     for msu_id in orygene_ds[oryid][item]:
@@ -246,7 +252,7 @@ def oryzaBaseRDF(infile, output_file):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + res_ns + re.sub('\s+', '',
                                                                                                msu_id) + " ;\n"
                             ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', msu_id) + " ;\n"
-                            pub_buffer += msu_id + "\t" + "GENE:Gene or Genome\n"
+                            pub_buffer += msu_id + "\t" + sniplay_gene_uri + re.sub('\.\d\s*$','',msu_id) + "\n"
             if item == 'Gramene_id':
                 if orygene_ds[oryid][item]:
                     for gr_id in orygene_ds[oryid][item]:
@@ -299,7 +305,8 @@ def oryzaBaseRDF(infile, output_file):
             
         ttl_buffer = re.sub(' ;$', ' .\n', ttl_buffer)
         pub_handle.write(pub_buffer)
-        RDF_validation(ttl_buffer,ttl_handle,oryid)
+        pub_handle_rapdb.write(pub_buffer_rapdb)
+        #RDF_validation(ttl_buffer,ttl_handle,oryid)
         #ttl_handle.write(ttl_buffer)
 
     ttl_handle.close()
@@ -310,7 +317,7 @@ def oryzaBaseRDF(infile, output_file):
 def RDF_validation(ttl_buffer,ttl_handle,oryid):
 
     try:
-        temp_file = '/Users/plarmande/Downloads/tmp/temp_graph.ttl'
+        temp_file = '/Users/pierre/Downloads/tmp/temp_graph.ttl'
         try_handle = open(temp_file, "w")
         try_handle.write(str(getRDFHeaders()))
         try_handle.write(ttl_buffer)
@@ -324,17 +331,18 @@ def RDF_validation(ttl_buffer,ttl_handle,oryid):
         ttl_handle.write(ttl_buffer)
     except:
         print("Unexpected error:", sys.exc_info()[0])
-        temp = '/Users/plarmande/Downloads/tmp/temp_graph'+ oryid +'.ttl'
+        temp = '/Users/pierre/Downloads/tmp/temp_graph'+ oryid +'.ttl'
         handle = open(temp, "w")
         handle.write(str(getRDFHeaders()))
         handle.write(ttl_buffer)
         pass
 
-oryzabase_file = '/Users/plarmande/workspace2015/datasets/OryzabaseGeneListEn_20200114010108.txt'
+oryzabase_file = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210114010048.txt'
 
 
-oryzaBase_output = '/Users/plarmande/workspace2015/datasets/OryzabaseGeneListEn_20200114010108.ttl'
-pub_dict = '/Users/plarmande/workspace2015/datasets/pub_dictionnary.txt'
+oryzaBase_output = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210114010048.ttl'
+pub_dict = '/Users/pierre/workspace2015/datasets/pub_dictionnary.txt'
+pub_dict_RAPDB = '/Users/pierre/workspace2015/datasets/pub_dictionnary_rapdb.txt'
 oryzaBaseRDF(oryzabase_file, oryzaBase_output)
 
 #
