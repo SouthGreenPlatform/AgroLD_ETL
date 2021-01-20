@@ -173,7 +173,7 @@ tigr_ns = 'tigr:'
 tigr_g_uri = 'http://identifiers.org/ricegap/'
 tigr_g_ns = 'tigr_gene:'
 
-rapdb_gene_uri = 'http://identifiers.org/rapdb.gene/'
+rapdb_gene_uri = 'http://identifiers.org/rapdb.locus/'
 rapdb_gene_ns = 'rapdb_gene:'
 
 rapdb_mrna_uri = 'http://identifiers.org/rapdb.mrna/'
