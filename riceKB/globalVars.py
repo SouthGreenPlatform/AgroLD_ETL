@@ -376,7 +376,7 @@ ont_aspects = {
 
 
 #sniplay
-sniplay_gene_uri = 'http://www.identifiers.org/ricegap/'
+sniplay_gene_uri = 'http://identifiers.org/ricegap/'
 sniplay_gene_ns = 'ricegap:'
 
 sniplay_gene_integenic_uri =  'http://www.southgreen.fr/agrold/sniplay.gene/'
