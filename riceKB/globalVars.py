@@ -25,33 +25,60 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
-         '4533' : 'Oryza brachyantha',
+            '':'Ananas comosus',
+        '':'Amborella trichopoda',
+    '3702': 'Arabidopsis thaliana',
+        '':'Arachis hypogaea',
+        '': 'Brassica napus',
+        '':'Brassica oleracea',
+        '':'Brassica_rapa',
+        '':'Cajanus_cajan', #**
+        '4543': 'Cenchrus americanus',
+        '':'Cicer arietinum', #**
+        '':'Citrus clementina',
+        '49390': 'Coffea canephora str. DH200-94',
+        '' :'Glycine max',
+        '' :'Gossypium raimondii',
+        '' : 'Hordeum vulgare',
+         '3983': 'Manihot esculenta',
+        '' : 'Medicago truncatula',
+        '214687': 'Musa acuminata subsp. malaccensis',
+            '' : 'Nicotiana attenuata',
+            '' : 'Pennisetum glaucum',
+            '' : 'Phaseolus vulgaris',
+        '65489': 'Oryza barthii',
+        '4533' : 'Oryza brachyantha',
          '4538' : 'Oryza glaberrima',
-         '4530' : 'Oryza sativa',
-         '39947' : 'Oryza sativa japonica',
-         '39946' : 'Oryza sativa indica',
-         '65489' : 'Oryza barthii',
-         '4528': 'Oryza longistaminata',
          '40148' : 'Oryza_glumaepatula',
-         '40149' : 'Oryza meridionalis',
-         '4536' : 'Oryza_nivara',
-         '4537' : 'Oryza_punctata',
-         '4529' : 'Oryza rufipogon',
-         '3702' : 'Arabidopsis thaliana',
-         '4577' : 'Zea mays',
-         '4558' : 'Sorghum bicolor',
-         '4565' : 'Triticum aestivum',
-         '4572' : 'Triticum urartu',
-         '49390': 'Coffea canephora str. DH200-94',
-         '3983' : 'Manihot esculenta',
-         '214687': 'Musa acuminata subsp. malaccensis',
+        '4528': 'Oryza longistaminata',
+        '40149': 'Oryza meridionalis',
+        '4536': 'Oryza_nivara',
+        '4537': 'Oryza_punctata',
+        '4529': 'Oryza rufipogon',
+         '4530' : 'Oryza sativa',
+        '39946': 'Oryza sativa indica',
+         '39947' : 'Oryza sativa japonica',
+            '' : 'Populus trichocarpa',
+            '' : 'Saccharum spontaneum',
          '4555'  : 'Setaria italica',
+         '4558' : 'Sorghum bicolor',
          '3641' : 'Theobroma cacao',
+            '' : 'Theobroma cacao criollo',
+            '' : 'Theobroma cacao matina',
+         '4565' : 'Triticum aestivum',
         '85692' : 'Triticum dicoccoides',
+            ''  :  'Triticum turgidum',
+         '4572' : 'Triticum urartu',
         '29760' : 'Vitis vinifera',
-        '4543'  : 'Cenchrus americanus'
+         '4577' : 'Zea mays',
          }
 
+
+triticum_aestivum
+triticum_dicoccoides
+triticum_urartu
+vitis_vinifera
+zea_mays
 # RegEX patterns
 rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
 gramene_pattern = re.compile(r'^GR\:\d{7}$')
