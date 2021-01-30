@@ -25,60 +25,55 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
-            '':'Ananas comosus',
-        '':'Amborella trichopoda',
-    '3702': 'Arabidopsis thaliana',
-        '':'Arachis hypogaea',
-        '': 'Brassica napus',
-        '':'Brassica oleracea',
-        '':'Brassica_rapa',
-        '':'Cajanus_cajan', #**
+        '4615':'Ananas comosus',
+        '13333':'Amborella trichopoda',
+        '3702': 'Arabidopsis thaliana',
+        '3818':'Arachis hypogaea',
+        '3708': 'Brassica napus',
+        '3712':'Brassica oleracea',
+        '1753':'Brassica_rapa',
+        '3821':'Cajanus_cajan', #**
         '4543': 'Cenchrus americanus',
-        '':'Cicer arietinum', #**
-        '':'Citrus clementina',
+        '3827':'Cicer arietinum', #**
+        '85681':'Citrus clementina',
         '49390': 'Coffea canephora str. DH200-94',
-        '' :'Glycine max',
-        '' :'Gossypium raimondii',
-        '' : 'Hordeum vulgare',
-         '3983': 'Manihot esculenta',
-        '' : 'Medicago truncatula',
+        '3847' :'Glycine max',
+        '29730' :'Gossypium raimondii',
+        '4513' : 'Hordeum vulgare',
+        '3983': 'Manihot esculenta',
+        '3880' : 'Medicago truncatula',
         '214687': 'Musa acuminata subsp. malaccensis',
-            '' : 'Nicotiana attenuata',
-            '' : 'Pennisetum glaucum',
-            '' : 'Phaseolus vulgaris',
+        '49451' : 'Nicotiana attenuata',
+        '1922344' : 'Pennisetum glaucum',
+        '3885' : 'Phaseolus vulgaris',
         '65489': 'Oryza barthii',
         '4533' : 'Oryza brachyantha',
-         '4538' : 'Oryza glaberrima',
-         '40148' : 'Oryza_glumaepatula',
+        '4538' : 'Oryza glaberrima',
+        '40148' : 'Oryza_glumaepatula',
         '4528': 'Oryza longistaminata',
         '40149': 'Oryza meridionalis',
         '4536': 'Oryza_nivara',
         '4537': 'Oryza_punctata',
         '4529': 'Oryza rufipogon',
-         '4530' : 'Oryza sativa',
+        '4530' : 'Oryza sativa',
         '39946': 'Oryza sativa indica',
-         '39947' : 'Oryza sativa japonica',
-            '' : 'Populus trichocarpa',
-            '' : 'Saccharum spontaneum',
-         '4555'  : 'Setaria italica',
-         '4558' : 'Sorghum bicolor',
-         '3641' : 'Theobroma cacao',
-            '' : 'Theobroma cacao criollo',
-            '' : 'Theobroma cacao matina',
-         '4565' : 'Triticum aestivum',
+        '39947' : 'Oryza sativa japonica',
+        '3694' : 'Populus trichocarpa',
+        '62335' : 'Saccharum spontaneum',
+        '4555'  : 'Setaria italica',
+        '4558' : 'Sorghum bicolor',
+        '3641' : 'Theobroma cacao',
+        #    '' : 'Theobroma cacao criollo',
+        #   '' : 'Theobroma cacao matina',
+        '4565' : 'Triticum aestivum',
         '85692' : 'Triticum dicoccoides',
-            ''  :  'Triticum turgidum',
-         '4572' : 'Triticum urartu',
+        '4571'  :  'Triticum turgidum',
+        '4572' : 'Triticum urartu',
         '29760' : 'Vitis vinifera',
-         '4577' : 'Zea mays',
+        '4577' : 'Zea mays',
          }
 
 
-triticum_aestivum
-triticum_dicoccoides
-triticum_urartu
-vitis_vinifera
-zea_mays
 # RegEX patterns
 rap_pattern = re.compile(r'^Os\d{2}g\d{7}$')
 gramene_pattern = re.compile(r'^GR\:\d{7}$')
