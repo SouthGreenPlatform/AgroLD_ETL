@@ -9,7 +9,7 @@ This module contains Parsers, RDF converters and generic functions for handling 
     1) Add documentation
     2) Fix Gramene record trailing space in the parser, now it is being handled in the RDF converter
     3) better Error handling
-@author: venkatesan
+@author: Larmande
 '''
 import pprint
 from riceKB.globalVars import *
@@ -179,7 +179,7 @@ def oryzaBaseRDF(infile, output_file):
                     ttl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % ( label ) + " ;\n"
                     ttl_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % ( label) + " ;\n"
                     if label != '_':
-                        pub_buffer += label.lower()  + "\t" + oryzabase_uri + oryid + "\n"
+                        pub_buffer += label  + "\t" + oryzabase_uri + oryid + "\n"
                     pubRAPDB_writer(label,orygene_ds,oryid,pub_handle_rapdb)
                     pubMSU_writer(label, orygene_ds, oryid, pub_handle_msu)
             if item == 'Reco_name':
@@ -188,7 +188,7 @@ def oryzaBaseRDF(infile, output_file):
                     description = re.sub(r"\\",'', description)
                     ttl_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' %  (description)  + " ;\n"
                     if description != '_':
-                        pub_buffer += description.lower() + "\t" + oryzabase_uri + oryid + "\n"
+                        pub_buffer += description + "\t" + oryzabase_uri + oryid + "\n"
                     pubRAPDB_writer(description, orygene_ds, oryid, pub_handle_rapdb)
                     pubMSU_writer(description, orygene_ds, oryid, pub_handle_msu)
             ## TODO : fix error - sometimes list of name separate by , check how to turn one name and alternate names, variable have "" so remove them
@@ -198,7 +198,7 @@ def oryzaBaseRDF(infile, output_file):
                     altlabel = re.sub(r"\\",'', altlabel)
                     ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' %  (altlabel) + " ;\n"
                     if altlabel != '_':
-                        pub_buffer += altlabel.lower() + "\t" + oryzabase_uri + oryid + "\n"
+                        pub_buffer += altlabel + "\t" + oryzabase_uri + oryid + "\n"
                     pubRAPDB_writer(altlabel, orygene_ds, oryid, pub_handle_rapdb)
                     pubMSU_writer(altlabel, orygene_ds, oryid, pub_handle_msu)
             if item == 'Explanation':
@@ -234,7 +234,7 @@ def oryzaBaseRDF(infile, output_file):
                             symbol = re.sub(r"\\", '', symbol)
                             if symbol != '_':
                                 ttl_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % re.sub('\"|\'', '', symbol )+ " ;\n"
-                                pub_buffer += symbol.lower() + "\t" + oryzabase_uri + oryid + "\n"
+                                pub_buffer += symbol + "\t" + oryzabase_uri + oryid + "\n"
                                 pubRAPDB_writer(symbol, orygene_ds, oryid, pub_handle_rapdb)
                                 pubMSU_writer(symbol, orygene_ds, oryid, pub_handle_msu)
             if item == 'Alt_names':
@@ -245,7 +245,7 @@ def oryzaBaseRDF(infile, output_file):
                         alt_name = re.sub(r"\\",'', alt_name)
                         if alt_name != '_':
                             ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (alt_name) + " ;\n"
-                            pub_buffer += alt_name.lower() + "\t" + oryzabase_uri + oryid + "\n"
+                            pub_buffer += alt_name + "\t" + oryzabase_uri + oryid + "\n"
                             pubRAPDB_writer(alt_name, orygene_ds, oryid, pub_handle_rapdb)
                             pubMSU_writer(alt_name, orygene_ds, oryid, pub_handle_msu)
             if item == 'RAP_id':
@@ -316,7 +316,7 @@ def oryzaBaseRDF(infile, output_file):
         ttl_buffer = re.sub(' ;$', ' .\n', ttl_buffer)
         pub_handle.write(pub_buffer)
         #pub_handle_rapdb.write(pub_buffer_rapdb)
-        #RDF_validation(ttl_buffer,ttl_handle,oryid)
+        RDF_validation(ttl_buffer,ttl_handle,oryid)
         #ttl_handle.write(ttl_buffer)
 
     ttl_handle.close()
@@ -332,12 +332,12 @@ def pubRAPDB_writer(label,orygene_ds,oryid,pub_handle_rapdb):
                 for rap_id in rap_dic:
                     if re.match(rap_pattern, rap_id):
                         if label != '_':
-                            pub_handle_rapdb.write(label.lower() + "\t" + rapdb_gene_uri + rap_id + "\n")
+                            pub_handle_rapdb.write(label + "\t" + rapdb_gene_uri + rap_id + "\n")
                         #print(rap_id)
             else:
                 if re.match(rap_pattern, rap_id):
                     if label != '_':
-                        pub_handle_rapdb.write(label.lower() + "\t" + rapdb_gene_uri + rap_id + "\n")
+                        pub_handle_rapdb.write(label + "\t" + rapdb_gene_uri + rap_id + "\n")
 
 def pubMSU_writer(label, orygene_ds, oryid, pub_handle_msu):
     if orygene_ds[oryid]['MSU_id']:
@@ -346,7 +346,7 @@ def pubMSU_writer(label, orygene_ds, oryid, pub_handle_msu):
             msu_id = re.sub('\.\d\s*$','',msu_id)
             if re.match(tigr_pattern, msu_id):
                 if label != '_':
-                    pub_handle_msu.write(label.lower() + "\t" + sniplay_gene_uri + msu_id + "\n")
+                    pub_handle_msu.write(label + "\t" + sniplay_gene_uri + msu_id + "\n")
 
 def RDF_validation(ttl_buffer,ttl_handle,oryid):
 
@@ -371,10 +371,10 @@ def RDF_validation(ttl_buffer,ttl_handle,oryid):
         handle.write(ttl_buffer)
         pass
 
-oryzabase_file = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210114010048.txt'
+oryzabase_file = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210217010049.txt'
 
 
-oryzaBase_output = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210114010048.ttl'
+oryzaBase_output = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210114010049.ttl'
 pub_dict = '/Users/pierre/workspace2015/datasets/pub_dictionnary.txt'
 pub_dict_RAPDB = '/Users/pierre/workspace2015/datasets/pub_dictionnary_rapdb.txt'
 pub_dict_MSU = '/Users/pierre/workspace2015/datasets/pub_dictionnary_msu.txt'
