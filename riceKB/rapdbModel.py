@@ -689,7 +689,7 @@ def annotation2RDF(path, path_output):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.tsv.tsv'
+path = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.tsv'
 path_output = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.ttl' # The output
 pub_dict = '/Users/pierre/workspace2015/datasets/pub_dictionnary-rapdb.txt'
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
