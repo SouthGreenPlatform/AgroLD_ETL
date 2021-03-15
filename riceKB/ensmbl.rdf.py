@@ -188,11 +188,11 @@ def ensemblParser(files, type):
                     # obo:SO_transcribed_from > term:transcribed_from ou term:develops_from
                     if re.findall("obo:SO_transcribed_from", line):
                         ttl_handle.write(line)
-                        line = re.sub('obo:SO_transcribed_from', 'term:developsFrom', line)
+                        line = re.sub('obo:SO_transcribed_from', 'sio:SIO_010081', line)
                     # obo:SO_translates_to > term:translates_to ou term:encodes
                     if re.findall("obo:SO_translates_to", line):
                         ttl_handle.write(line)
-                        line = re.sub('obo:SO_translates_to', 'term:encodes', line)
+                        line = re.sub('obo:SO_translates_to', 'sio:SIO_010082', line)
                     if re.findall("<sub>", line):
                         line = re.sub('<sub>', '', line)
                     if re.findall("</sub>", line):
