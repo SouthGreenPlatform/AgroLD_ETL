@@ -104,7 +104,7 @@ def referenceRDF(file, rdf_file, output_dir,type='run'):
 
 
     print(str(len(pub_ds.keys())) + " Reference parsed")
-    output = open('/Users/plarmande/Downloads/error.txt', "w")
+    output = open('/Users/pierre/Downloads/error.txt', "w")
     print("************* %s RDF conversion begins***********\n" % (file))
     count = 0
 
@@ -172,16 +172,16 @@ def referenceRDF(file, rdf_file, output_dir,type='run'):
 
 
 
-file = '/Users/plarmande/Downloads/Reference_20190617000959.txt'
-rdf_file = '/Users/plarmande/Downloads/OryzabaseGeneListEn_20190528010057.ttl'
-rdf_file2 = '/Users/plarmande/Downloads/oryzabase_test.ttl'
-output_dir = '/Users/plarmande/Downloads/rdf/'
+file = '/Users/pierre/Downloads/Reference_20190617000959.txt'
+rdf_file = '/Users/pierre/Downloads/OryzabaseGeneListEn_20190528010057.ttl'
+rdf_file2 = '/Users/pierre/Downloads/oryzabase_test.ttl'
+output_dir = '/Users/pierre/Downloads/rdf/'
 
 vocab_ns = Namespace(base_vocab_uri)
 g = Graph()
 g.parse(rdf_file2, format="turtle")
 count = 0
-output = open('/Users/plarmande/Downloads/benchmark.tsv', "w")
+output = open('/Users/pierre/Downloads/benchmark.tsv', "w")
 for s, p, o in g.triples((None, vocab_ns.has_rap_identifier, None)):
     count +=1
     # print((s, p, o))

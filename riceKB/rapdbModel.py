@@ -587,7 +587,7 @@ def annotation2RDF(path, path_output):
     pub_handle = open(pub_dict, 'w')
 
     ttl_handle.write(str(getRDFHeaders()))
-    for records in array.as_matrix(columns=None):
+    for records in array.to_numpy(): #as_matrix(columns=None):
         taxon_id = "39947"
 
     #    pp.pprint(orygene_ds)
@@ -599,7 +599,7 @@ def annotation2RDF(path, path_output):
         os_japonica_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
         os_japonica_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + records[0] + "\" ;\n"
         os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + ensembl_transcript_ns + records[0] + ";\n"
-        os_japonica_buffer += "\t" + obo_ns + "RO_0002202" + "\t\t" + res_ns + records[1] + " ;\n"
+        os_japonica_buffer += "\t" + sio_ns + "SIO_010081" + "\t\t" + res_ns + records[1] + " ;\n"
         os_japonica_buffer += "\t" + dc_ns + "description" + "\t" + "\"%s" % (re.sub('\"|\'', '', str(records[2]))) + "\" ;\n"
         if records[3]:
             records[3] = re.sub('\"|\'', '', str(records[3]))
@@ -648,7 +648,7 @@ def annotation2RDF(path, path_output):
                                                                                                 go_term) + " ;\n"
         if records[10]: # interpro
             for ipr_term in re.findall(r'IPR[0-9]{6}', records[10]):
-                os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + interpro_ns + ipr_term + " ;\n"
+                os_japonica_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + interpro_ns + ipr_term + " ;\n"
         if records[11]: # transcript evidence
             if "(DDBJ, Best hit)" in records[11]:
                 term = records[11].split(' ')[0]
@@ -660,6 +660,7 @@ def annotation2RDF(path, path_output):
                 uni_term = re.sub(',', '', uni_term)
                 if re.match(prot_pattern, uni_term):
                     os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + uniprot_ns + uni_term + " ;\n"
+                    os_japonica_buffer += "\t" + sio_ns + "SIO_010082" + "\t\t" + uniprot_ns + uni_term + " ;\n"
             elif records[12].split(','):
                 term_list = records[12].split(',')
                 for uni_term in term_list:
@@ -668,6 +669,7 @@ def annotation2RDF(path, path_output):
                     uni_term = re.sub(',', '', uni_term)
                     if re.match(prot_pattern, uni_term):
                         os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + uniprot_ns + uni_term + " ;\n"
+                        os_japonica_buffer += "\t" + sio_ns + "SIO_010082" + "\t\t" + uniprot_ns + uni_term + " ;\n"
         if records[13]: # curration date
             os_japonica_buffer += "\t" + base_vocab_ns + "curationDate" + "\t\t" + "\"" + records[13] + "\" ;\n"
         if records[14]: # PMID
@@ -687,9 +689,9 @@ def annotation2RDF(path, path_output):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/workspace2015/datasets/IRGSP-1.0_representative_annotation_2019-12-17.tsv'
-path_output = '/Users/plarmande/workspace2015/datasets/IRGSP-1.0_representative_annotation_2019-12-17.ttl' # The output
-pub_dict = '/Users/plarmande/workspace2015/datasets/pub_dictionnary-rapdb.txt'
+path = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.tsv.tsv'
+path_output = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.ttl' # The output
+pub_dict = '/Users/pierre/workspace2015/datasets/pub_dictionnary-rapdb.txt'
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 '''
