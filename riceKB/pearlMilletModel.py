@@ -155,7 +155,7 @@ def annotation2RDF(annotation, output):
         rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
         rdf_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + geneid + "\" ;\n"
         # rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t\t" + ensembl_transcript_ns + records[0] + ";\n"
-        rdf_buffer += "\t" + obo_ns + "RO_0002202" + "\t\t" + res_ns + geneid + " ;\n"
+        rdf_buffer += "\t" + sio_ns + "SIO_010081" + "\t\t" + res_ns + geneid + " ;\n"
         # rdf_buffer += "\t" + dc_ns + "description" + "\t" + "\"%s" % (
         #     re.sub('\"|\'', '', str(records[2]))) + "\" ;\n"
         #print(len(annotation_list))
