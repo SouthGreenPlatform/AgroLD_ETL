@@ -67,6 +67,7 @@ is_located_on	is located on	ObjectProperty
 ## isLocatedOn	isLocatedOn	ObjectProperty
 encodes	encodes	ObjectProperty	SIO_010078	exact match (SIO_010078:encodes)
 SIO_010082  is translated into ObjectProperty   (SIO:010082 is translated into)
+SEQUENCE_MATCH  SEQUENCE_MATCH  ObjectProperty  (sub-class of SIO_010082 ?)
 SIO_010083  is translated from  ObjectProperty  (SIO:010083 is translated from)
 SIO_010080  is transcribed into ObjectProperty  (SIO:010080 is transcribed into)
 SIO_010081  is transcribed from ObjectProperty  (SIO:010081 is transcribed from)

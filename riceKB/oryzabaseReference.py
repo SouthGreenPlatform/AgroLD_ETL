@@ -172,8 +172,8 @@ def referenceRDF(file, rdf_file, output_dir,type='run'):
 
 
 
-file = '/Users/pierre/Downloads/Reference_20190617000959.txt'
-rdf_file = '/Users/pierre/Downloads/OryzabaseGeneListEn_20190528010057.ttl'
+file = '/Users/pierre/workspace2015/Reference_20210316002344.txt'
+rdf_file = '/Users/pierre/workspace2015/OryzabaseGeneListEn_20210114010049'
 rdf_file2 = '/Users/pierre/Downloads/oryzabase_test.ttl'
 output_dir = '/Users/pierre/Downloads/rdf/'
 
