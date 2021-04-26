@@ -61,7 +61,7 @@
 * obo:BFO_0000082 # located_in - Cellular Component
 
 ### New predicates: 
-* obo:RO_0002162
+* obo:RO_0002162 # in taxon
 * dcterms:identifier
 * dc:description
 * rdfs:seeAlso
