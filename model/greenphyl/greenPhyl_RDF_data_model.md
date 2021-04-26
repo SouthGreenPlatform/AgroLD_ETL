@@ -64,7 +64,9 @@
 * obo:RO_0002162 # in taxon
 * dcterms:identifier
 * dc:description
+* rdfs:comment
 * rdfs:seeAlso
+* owl:sameAs
 * sio:SIO_010082 # is translated into
 * sio:SIO_010083 # is translated from 
 * sio:SIO_010081 # is transcribed from
@@ -72,6 +74,11 @@
 * sio:SIO_010078 # encodes
 * sio:SIO_000558 # is orthologous to
 * sio:SIO_000630 # is paralogous to
+* skos:altLabel
+* skos:prefLabel
+* skos:prefSymbol
+* skos:altSymbol
+* agrold_vocabulary:classifiedWith
 
 ## Protein information:
 * ID: Uniprot <http://purl.uniprot.org/uniprot/>
