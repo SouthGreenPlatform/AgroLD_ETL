@@ -2,19 +2,34 @@
 
 ## Prefixes: 
  * @base <http://www.southgreen.fr/agrold/> . 
- * @prefix rdf:<http://www.w3.org/1999/02/22­rdf­syntax­ns#> . 
- * @prefix rdfs:<http://www.w3.org/2000/01/rdf­schema#> .
- * @prefix xsd:<http://www.w3.org/2001/XMLSchema#> . 
- * @prefix agrold_vocabularyulary:<http://www.southgreen.fr/agrold/vocabulary/> .
- * @prefix obo:<http://purl.obolibrary.org/obo/> .
- * @prefix uniprot:<http://purl.uniprot.org/uniprot/> .
- * @prefix tigrlocus:<h​ttp://www.southgreen.fr/agrold/tigr.locus/>​.
- * @prefix tairlocus:<h​ttp://identifiers.org/tair.locus/>​.
- * @prefix pubmed:<h​ttp://identifiers.org/pubmed/>​. 
- * @prefix interpro:<h​ttp://identifiers.org/interpro/>​. 
- * @prefix ncbi_taxon:<h​ttp://purl.obolibrary.org/obo/NCBITaxon_>​.
- * @prefix  greenphyl_family:<h​ttp://www.southgreen.fr/agrold/greenphyl.family/>​.
- * @prefix  greenphy_annotation:<h​ttp://www.southgreen.fr/agrold/greenphyl.annotation/>​.
+ * @prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>. 
+ * @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#>.
+ * @prefix xsd:<http://www.w3.org/2001/XMLSchema#>. 
+ * @prefix agrold_vocabulary:<http://www.southgreen.fr/agrold/vocabulary/>.
+ * @prefix obo:<http://purl.obolibrary.org/obo/>.
+ * @prefix uniprot:<http://purl.uniprot.org/uniprot/>.
+ * @prefix tairlocus:<http://identifiers.org/tair.locus/>.
+ * @prefix pubmed:<http://identifiers.org/pubmed/>. 
+ * @prefix interpro:<http://identifiers.org/interpro/>. 
+ * @prefix ncbi_taxon:<http://purl.obolibrary.org/obo/NCBITaxon_>.
+ * @prefix greenphyl_family:<http://www.southgreen.fr/agrold/greenphyl.family/>.
+ * @prefix greenphy_annotation:<http://www.southgreen.fr/agrold/greenphyl.annotation/>.
+
+### deprecated prefixes:
+* @prefix tigrlocus:<http://www.southgreen.fr/agrold/tigr.locus/>.
+
+### new prefixes :
+* @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
+* @prefix owl:<http://www.w3.org/2002/07/owl#>.
+* @prefix dcterms:<http://purl.org/dc/terms/>.
+* @prefix dc:<http://purl.org/dc/elements/1.1/>.
+* @prefix doi:<http://dx.doi.org/>.
+* @prefix faldo:<http://biohackathon.org/resource/faldo#>.
+* @prefix agrold_resource:<http://www.southgreen.fr/agrold/resource/>.
+* @prefix tigr_gene:<http://identifiers.org/ricegap/>
+* @prefix ensembl_plant:<http://identifiers.org/ensembl.plant/>.
+* @prefix sio:<http://semanticscience.org/resource/> .
+* @prefix taxon:<http://identifiers.org/taxonomy/>
 
 ## Predicates to be used:
 
@@ -40,13 +55,13 @@
 * agrold_vocabulary:curation_status 
 * agrold_vocabulary:has_uniprot_accession 
 * agrold_vocabulary:has_go_identifier
-* obo:BFO_0000056 # participates_in ­ Biological process
-* obo: BFO_0000085 # has_function ­ Molecular Function 
-* obo:BFO_0000082 # located_in ­ Cellular Component
+* obo:BFO_0000056 # participates_in - Biological process
+* obo: BFO_0000085 # has_function - Molecular Function 
+* obo:BFO_0000082 # located_in - Cellular Component
 
-
+### new predicates: 
 ## Protein information:
-* ID: Uniprot <h​ttp://purl.uniprot.org/uniprot/>​
+* ID: Uniprot <http://purl.uniprot.org/uniprot/>
 * Name: Literal
 * Description: literal
 * Protien Ontology term: SO_0000104 <obo:SO_0000104>
