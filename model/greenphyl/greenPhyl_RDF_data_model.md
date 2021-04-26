@@ -14,11 +14,8 @@
  * @prefix ncbi_taxon:<http://purl.obolibrary.org/obo/NCBITaxon_>.
  * @prefix greenphyl_family:<http://www.southgreen.fr/agrold/greenphyl.family/>.
  * @prefix greenphy_annotation:<http://www.southgreen.fr/agrold/greenphyl.annotation/>.
-
-### deprecated prefixes:
-* @prefix tigrlocus:<http://www.southgreen.fr/agrold/tigr.locus/>.
-
-### new prefixes :
+ 
+### New prefixes :
 * @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
 * @prefix owl:<http://www.w3.org/2002/07/owl#>.
 * @prefix dcterms:<http://purl.org/dc/terms/>.
@@ -30,6 +27,10 @@
 * @prefix ensembl_plant:<http://identifiers.org/ensembl.plant/>.
 * @prefix sio:<http://semanticscience.org/resource/> .
 * @prefix taxon:<http://identifiers.org/taxonomy/>
+
+### Deprecated prefixes:
+* @prefix tigrlocus:<http://www.southgreen.fr/agrold/tigr.locus/>.
+
 
 ## Predicates to be used:
 
@@ -59,30 +60,42 @@
 * obo: BFO_0000085 # has_function - Molecular Function 
 * obo:BFO_0000082 # located_in - Cellular Component
 
-### new predicates: 
+### New predicates: 
+* obo:RO_0002162
+* dcterms:identifier
+* dc:description
+* rdfs:seeAlso
+* sio:SIO_010082 # is translated into
+* sio:SIO_010083 # is translated from 
+* sio:SIO_010081 # is transcribed from
+* sio:SIO_010080 # is transcribed into
+* sio:SIO_010078 # encodes
+* sio:SIO_000558 # is orthologous to
+* sio:SIO_000630 # is paralogous to
+
 ## Protein information:
 * ID: Uniprot <http://purl.uniprot.org/uniprot/>
 * Name: Literal
 * Description: literal
 * Protien Ontology term: SO_0000104 <obo:SO_0000104>
 * Taxon: NCBI <http://purl.obolibrary.org/obo/NCBITaxon_>
-* Gene: MSU/TIGR Locus ID <h​ttp://www.southgreen.fr/agrold/tigr.locus/>​(O.sativa); 
-* TAIR ID <h​ttp://identifiers.org/tair.locus/>​(A.thaliana)
-* IPR: InterPro <h​ttp://identifiers.org/interpro/>​ 
-* GO: ID <h​ttp://purl.obolibrary.org/obo/>​ 
+* Gene: MSU/TIGR Locus ID <http://www.southgreen.fr/agrold/tigr.locus/>(O.sativa); 
+* TAIR ID <http://identifiers.org/tair.locus/> (A.thaliana)
+* IPR: InterPro <http://identifiers.org/interpro/> 
+* GO: ID <http://purl.obolibrary.org/obo/> 
 * Homology info: 
 * Orthology: Uniport ID (URI)
 * Paralogy: Uniport ID (URI)
 * Score: literal 
 * Annotation: Literal
 * DB xref: URI or literal, depends on the kind of xref e.g IDs 
-* Reference: Pubmed ID <h​ttp://identifiers.org/pubmed/>​
+* Reference: Pubmed ID <http://identifiers.org/pubmed/>
 
 
 ## Protein RDF Model:
 
 > E.g. Arabidopsis
-> **Note:​**For the corresponding ortholog protein a prefix need to be based on the source organism.
+> **Note: **For the corresponding ortholog protein a prefix need to be based on the source organism.
 
 * tair:ATXXXX
 	* rdf:type 							agrold_vocabulary:Protein ; 
@@ -119,13 +132,13 @@
 
 ## Family information:
 
-* ID : Internal <h​ttp://www.southgreen.fr/agrold/greenphyl.family/>​ 
+* ID : Internal <http://www.southgreen.fr/agrold/greenphyl.family/> 
 * cluster (family): OBI_0000251
 * Name: Literal
 * Level: Literal
 * Number_of_sequences: Literal
 * Evidence:Literal
-* GO: ID <h​ttp://purl.obolibrary.org/obo/>​
+* GO: ID <http://purl.obolibrary.org/obo/>
 * DB xref: URI or literal, depends on the kind of xref e.g IDs
 
 
@@ -140,6 +153,6 @@
 	* agrold_vocabulary:evidence “Evidence” ; 
 	* agrold_vocabulary:number_of_sequences “#”^^xsd:integer ; 
 	* agrold_vocabulary:has_thresold “#”^^xsd:integer ; # e.g. 1, 2 ,3 
-	* agrold_vocabulary:curation_status “Status” ; # A​nnotation in progress 
+	* agrold_vocabulary:curation_status “Status” ; # Annotation in progress 
 	* agrold_vocabulary:xRef pubmed:XXXXXX .
   
