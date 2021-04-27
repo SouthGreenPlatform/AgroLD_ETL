@@ -40,14 +40,6 @@
 * rdf:object
 * rdfs:subClassOf
 * rdfs:label
-* agrold_vocabulary:description
-* agrold_vocabulary:taxon
-* agrold_vocabulary:contains
-* agrold_vocabulary:is_orthologous_to 
-* agrold_vocabulary:is_paralogous_to 
-* agrold_vocabulary:is_member_of
-* agrold_vocabulary:xRef
-* agrold_vocabulary:has_annotation
 * agrold_vocabulary:has_score
 * agrold_vocabulary:assigned_by 
 * agrold_vocabulary:has_uniprot_accession 
@@ -67,6 +59,10 @@
 * rdfs:comment
 * rdfs:seeAlso
 * owl:sameAs
+* obo:RO_0002162 # in taxon
+* obo:RO_0002350 # is member of
+* obo:RO_0002524 # contains
+* sio:SIO_000255 # has annotation
 * sio:SIO_010082 # is translated into
 * sio:SIO_010083 # is translated from 
 * sio:SIO_010081 # is transcribed from
@@ -79,6 +75,17 @@
 * skos:prefSymbol
 * skos:altSymbol
 * agrold_vocabulary:classifiedWith
+* dcterms:references
+
+## Deprecated predicates
+* agrold_vocabulary:xRef
+* agrold_vocabulary:description
+* agrold_vocabulary:taxon
+* agrold_vocabulary:is_orthologous_to 
+* agrold_vocabulary:is_paralogous_to 
+* agrold_vocabulary:is_member_of
+* agrold_vocabulary:contains
+* agrold_vocabulary:has_annotation
 
 ## Protein information:
 * ID: Uniprot <http://purl.uniprot.org/uniprot/>
