@@ -91,18 +91,19 @@
 * Name: Literal
 * Description: literal
 * Protien Ontology term: SO_0000104 <obo:SO_0000104>
-* Taxon: NCBI 	<http://identifiers.org/taxonomy/>
-* Gene: MSU/TIGR Locus ID <http://www.southgreen.fr/agrold/tigr.locus/>(O.sativa); 
-* TAIR ID <http://identifiers.org/tair.locus/> (A.thaliana)
+* Taxon: NCBI 	<http://identifiers.org/taxonomy/{ID}>
+* Gene: MSU/TIGR Locus ID <http://www.southgreen.fr/agrold/resource/{ID}> (O.sativa); 
+* TAIR ID  <http://www.southgreen.fr/agrold/resource/{ID}> (A.thaliana)
 * IPR: InterPro <http://identifiers.org/interpro/> 
 * GO: ID <http://purl.obolibrary.org/obo/> 
 * Homology info: 
-* Orthology: Uniport ID (URI)
-* Paralogy: Uniport ID (URI)
+* * Orthology: Uniprot ID (URI)
+* * Paralogy: Uniprot ID (URI)
 * Score: literal 
 * Annotation: Literal
-* DB xref: URI or literal, depends on the kind of xref e.g IDs 
-* Reference: Pubmed ID <http://identifiers.org/pubmed/>
+* seeAlso : URI of xref e.g IDs  ## added
+* hasDBxref: literalf xref e.g IDs  ## changed 
+* Reference: Pubmed ID <http://identifiers.org/pubmed/{ID}>  ## added
 
 
 ## Protein RDF Model:
@@ -110,12 +111,12 @@
 > E.g. Arabidopsis
 > **Note: **For the corresponding ortholog protein a prefix need to be based on the source organism.
 
-* tair:ATXXXX
-	* rdf:type 							agrold_vocabulary:Protein ; 
-	* rdfs:subClassOf 					obo:SO_0000104 ;
+* agrold_resource:tair:ATXXXX ### changed ### previous = tair:ATXXXX
+	* rdf:type 				agrold_vocabulary:Protein ; 
+	* None   ###  changed ### previous = rdfs:subClassOf 	obo:SO_0000104 ;
 	* rdfs:label 							“name” ; 
-	* agrold_vocabulary:description 		“description” ; 
-	* agrold_vocabulary:taxon 			ncbi_taxon:XXXX ; 
+	* dcterms:description   “description” ;  ###   changed ### previous  agrold_vocabulary:description 		
+	* obo:RO_0002162   taxon:XXXX ;   ### changed ### agrold_vocabulary:taxon 	ncbi_taxon:XXXX ; 
 	* obo:BFO_0000056 # participates_in	obo:GO_ID ;
 	* obo: BFO_0000085 # has_function		obo:GO_ID ; 
 	* obo:BFO_0000082 # located_in		obo:GO_ID ; 
