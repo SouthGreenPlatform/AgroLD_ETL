@@ -120,9 +120,9 @@
 	* obo:BFO_0000056 # participates_in	obo:GO_ID ;
 	* obo: BFO_0000085 # has_function		obo:GO_ID ; 
 	* obo:BFO_0000082 # located_in		obo:GO_ID ; 
-	* agrold_vocabulary:contains 			interpro:XXXXX ;
+	*  agrold_vocabulary:classifiedWith 	interpro:XXXXX ; ### changed ### agrold_vocabulary:contains 	
 	* agrold_vocabulary:is_member_of 		greenphyl_family:XXXXX ; # family ID
-	* agrold_vocabulary:is_orthologous_to	uri:XXXXXX ;
+	* sio:SIO_000558	uri:XXXXXX ;	### changed ### agrold_vocabulary:is_orthologous_to	
 	* agrold_vocabulary:has_annotation  	greenphy_annotation:ID1XXXXX_ID2XXXX ;
 	* agrold_vocabulary:is_paralogous_to	uri:XXXXXX ;
 	* agrold_vocabulary:has_annotation	greenphy_annotation:ID1XXXXX_ID3XXXX ;
