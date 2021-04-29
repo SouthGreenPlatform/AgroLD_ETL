@@ -111,7 +111,7 @@
 > E.g. Arabidopsis
 > **Note: **For the corresponding ortholog protein a prefix need to be based on the source organism.
 
-* agrold_resource:tair:ATXXXX ### changed ### previous = tair:ATXXXX
+* agrold_resource:ATXXXX ### changed ### previous = tair:ATXXXX
 	* rdf:type 				agrold_vocabulary:Protein ; 
 	* None   ###  changed ### previous = rdfs:subClassOf 	obo:SO_0000104 ;
 	* rdfs:label 							“name” ; 
@@ -125,8 +125,8 @@
 	* sio:SIO_000558	uri:XXXXXX ;	### changed ### agrold_vocabulary:is_orthologous_to	
 	* agrold_vocabulary:has_annotation  	greenphy_annotation:ID1XXXXX_ID2XXXX ;
 	* agrold_vocabulary:is_paralogous_to	uri:XXXXXX ;
-	* agrold_vocabulary:has_annotation	greenphy_annotation:ID1XXXXX_ID3XXXX ;
-	* agrold_vocabulary:has_uniprot_accession uniprot:XXXXX ; 
+	* agrold_vocabulary:hasAnnotation 	greenphy_annotation:ID1XXXXX_ID3XXXX ; 	### changed ### agrold_vocabulary:has_annotation	
+	* sio:SIO_010078 	uniprot:XXXXX ; 	### changed ### agrold_vocabulary:has_uniprot_accession  ### here we agree that the entity ATXXXX is a gene
 	* agrold_vocabulary:xRef 				pubmed:XXXXXX ;
 	* agrold_vocabulary:xRef 				tairlocus:XXXXXX .
 
