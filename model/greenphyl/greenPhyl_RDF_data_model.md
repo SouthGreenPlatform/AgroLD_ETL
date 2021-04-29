@@ -14,6 +14,7 @@
  * @prefix ncbi_taxon:<http://purl.obolibrary.org/obo/NCBITaxon_>.
  * @prefix greenphyl_family:<http://www.southgreen.fr/agrold/greenphyl.family/>.
  * @prefix greenphy_annotation:<http://www.southgreen.fr/agrold/greenphyl.annotation/>.
+ * @prefix greenphyl_sequence:<http://www.southgreen.fr/agrold/greenphyl.sequence/>.
  
 ### New prefixes :
 * @prefix skos:<http://www.w3.org/2004/02/skos/core#>.
