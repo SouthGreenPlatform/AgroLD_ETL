@@ -45,9 +45,7 @@
 * agrold_vocabulary:has_uniprot_accession 
 * agrold_vocabulary:number_of_sequences 
 * agrold_vocabulary:has_thresold 
-* agrold_vocabulary:curation_status 
-* agrold_vocabulary:has_uniprot_accession 
-* agrold_vocabulary:has_go_identifier
+* agrold_vocabulary:curation_status
 * obo:BFO_0000056 # participates_in - Biological process
 * obo: BFO_0000085 # has_function - Molecular Function 
 * obo:BFO_0000082 # located_in - Cellular Component
@@ -86,6 +84,7 @@
 * agrold_vocabulary:is_member_of
 * agrold_vocabulary:contains
 * agrold_vocabulary:has_annotation
+* agrold_vocabulary:has_go_identifier
 
 ## Protein information:
 * ID: Uniprot <http://purl.uniprot.org/uniprot/>
