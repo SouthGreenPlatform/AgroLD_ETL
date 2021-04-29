@@ -91,7 +91,7 @@
 * Name: Literal
 * Description: literal
 * Protien Ontology term: SO_0000104 <obo:SO_0000104>
-* Taxon: NCBI <http://purl.obolibrary.org/obo/NCBITaxon_>
+* Taxon: NCBI 	<http://identifiers.org/taxonomy/>
 * Gene: MSU/TIGR Locus ID <http://www.southgreen.fr/agrold/tigr.locus/>(O.sativa); 
 * TAIR ID <http://identifiers.org/tair.locus/> (A.thaliana)
 * IPR: InterPro <http://identifiers.org/interpro/> 
