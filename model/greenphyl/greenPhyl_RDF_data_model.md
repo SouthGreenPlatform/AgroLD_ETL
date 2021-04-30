@@ -123,9 +123,9 @@
 	* obo:BFO_0000082 # located_in		obo:GO_ID ; 
 	* agrold_vocabulary:classifiedWith 	interpro:XXXXX ; ### changed ### agrold_vocabulary:contains 	
 	* agrold_vocabulary:is_member_of 	greenphyl_family:XXXXX ; # family ID
-	* sio:SIO_000558	uri:XXXXXX ;	### changed ### agrold_vocabulary:is_orthologous_to	
+	* sio:SIO_000558	uri:XXXXXX ;	### changed ### agrold_vocabulary:is_orthologous_to	### not supposed to be here ###
 	* agrold_vocabulary:has_annotation  	greenphy_annotation:ID1XXXXX_ID2XXXX ;
-	* sio:SIO_000630	uri:XXXXXX ;   ### changed ### agrold_vocabulary:is_paralogous_to
+	* sio:SIO_000630	uri:XXXXXX ;   ### changed ### agrold_vocabulary:is_paralogous_to	### not supposed to be here ###
 	* sio:SIO_000255 	greenphy_annotation:ID1XXXXX_ID3XXXX ; 	### changed ### agrold_vocabulary:has_annotation	
 	* owl:sameAs	uniprot:XXXXX ; 	### changed ###   agrold_vocabulary:has_uniprot_accession  ### if we assume they are identical
 	* dcterms:references				pubmed:XXXXXX ;   ### changer ### agrold_vocabulary:xRef 
@@ -136,9 +136,9 @@
 
 * greenphy_annotation:ID1XXXXX_ID2XXXX
 	* rdf:type	rdf:Statement ;
-	* rdf:subject	tair:XXXXX ; # ID1
-	* rdf:Predicate agrold_vocabulary:is_orthologous_to ; 
-	* rdf:object tair:XXXXX ; # ID2
+	* rdf:subject	greenphyl_sequence:XXXXX ; # ID1
+	* rdf:Predicate sio:SIO_000558 ;    ### changed ### agrold_vocabulary:is_orthologous_to ; ## or sio:SIO_000630 ##
+	* rdf:object greenphyl_sequence:XXXXX ; # ID2
 	* agrold_vocabulary:has_score “score” ; # Literal 
 	* agrold_vocabulary:assigned_by “GreenPhyl” .
 
@@ -154,8 +154,9 @@
 * Number_of_sequences: Literal
 * Evidence:Literal
 * GO: ID <http://purl.obolibrary.org/obo/>
-* DB xref: URI or literal, depends on the kind of xref e.g IDs
-
+* seeAlso : URI of xref e.g IDs  ## added
+* hasDBxref: literalf xref e.g IDs  ## changed 
+* Reference: Pubmed ID <http://identifiers.org/pubmed/{ID}>  ## added
 
 ## Family RDF model:
 
