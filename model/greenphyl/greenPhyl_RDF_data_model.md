@@ -128,7 +128,7 @@
 	* sio:SIO_000630	uri:XXXXXX ;   ### changed ### agrold_vocabulary:is_paralogous_to	### not supposed to be here ###
 	* sio:SIO_000255 	greenphy_annotation:ID1XXXXX_ID3XXXX ; 	### changed ### agrold_vocabulary:has_annotation	
 	* owl:sameAs	uniprot:XXXXX ; 	### changed ###   agrold_vocabulary:has_uniprot_accession  ### if we assume they are identical
-	* dcterms:references				pubmed:XXXXXX ;   ### changer ### agrold_vocabulary:xRef 
+	* dcterms:references	pubmed:XXXXXX ;   ### changer ### agrold_vocabulary:xRef 
 	* rdfs:seeAlso			tairlocus:XXXXXX .  ### changed ### agrold_vocabulary:xRef 	
 
 
@@ -162,13 +162,13 @@
 
 * greenphyl_family:GXXXX
 	* rdf:type agrold_vocabulary:Protein_Family ;
-	* rdf:subClassOf obo:OBI_0000251 ;
+	* NONE 			### Changed ### Deprecated### rdf:subClassOf obo:OBI_0000251 ;
 	* rdfs:label “name” ;
-	* agrold_vocabulary:description “description” ; 
-	* agrold_vocabulary:has_go_identifier obo:GO_ID ; 
+	* dcterms:description	“description” ; 	### Changed ### agrold_vocabulary:description 
+	* agrold_vocabulary:classifiedWith	obo:GO_ID ; 	### Changed ### agrold_vocabulary:has_go_identifier 
 	* agrold_vocabulary:evidence “Evidence” ; 
 	* agrold_vocabulary:number_of_sequences “#”^^xsd:integer ; 
 	* agrold_vocabulary:has_thresold “#”^^xsd:integer ; # e.g. 1, 2 ,3 
 	* agrold_vocabulary:curation_status “Status” ; # Annotation in progress 
-	* agrold_vocabulary:xRef pubmed:XXXXXX .
+	* dcterms:references	pubmed:XXXXXX .		### changed ### agrold_vocabulary:xRef 
   
