@@ -88,15 +88,15 @@
 * agrold_vocabulary:has_go_identifier
 
 ## Protein information:
-* ID: Uniprot <http://purl.uniprot.org/uniprot/>
+* ID: Uniprot <http://purl.uniprot.org/uniprot/{ID}>
 * Name: Literal
 * Description: literal
 * Protien Ontology term: SO_0000104 <obo:SO_0000104>
 * Taxon: NCBI 	<http://identifiers.org/taxonomy/{ID}>
 * Gene: MSU/TIGR Locus ID <http://www.southgreen.fr/agrold/resource/{ID}> (O.sativa); 
 * TAIR ID  <http://www.southgreen.fr/agrold/resource/{ID}> (A.thaliana)
-* IPR: InterPro <http://identifiers.org/interpro/> 
-* GO: ID <http://purl.obolibrary.org/obo/> 
+* IPR: InterPro <http://identifiers.org/interpro/{ID}> 
+* GO: ID <http://purl.obolibrary.org/obo/{ID}> 
 * Homology info: 
 * * Orthology: Uniprot ID (URI)
 * * Paralogy: Uniprot ID (URI)
@@ -147,13 +147,13 @@
 
 ## Family information:
 
-* ID : Internal <http://www.southgreen.fr/agrold/greenphyl.family/> 
+* ID : Internal <http://www.southgreen.fr/agrold/greenphyl.family/{ID}> 
 * cluster (family): OBI_0000251
 * Name: Literal
 * Level: Literal
 * Number_of_sequences: Literal
 * Evidence:Literal
-* GO: ID <http://purl.obolibrary.org/obo/>
+* GO: ID <http://purl.obolibrary.org/obo/{ID}>
 * seeAlso : URI of xref e.g IDs  ## added
 * hasDBxref: literalf xref e.g IDs  ## changed 
 * Reference: Pubmed ID <http://identifiers.org/pubmed/{ID}>  ## added
