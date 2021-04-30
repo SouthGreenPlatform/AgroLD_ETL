@@ -126,10 +126,10 @@
 	* sio:SIO_000558	uri:XXXXXX ;	### changed ### agrold_vocabulary:is_orthologous_to	
 	* agrold_vocabulary:has_annotation  	greenphy_annotation:ID1XXXXX_ID2XXXX ;
 	* sio:SIO_000630	uri:XXXXXX ;   ### changed ### agrold_vocabulary:is_paralogous_to
-	* agrold_vocabulary:hasAnnotation 	greenphy_annotation:ID1XXXXX_ID3XXXX ; 	### changed ### agrold_vocabulary:has_annotation	
-	* sio:SIO_010078 	uniprot:XXXXX ; 	### changed ### agrold_vocabulary:has_uniprot_accession  ### here we agree that the entity ATXXXX is a gene
-	* agrold_vocabulary:xRef 				pubmed:XXXXXX ;
-	* agrold_vocabulary:xRef 				tairlocus:XXXXXX .
+	* sio:SIO_000255 	greenphy_annotation:ID1XXXXX_ID3XXXX ; 	### changed ### agrold_vocabulary:has_annotation	
+	* owl:sameAs	uniprot:XXXXX ; 	### changed ###   agrold_vocabulary:has_uniprot_accession  ### if we assume they are identical
+	* dcterms:references				pubmed:XXXXXX ;   ### changer ### agrold_vocabulary:xRef 
+	* rdfs:seeAlso			tairlocus:XXXXXX .  ### changed ### agrold_vocabulary:xRef 	
 
 
 ## Reification 
