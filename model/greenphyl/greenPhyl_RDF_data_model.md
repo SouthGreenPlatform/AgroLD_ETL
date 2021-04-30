@@ -112,20 +112,20 @@
 > E.g. Arabidopsis
 > **Note: **For the corresponding ortholog protein a prefix need to be based on the source organism.
 
-* agrold_resource:ATXXXX ### changed ### previous = tair:ATXXXX
+* greenphyl_sequence:ATXXXX ### changed ### previous = tair:ATXXXX
 	* rdf:type 				agrold_vocabulary:Protein ; 
 	* None   ###  changed ### previous = rdfs:subClassOf 	obo:SO_0000104 ;
 	* rdfs:label 							“name” ; 
 	* dcterms:description   “description” ;  ###   changed ### previous  agrold_vocabulary:description 		
 	* obo:RO_0002162   taxon:XXXX ;   ### changed ### agrold_vocabulary:taxon 	ncbi_taxon:XXXX ; 
 	* obo:BFO_0000056 # participates_in	obo:GO_ID ;
-	* obo: BFO_0000085 # has_function		obo:GO_ID ; 
+	* obo: BFO_0000085 # has_function	obo:GO_ID ; 
 	* obo:BFO_0000082 # located_in		obo:GO_ID ; 
-	*  agrold_vocabulary:classifiedWith 	interpro:XXXXX ; ### changed ### agrold_vocabulary:contains 	
-	* agrold_vocabulary:is_member_of 		greenphyl_family:XXXXX ; # family ID
+	* agrold_vocabulary:classifiedWith 	interpro:XXXXX ; ### changed ### agrold_vocabulary:contains 	
+	* agrold_vocabulary:is_member_of 	greenphyl_family:XXXXX ; # family ID
 	* sio:SIO_000558	uri:XXXXXX ;	### changed ### agrold_vocabulary:is_orthologous_to	
 	* agrold_vocabulary:has_annotation  	greenphy_annotation:ID1XXXXX_ID2XXXX ;
-	* agrold_vocabulary:is_paralogous_to	uri:XXXXXX ;
+	* sio:SIO_000630	uri:XXXXXX ;   ### changed ### agrold_vocabulary:is_paralogous_to
 	* agrold_vocabulary:hasAnnotation 	greenphy_annotation:ID1XXXXX_ID3XXXX ; 	### changed ### agrold_vocabulary:has_annotation	
 	* sio:SIO_010078 	uniprot:XXXXX ; 	### changed ### agrold_vocabulary:has_uniprot_accession  ### here we agree that the entity ATXXXX is a gene
 	* agrold_vocabulary:xRef 				pubmed:XXXXXX ;
