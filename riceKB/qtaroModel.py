@@ -2,6 +2,7 @@ import sys
 print(sys.path)
 from riceKB.globalVars import *
 from riceKB.globalVars import base_vocab_ns
+from riceKB.utils import *
 import re
 import os
 import pandas as pd
@@ -10,7 +11,7 @@ import numpy as np
 
 '''
 Created on May, 2017
-Updated on Dec, 2019
+Updated on Dec, 2021
 The QtaroParsers module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic functions for handling Qtaro data
@@ -98,7 +99,7 @@ def qtaroGeneRDF(infile, output_dir):
     outHandle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
     outHandle.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
     outHandle.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
-
+    outHandle.write(str(getRDFHeaders()))
     for records in gene_ds.as_matrix(columns=None):
         gene_buffer = ''
         gene_counter += 1
@@ -197,5 +198,5 @@ def qtaroQTLRDF(infile, output_dir):
 
 #geneParser('../test_files/qtaro/Qtaro-Gene-export.csv')
 
-#qtaroGeneRDF('/Users/plarmande/Downloads/qtaro_gene.csv','/Users/plarmande/Downloads')
-qtaroQTLRDF('/Users/plarmande/Downloads/qtaro.csv','/Users/plarmande/Downloads')
+#qtaroGeneRDF('/Users/pierre/workspace2015/datasets/qtaro_gene.csv','/Users/pierre/workspace2015/datasets')
+qtaroQTLRDF('/Users/pierre/workspace2015/datasets/qtaro.csv','/Users/pierre/workspace2015/datasets')
