@@ -44,7 +44,7 @@ taxon_ids = {
         '3880' : 'Medicago truncatula',
         '214687': 'Musa acuminata subsp. malaccensis',
         '49451' : 'Nicotiana attenuata',
-        '1922344' : 'Pennisetum glaucum',
+        '1922344' : 'Pennisetum glaucum', # Pearl millet
         '3885' : 'Phaseolus vulgaris',
         '65489': 'Oryza barthii',
         '4533' : 'Oryza brachyantha',
@@ -294,7 +294,7 @@ RiceNetDB_gene_ns = 'ricenetdb_gene:'
 RiceNetDB_protein_uri = 'https://identifiers.org/ricenetdb.protein/'
 RiceNetDB_protein_ns = 'ricenetdb_protein:'
 
-chromosome_uri = 'http://www.southgreen.fr/agrold/chromosome/'
+chromosome_uri = 'http://www.southgreen.fr/agrold/resource/chromosome/'
 chromosome_ns = 'chromosome:'
 
 ena_embl_uri = 'http://identifiers.org/ena.embl/'
