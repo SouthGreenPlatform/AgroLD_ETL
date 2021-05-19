@@ -37,7 +37,7 @@ def geneParser(infile):
     prot_pattern = re.compile(
         r'^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$')
     ont_pattern = re.compile(r'^\w+\:\d{7}$')
-    array = pd.read_csv(infile, sep="|", delimiter=None, encoding = "ISO-8859-1", dtype='str')
+    array = pd.read_csv(infile, sep="|", delimiter=None, quotechar = '"', encoding = "ISO-8859-1", dtype='str')
     array['locus_id'].replace('', np.nan, inplace=True)
     array.dropna(subset=['locus_id'], inplace=True)
     print(array)
@@ -88,19 +88,19 @@ def qtaroGeneRDF(infile, output_dir):
     '''
     Ajout du prefix pour la release des donnees
     '''
-    outHandle.write(base + "\t" + "<" + base_uri + "> .\n")
-    outHandle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
-    outHandle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
-    outHandle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
-    outHandle.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
-    outHandle.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
-    outHandle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
-    outHandle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    outHandle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
-    outHandle.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
-    outHandle.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
+    # outHandle.write(base + "\t" + "<" + base_uri + "> .\n")
+    # outHandle.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
+    # outHandle.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
+    # outHandle.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
+    # outHandle.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
+    # outHandle.write(pr + "\t" + xsd_ns + "<" + xsd + "> .\n")
+    # outHandle.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
+    # outHandle.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
+    # outHandle.write(pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n")
+    # outHandle.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
+    # outHandle.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
     outHandle.write(str(getRDFHeaders()))
-    for records in gene_ds.as_matrix(columns=None):
+    for records in gene_ds.to_numpy():
         gene_buffer = ''
         gene_counter += 1
 
@@ -109,7 +109,8 @@ def qtaroGeneRDF(infile, output_dir):
         if rap_pattern.match(records[8]) and isinstance(records[8],str):
             gene_buffer += base_resource_ns + records[8] + "\n"
             gene_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-            gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records[1]) + " ;\n"
+            label = re.sub('\"+', '', records[1])
+            gene_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (label) + " ;\n"
             gene_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (records[2]) + " ;\n"
             # gene_buffer += "\t" + base_vocab_ns + "is_located_on" + "\t" + '"%s"' % (records[5]) + " ;\n"
             # gene_buffer += "\t" + base_vocab_ns + "has_start_position" + "\t" + '"%s"' % (records[6]) + " ;\n"
@@ -117,9 +118,10 @@ def qtaroGeneRDF(infile, output_dir):
             gene_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (records[3]) + " ;\n"
             gene_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (records[4]) + " ;\n"
             gene_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + records[8] + " ;\n"
-            gene_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (records[11]) + " ;\n"
+            description = re.sub('\"+', '', records[11])
+            gene_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (description) + " ;\n"
             if records[12] is not np.nan:
-                gene_buffer += "\t" + dc_ns + "identifier" + "\t" +  '"http://dx.doi.org/%s"' %  (records[12]) + " ;\n"
+                gene_buffer += "\t" + dc_ns + "references" + "\t" +  "<" + doi_uri + records[12] + "> ;\n"
             gene_buffer = re.sub(' ;$', ' .\n', gene_buffer)
             outHandle.write(gene_buffer)
     outHandle.close()
@@ -157,7 +159,7 @@ def qtaroQTLRDF(infile, output_dir):
     '''
     outHandle.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
 
-    for records in qtl_ds.as_matrix(columns=None):
+    for records in qtl_ds.to_numpy():
         qtl_buffer = ''
         qtl_counter += 1
         #chrm = records['Chromosome'].replace("Chr. ", "")
@@ -171,14 +173,34 @@ def qtaroQTLRDF(infile, output_dir):
         # qtl_buffer += "\t" + rdf_ns + "type" + "\t" + owl_ns + "Class" + " ;\n"
         # qtl_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + qtl_term + " ;\n"
         qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (records[1]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "isLocatedOn" + "\t" + "<"+ chromosome_uri + taxon_id + "/%s>" % (records[5]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "hasStartPosition" + "\t" + '"%s"' % (records[6]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "hasEndPosition" + "\t" + '"%s"' % (records[7]) + " ;\n"
+        # URI du Chromosome ensembl http://www.southgreen.fr/agrold/resource/oryza_sativa/IRGSP-1.0/4
+        #
+        qtl_buffer += "\t" + faldo_ns + "location" + "\t" + "<"+ chromosome_uri + taxon_id + "/{}:{}-{}:1>".format(records[5],records[6],records[7]) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait1) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait2) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + '"%s"' % (trait3) + " ;\n"
         qtl_buffer += "\t" + base_vocab_ns + "lod" + "\t" + '"%s"' % (records[9]) + " ;\n"
-        qtl_buffer += "\t" + base_vocab_ns + "date" + "\t" + '"%s"' % (records[29]) + " ;\n"
+        qtl_buffer += "\t" + base_vocab_ns + "date" + "\t" + '"%s"' % (records[29]) + " .\n\n"
+        # Region
+        qtl_buffer += "<"+ chromosome_uri + taxon_id + "/{}:{}-{}:1>".format(records[5],records[6],records[7])  + "\n"
+        qtl_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + taxon_id + "/{}:{}-{}:1>".format(records[5],records[6],records[7])  + "\" ;\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
+        qtl_buffer += "\t" + faldo_ns + "begin" + "\t" +  "<"+ chromosome_uri + taxon_id + "/{}:{}:1>".format(records[5],records[6])  + " ;\n"
+        qtl_buffer += "\t" + faldo_ns + "end" + "\t" + "<"+ chromosome_uri + taxon_id + "/{}:{}:1>".format(records[5],records[7]) + "  .\n\n"
+
+        # Position 1
+        qtl_buffer += "<"+ chromosome_uri + taxon_id + "/{}:{}:1>".format(records[5],records[6])  + "\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ForwardStrandPosition" + " ;\n"
+        qtl_buffer += "\t" + faldo_ns + "position" + "\t" + records[6] + " ;\n"
+        qtl_buffer +=   "\t" + faldo_ns + "reference" + "\t" + "<"+ chromosome_uri + taxon_id + "/{}>".format(records[5])  + ". \n\n"
+        # Position 2
+        qtl_buffer += "<" + chromosome_uri + taxon_id + "/{}:{}:1>".format(records[5], records[7]) + "\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+        qtl_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ForwardStrandPosition" + " ;\n"
+        qtl_buffer += "\t" + faldo_ns + "position" + "\t" + records[7] + " ;\n"
+        qtl_buffer += "\t" + faldo_ns + "reference" + "\t" + "<" + chromosome_uri + taxon_id + "/{}>".format(
+            records[5]) + ". \n\n"
 
         #if records['marker_interval_1']
 
