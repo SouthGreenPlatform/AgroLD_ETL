@@ -3,6 +3,7 @@ print(sys.path)
 from riceKB.globalVars import *
 from riceKB.globalVars import base_vocab_ns
 from riceKB.gffParser import *
+from riceKB.utils import *
 import pprint
 import re
 import os
@@ -33,17 +34,6 @@ __author__  = "larmande"
 # TODO modify the help
 
 
-def getStrandValue(strandVar):
-    '''
-    returns the formated value of strand + predicate
-    '''
-    if strandVar == "-":
-        strandVar = "-1"
-        positionVar = "ReverseStrandPosition"
-    else:
-        strandVar = "1"
-        positionVar = "ForwardStrandPosition"
-    return (strandVar,positionVar)
 
 def getFaldoRegion(taxon_id,ssp, seqid,start,end,strand):
     '''
