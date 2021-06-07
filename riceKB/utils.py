@@ -42,6 +42,17 @@ def getStrandValue(strandVar):
         positionVar = "ForwardStrandPosition"
     return (strandVar,positionVar)
 
+def getChromosomeNumber(chrString):
+    '''
+    returns the formated chromosome number without Chr string or others
+    '''
+    if 'Chr' in chrString:
+        chromosome_nb = re.sub('Chr', '', chrString)
+        chromosome_nb = re.sub('^0', '', chromosome_nb)
+    else:
+        chromosome_nb = re.sub('^0', '',chrString)
+    return chromosome_nb
+
 def getFaldoRegion(taxon_id,seqid,start,end,strand):
     (strand, position) = getStrandValue(strand)
     strand = str(strand)
