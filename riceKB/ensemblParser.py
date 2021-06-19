@@ -76,7 +76,10 @@ def RDFConverter(ds, output_file):
     rdf_writer.write(pr + "\t" + "SwissProt:" + "<" + identifiers_uri + "uniprot/> .\n")
     rdf_writer.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
     # Ajout du prefix pour la release des donnees
-    rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
+    rdf_writer.write(pr + "\t" + "gene:" + "<" + base_resource_uri + "> .\n")
+    rdf_writer.write(pr + "\t" + "transcript:"+ "<" + base_resource_uri + "transcript/" +"> .\n")
+    rdf_writer.write(pr + "\t" + "CDS:" + "<" + base_resource_uri + "CDS/" + "> .\n")
+    rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n")
 
     for records in ds:
         line_number += 1
@@ -114,10 +117,11 @@ def RDFConverter(ds, output_file):
                 # print the corresponding gene associated at mRNAs
                 # os_japonica_buffer = ''
                 gene_list.append(records['attributes']['gene_id'])
-                genome_buffer += base_resource_ns + records['attributes']['gene_id'] + "\n"
+                # genome_buffer += base_resource_ns + records['attributes']['gene_id'] + "\n"
+                genome_buffer += records['attributes']['ID'] + "\n"
                 genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-                if records['attributes']['Name']:
+                if 'Name' in records['attributes']:
                     genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
                 else:
                     genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['gene_id'] + "\" ;\n"
@@ -143,10 +147,11 @@ def RDFConverter(ds, output_file):
                 go_list = list()
                 # print the corresponding gene associated at mRNAs
                 mRNA_list.append(records['attributes']['transcript_id'])
-                genome_buffer += base_resource_ns + "transcript/"+ records['attributes']['transcript_id'] + "\n"
+                # genome_buffer += base_resource_ns + "transcript/"+ records['attributes']['transcript_id'] + "\n"
+                genome_buffer += records['attributes']['ID']  + "\n"
                 genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
-                if records['attributes']['Name']:
+                if 'Name' in records['attributes']:
                     genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
                 else:
                     genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes'][
@@ -158,7 +163,7 @@ def RDFConverter(ds, output_file):
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 if 'Parent' in records['attributes']:
                     parent = records['attributes']['Parent'].split('.')[0]
-                    genome_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t" + base_resource_ns + parent +";\n"
+                    genome_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t"  + parent +";\n"
                 if 'Dbxref' in records['attributes']:
                     for terms in records['attributes']['Dbxref'].split(','):
                         genome_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" +  terms + " ;\n"
@@ -176,9 +181,9 @@ def RDFConverter(ds, output_file):
                                  str(records['start']) + "-" + str(records['end']) + ":" + \
                                  strand + "> ;\n"
                 genome_buffer = re.sub(' ;$', ' .\n', genome_buffer)
-                genome_buffer += getFaldoRegion(taxon_id, ssp, chromosome_nb,records['start'],records['end'],records['strand'])
+                genome_buffer += getFaldoRegion(taxon_id, chromosome_nb,records['start'],records['end'],records['strand'])
                 rdf_writer.write(genome_buffer)
-
+                print(genome_buffer)
         if records['type'] == "polypeptide":
             genome_buffer = ''
             # print the corresponding gene associated at mRNAs
