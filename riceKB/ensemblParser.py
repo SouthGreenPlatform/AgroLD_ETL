@@ -163,6 +163,7 @@ def RDFConverter(ds, output_file):
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
                 if 'Parent' in records['attributes']:
                     parent = records['attributes']['Parent'].split('.')[0]
+                    genome_buffer += "\t" + sio_ns + 'SIO_010081' + "\t"  + parent +";\n"
                     genome_buffer += "\t" + base_vocab_ns + "developsFrom" + "\t"  + parent +";\n"
                 if 'Dbxref' in records['attributes']:
                     for terms in records['attributes']['Dbxref'].split(','):
