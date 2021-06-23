@@ -98,40 +98,42 @@ def gene2RDF(gene,output):
         rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
         rdf_buffer += "\t" + dcterms_ns + "identifier" + "\t" + " \"" + geneid + "\" ;\n"
         chromosome_number = re.sub('chr','', str(records[4]))
-        rdf_buffer += "\t" + faldo_ns + "location" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
-                    chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + records[3] + " .\n\n"
+        rdf_buffer += "\t" + faldo_ns + "location" + "\t" + "<http://www.southgreen.fr/agrold/resource/chromosome/" + taxon_id + "/" + \
+                    chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + records[3] + ">  .\n\n"
 
+        rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
+        rdf_buffer += getFaldoRegion(taxon_id,chromosome_number,records[1],records[2],records[3])
         # Region
-        rdf_buffer += chromosome_ns + "CEGSBv1.1:" + \
-                              chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + strand + "  \n"
-        rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + "CEGSBv1.1:" + \
-                              chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + strand + "\";\n"
-        rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
-        rdf_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
-                              chromosome_number + ":" + str(records[1]) + ":" + strand + "  ;\n"
-        rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + "CEGSBv1.1:" + \
-                              chromosome_number + ":" +  str(records[2]) + ":" + strand + "  .\n\n"
-
-        # Position 1
-        rdf_buffer += chromosome_ns + "CEGSBv1.1:" + chromosome_number + ":" + str(records[1]) + ":" + strand
-        rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
-        rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
-        rdf_buffer += "  ;\n"
-        rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(records[1]) + " ;\n"
-        rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "CEGSBv1.1:" + chromosome_number \
-                      +  " .\n\n"
-
-        # Position 2
-        rdf_buffer += chromosome_ns + "CEGSBv1.1:" + chromosome_number + ":" + str(records[2]) + ":" + strand
-        rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
-        rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
-        rdf_buffer += "  ;\n"
-        rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(records[2]) + " ;\n"
-        rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "CEGSBv1.1:" \
-                      + chromosome_number +  " .\n\n"
+        # rdf_buffer += chromosome_ns + taxon_id + "/" + \
+        #                       chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + strand + "  \n"
+        # rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + chromosome_ns + taxon_id + "/" + \
+        #                       chromosome_number + ':' + str(records[1]) + '-' + str(records[2]) + ":" + strand + "\";\n"
+        # rdf_buffer += "\t" + rdf_ns + "type" + "\t" + faldo_ns + "Region" + " ;\n"
+        # rdf_buffer += "\t" + faldo_ns + "begin" + "\t" + chromosome_ns + taxon_id + "/" + + \
+        #                       chromosome_number + ":" + str(records[1]) + ":" + strand + "  ;\n"
+        # rdf_buffer += "\t" + faldo_ns + "end" + "\t" + chromosome_ns + taxon_id + "/" + + \
+        #                       chromosome_number + ":" +  str(records[2]) + ":" + strand + "  .\n\n"
+        #
+        # # Position 1
+        # rdf_buffer += chromosome_ns + "CEGSBv1.1:" + chromosome_number + ":" + str(records[1]) + ":" + strand
+        # rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+        # rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+        # rdf_buffer += "  ;\n"
+        # rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(records[1]) + " ;\n"
+        # rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "CEGSBv1.1:" + chromosome_number \
+        #               +  " .\n\n"
+        #
+        # # Position 2
+        # rdf_buffer += chromosome_ns + "CEGSBv1.1:" + chromosome_number + ":" + str(records[2]) + ":" + strand
+        # rdf_buffer += "\n" + "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + "ExactPosition" + " ;\n"
+        # rdf_buffer += "\t" + rdf_ns + "type" + "\t\t" + faldo_ns + position
+        # rdf_buffer += "  ;\n"
+        # rdf_buffer += "\t" + faldo_ns + "position" + "\t" + str(records[2]) + " ;\n"
+        # rdf_buffer += "\t" + faldo_ns + "reference" + "\t" + chromosome_ns + "CEGSBv1.1:" \
+        #               + chromosome_number +  " .\n\n"
 
         #print(rdf_buffer)
-        rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
+        # rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
         #RDF_validation(rdf_buffer, ttl_handle, geneid)
         ttl_handle.write(rdf_buffer)
     ttl_handle.close()
