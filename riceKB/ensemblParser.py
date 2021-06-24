@@ -60,7 +60,7 @@ def printHeader(rdf_writer):
     rdf_writer.write(pr + "\t" + "gene:" + "<" + base_resource_uri + "> .\n")
     rdf_writer.write(pr + "\t" + "transcript:" + "<" + base_resource_uri + "transcript/" + "> .\n")
     rdf_writer.write(pr + "\t" + "CDS:" + "<" + base_resource_uri + "CDS/" + "> .\n")
-    rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n")
+    rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
 
 def geneEntityWriter(type,records,gene_list,taxon_id,chromosome_nb,ssp, source_project):
     if not records['attributes']['gene_id'] in gene_list:
@@ -269,8 +269,8 @@ pp = pprint.PrettyPrinter(indent=4)
 
 
 #TEST PARAM
-path = '/Users/pierre/workspace2015/datasets/Oryza_sativa.IRGSP-1.0.51.chromosome.1.gff3'
-path_output = '/Users/pierre/workspace2015/datasets/Oryza_sativa.IRGSP-1.0.51.chromosome.1.gff3.ttl'
+path = '/Users/pierre/workspace2015/Oryza_sativa.IRGSP-1.0.51.chr.gff3'
+path_output = '/Users/pierre/workspace2015/datasets/Oryza_sativa.IRGSP-1.0.51.chr.gff3.ttl'
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = parseGFF3(path)   # The parsing file
