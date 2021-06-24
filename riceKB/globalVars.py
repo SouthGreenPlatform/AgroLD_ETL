@@ -33,7 +33,7 @@ taxon_ids = {
         '3712':'Brassica oleracea',
         '1753':'Brassica_rapa',
         '3821':'Cajanus_cajan', #**
-        '4543': 'Cenchrus americanus',
+        '4543': 'Cenchrus americanus', # Pearl millet
         '3827':'Cicer arietinum', #**
         '85681':'Citrus clementina',
         '49390': 'Coffea canephora str. DH200-94',
@@ -44,7 +44,7 @@ taxon_ids = {
         '3880' : 'Medicago truncatula',
         '214687': 'Musa acuminata subsp. malaccensis',
         '49451' : 'Nicotiana attenuata',
-        '1922344' : 'Pennisetum glaucum', # Pearl millet
+        # '4543' : 'Cenchrus americanus', # Pearl millet
         '3885' : 'Phaseolus vulgaris',
         '65489': 'Oryza barthii',
         '4533' : 'Oryza brachyantha',
@@ -55,9 +55,9 @@ taxon_ids = {
         '4536': 'Oryza_nivara',
         '4537': 'Oryza_punctata',
         '4529': 'Oryza rufipogon',
-        '4530' : 'Oryza sativa',
-        '39946': 'Oryza sativa indica',
-        '39947' : 'Oryza sativa japonica',
+        # '4530' : 'Oryza sativa',
+        '39946': 'Oryza indica',
+        '39947' : 'Oryza sativa',
         '3694' : 'Populus trichocarpa',
         '62335' : 'Saccharum spontaneum',
         '4555'  : 'Setaria italica',
