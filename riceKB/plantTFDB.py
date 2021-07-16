@@ -70,8 +70,10 @@ def RDFConverter(ds, output_file):
                       base_resource_ns + records[1] + " .\n"
                 # mRNA uri isMemberOf family uri
         buffer += "<" + base_resource_uri + records[0] + ">"
+        buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Transcription_Factor" + " ;\n"
         buffer += "\t" + obo_ns + "RO_0002350" + "\t" + "<" + base_resource_uri + "family/" + records[2] + ">" + " .\n"
         buffer += "<" + base_resource_uri + records[1] + ">"
+        buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Transcription_Factor" + " ;\n"
         buffer += "\t" + obo_ns + "RO_0002350" + "\t" + "<" + base_resource_uri + "family/" + records[2] + ">" + " .\n\n"
         # gene uri isMemberOf family uri > inference ?
 
@@ -82,11 +84,31 @@ def RDFConverter(ds, output_file):
 
     print("*************** PlantTFDB RDF conversion completed ************\n")
 
+def RDFRegulate(ds, regulation_rdf):
+    buffer = ''  # initilised the buffer at zero
+    line_number = 0
+    rdf_writer = open(regulation_rdf, "w")
+    gene_list = list()
+    mRNA_list = list()
+    fam_list = list()
+    taxon_id = "39947"
 
+    print("************* RDF conversion begins***********\n")
+    rdf_writer.write(str(getRDFHeaders()))
+    for records in ds.to_numpy():
+        buffer = ''
+        buffer += "<" + base_resource_uri + records[0] + ">"
+        buffer += "\t" + obo_ns + "RO_0002211" + "\t" + "<" + base_resource_uri + records[2] + ">" + " .\n"
+        # buffer += "\t" + base_vocab_ns + "regulationType"
+#      http://purl.obolibrary.org/obo/RO_0002211
+        rdf_writer.write(buffer)
+        print(buffer)
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
 path = '/Users/pierre/workspace2015/datasets/Osj_TF_list.txt'
+regulation_file = '/Users/pierre/workspace2015/datasets/regulation_merged_Osj.txt'
+regulation_output = '/Users/pierre/workspace2015/datasets/regulation_merged_Osj.ttl'
 path_output = '/Users/pierre/workspace2015/datasets/Osj_TF_list.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
@@ -95,4 +117,7 @@ pp.pprint(ds)    # For to see in teminal the parsing
 
 #os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
 
-RDFConverter(ds, path_output)
+# RDFConverter(ds, path_output)
+ds2 = geneParser(regulation_file)
+pp.pprint(ds2)
+RDFRegulate(ds2,regulation_output)
