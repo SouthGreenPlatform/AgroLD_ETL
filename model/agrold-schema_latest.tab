@@ -49,6 +49,7 @@ participates_in	participates in	ObjectProperty	BFO_0000056	exact match
 ## participatesIn	participatesIn	ObjectProperty	BFO_0000056	exact match
 has_function	has function	ObjectProperty	BFO_0000085	exact match
 ## hasFunction	hasFunction	ObjectProperty	BFO_0000085	exact match
+RO_0000085  has function    ObjectProperty  exact match (RO_0000085  has function)
 located_in	located in	ObjectProperty	BFO_0000082	exact match
 ## locatedIn	locatedIn	ObjectProperty	BFO_0000082	exact match
 expressed_in	expressed in	ObjectProperty	RO_0002206	exact match
@@ -59,7 +60,8 @@ has_trait	has trait	ObjectProperty	RO_0002410	subClassOf (RO_0002410:causally re
 ## hasTrait	hasTrait	ObjectProperty	RO_0002410	subClassOf (RO_0002410:causally related to)
 observed_in	observed in	ObjectProperty
 observedIn	observedIn	ObjectProperty
-taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source)
+##taxon	taxon	ObjectProperty	SIO_000253	exact match (SIO_000253:has source)
+RO_0002162 in taxon ObjectProperty exact match (RO_0002162 in taxon)
 evidence	has evidence	ObjectProperty	RO_0002558	exact match (RO_0002558:has evidence)
 has_annotation	has annotation	ObjectProperty	SIO_000255	exact match (SIO_000255:has annotation)
 ## hasAnnotation	hasAnnotation	ObjectProperty	SIO_000255	exact match (SIO_000255:has annotation)
@@ -147,6 +149,7 @@ has_evalue	has evalue	DataTypeProperty
 has_dbxref	has dbxref		AnnotationProperty	(owl:Class)	String
 ## rdfs:seeAlso	rdfs:seeAlso	AnnotationProperty	owl:Class	String
 has_alternative_id	has alternative id	AnnotationProperty	(Gene,Protein,QTL)
+## dc:identifiers
 ## skos:altLabel	skos:altLabel	AnnotationProperty	Gene,mRNA,Protein,QTL	String
 # MISSED DATA
 #has_score	has score	DataTypeProperty	?	?
