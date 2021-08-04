@@ -52,7 +52,9 @@ has_function	has function	ObjectProperty	BFO_0000085	exact match
 RO_0000085  has function    ObjectProperty  exact match (RO_0000085  has function)
 located_in	located in	ObjectProperty	BFO_0000082	exact match
 ## locatedIn	locatedIn	ObjectProperty	BFO_0000082	exact match
+RO_0001025  located in  ObjectProperty  exact match (RO_0001025  located in)
 expressed_in	expressed in	ObjectProperty	RO_0002206	exact match
+RO_0002206  expressed in    ObjectProperty  exact match (RO_0002206  located in)
 ## expressedIn	expressedIn	ObjectProperty	RO_0002206	exact match (RO_0002206:expressed in)
 expressed_at	expressed at	ObjectProperty	BFO_0000174	subClassOf (BFO_0000174:has proper continuant part at some time)
 ## expressedAt	expressedAt	ObjectProperty	BFO_0000174	subClassOf (BFO_0000174:has proper continuant part at some time)
