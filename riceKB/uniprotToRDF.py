@@ -9,6 +9,7 @@ from Bio import SwissProt
 
 from riceKB.globalVars import *
 #from globalVars import *
+from riceKB.utils import *
 import pprint
 import re
 import os
@@ -16,6 +17,18 @@ import sys
 from collections import defaultdict
 
 def keyword2URI(keyword):
+    cleanKey = re.sub('^\s+|\s+$','',keyword)
+    cleanKey = re.sub('\s','_',keyword)
+    keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
+    return keywordURI, cleanKey
+
+def keyword2Triples(cleanedKey, keywordBuffer):
+    # cleanKey = re.sub('^\s+|\s+$', '', keyword)
+    keyword = re.sub('_', ' ', cleanedKey)
+    keywordBuffer += "<" + base_resource_uri + "keyword/" + cleanedKey + "> \n"
+    keywordBuffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Keyword" + " ;\n"
+    keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (keyword) + " .\n"
+    return keywordBuffer
 
 def cleanUp(text, title, provenance=False):
     clean_text = text.replace('"', '')
@@ -177,11 +190,16 @@ def splitComments(comments):
 def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
     rdf_file = "uniprot.plants.ttl"
+    rdf_keyword_file = "uniprot.keyword.ttl"
     output_file = os.path.join(rdf_out_dir, rdf_file)
+    output_key_file = os.path.join(rdf_out_dir, rdf_keyword_file)
     output_writer = open(output_file, "w")
+    keyword_writer = open(output_key_file, "w")
+    keywordBuffer = ''
     rdf_buffer = ''
     prot_counter = 0
     lookup_list = set()
+    keyword_list = set()
     pp = pprint.PrettyPrinter(indent=4)
     up_base_uri = "http://purl.uniprot.org/"
     #    up_base_ns = "uniprot_base:"
@@ -194,20 +212,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
     print("************* Converting Uniprot data to RDF ***************\n")
 
-    output_writer.write(base + "\t" + "<" + base_uri + "> .\n")
-    output_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
-    output_writer.write(pr + "\t" + rdfs_ns + "<" + rdfs + "> .\n")
-    output_writer.write(pr + "\t" + owl_ns + "<" + owl + "> .\n")
-    output_writer.write(pr + "\t" + skos_ns + "<" + skos + "> .\n")
-    output_writer.write(pr + "\t" + dc_ns + "<" + dc_uri + "> .\n")
-    output_writer.write(pr + "\t" + dcterms_ns + "<" + dcterms_uri + "> .\n")
-    output_writer.write(pr + "\t" + base_vocab_ns + "<" + base_vocab_uri + "> .\n")
-    output_writer.write(pr + "\t" + obo_ns + "<" + obo_uri + "> .\n")
-    output_writer.write(pr + "\t" + sio_ns + "<" + sio_uri + "> .\n")
-    output_writer.write(pr + "\t" + ncbi_tax_ns + "<" + ncbi_tax_uri + "> .\n")
-    output_writer.write(pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n")
-    output_writer.write(pr + "\t" + up_ns + "<" + uniprot + "> .\n\n")
-
+    output_writer.write(str(getRDFHeaders()))
 #    for upfile in up_files:
 #        file_handle = open(upfile, "r")
     with open(up_files, 'r') as file_handle:
@@ -271,11 +276,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                         descriptions = record.description.split(';')
                         description = descriptions[0][14:]  # .lstrip('RecName: Full=')
                         rdf_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (description) + " ;\n"
-                    #                    print description
-
                     #  Gene Name
-                    #                    print record.gene_name
-
                     if record.gene_name:
                         for entry in record.gene_name.split(';'):
                             new_entry = re.sub('\{.+?\}', '', entry)
@@ -306,8 +307,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
                     # Taxon
                     rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
-                    #                   taxID
-
                     # Comments
                     if record.comments:
                         comment_buffer = splitComments(record.comments)
@@ -320,16 +319,14 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     #                    print record.keywords
                     if record.keywords:
                         for keyword in record.keywords:
-                            keywordURI = keyword2URI(keyword)
-                            rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + '"%s"' % (keywordURI) + " ;\n"
-                    # Cross References
-                    #                    pp.pprint(record.cross_references[0])
-
-                    for dbs in record.cross_references:
-                        dbname = dbs[0]
-                        ids = dbs[1]
-                        xrefs[dbname].append(ids)
-
+                            keywordURI, cleanKeyword = keyword2URI(keyword)
+                            keyword_list.add(cleanKeyword)
+                            rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + keywordURI + " ;\n"
+                    if record.cross_references:
+                        for dbs in record.cross_references:
+                            dbname = dbs[0]
+                            ids = dbs[1]
+                            xrefs[dbname].append(ids)
                     for key in xrefs:
                         if key != "GO":
                             db_namespace = key.lower()
@@ -337,7 +334,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                 # rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                                 rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                         if key == "GO":
-
                             for dbid in xrefs[key]:
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns+ re.sub(':','_',dbid) + " ;\n"
 
@@ -361,8 +357,15 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
                     rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
                     output_writer.write(rdf_buffer)
+                    print("\t".join(keyword_list))
         file_handle.close()
     output_writer.close()
+    keyword_writer.write(str(getRDFHeaders()))
+    for keyword in keyword_list:
+        keywordBuffer = ''
+        keywordBuffer = keyword2Triples(keyword,keywordBuffer)
+        keyword_writer.write(keywordBuffer)
+
     print("Number of Proteins: %s\n" % (str(prot_counter)))
     print("*************** UniProt RDF conversion completed ************\n")
 
