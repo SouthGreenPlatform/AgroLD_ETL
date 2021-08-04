@@ -56,7 +56,7 @@ def splitComments(comments):
                 location_entry = re.sub('^\s+|\s+$', '', location_entry)
                 if location_entry:
                     buffer += "\t" + obo_ns + "RO_0001025" + "\t" + '"%s"' % (location_entry) + " ;\n"
-            print('found SUBCELLULAR LOCATION:')
+            # print('found SUBCELLULAR LOCATION:')
         elif 'TISSUE SPECIFICITY:' in annotation:
             #  up:Tissue_Specificity_Annotation RO_0002206  expressed in
             tissue = cleanUp(annotation,'TISSUE SPECIFICITY:')
@@ -64,15 +64,16 @@ def splitComments(comments):
             # Expressed in a small number of epidermal or subepidermal cells at the leaf axils, in axillary
             # meristems and the entire tiller buds.
             # Undetected in the shoot apical meristem. {ECO:0000269|PubMed:12687001}.
-            print('found TISSUE SPECIFICITY:')
+            # print('found TISSUE SPECIFICITY:')
         elif 'DOMAIN:'  in annotation:
             #  RO_0002524:contains
             domain = cleanUp(annotation,'DOMAIN:')
             buffer += "\t" + obo_ns + "RO_0002524" + "\t" + '"%s"' % (domain) + " ;\n"
             # The C-terminal part of the protein is important for tillering.
             # Mutant moc1, in which the last 124 amino acids are missing, is mono culm. {ECO:0000305}.
-            print('found DOMAIN:')
+            # print('found DOMAIN:')
         elif 'SIMILARITY:' in annotation:
+
             #  Belongs to the GRAS family. {ECO:0000305}.
             print('found SIMILARITY:')
         elif 'SEQUENCE CAUTION:' in annotation:
@@ -357,7 +358,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
                     rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
                     output_writer.write(rdf_buffer)
-                    print("\t".join(keyword_list))
         file_handle.close()
     output_writer.close()
     keyword_writer.write(str(getRDFHeaders()))
@@ -365,7 +365,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
         keywordBuffer = ''
         keywordBuffer = keyword2Triples(keyword,keywordBuffer)
         keyword_writer.write(keywordBuffer)
-
+    keyword_writer.close()
     print("Number of Proteins: %s\n" % (str(prot_counter)))
     print("*************** UniProt RDF conversion completed ************\n")
 
