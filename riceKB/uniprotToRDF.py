@@ -45,7 +45,6 @@ def splitComments(comments):
             # (RO_0000085  has function)
             function = cleanUp(annotation,'FUNCTION:')
             buffer += "\t" + obo_ns + "RO_0000085" + "\t" + '"%s"' % (function) + " ;\n"
-            # print('found FUNCTION:')
         elif 'SUBCELLULAR LOCATION:' in annotation:
             # RO_0001025  located in
             location = cleanUp(annotation,'SUBCELLULAR LOCATION:', True)
@@ -56,97 +55,63 @@ def splitComments(comments):
                 location_entry = re.sub('^\s+|\s+$', '', location_entry)
                 if location_entry:
                     buffer += "\t" + obo_ns + "RO_0001025" + "\t" + '"%s"' % (location_entry) + " ;\n"
-            # print('found SUBCELLULAR LOCATION:')
         elif 'TISSUE SPECIFICITY:' in annotation:
             #  up:Tissue_Specificity_Annotation RO_0002206  expressed in
             tissue = cleanUp(annotation,'TISSUE SPECIFICITY:')
             buffer += "\t" + obo_ns + "RO_0002206" + "\t" + '"%s"' % (tissue) + " ;\n"
-            # Expressed in a small number of epidermal or subepidermal cells at the leaf axils, in axillary
-            # meristems and the entire tiller buds.
-            # Undetected in the shoot apical meristem. {ECO:0000269|PubMed:12687001}.
-            # print('found TISSUE SPECIFICITY:')
         elif 'DOMAIN:'  in annotation:
             #  RO_0002524:contains
             domain = cleanUp(annotation,'DOMAIN:')
             buffer += "\t" + obo_ns + "RO_0002524" + "\t" + '"%s"' % (domain) + " ;\n"
-            # The C-terminal part of the protein is important for tillering.
-            # Mutant moc1, in which the last 124 amino acids are missing, is mono culm. {ECO:0000305}.
-            # print('found DOMAIN:')
         elif 'SIMILARITY:' in annotation:
-
-            #  Belongs to the GRAS family. {ECO:0000305}.
-            print('found SIMILARITY:')
-        elif 'SEQUENCE CAUTION:' in annotation:
-            # Sequence=BAD35485.1; Type=Erroneous gene model prediction; Evidence={ECO:0000305};
-            # Sequence=BAS98577.1; Type=Erroneous gene model prediction; Evidence={ECO:0000305};
-            print('found SEQUENCE CAUTION:')
+            family = cleanUp(annotation,'SIMILARITY:')
+            # RO_0002350
+            buffer += "\t" + obo_ns + "RO_0002350" + "\t" + '"%s"' % (family) + " ;\n"
+        # elif 'SEQUENCE CAUTION:' in annotation:
+        #     # Sequence=BAD35485.1; Type=Erroneous gene model prediction; Evidence={ECO:0000305};
+        #     # Sequence=BAS98577.1; Type=Erroneous gene model prediction; Evidence={ECO:0000305};
+        #     print('found SEQUENCE CAUTION:')
         elif 'CATALYTIC ACTIVITY:' in annotation:
-#             ''' Reaction=cytidine(32)/guanosine(34) in tRNA + 2 S-adenosyl-L-methionine
-# CC         = 2'-O-methylcytidine(32)/2'-O-methylguanosine(34) in tRNA + 2 H(+) +
-# CC         2 S-adenosyl-L-homocysteine; Xref=Rhea:RHEA:42396, Rhea:RHEA-
-# CC         COMP:10246, Rhea:RHEA-COMP:10247, ChEBI:CHEBI:15378,
-# CC         ChEBI:CHEBI:57856, ChEBI:CHEBI:59789, ChEBI:CHEBI:74269,
-# CC         ChEBI:CHEBI:74445, ChEBI:CHEBI:74495, ChEBI:CHEBI:82748; '''
-            print('found CATALYTIC ACTIVITY:')
+            # hasActivity
+            activity = cleanUp(annotation, 'CATALYTIC ACTIVITY:')
+            buffer += "\t" + base_vocab_ns + "hasActivity" + "\t" + '"%s"' % (activity) + " ;\n"
         elif 'COFACTOR:'  in annotation:
-            #     Name=Zn(2+); Xref=ChEBI:CHEBI:29105;
-            # CC         Evidence={ECO:0000269|PubMed:11076507, ECO:0000269|PubMed:12499545,
-            # CC         ECO:0000269|PubMed:1336460, ECO:0000269|PubMed:1433293,
-            # CC         ECO:0000269|PubMed:1909891, ECO:0000269|PubMed:19583303,
-            # CC         ECO:0000269|PubMed:3151019, ECO:0000269|PubMed:3151020,
-            # CC         ECO:0000269|PubMed:7761440, ECO:0000269|PubMed:7803386,
-            # CC         ECO:0000269|PubMed:7901850, ECO:0000269|PubMed:8218160,
-            # CC         ECO:0000269|PubMed:8262987, ECO:0000269|PubMed:8331673,
-            # CC         ECO:0000269|PubMed:8399159, ECO:0000269|PubMed:8431430,
-            # CC         ECO:0000269|PubMed:8451242, ECO:0000269|PubMed:8482389,
-            # CC         ECO:0000269|PubMed:8639494, ECO:0000269|PubMed:8987974,
-            # CC         ECO:0000269|PubMed:9398308, ECO:0000269|PubMed:9865942};
-            # CC       Name=Co(2+); Xref=ChEBI:CHEBI:48828;
-            # CC         Evidence={ECO:0000269|PubMed:19583303};
-            # CC       Note=Zinc. Can also use cobalt(II) with lower efficiency, but not
-            # CC       copper(II), nickel(II) and manganese(II).
-            # CC       {ECO:0000269|PubMed:19583303};
-            print('found COFACTOR:')
+            cofactors = cleanUp(annotation, 'COFACTOR:')
+            # hasCofactor
+            cofactor_list = cofactors.split(';')
+            for name in cofactor_list:
+                if 'Name=' in name:
+                    cofactor = re.sub('Name=','',name)
+                    cofactor = re.sub('\s+','',cofactor)
+                    buffer += "\t" + base_vocab_ns + "hasCofactor" + "\t" + '"%s"' % (cofactor) + " ;\n"
         elif 'ACTIVITY REGULATION:'  in annotation:
-            # Phosphorylation leads to an increase in the catalytic activity.
-            print('found ACTIVITY REGULATION:')
+            regulation = cleanUp(annotation, 'ACTIVITY REGULATION:')
+            buffer += "\t" + base_vocab_ns + "activityRegulation" + "\t" + '"%s"' % (regulation) + " ;\n"
+            # activityRegulation
         elif 'BIOPHYSICOCHEMICAL PROPERTIES:'  in annotation:
-            #            Kinetic parameters:
-            # CC         KM=98 uM for ATP;
-            # CC         KM=688 uM for pyridoxal;
-            # CC         Vmax=1.604 mmol/min/mg enzyme;
-            # CC       pH dependence:
-            # CC         Optimum pH is 6.0. Active from pH 4.5 to 10.5.;
-            print('found BIOPHYSICOCHEMICAL PROPERTIES:')
+            # bioPhysioChemicalProperties
+            biophysic = cleanUp(annotation, 'BIOPHYSICOCHEMICAL PROPERTIES:')
+            buffer += "\t" + base_vocab_ns + "biophysiochemicalProperties" + "\t" + '"%s"' % (biophysic) + " ;\n"
         elif 'SUBUNIT:' in annotation:
-            # subPropertyOf Interaction(s)
-            # Heterotrimer of alpha, beta and gamma subunits.
-            # CC       {ECO:0000269|PubMed:12730181}.
-            #  Self-associates. Interacts with BNIP3 and STEAP3. Interacts
-            # CC       (via BH3 domain) with SPATA18 (via coiled-coil domains).
-            # CC       {ECO:0000269|PubMed:10381623, ECO:0000269|PubMed:12606722,
-            # CC       ECO:0000269|PubMed:21264228}.
-            print('found SUBUNIT:')
+            #  BFO_0000050
+            subunit = cleanUp(annotation, 'SUBUNIT:')
+            buffer += "\t" + obo_ns + "BFO_0000051" + "\t" + '"%s"' % (subunit) + " ;\n"
         elif 'PATHWAY:'  in annotation:
-            #  serveral PATHWAY: PATHWAY: PATHWAY: possible
-            # Nitrogen metabolism; (S)-allantoin degradation.
-            # CC       {ECO:0000255|HAMAP-Rule:MF_00616}.
-            #  Each process is split up into 'super-pathway', 'pathway' and/or 'sub-pathway' associated with the protein.
-            print('found PATHWAY:')
-        elif 'ACTIVITY REGULATION:'  in annotation:
-            print('found ACTIVITY REGULATION:')
+            # RO_0000056
+            pathway = cleanUp(annotation, 'PATHWAY:')
+            buffer += "\t" + obo_ns + "RO_0000056" + "\t" + '"%s"' % (pathway) + " ;\n"
         elif 'DEVELOPMENTAL STAGE:' in annotation:
-            #  large block of text ..
-            print('found DEVELOPMENTAL STAGE:')
+            # expressedAt
+            stage = cleanUp(annotation, 'DEVELOPMENTAL STAGE:')
+            buffer += "\t" + base_vocab_ns + "expressedAt" + "\t" + '"%s"' % (stage) + " ;\n"
         elif 'INDUCTION:' in annotation:
-            #  By wounding, drought and salt stresses, benzothiadiazole
-            # CC       (BTH), ethephon, hydrogen peroxide, abscisic acid (ABA) and
-            # CC       incompatible and compatible races of rice blast fungus (M.grisea) and
-            # CC       rice bacterial blight (X.oryzae). {ECO:0000269|PubMed:16766513}.
-            print('found INDUCTION:')
+            #  RO_0002334  regulated by
+            #  RO_0002336 positively regulated by
+            induction = cleanUp(annotation, 'INDUCTION:')
+            buffer += "\t" + obo_ns + "RO_0002336" + "\t" + '"%s"' % (induction) + " ;\n"
         elif 'PTM:' in annotation:
-            #  N-glycosylated and probably also O-glycosylated.
-            print('found PTM:')
+            pmt = cleanUp(annotation, 'PTM:')
+            buffer += "\t" + base_vocab_ns + "isModified" + "\t" + '"%s"' % (pmt) + " ;\n"
         elif 'RNA EDITING:' in annotation:
             # long text
             print('found RNA EDITING:')
