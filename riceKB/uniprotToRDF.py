@@ -38,7 +38,7 @@ def cleanUp(text, title, provenance=False):
         clean_text = re.sub('\{.+?\}', '', clean_text)
     return clean_text
 
-def splitComments(comments):
+def splitComments(comments,accession):
     buffer = ''
     for annotation in comments:
         if 'FUNCTION:' in annotation:
@@ -112,46 +112,56 @@ def splitComments(comments):
         elif 'PTM:' in annotation:
             pmt = cleanUp(annotation, 'PTM:')
             buffer += "\t" + base_vocab_ns + "isModified" + "\t" + '"%s"' % (pmt) + " ;\n"
-        elif 'RNA EDITING:' in annotation:
-            # long text
-            print('found RNA EDITING:')
-        elif 'MASS SPECTROMETRY:' in annotation:
-            # long text
-            print('found MASS SPECTROMETRY:')
+        # elif 'RNA EDITING:' in annotation:
+        #     # long text
+        #     print('found RNA EDITING:')
+        # elif 'MASS SPECTROMETRY:' in annotation:
+        #     # long text
+        #     print('found MASS SPECTROMETRY:')
         elif 'POLYMORPHISM:' in annotation:
-            #  long text
-            print('found POLYMORPHISM:')
+            polymorphism = cleanUp(annotation, 'POLYMORPHISM:')
+            #  GENO_0000413
+            buffer += "\t" + obo_ns + "GENO_0000413" + "\t" + '"%s"' % (polymorphism) + " ;\n"
         elif 'DISEASE:' in annotation:
-            # sseveral block  DISEASE:  DISEASE:
-            #  Disease name (Disease abbreviation) [Link to OMIM]: Disease description.
-            print('found  DISEASE:')
+            disease =  cleanUp(annotation, 'DISEASE:')
+            # SIO:000001
+            buffer += "\t" + sio_ns + "SIO:000001" + "\t" + '"%s"' % (disease) + " ;\n"
         elif 'DISRUPTION PHENOTYPE:' in annotation:
-            #  text
-            print('found DISRUPTION PHENOTYPE:')
-        elif 'ALLERGEN:' in annotation:
-            # Causes an allergic reaction in human.
-            print('found ALLERGEN:')
+            disruption = cleanUp(annotation, 'DISRUPTION PHENOTYPE:')
+            # SIO:000001
+            buffer += "\t" + sio_ns + "SIO:000001" + "\t" + '"%s"' % (disruption) + " ;\n"
+        # elif 'ALLERGEN:' in annotation:
+        #     # Causes an allergic reaction in human.
+        #     print('found ALLERGEN:')
         elif 'INTERACTION:' in annotation:
-            # Q8K1M6; Q925I1: Atad3; NbExp=13; IntAct=EBI-2365792, EBI-772703;
-            # Q8K1M6; Q5S006: Lrrk2; NbExp=5; IntAct=EBI-2365792, EBI-2693710;
-            print('found INTERACTION:')
-        elif 'TOXIC DOSE:' in annotation:
-            # PD(50) is 0.36 mg/kg by injection in blowfly larvae, in
-            # CC       PubMed:12885226.
-            print('found TOXIC DOSE:')
-        elif 'BIOTECHNOLOGY:' in annotation:
-            # text
-            print('found BIOTECHNOLOGY:')
-        elif 'PHARMACEUTICAL:' in annotation:
-            # text
-            print('found PHARMACEUTICAL:')
-        elif 'MISCELLANEOUS:' in annotation:
-            # text
-            print('found MISCELLANEOUS:')
-        elif 'SEQUENCE CAUTION:' in annotation:
-            # text
-            print('found SEQUENCE CAUTION:')
-        print(annotation)
+            interactions = cleanUp(annotation, 'INTERACTION:')
+            interaction_list = re.split('EBI-\d+;',interactions)
+            for intact in interaction_list:
+                interactants = re.split('NbExp=\d+;',intact)[0]
+                for second_interactant in re.split(':',interactants):
+                    if second_interactant:
+                        cleaned_interactant = re.split(';',second_interactant)[1]
+                        cleaned_interactant = re.sub('\s+','', cleaned_interactant)
+                        if cleaned_interactant:
+                            buffer += "\t" + obo_ns + "RO_0002434" + "\t" +  up_ns + cleaned_interactant + " ;\n"
+        #         interacts with	RO_0002434
+        # elif 'TOXIC DOSE:' in annotation:
+        #     # PD(50) is 0.36 mg/kg by injection in blowfly larvae, in
+        #     # CC       PubMed:12885226.
+        #     print('found TOXIC DOSE:')
+        # elif 'BIOTECHNOLOGY:' in annotation:
+        #     # text
+        #     print('found BIOTECHNOLOGY:')
+        # elif 'PHARMACEUTICAL:' in annotation:
+        #     # text
+        #     print('found PHARMACEUTICAL:')
+        # elif 'MISCELLANEOUS:' in annotation:
+        #     # text
+        #     print('found MISCELLANEOUS:')
+        # elif 'SEQUENCE CAUTION:' in annotation:
+        #     # text
+        #     print('found SEQUENCE CAUTION:')
+        # print(annotation)
     return buffer
 def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
@@ -275,7 +285,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
                     # Comments
                     if record.comments:
-                        comment_buffer = splitComments(record.comments)
+                        comment_buffer = splitComments(record.comments,prim_accession)
                         raw_comment = ''.join(record.comments)
                         comment = raw_comment.replace('"', '')
                         rdf_buffer += comment_buffer
