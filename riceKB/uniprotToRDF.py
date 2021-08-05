@@ -29,6 +29,8 @@ def keyword2Triples(cleanedKey, keywordBuffer):
     keywordBuffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Keyword" + " ;\n"
     keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (keyword) + " .\n"
     return keywordBuffer
+def pubmed2RDF(pubmed):
+    buffer = ''
 
 def cleanUp(text, title, provenance=False):
     clean_text = text.replace('"', '')
@@ -173,6 +175,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     keyword_writer = open(output_key_file, "w")
     keywordBuffer = ''
     rdf_buffer = ''
+    pubmed_dict = {}
     prot_counter = 0
     lookup_list = set()
     keyword_list = set()
@@ -198,25 +201,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
         #        xref_ids = list()
         for record in SwissProt.parse(file_handle): #up_records:
             xrefs = defaultdict(list)
-            # print(record.entry_name)
-            # print(record.data_class)
-            # print(record.molecule_type)
-            # print(record.accessions)
-            # print(record.created)
-            # print(record.sequence_update)
-            # print(record.annotation_update)
-            # print(record.description)
-            # print(record.gene_name)
-            # print(record.organism)
-            # print(record.organelle)
-            # print(record.taxonomy_id)
-            # print(record.host_taxonomy_id)
-            # print(record.references)
-            # print(record.comments)
-            # print(record.cross_references)
-            # print(record.keywords)
-            # print(record.features)
-
             #ref_record = SwissProt._read_rx(record.references,'RX')
             rdf_buffer = ''
             for taxID in record.taxonomy_id:
@@ -315,13 +299,14 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
                     # reference citation
 
-                    #print(dir(record.references))
+                    # print(dir(record.references))
                     for obj in record.references.__iter__():
                         for citation in obj.references:
                             if citation[0] == "PubMed":
+                                pubmed_dict[citation[1]] = {'title': obj.title, 'authors': obj.authors, 'location': obj.location, 'references':obj.references}
                                 rdf_buffer += "\t" + dcterms_ns + "references" + "\t" + pubmed_ns+ citation[1]  + " ;\n"
-                            if citation[0] == "DOI":
-                                rdf_buffer += "\t" + dc_ns + "identifier" + "\t" + '"http://dx.doi.org/%s"' %  (citation[1])   + " ;\n"
+                            # if citation[0] == "DOI":
+                            #     rdf_buffer += "\t" + dc_ns + "identifier" + "\t" + '"http://dx.doi.org/%s"' %  (citation[1])   + " ;\n"
                     # Corss references using blank node
                     #                    for key in xrefs:
                     #                        rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "[" + "\n"
