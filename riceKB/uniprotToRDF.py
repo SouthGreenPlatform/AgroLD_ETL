@@ -29,8 +29,21 @@ def keyword2Triples(cleanedKey, keywordBuffer):
     keywordBuffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Keyword" + " ;\n"
     keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (keyword) + " .\n"
     return keywordBuffer
-def pubmed2RDF(pubmed):
+
+def pubmed2RDF(pubmedid, pubmed_dict):
     buffer = ''
+    # print(type(pubmed_dict))
+    print(pubmed_dict['title'])
+    buffer += pubmed_ns +  pubmedid + " \n"
+    buffer += "\t" + rdf_ns + "type" + "\t" + up_ns + "Journal_Citation" + " ;\n"
+    buffer += "\t" + up_ns + "title" + "\t" +  "title" + " ;\n"
+    buffer += "\t" + dcterms_ns + "identifier" + "\t" + "title" + " ;\n"
+    buffer += "\t" + skos + "exactMatch" + "\t" + pubmed_ns + "2719677" + " ;\n"
+    buffer += "\t" + up_ns + "date" + "\t" + "date" + " ;\n"
+    buffer += "\t" + up_ns + "name" + "\t" + "name" + " ;\n"
+    buffer += "\t" + up_ns + "volume" + "\t" + "volume" + " ;\n"
+    buffer += "\t" + up_ns + "pages" + "\t" + "name" + " ;\n"
+    return buffer
 
 def cleanUp(text, title, provenance=False):
     clean_text = text.replace('"', '')
@@ -169,10 +182,13 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
     rdf_file = "uniprot.plants.ttl"
     rdf_keyword_file = "uniprot.keyword.ttl"
+    rdf_pubmed_file = "uniprot.pubmed.ttl"
     output_file = os.path.join(rdf_out_dir, rdf_file)
     output_key_file = os.path.join(rdf_out_dir, rdf_keyword_file)
+    output_pub_file = os.path.join(rdf_out_dir, rdf_pubmed_file)
     output_writer = open(output_file, "w")
     keyword_writer = open(output_key_file, "w")
+    pubmed_writer = open(output_pub_file, "w")
     keywordBuffer = ''
     rdf_buffer = ''
     pubmed_dict = {}
@@ -273,7 +289,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                         raw_comment = ''.join(record.comments)
                         comment = raw_comment.replace('"', '')
                         rdf_buffer += comment_buffer
-                        print(comment_buffer)
+                        # print(comment_buffer)
 
                     # Keywords
                     #                    print record.keywords
@@ -321,11 +337,17 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
         file_handle.close()
     output_writer.close()
     keyword_writer.write(str(getRDFHeaders()))
+    pubmed_writer.write(str(getRDFHeaders()))
     for keyword in keyword_list:
         keywordBuffer = ''
         keywordBuffer = keyword2Triples(keyword,keywordBuffer)
         keyword_writer.write(keywordBuffer)
+    for pubmedid in pubmed_dict.keys():
+        pubmedBuffer = ''
+        pubmedBuffer = pubmed2RDF(pubmedid, pubmed_dict[pubmedid])
+        pubmed_writer.write(pubmedBuffer)
     keyword_writer.close()
+    pubmed_writer.close()
     print("Number of Proteins: %s\n" % (str(prot_counter)))
     print("*************** UniProt RDF conversion completed ************\n")
 

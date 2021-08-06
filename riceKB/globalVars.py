@@ -21,7 +21,7 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
     string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
     pubmed_pattern, ncbi_pattern, interpro_pattern, pfam_pattern, ena_embl_uri, ena_embl_ns,\
-    base_resource_uri, base_resource_ns
+    base_resource_uri, base_resource_ns, up_core_uri, up_core_ns
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -213,6 +213,9 @@ uniprot_ns = 'uniprot:'
 
 up_base_uri = 'http://purl.uniprot.org/'
 up_base_ns = 'up_base_ns:'
+
+up_core_uri = 'http://purl.uniprot.org/core'
+up_core_ns = 'up_core_ns:'
 
 orygene_ns = 'http://identifiers.org/oryzabase.gene/'
 orygene_uri = 'oryzabase:'
