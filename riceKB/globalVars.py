@@ -21,7 +21,7 @@ global taxon_ids, db_obj_type, base, pr, rdf, rdf_ns, rdfs_ns, skos, skos_ns, dc
     string_ns, string_uri, rap_pattern, gramene_pattern, prot_pattern, tigr_pattern, tair_pattern, ont_pattern,\
     string_pattern, sorghum_pattern, alt_sorghum_match, arabidopsis_pattern, maize_pattern, alt_maize_match,\
     pubmed_pattern, ncbi_pattern, interpro_pattern, pfam_pattern, ena_embl_uri, ena_embl_ns,\
-    base_resource_uri, base_resource_ns, up_core_uri, up_core_ns
+    base_resource_uri, base_resource_ns, up_core_uri, up_core_ns, bibo_uri, bibo_ns
 
 # Taxon - 'NCBI taxon IDs' : 'Taxon name' 
 taxon_ids = {
@@ -132,6 +132,9 @@ dcterms_ns = 'dcterms:'
 
 doi_uri = 'http://dx.doi.org/'
 doi_ns = 'doi:'
+
+bibo_uri = " http://purl.org/ontology/bibo/"
+bibo_ns = "bibo:"
 #Internal URI/namespaces
 #base_uri = 'http://www.southgreen.fr/agrold/'
 #base_ns = 'agrold:'
