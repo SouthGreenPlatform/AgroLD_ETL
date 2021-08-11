@@ -32,17 +32,26 @@ def keyword2Triples(cleanedKey, keywordBuffer):
 
 def pubmed2RDF(pubmedid, pubmed_dict):
     buffer = ''
-    # print(type(pubmed_dict))
-    print(pubmed_dict['title'])
     buffer += pubmed_ns +  pubmedid + " \n"
-    buffer += "\t" + rdf_ns + "type" + "\t" + up_ns + "Journal_Citation" + " ;\n"
-    buffer += "\t" + up_ns + "title" + "\t" +  "title" + " ;\n"
-    buffer += "\t" + dcterms_ns + "identifier" + "\t" + "title" + " ;\n"
-    buffer += "\t" + skos + "exactMatch" + "\t" + pubmed_ns + "2719677" + " ;\n"
-    buffer += "\t" + up_ns + "date" + "\t" + "date" + " ;\n"
-    buffer += "\t" + up_ns + "name" + "\t" + "name" + " ;\n"
-    buffer += "\t" + up_ns + "volume" + "\t" + "volume" + " ;\n"
-    buffer += "\t" + up_ns + "pages" + "\t" + "name" + " ;\n"
+    buffer += "\t" + rdf_ns + "type" + "\t" + bibo_ns + "Article" + " ;\n"
+    buffer += "\t" + dc_ns + "title" + "\t" +  "\""+ pubmed_dict['title'] + "\" ;\n"
+    for key, value in pubmed_dict['references']:
+        if key == 'DOI':
+            buffer += "\t" + dcterms_ns + "identifier" + "\t" + "\""+ doi_uri + value + "\" ;\n"
+    # buffer += "\t" + skos_ns + "exactMatch" + "\t" + pubmed_ns + "2719677" + " ;\n"
+    buffer += "\t" + dc_ns + "creator" + "\t" + "\""+  re.split(',',pubmed_dict['authors'])[0] +  " et al.\"  ;\n"
+    year = str(re.findall('\.*\(\d+\)\.', pubmed_dict['location'])[0])
+    year = re.sub('\(|\)|\.', '', year)
+    buffer += "\t" + dc_ns + "date" + "\t" + "\""+ year + "\"^^xsd:gYear ;\n"
+    buffer += "\t" + prism_ns + "publicationDate" + "\t" + "\"" + year + "\"^^xsd:gYear ;\n"
+    buffer += "\t" + dc_ns + "source" + "\t" + "\""+ pubmed_dict['location'] + "\" ;\n"
+    publicationName = str(re.split('\s\d+', pubmed_dict['location'])[0])
+    # volPage = str(re.split('\w+\.*\s', pubmed_dict['location'])[1])
+    buffer += "\t" + prism_ns + "publicationName" + "\t" + "\"" + publicationName + "\" ;\n"
+    # volume = str(re.split(':', volPage)[0])
+    # buffer += "\t" + prism_ns + "volume" + "\t" + volume + " ;\n"
+    # buffer += "\t" + up_core_ns + "pages" + "\t" + "name" + " .\n\n"
+    buffer += "\t" + rdf_ns + "seeAlso" +  "\t" + "<http://rdf.ncbi.nlm.nih.gov/pubmed/" + pubmedid +">. \n\n"
     return buffer
 
 def cleanUp(text, title, provenance=False):
