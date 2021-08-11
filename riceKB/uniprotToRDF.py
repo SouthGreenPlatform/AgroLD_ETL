@@ -53,6 +53,14 @@ def pubmed2RDF(pubmedid, pubmed_dict):
     # buffer += "\t" + up_core_ns + "pages" + "\t" + "name" + " .\n\n"
     buffer += "\t" + rdf_ns + "seeAlso" +  "\t" + "<http://rdf.ncbi.nlm.nih.gov/pubmed/" + pubmedid +">. \n\n"
     return buffer
+#  a bibo:Article;
+#   prism:publicationName "Nature science cell";
+#   prism:volume "10";
+#   prism:number "11";
+#   prism:startingPage "123";
+#   prism:endingPage "456";
+#   dcterms:date "2015-12-08" ;
+#   seeAlso <http://rdf.ncbi.nlm.nih.gov/pubmed/1234567>
 
 def cleanUp(text, title, provenance=False):
     clean_text = text.replace('"', '')
@@ -313,12 +321,12 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                             ids = dbs[1]
                             xrefs[dbname].append(ids)
                     for key in xrefs:
-                        if key != "GO":
+                        if key != "GO" and key != "InterPro":
                             db_namespace = key.lower()
                             for dbid in xrefs[key]:
                                 # rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                                 rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
-                        if key == "GO":
+                        if key == "GO" or key == "InterPro":
                             for dbid in xrefs[key]:
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns+ re.sub(':','_',dbid) + " ;\n"
 
