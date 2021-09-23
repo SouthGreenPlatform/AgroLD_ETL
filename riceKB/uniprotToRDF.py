@@ -175,7 +175,8 @@ def splitComments(comments,accession):
                     cleaned_interactant = re.split(';',second_interactant)[1]
                     cleaned_interactant = re.sub('\s+','', cleaned_interactant)
                     if cleaned_interactant:
-                        buffer += "\t" + obo_ns + "RO_0002434" + "\t" +  up_ns + cleaned_interactant + " ;\n"
+                        if prot_pattern.match(cleaned_interactant):
+                            buffer += "\t" + obo_ns + "RO_0002434" + "\t" +  up_ns + cleaned_interactant + " ;\n"
         #         interacts with	RO_0002434
         # elif 'TOXIC DOSE:' in annotation:
         #     # PD(50) is 0.36 mg/kg by injection in blowfly larvae, in
