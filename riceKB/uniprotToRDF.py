@@ -238,7 +238,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
             #ref_record = SwissProt._read_rx(record.references,'RX')
             rdf_buffer = ''
             for taxID in record.taxonomy_id:
-                if taxID :#in taxon_ids or record.entry_name in lookup_list:
+                if taxID in taxon_ids or record.entry_name in lookup_list:
                     # Accession
                     if len(record.accessions) > 1:
                         prim_accession = record.accessions.pop(0)
