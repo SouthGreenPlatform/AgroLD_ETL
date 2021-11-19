@@ -32,7 +32,7 @@ taxon_ids = {
         '3708': 'Brassica napus',
         '3712':'Brassica oleracea',
         '1753':'Brassica_rapa',
-        '3821':'Cajanus_cajan', #**
+        '3821':'Cajanus_cajan',
         '4543': 'Cenchrus americanus', # Pearl millet
         '3827':'Cicer arietinum', #**
         '85681':'Citrus clementina',
