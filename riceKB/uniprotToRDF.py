@@ -278,24 +278,28 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
                                     symbol = re.sub('\s+', '', symbol)
+                                    symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
                                                     symbol) + " ;\n"
                             if re.findall("Synonyms=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
                                     symbol = re.sub('\s+', '', symbol)
+                                    symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                             if re.findall("OrderedLocusNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
                                     symbol = re.sub('\s+', '', symbol)
+                                    symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                             if re.findall("ORFNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
                                     symbol = re.sub('\s+', '', symbol)
+                                    symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
 
