@@ -36,7 +36,7 @@ def pubmed2RDF(pubmedid, pubmed_dict):
     buffer += "\t" + rdf_ns + "type" + "\t" + bibo_ns + "Article" + " ;\n"
     title = pubmed_dict['title']
     title = re.sub('\"|\'', '', title)
-    buffer += "\t" + dc_ns + "title" + "\t" +  "\""+ pubmed_dict['title'] + "\" ;\n"
+    buffer += "\t" + dc_ns + "title" + "\t" +  "\""+ title + "\" ;\n"
     for key, value in pubmed_dict['references']:
         if key == 'DOI':
             buffer += "\t" + dcterms_ns + "identifier" + "\t" + "\""+ doi_uri + value + "\" ;\n"
