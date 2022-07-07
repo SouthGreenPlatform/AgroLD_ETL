@@ -17,8 +17,14 @@ import sys
 from collections import defaultdict
 
 def keyword2URI(keyword):
-    cleanKey = re.sub('^\s+|\s+$','',keyword)
-    cleanKey = re.sub('\s','_',keyword)
+    cleanKey=''
+    if  re.split('\{',keyword):
+        cleanKey = re.split('\{',keyword)[0]
+        cleanKey = re.sub('^\s+|\s+$', '', keyword)
+        cleanKey = re.sub('\s', '_', keyword)
+    else:
+        cleanKey = re.sub('^\s+|\s+$','',keyword)
+        cleanKey = re.sub('\s','_',cleanKey)
     keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
     return keywordURI, cleanKey
 
