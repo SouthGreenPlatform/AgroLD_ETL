@@ -339,9 +339,12 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                             for dbid in xrefs[key]:
                                 # rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                                 rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
-                        if key == "GO" or key == "InterPro":
+                        elif key == "GO":
                             for dbid in xrefs[key]:
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns+ re.sub(':','_',dbid) + " ;\n"
+                        elif key == "InterPro":
+                            for dbid in xrefs[key]:
+                                rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + interpro_ns+ re.sub(':','_',dbid) + " ;\n"
 
                     # reference citation
 
@@ -363,7 +366,8 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     #                        rdf_buffer += "\t" + "\t" + "]" + " ;\n"
 
                     rdf_buffer = re.sub(' ;$', ' .\n', rdf_buffer)
-                    output_writer.write(rdf_buffer)
+                    RDF_validation(rdf_buffer,output_writer,prim_accession,ROOT_DIR)
+                    #output_writer.write(rdf_buffer)
         file_handle.close()
     output_writer.close()
     keyword_writer.write(str(getRDFHeaders()))
@@ -371,10 +375,12 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     for keyword in keyword_list:
         keywordBuffer = ''
         keywordBuffer = keyword2Triples(keyword,keywordBuffer)
-        keyword_writer.write(keywordBuffer)
+        RDF_validation(keywordBuffer, keyword_writer, keyword, ROOT_DIR)
+        #keyword_writer.write(keywordBuffer)
     for pubmedid in pubmed_dict.keys():
         pubmedBuffer = ''
         pubmedBuffer = pubmed2RDF(pubmedid, pubmed_dict[pubmedid])
+        RDF_validation(pubmedBuffer, pubmed_writer, pubmedid, ROOT_DIR)
         pubmed_writer.write(pubmedBuffer)
     keyword_writer.close()
     pubmed_writer.close()
