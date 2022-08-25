@@ -192,7 +192,6 @@ def RDFConverter(ds, output_file):
         # break
 
 
-print(attrib)
 pp = pprint.PrettyPrinter(indent=4)
 path = '/Users/pierre/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.gff3'
 path_output = '/Users/pierre/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.ttl'
