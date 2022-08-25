@@ -10,21 +10,19 @@ import os
 
 '''
 Created on Dec, 2019
-The genomeHub module is created as part of the Rice Knowledge Base project.
+The genomeHub module is created as part of the AgroLD project.
 
 This module contains Parsers, RDF converters and generic functions for handling genomeHub data
 It runs with several files downloaded from MSU annotation project http://rice.plantbiology.msu.edu/
 
-1 - First define your output path to filename 
-path_output = 'all.locus_brief_info.7.ttl'
+1 - First define your input and output path to filename 
+path = ''
+path_output = ''
 2 - Pass the arguments to genParser function
-ds = geneParser('all.locus_brief_info.7.0.txt',\
-                'all.interpro.txt',\
-                'all.pfam.txt',\
-                'all.GOSlim_assignment.txt')
+ds = parseGFF3(path)
 
 3 - run the program 
-msuModeleRDF(ds, path_output)
+RDFConverter(ds, path_output)
 
 @author: larmande
 '''
@@ -139,7 +137,6 @@ def RDFConverter(ds, output_file):
     rdf_writer.write(pr + "\t" + "MSU:" + "<" + identifiers_uri + "ricegap/> .\n")
     rdf_writer.write(pr + "\t" + "SwissProt:" + "<" + identifiers_uri + "uniprot/> .\n")
     rdf_writer.write(pr + "\t" + faldo_ns + "<" + faldo + "> .\n")
-    # Ajout du prefix pour la realese des donnees
     rdf_writer.write(pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n")
 
     for records in ds:
@@ -260,8 +257,8 @@ def RDFConverter(ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.gff3'
-path_output = '/Users/plarmande/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.ttl' # The output
+path = '/Users/pierre/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.gff3'
+path_output = '/Users/pierre/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = parseGFF3(path)   # The parsing file
