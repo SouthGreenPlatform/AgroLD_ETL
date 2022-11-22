@@ -33,15 +33,15 @@ __author__  = "larmande"
 
 cds_hash = dict()
 
-
-def getStrandValue(strandVar):
-    if strandVar == "-":
-        strandVar = "-1"
-        positionVar = "ReverseStrandPosition"
-    else:
-        strandVar = "1"
-        positionVar = "ForwardStrandPosition"
-    return (strandVar,positionVar)
+#
+# def getStrandValue(strandVar):
+#     if strandVar == "-":
+#         strandVar = "-1"
+#         positionVar = "ReverseStrandPosition"
+#     else:
+#         strandVar = "1"
+#         positionVar = "ForwardStrandPosition"
+#     return (strandVar,positionVar)
 
 def getCDSNumber(transcript, start, number_cds):
     #transcript = re.sub('-', '', transcript)
@@ -675,8 +675,7 @@ def annotation2RDF(path, path_output):
         if records[14]: # PMID
             if pubmed_pattern.match(records[14]):
                 os_japonica_buffer += "\t" + dc_ns + "references" + "\t\t" + pubmed_ns + records[14] + " ;\n"
-        #if records[15]: # FLcdna
-        if records[16]: # oryzabase ID
+        if records[15]: # oryzabase ID
             os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t\t" + oryzabase_ns + records[16] + " ;\n"
 
         os_japonica_buffer = re.sub(' ;$', ' .\n', os_japonica_buffer)
@@ -689,8 +688,8 @@ def annotation2RDF(path, path_output):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.tsv'
-path_output = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2020-12-02.ttl' # The output
+path = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2022-09-01.tsv'
+path_output = '/Users/pierre/workspace2015/datasets/IRGSP-1.0_representative_annotation_2022-09-01.ttl' # The output
 pub_dict = '/Users/pierre/workspace2015/datasets/pub_dictionnary-rapdb.txt'
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
