@@ -1,15 +1,15 @@
-@prefix : <http://www.southgreen.fr/agrold/agrold-schema#> .
+@prefix : <http://purl.agrold.org/agrold-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@base <http://www.southgreen.fr/agrold/agrold-schema> .
+@base <http://purl.agrold.org/agrold-schema> .
 
-<http://www.southgreen.fr/agrold/agrold-schema> rdf:type owl:Ontology ;
+<http://purl.agrold.org/agrold-schema> rdf:type owl:Ontology ;
                                                 
-                                                owl:versionIRI <http://www.southgreen.fr/agrold/agrold-schema/1.1> .
+                                                owl:versionIRI <http://purl.agrold.org/agrold-schema/1.1> .
 
 
 #################################################################
@@ -19,14 +19,14 @@
 #################################################################
 
 
-###  http://www.southgreen.fr/agrold/resource/
+###  http://purl.agrold.org/vocabulary/
 
-<http://www.southgreen.fr/agrold/resource/> rdf:type owl:AnnotationProperty ;
+<http://purl.agrold.org/vocabulary/> rdf:type owl:AnnotationProperty ;
                                             
-                                            rdfs:domain <http://www.southgreen.fr/agrold/resource/Gene> ,
-                                                        <http://www.southgreen.fr/agrold/resource/Protein> ,
-                                                        <http://www.southgreen.fr/agrold/resource/Protein_Family> ,
-                                                        <http://www.southgreen.fr/agrold/resource/QTL> .
+                                            rdfs:domain <http://purl.agrold.org/vocabulary/Gene> ,
+                                                        <http://purl.agrold.org/vocabulary/Protein> ,
+                                                        <http://purl.agrold.org/vocabulary/Protein_Family> ,
+                                                        <http://purl.agrold.org/vocabulary/QTL> .
 
 
 
@@ -43,7 +43,7 @@
 
 <http://purl.obolibrary.org/obo/BFO_0000050> rdf:type owl:ObjectProperty ;
                                              
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/part_of>, <http://www.southgreen.fr/agrold/vocabulary/partOf> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/part_of>, <http://purl.agrold.org/vocabulary/partOf> .
 
 
 
@@ -51,7 +51,7 @@
 
 <http://purl.obolibrary.org/obo/BFO_0000056> rdf:type owl:ObjectProperty ;
                                              
-                                             owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/participates_in>, <http://www.southgreen.fr/agrold/vocabulary/participatesIn> .
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/participates_in>, <http://purl.agrold.org/vocabulary/participatesIn> .
 
 
 
@@ -59,7 +59,7 @@
 
 <http://purl.obolibrary.org/obo/BFO_0000082> rdf:type owl:ObjectProperty ;
                                              
-                                             owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/located_in>, <http://www.southgreen.fr/agrold/vocabulary/locatedIn> .
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/located_in>, <http://purl.agrold.org/vocabulary/locatedIn> .
 
 
 
@@ -67,7 +67,7 @@
 
 <http://purl.obolibrary.org/obo/BFO_0000085> rdf:type owl:ObjectProperty ;
                                              
-                                             owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/has_function>, <http://www.southgreen.fr/agrold/vocabulary/hasFunction> .
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_function>, <http://purl.agrold.org/vocabulary/hasFunction> .
 
 
 
@@ -81,7 +81,7 @@
 
 <http://purl.obolibrary.org/obo/RO_0001000> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/derives_from>, <http://www.southgreen.fr/agrold/vocabulary/derivesFrom> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/derives_from>, <http://purl.agrold.org/vocabulary/derivesFrom> .
 
 
 
@@ -89,7 +89,7 @@
 
 <http://purl.obolibrary.org/obo/RO_0002202> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/develops_from>, <http://www.southgreen.fr/agrold/vocabulary/developsFrom> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/develops_from>, <http://purl.agrold.org/vocabulary/developsFrom> .
 
 
 
@@ -97,7 +97,7 @@
 
 <http://purl.obolibrary.org/obo/RO_0002206> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/expressed_in>, <http://www.southgreen.fr/agrold/vocabulary/expressedIn> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/expressed_in>, <http://purl.agrold.org/vocabulary/expressedIn> .
 
 
 
@@ -105,14 +105,14 @@
 
 <http://purl.obolibrary.org/obo/RO_0002350> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/is_member_of>, <http://www.southgreen.fr/agrold/vocabulary/isMemberOf> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/is_member_of>, <http://purl.agrold.org/vocabulary/isMemberOf> .
 
 
 ###  http://purl.obolibrary.org/obo/RO_0002351
 
 <http://purl.obolibrary.org/obo/RO_0002351> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/has_member>, <http://www.southgreen.fr/agrold/vocabulary/hasMember> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_member>, <http://purl.agrold.org/vocabulary/hasMember> .
 
 
 ###  http://purl.obolibrary.org/obo/RO_0002410
@@ -125,7 +125,7 @@
 
 <http://purl.obolibrary.org/obo/RO_0002524> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/contains> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/contains> .
 
 
 
@@ -133,7 +133,7 @@
 
 <http://purl.obolibrary.org/obo/RO_0002558> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/evidence> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/evidence> .
 
 
 
@@ -141,7 +141,7 @@
 
 <http://semanticscience.org/resource/SIO_000063> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/is_agent_in>, <http://www.southgreen.fr/agrold/vocabulary/isAgentIn> .
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/is_agent_in>, <http://purl.agrold.org/vocabulary/isAgentIn> .
 
 
 
@@ -155,7 +155,7 @@
 
 <http://semanticscience.org/resource/SIO_000255> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/has_annotation>, <http://www.southgreen.fr/agrold/vocabulary/hasAnnotation> .
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_annotation>, <http://purl.agrold.org/vocabulary/hasAnnotation> .
 
 
 
@@ -163,7 +163,7 @@
 
 <http://semanticscience.org/resource/SIO_000558> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/is_orthologous_to>, <http://www.southgreen.fr/agrold/vocabulary/isOrthologousTo> .
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/is_orthologous_to>, <http://purl.agrold.org/vocabulary/isOrthologousTo> .
 
 
 
@@ -171,61 +171,61 @@
 
 <http://semanticscience.org/resource/SIO_000630> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/is_paralogous_to>, <http://www.southgreen.fr/agrold/vocabulary/isParalogousTo> .
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/is_paralogous_to>, <http://purl.agrold.org/vocabulary/isParalogousTo> .
 
 ###  http://purl.obolibrary.org/obo/SO_0000857
 
 <http://purl.obolibrary.org/obo/SO_0000857> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/homologous>.
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/homologous>.
 
 ###  http://semanticscience.org/resource/SIO_010078
 
 <http://semanticscience.org/resource/SIO_010078> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/encodes> .
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/encodes> .
 
 ###  http://semanticscience.org/resource/SIO_000339
 
 <http://semanticscience.org/resource/SIO_000339> rdf:type owl:ObjectProperty ;
                                                  
-                                                 owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/isEncodedBy> .
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/isEncodedBy> .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/contains
+###  http://purl.agrold.org/vocabulary/contains
 
-<http://www.southgreen.fr/agrold/vocabulary/contains> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/contains> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "contains" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/inAssembly
+###  http://purl.agrold.org/vocabulary/inAssembly
 
-<http://www.southgreen.fr/agrold/vocabulary/inAssembly> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/inAssembly> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "in assembly" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/inSchemaNumber
+###  http://purl.agrold.org/vocabulary/inSchemaNumber
 
-<http://www.southgreen.fr/agrold/vocabulary/inSchemaNumber> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/inSchemaNumber> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "in schema number" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isTE
+###  http://purl.agrold.org/vocabulary/isTE
 
-<http://www.southgreen.fr/agrold/vocabulary/isTE> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isTE> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "is TE" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isExpressed
+###  http://purl.agrold.org/vocabulary/isExpressed
 
-<http://www.southgreen.fr/agrold/vocabulary/isExpressed> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isExpressed> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "is expressed" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isRepresentative
+###  http://purl.agrold.org/vocabulary/isRepresentative
 
-<http://www.southgreen.fr/agrold/vocabulary/isRepresentative> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isRepresentative> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "is representative" .
 
@@ -233,12 +233,12 @@
 
 <http://purl.obolibrary.org/obo/RO_0002434> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/interactsWith>.
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/interactsWith>.
 
 
-### <http://www.southgreen.fr/agrold/vocabulary/interactsWith>
+### <http://purl.agrold.org/vocabulary/interactsWith>
 
-<http://www.southgreen.fr/agrold/vocabulary/interactsWith> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/interactsWith> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "interacts with" .
 
@@ -246,23 +246,23 @@
 ###    http://purl.obolibrary.org/obo/INO_0000311
 <http://purl.obolibrary.org/obo/INO_0000311> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/proteinProteinInteraction>.
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/proteinProteinInteraction>.
 
-### <http://www.southgreen.fr/agrold/vocabulary/proteinProteinInteraction>
+### <http://purl.agrold.org/vocabulary/proteinProteinInteraction>
 
-<http://www.southgreen.fr/agrold/vocabulary/proteinProteinInteraction> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/proteinProteinInteraction> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "protein-protein interaction" .
 
 ###    http://purl.obolibrary.org/obo/RO_0002328                                                    
 <http://purl.obolibrary.org/obo/RO_0002328> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/functionallyRelatedTo>.
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/functionallyRelatedTo>.
 
 
-### <http://www.southgreen.fr/agrold/vocabulary/functionallyRelatedTo>
+### <http://purl.agrold.org/vocabulary/functionallyRelatedTo>
 
-<http://www.southgreen.fr/agrold/vocabulary/functionallyRelatedTo> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/functionallyRelatedTo> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "functionally related to" .
 
@@ -272,132 +272,132 @@
                                             rdfs:label "co-expression" .                             
                                                  
 
-###  http://www.southgreen.fr/agrold/vocabulary/derives_from
+###  http://purl.agrold.org/vocabulary/derives_from
 
-<http://www.southgreen.fr/agrold/vocabulary/derives_from> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/derives_from> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "derives from" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/derivesFrom
+###  http://purl.agrold.org/vocabulary/derivesFrom
 
-<http://www.southgreen.fr/agrold/vocabulary/derivesFrom> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/derivesFrom> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "derives from" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/develops_from
+###  http://purl.agrold.org/vocabulary/develops_from
 
-<http://www.southgreen.fr/agrold/vocabulary/develops_from> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/develops_from> rdf:type owl:ObjectProperty ;
                                                            
                                                            rdfs:label "develops from" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/developsFrom
+###  http://purl.agrold.org/vocabulary/developsFrom
 
-<http://www.southgreen.fr/agrold/vocabulary/developsFrom> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/developsFrom> rdf:type owl:ObjectProperty ;
                                                            
                                                            rdfs:label "develops from" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/encodes
+###  http://purl.agrold.org/vocabulary/encodes
 
-<http://www.southgreen.fr/agrold/vocabulary/encodes> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/encodes> rdf:type owl:ObjectProperty ;
                                                      
                                                      rdfs:label "encodes" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/isEncodedBy
+###  http://purl.agrold.org/vocabulary/isEncodedBy
 
-<http://www.southgreen.fr/agrold/vocabulary/isEncodedBy> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isEncodedBy> rdf:type owl:ObjectProperty ;
                                                      
                                                      rdfs:label "is encoded by" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/evidence
+###  http://purl.agrold.org/vocabulary/evidence
 
-<http://www.southgreen.fr/agrold/vocabulary/evidence> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/evidence> rdf:type owl:ObjectProperty ;
                                                       
                                                       rdfs:label "has evidence" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/expressed_at
+###  http://purl.agrold.org/vocabulary/expressed_at
 
-<http://www.southgreen.fr/agrold/vocabulary/expressed_at> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/expressed_at> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "expressed at" ;
                                                           
                                                           rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000174> .
 
-###  http://www.southgreen.fr/agrold/vocabulary/expressedAt
+###  http://purl.agrold.org/vocabulary/expressedAt
 
-<http://www.southgreen.fr/agrold/vocabulary/expressedAt> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/expressedAt> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "expressed at" ;
                                                           
                                                           rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000174> .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/expressed_in
+###  http://purl.agrold.org/vocabulary/expressed_in
 
-<http://www.southgreen.fr/agrold/vocabulary/expressed_in> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/expressed_in> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "expressed in" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/expressedIn
+###  http://purl.agrold.org/vocabulary/expressedIn
 
-<http://www.southgreen.fr/agrold/vocabulary/expressedIn> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/expressedIn> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "expressed in" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_annotation
+###  http://purl.agrold.org/vocabulary/has_annotation
 
-<http://www.southgreen.fr/agrold/vocabulary/has_annotation> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/has_annotation> rdf:type owl:ObjectProperty ;
                                                             
                                                             rdfs:label "has annotation" .
-###  http://www.southgreen.fr/agrold/vocabulary/hasAnnotation
+###  http://purl.agrold.org/vocabulary/hasAnnotation
 
-<http://www.southgreen.fr/agrold/vocabulary/hasAnnotation> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/hasAnnotation> rdf:type owl:ObjectProperty ;
                                                             
                                                             rdfs:label "has annotation" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_function
+###  http://purl.agrold.org/vocabulary/has_function
 
-<http://www.southgreen.fr/agrold/vocabulary/has_function> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/has_function> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "has function" ;
                                                           
-                                                          rdfs:domain <http://www.southgreen.fr/agrold/resource/Gene> ,
-                                                                      <http://www.southgreen.fr/agrold/resource/Protein> ,
-                                                                      <http://www.southgreen.fr/agrold/resource/mRNA> .
+                                                          rdfs:domain <http://purl.agrold.org/vocabulary/Gene> ,
+                                                                      <http://purl.agrold.org/vocabulary/Protein> ,
+                                                                      <http://purl.agrold.org/vocabulary/mRNA> .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasFunction
+###  http://purl.agrold.org/vocabulary/hasFunction
 
-<http://www.southgreen.fr/agrold/vocabulary/hasFunction> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/hasFunction> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "has function" ;
                                                           
-                                                          rdfs:domain <http://www.southgreen.fr/agrold/resource/Gene> ,
-                                                                      <http://www.southgreen.fr/agrold/resource/Protein> ,
-                                                                      <http://www.southgreen.fr/agrold/resource/mRNA> .
+                                                          rdfs:domain <http://purl.agrold.org/vocabulary/Gene> ,
+                                                                      <http://purl.agrold.org/vocabulary/Protein> ,
+                                                                      <http://purl.agrold.org/vocabulary/mRNA> .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_trait
+###  http://purl.agrold.org/vocabulary/has_trait
 
-<http://www.southgreen.fr/agrold/vocabulary/has_trait> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/has_trait> rdf:type owl:ObjectProperty ;
                                                        
                                                        rdfs:label "has trait" ;
                                                        
                                                        rdfs:subPropertyOf <http://purl.obolibrary.org/obo/RO_0002410> .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasTrait
+###  http://purl.agrold.org/vocabulary/hasTrait
 
-<http://www.southgreen.fr/agrold/vocabulary/hasTrait> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/hasTrait> rdf:type owl:ObjectProperty ;
                                                        
                                                        rdfs:label "has trait" ;
                                                        
@@ -405,114 +405,114 @@
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/is_agent_in
+###  http://purl.agrold.org/vocabulary/is_agent_in
 
-<http://www.southgreen.fr/agrold/vocabulary/is_agent_in> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/is_agent_in> rdf:type owl:ObjectProperty ;
                                                          
                                                          rdfs:label "is agent in" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isAgentIn
+###  http://purl.agrold.org/vocabulary/isAgentIn
 
-<http://www.southgreen.fr/agrold/vocabulary/isAgentIn> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isAgentIn> rdf:type owl:ObjectProperty ;
                                                          
                                                          rdfs:label "is agent in" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/is_located_on
+###  http://purl.agrold.org/vocabulary/is_located_on
 
-<http://www.southgreen.fr/agrold/vocabulary/is_located_on> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/is_located_on> rdf:type owl:ObjectProperty ;
                                                            
                                                            rdfs:label "is located on" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isLocatedOn
+###  http://purl.agrold.org/vocabulary/isLocatedOn
 
-<http://www.southgreen.fr/agrold/vocabulary/isLocatedOn> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isLocatedOn> rdf:type owl:ObjectProperty ;
                                                            
                                                            rdfs:label "is located on" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/is_member_of
+###  http://purl.agrold.org/vocabulary/is_member_of
 
-<http://www.southgreen.fr/agrold/vocabulary/is_member_of> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/is_member_of> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "is member of" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isMemberOf
+###  http://purl.agrold.org/vocabulary/isMemberOf
 
-<http://www.southgreen.fr/agrold/vocabulary/isMemberOf> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isMemberOf> rdf:type owl:ObjectProperty ;
                                                           
                                                           rdfs:label "is member of" .
 
-### <http://www.southgreen.fr/agrold/vocabulary/has_member>
+### <http://purl.agrold.org/vocabulary/has_member>
 
-<http://www.southgreen.fr/agrold/vocabulary/has_member> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/has_member> rdf:type owl:ObjectProperty ;
                                             
                                             rdfs:label "has member" .
                                             
-### <http://www.southgreen.fr/agrold/vocabulary/hasMember>
+### <http://purl.agrold.org/vocabulary/hasMember>
 
-<http://www.southgreen.fr/agrold/vocabulary/hasMember> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/hasMember> rdf:type owl:ObjectProperty ;
                                             
                                             rdfs:label "has member" .
 
 <http://purl.obolibrary.org/obo/RO_0002351> rdf:type owl:ObjectProperty ;
                                             
-                                            owl:equivalentProperty <http://www.southgreen.fr/agrold/vocabulary/has_member>, <http://www.southgreen.fr/agrold/vocabulary/hasMember> .
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_member>, <http://purl.agrold.org/vocabulary/hasMember> .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/is_orthologous_to
+###  http://purl.agrold.org/vocabulary/is_orthologous_to
 
-<http://www.southgreen.fr/agrold/vocabulary/is_orthologous_to> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/is_orthologous_to> rdf:type owl:ObjectProperty ;
                                                                
                                                                rdfs:label "is orthologous to" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isOrthologousTo
+###  http://purl.agrold.org/vocabulary/isOrthologousTo
 
-<http://www.southgreen.fr/agrold/vocabulary/isOrthologousTo> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isOrthologousTo> rdf:type owl:ObjectProperty ;
                                                                
                                                                rdfs:label "is orthologous to" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/is_paralogous_to
+###  http://purl.agrold.org/vocabulary/is_paralogous_to
 
-<http://www.southgreen.fr/agrold/vocabulary/is_paralogous_to> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/is_paralogous_to> rdf:type owl:ObjectProperty ;
                                                               
                                                               rdfs:label "is paralogous to" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/isParalogousTo
+###  http://purl.agrold.org/vocabulary/isParalogousTo
 
-<http://www.southgreen.fr/agrold/vocabulary/isParalogousTo> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/isParalogousTo> rdf:type owl:ObjectProperty ;
                                                               
                                                               rdfs:label "is paralogous to" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/located_in
+###  http://purl.agrold.org/vocabulary/located_in
 
-<http://www.southgreen.fr/agrold/vocabulary/located_in> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/located_in> rdf:type owl:ObjectProperty ;
                                                         
                                                         rdfs:label "located in" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/locatedIn
+###  http://purl.agrold.org/vocabulary/locatedIn
 
-<http://www.southgreen.fr/agrold/vocabulary/locatedIn> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/locatedIn> rdf:type owl:ObjectProperty ;
                                                         
                                                         rdfs:label "located in" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/observed_in
+###  http://purl.agrold.org/vocabulary/observed_in
 
-<http://www.southgreen.fr/agrold/vocabulary/observed_in> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/observed_in> rdf:type owl:ObjectProperty ;
                                                          
                                                          rdfs:label "observed in" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/observedIn
+###  http://purl.agrold.org/vocabulary/observedIn
 
-<http://www.southgreen.fr/agrold/vocabulary/observedIn> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/observedIn> rdf:type owl:ObjectProperty ;
                                                          
                                                          rdfs:label "observed in" .
 
@@ -520,48 +520,48 @@
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/part_of
+###  http://purl.agrold.org/vocabulary/part_of
 
-<http://www.southgreen.fr/agrold/vocabulary/part_of> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/part_of> rdf:type owl:ObjectProperty ;
                                                      
                                                      rdfs:label "part of" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/partOf
+###  http://purl.agrold.org/vocabulary/partOf
 
-<http://www.southgreen.fr/agrold/vocabulary/partOf> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/partOf> rdf:type owl:ObjectProperty ;
                                                      
                                                      rdfs:label "part of" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/participates_in
+###  http://purl.agrold.org/vocabulary/participates_in
 
-<http://www.southgreen.fr/agrold/vocabulary/participates_in> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/participates_in> rdf:type owl:ObjectProperty ;
                                                              
                                                              rdfs:label "participates in" ;
                                                              
-                                                             rdfs:domain <http://www.southgreen.fr/agrold/resource/Gene> ,
-                                                                         <http://www.southgreen.fr/agrold/resource/Protein> ,
-                                                                         <http://www.southgreen.fr/agrold/resource/mRNA> .
+                                                             rdfs:domain <http://purl.agrold.org/vocabulary/Gene> ,
+                                                                         <http://purl.agrold.org/vocabulary/Protein> ,
+                                                                         <http://purl.agrold.org/vocabulary/mRNA> .
 
-###  http://www.southgreen.fr/agrold/vocabulary/participatesIn
+###  http://purl.agrold.org/vocabulary/participatesIn
 
-<http://www.southgreen.fr/agrold/vocabulary/participatesIn> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/participatesIn> rdf:type owl:ObjectProperty ;
                                                              
                                                              rdfs:label "participates in" ;
                                                              
-                                                             rdfs:domain <http://www.southgreen.fr/agrold/resource/Gene> ,
-                                                                         <http://www.southgreen.fr/agrold/resource/Protein> ,
-                                                                         <http://www.southgreen.fr/agrold/resource/mRNA> .
+                                                             rdfs:domain <http://purl.agrold.org/vocabulary/Gene> ,
+                                                                         <http://purl.agrold.org/vocabulary/Protein> ,
+                                                                         <http://purl.agrold.org/vocabulary/mRNA> .
 
-###  http://www.southgreen.fr/agrold/vocabulary/taxon
+###  http://purl.agrold.org/vocabulary/taxon
 
-<http://www.southgreen.fr/agrold/vocabulary/taxon> rdf:type owl:ObjectProperty ;
+<http://purl.agrold.org/vocabulary/taxon> rdf:type owl:ObjectProperty ;
                                                    
                                                    rdfs:label "taxon" ;
                                                    
-                                                   rdfs:subPropertyOf <http://semanticscience.org/resource/SIO_000253> .
+                                                   rdfs:subPropertyOf <http://semanticscience.org/vocabulary/SIO_000253> .
 
 
 
@@ -574,103 +574,103 @@
 #################################################################
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/abbreviation
+###  http://purl.agrold.org/vocabulary/abbreviation
 
-<http://www.southgreen.fr/agrold/vocabulary/abbreviation> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/abbreviation> rdf:type owl:DatatypeProperty ;
                                                           
                                                           rdfs:label "abbreviation" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/assigned_by
+###  http://purl.agrold.org/vocabulary/assigned_by
 
-<http://www.southgreen.fr/agrold/vocabulary/assigned_by> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/assigned_by> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "assigned by" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/assignedBy
+###  http://purl.agrold.org/vocabulary/assignedBy
 
-<http://www.southgreen.fr/agrold/vocabulary/assignedBy> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/assignedBy> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "assigned by" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/classified_with
+###  http://purl.agrold.org/vocabulary/classified_with
 
-<http://www.southgreen.fr/agrold/vocabulary/classified_with> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/classified_with> rdf:type owl:DatatypeProperty ;
                                                              
                                                              rdfs:label "classified with" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/classifiedWith
+###  http://purl.agrold.org/vocabulary/classifiedWith
 
-<http://www.southgreen.fr/agrold/vocabulary/classifiedWith> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/classifiedWith> rdf:type owl:DatatypeProperty ;
                                                              
                                                              rdfs:label "classified with" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/comment
+###  http://purl.agrold.org/vocabulary/comment
 
-<http://www.southgreen.fr/agrold/vocabulary/comment> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/comment> rdf:type owl:DatatypeProperty ;
                                                      
                                                      rdfs:label "comment" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/curation_status
+###  http://purl.agrold.org/vocabulary/curation_status
 
-<http://www.southgreen.fr/agrold/vocabulary/curation_status> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/curation_status> rdf:type owl:DatatypeProperty ;
                                                              
                                                              rdfs:label "curation status" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/curationStatus
+###  http://purl.agrold.org/vocabulary/curationStatus
 
-<http://www.southgreen.fr/agrold/vocabulary/curationStatus> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/curationStatus> rdf:type owl:DatatypeProperty ;
                                                              
                                                              rdfs:label "curation status" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/date
+###  http://purl.agrold.org/vocabulary/date
 
-<http://www.southgreen.fr/agrold/vocabulary/date> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/date> rdf:type owl:DatatypeProperty ;
                                                   
                                                   rdfs:label "date" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/description
+###  http://purl.agrold.org/vocabulary/description
 
-<http://www.southgreen.fr/agrold/vocabulary/description> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/description> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "description" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/evidence_code
+###  http://purl.agrold.org/vocabulary/evidence_code
 
-<http://www.southgreen.fr/agrold/vocabulary/evidence_code> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/evidence_code> rdf:type owl:DatatypeProperty ;
                                                            
                                                            rdfs:label "evidence code" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/evidenceCode
+###  http://purl.agrold.org/vocabulary/evidenceCode
 
-<http://www.southgreen.fr/agrold/vocabulary/evidenceCode> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/evidenceCode> rdf:type owl:DatatypeProperty ;
                                                            
                                                            rdfs:label "evidence code" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_alternative_id
+###  http://purl.agrold.org/vocabulary/has_alternative_id
 
-<http://www.southgreen.fr/agrold/vocabulary/has_alternative_id> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_alternative_id> rdf:type owl:DatatypeProperty ;
                                                                 
                                                                 owl:equivalentProperty skos:altLabel ;
                                                                 
                                                                 rdfs:label "has alternative id" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasAlternativeId
+###  http://purl.agrold.org/vocabulary/hasAlternativeId
 
-<http://www.southgreen.fr/agrold/vocabulary/hasAlternativeId> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasAlternativeId> rdf:type owl:DatatypeProperty ;
                   
                                                                 owl:equivalentProperty skos:altLabel ;
                                                                 
@@ -678,31 +678,31 @@
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_biotype
+###  http://purl.agrold.org/vocabulary/has_biotype
 
-<http://www.southgreen.fr/agrold/vocabulary/has_biotype> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_biotype> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "has biotype" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasBiotype
+###  http://purl.agrold.org/vocabulary/hasBiotype
 
-<http://www.southgreen.fr/agrold/vocabulary/hasBiotype> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasBiotype> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "has biotype" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_dbxref
+###  http://purl.agrold.org/vocabulary/has_dbxref
 
-<http://www.southgreen.fr/agrold/vocabulary/has_dbxref> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_dbxref> rdf:type owl:DatatypeProperty ;
             
                                                         owl:equivalentProperty rdfs:seeAlso ;
                                                         
                                                         rdfs:label "has dbxref" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasDbxref
+###  http://purl.agrold.org/vocabulary/hasDbxref
 
-<http://www.southgreen.fr/agrold/vocabulary/hasDbxref> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasDbxref> rdf:type owl:DatatypeProperty ;
                                     
                                                         owl:equivalentProperty rdfs:seeAlso ;
                                                         
@@ -712,45 +712,45 @@
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_end_position
+###  http://purl.agrold.org/vocabulary/has_end_position
 
-<http://www.southgreen.fr/agrold/vocabulary/has_end_position> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_end_position> rdf:type owl:DatatypeProperty ;
                                                               
                                                               rdfs:label "has end position" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasEndPosition
+###  http://purl.agrold.org/vocabulary/hasEndPosition
 
-<http://www.southgreen.fr/agrold/vocabulary/hasEndPosition> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasEndPosition> rdf:type owl:DatatypeProperty ;
                                                               
                                                               rdfs:label "has end position" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_go_identifier
+###  http://purl.agrold.org/vocabulary/has_go_identifier
 
-<http://www.southgreen.fr/agrold/vocabulary/has_go_identifier> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_go_identifier> rdf:type owl:DatatypeProperty ;
                                                                
                                                                rdfs:label "has go identifier" .
-###  http://www.southgreen.fr/agrold/vocabulary/hasGoIdentifier
+###  http://purl.agrold.org/vocabulary/hasGoIdentifier
 
-<http://www.southgreen.fr/agrold/vocabulary/hasGoIdentifier> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasGoIdentifier> rdf:type owl:DatatypeProperty ;
                                                                
                                                                rdfs:label "has go identifier" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_mutant_type
+###  http://purl.agrold.org/vocabulary/has_mutant_type
 
-<http://www.southgreen.fr/agrold/vocabulary/has_mutant_type> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_mutant_type> rdf:type owl:DatatypeProperty ;
                                                              
                                                              rdfs:label "has mutant type" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasMutantType
+###  http://purl.agrold.org/vocabulary/hasMutantType
 
-<http://www.southgreen.fr/agrold/vocabulary/hasMutantType> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasMutantType> rdf:type owl:DatatypeProperty ;
                                                              
                                                              rdfs:label "has mutant type" .
 
@@ -758,94 +758,94 @@
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_number_of_individuals
+###  http://purl.agrold.org/vocabulary/has_number_of_individuals
 
-<http://www.southgreen.fr/agrold/vocabulary/has_number_of_individuals> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_number_of_individuals> rdf:type owl:DatatypeProperty ;
                                                                        
                                                                        rdfs:label "has number of individuals" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasNumberOfIndividuals
+###  http://purl.agrold.org/vocabulary/hasNumberOfIndividuals
 
-<http://www.southgreen.fr/agrold/vocabulary/hasNumberOfIndividuals> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasNumberOfIndividuals> rdf:type owl:DatatypeProperty ;
                                                                        
                                                                        rdfs:label "has number of individuals" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_phenotype_class
+###  http://purl.agrold.org/vocabulary/has_phenotype_class
 
-<http://www.southgreen.fr/agrold/vocabulary/has_phenotype_class> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_phenotype_class> rdf:type owl:DatatypeProperty ;
                                                                  
                                                                  rdfs:label "has phenotype class" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasPhenotypeClass
+###  http://purl.agrold.org/vocabulary/hasPhenotypeClass
 
-<http://www.southgreen.fr/agrold/vocabulary/hasPhenotypeClass> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasPhenotypeClass> rdf:type owl:DatatypeProperty ;
                                                                  
                                                                  rdfs:label "has phenotype class" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_phenotype_subclass
+###  http://purl.agrold.org/vocabulary/has_phenotype_subclass
 
-<http://www.southgreen.fr/agrold/vocabulary/has_phenotype_subclass> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_phenotype_subclass> rdf:type owl:DatatypeProperty ;
                                                                     
                                                                     rdfs:label "has phenotype subclass" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasPhenotypeSubClass
+###  http://purl.agrold.org/vocabulary/hasPhenotypeSubClass
 
-<http://www.southgreen.fr/agrold/vocabulary/hasPhenotypeSubClass> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasPhenotypeSubClass> rdf:type owl:DatatypeProperty ;
                                                                     
                                                                     rdfs:label "has phenotype subclass" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_score
+###  http://purl.agrold.org/vocabulary/has_score
 
-<http://www.southgreen.fr/agrold/vocabulary/has_score> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_score> rdf:type owl:DatatypeProperty ;
                                                        
                                                        rdfs:label "has score" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasScore
+###  http://purl.agrold.org/vocabulary/hasScore
 
-<http://www.southgreen.fr/agrold/vocabulary/hasScore> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasScore> rdf:type owl:DatatypeProperty ;
                                                        
                                                        rdfs:label "has score" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_start_position
+###  http://purl.agrold.org/vocabulary/has_start_position
 
-<http://www.southgreen.fr/agrold/vocabulary/has_start_position> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_start_position> rdf:type owl:DatatypeProperty ;
                                                                 
                                                                 rdfs:label "has start position" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasStartPosition
+###  http://purl.agrold.org/vocabulary/hasStartPosition
 
-<http://www.southgreen.fr/agrold/vocabulary/hasStartPosition> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasStartPosition> rdf:type owl:DatatypeProperty ;
                                                                 
                                                                 rdfs:label "has start position" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_symbol
+###  http://purl.agrold.org/vocabulary/has_symbol
 
-<http://www.southgreen.fr/agrold/vocabulary/has_symbol> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_symbol> rdf:type owl:DatatypeProperty ;
 
                                                         owl:equivalentProperty skos:prefSymbol ;
                                                         
                                                         rdfs:label "has symbol" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasSymbol
+###  http://purl.agrold.org/vocabulary/hasSymbol
 
-<http://www.southgreen.fr/agrold/vocabulary/hasSymbol> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasSymbol> rdf:type owl:DatatypeProperty ;
 
                                                         owl:equivalentProperty skos:prefSymbol ;
                                                         
@@ -853,87 +853,87 @@
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_synonym
+###  http://purl.agrold.org/vocabulary/has_synonym
 
-<http://www.southgreen.fr/agrold/vocabulary/has_synonym> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_synonym> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "has synonym" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasSynonym
+###  http://purl.agrold.org/vocabulary/hasSynonym
 
-<http://www.southgreen.fr/agrold/vocabulary/hasSynonym> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasSynonym> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "has synonym" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_thresold
+###  http://purl.agrold.org/vocabulary/has_thresold
 
-<http://www.southgreen.fr/agrold/vocabulary/has_thresold> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_thresold> rdf:type owl:DatatypeProperty ;
                                                           
                                                           rdfs:label "has thresold" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasThresold
+###  http://purl.agrold.org/vocabulary/hasThresold
 
-<http://www.southgreen.fr/agrold/vocabulary/hasThresold> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasThresold> rdf:type owl:DatatypeProperty ;
                                                           
                                                           rdfs:label "has thresold" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/has_total_number
+###  http://purl.agrold.org/vocabulary/has_total_number
 
-<http://www.southgreen.fr/agrold/vocabulary/has_total_number> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/has_total_number> rdf:type owl:DatatypeProperty ;
                                                               
                                                               rdfs:label "has total number" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/hasTotalNumber
+###  http://purl.agrold.org/vocabulary/hasTotalNumber
 
-<http://www.southgreen.fr/agrold/vocabulary/hasTotalNumber> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/hasTotalNumber> rdf:type owl:DatatypeProperty ;
                                                               
                                                               rdfs:label "has total number" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/number_of_sequences
+###  http://purl.agrold.org/vocabulary/number_of_sequences
 
-<http://www.southgreen.fr/agrold/vocabulary/number_of_sequences> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/number_of_sequences> rdf:type owl:DatatypeProperty ;
                                                                  
                                                                  rdfs:label "number of sequences" .
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/numberOfSequences
+###  http://purl.agrold.org/vocabulary/numberOfSequences
 
-<http://www.southgreen.fr/agrold/vocabulary/numberOfSequences> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/numberOfSequences> rdf:type owl:DatatypeProperty ;
                                                                  
                                                                  rdfs:label "number of sequences" .
 
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/observation
+###  http://purl.agrold.org/vocabulary/observation
 
-<http://www.southgreen.fr/agrold/vocabulary/observation> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/observation> rdf:type owl:DatatypeProperty ;
                                                          
                                                          rdfs:label "observation" .
 
 
 
-###  http://www.southgreen.fr/agrold/vocabulary/source_project
+###  http://purl.agrold.org/vocabulary/source_project
 
-<http://www.southgreen.fr/agrold/vocabulary/source_project> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/source_project> rdf:type owl:DatatypeProperty ;
                                                             
                                                             rdfs:label "source project" .
 
-###  http://www.southgreen.fr/agrold/vocabulary/sourceProject
+###  http://purl.agrold.org/vocabulary/sourceProject
 
-<http://www.southgreen.fr/agrold/vocabulary/sourceProject> rdf:type owl:DatatypeProperty ;
+<http://purl.agrold.org/vocabulary/sourceProject> rdf:type owl:DatatypeProperty ;
                                                             
                                                             rdfs:label "source project" .
 
@@ -953,7 +953,7 @@
                                     
                                     rdfs:label "data_1157"@en ;
                                     
-                                    owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Pathway_Identifier> .
+                                    owl:equivalentClass <http://purl.agrold.org/vocabulary/Pathway_Identifier> .
 
 
 
@@ -963,7 +963,7 @@
                                     
                                     rdfs:label "data_1865"@en ;
                                     
-                                    owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Map_feature> .
+                                    owl:equivalentClass <http://purl.agrold.org/vocabulary/Map_feature> .
 
 
 
@@ -973,7 +973,7 @@
                                              
                                              rdfs:label "OBI:0000073"^^xsd:string ;
                                              
-                                             owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Study> .
+                                             owl:equivalentClass <http://purl.agrold.org/vocabulary/Study> .
 
 
 
@@ -983,7 +983,7 @@
                                              
                                              rdfs:label "OBI:0000181"^^xsd:string ;
                                              
-                                             owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Population> .
+                                             owl:equivalentClass <http://purl.agrold.org/vocabulary/Population> .
 
 
 
@@ -993,7 +993,7 @@
                                              
                                              rdfs:label "OBI:0000251"^^xsd:string ;
                                              
-                                             owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Protein_Family> .
+                                             owl:equivalentClass <http://purl.agrold.org/vocabulary/Protein_Family> .
 
 
 
@@ -1003,7 +1003,7 @@
                                             
                                             rdfs:label "SO:0000039"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Match_part> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Match_part> .
 
 
 
@@ -1013,7 +1013,7 @@
                                             
                                             rdfs:label "SO:0000104"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Protein> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Protein> .
 
 
 
@@ -1023,7 +1023,7 @@
                                             
                                             rdfs:label "SO:0000147"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Exon> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Exon> .
 
 
 
@@ -1033,7 +1033,7 @@
                                             
                                             rdfs:label "SO:0000204"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Five_prime_UTR> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Five_prime_UTR> .
 
 
 
@@ -1043,7 +1043,7 @@
                                             
                                             rdfs:label "SO:0000205"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Threee_prime_UTR> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Threee_prime_UTR> .
 
 
 
@@ -1053,7 +1053,7 @@
                                             
                                             rdfs:label "SO:0000234"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/mRNA> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/mRNA> .
 
 
 
@@ -1063,7 +1063,7 @@
                                             
                                             rdfs:label "SO:0000239"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Flanking_region> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Flanking_region> .
 
 
 
@@ -1073,7 +1073,7 @@
                                             
                                             rdfs:label "SO:0000276"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/miRNA> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/miRNA> .
 
 
 
@@ -1083,7 +1083,7 @@
                                             
                                             rdfs:label "SO:0000316"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/CDS> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/CDS> .
 
 
 
@@ -1093,7 +1093,7 @@
                                             
                                             rdfs:label "SO:0000343"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Match> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Match> .
 
 
 
@@ -1103,7 +1103,7 @@
                                             
                                             rdfs:label "SO:0000430"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Chromosome> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Chromosome> .
 
 
 
@@ -1113,7 +1113,7 @@
                                             
                                             rdfs:label "SO:0000647"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/miRNA_primary_transcript> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/miRNA_primary_transcript> .
 
 
 
@@ -1123,7 +1123,7 @@
                                             
                                             rdfs:label "SO:0000668"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/EST_match> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/EST_match> .
 
 
 
@@ -1133,7 +1133,7 @@
                                             
                                             rdfs:label "SO:0000689"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/cDNA_match> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/cDNA_match> .
 
 
 
@@ -1143,7 +1143,7 @@
                                             
                                             rdfs:label "SO:0000704"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Gene> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/Gene> .
 
 
 
@@ -1153,7 +1153,7 @@
                                             
                                             rdfs:label "SO:0000771"^^xsd:string ;
                                             
-                                            owl:equivalentClass <http://www.southgreen.fr/agrold/resource/QTL> .
+                                            owl:equivalentClass <http://purl.agrold.org/vocabulary/QTL> .
 
 
 
@@ -1163,7 +1163,7 @@
                                                  
                                                  rdfs:label "SIO:010532"^^xsd:string ;
                                                  
-                                                 owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Metabolic_Pathway> .
+                                                 owl:equivalentClass <http://purl.agrold.org/vocabulary/Metabolic_Pathway> .
 
 
 
@@ -1173,189 +1173,189 @@
                                                  
                                                  rdfs:label "CO_715:0000225"^^xsd:string ;
                                                  
-                                                 owl:equivalentClass <http://www.southgreen.fr/agrold/resource/Germplasm> .
+                                                 owl:equivalentClass <http://purl.agrold.org/vocabulary/Germplasm> .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/CDS
+###  http://purl.agrold.org/vocabulary/CDS
 
-<http://www.southgreen.fr/agrold/resource/CDS> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/CDS> rdf:type owl:Class ;
                                                
                                                rdfs:label "CDS"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Chromosome
+###  http://purl.agrold.org/vocabulary/Chromosome
 
-<http://www.southgreen.fr/agrold/resource/Chromosome> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Chromosome> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "Chromosome"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/EST_match
+###  http://purl.agrold.org/vocabulary/EST_match
 
-<http://www.southgreen.fr/agrold/resource/EST_match> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/EST_match> rdf:type owl:Class ;
                                                      
                                                      rdfs:label "EST match"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Exon
+###  http://purl.agrold.org/vocabulary/Exon
 
-<http://www.southgreen.fr/agrold/resource/Exon> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Exon> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "Exon"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Five_prime_UTR
+###  http://purl.agrold.org/vocabulary/Five_prime_UTR
 
-<http://www.southgreen.fr/agrold/resource/Five_prime_UTR> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Five_prime_UTR> rdf:type owl:Class ;
                                                           
                                                           rdfs:label "Five prime UTR"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Flanking_region
+###  http://purl.agrold.org/vocabulary/Flanking_region
 
-<http://www.southgreen.fr/agrold/resource/Flanking_region> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Flanking_region> rdf:type owl:Class ;
                                                            
                                                            rdfs:label "Flanking region"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Gene
+###  http://purl.agrold.org/vocabulary/Gene
 
-<http://www.southgreen.fr/agrold/resource/Gene> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Gene> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "Gene"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Germplasm
+###  http://purl.agrold.org/vocabulary/Germplasm
 
-<http://www.southgreen.fr/agrold/resource/Germplasm> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Germplasm> rdf:type owl:Class ;
                                                      
                                                      rdfs:label "Germplasm"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Map_feature
+###  http://purl.agrold.org/vocabulary/Map_feature
 
-<http://www.southgreen.fr/agrold/resource/Map_feature> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Map_feature> rdf:type owl:Class ;
                                                        
                                                        rdfs:label "Map feature"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Match
+###  http://purl.agrold.org/vocabulary/Match
 
-<http://www.southgreen.fr/agrold/resource/Match> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Match> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "Match"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Match_part
+###  http://purl.agrold.org/vocabulary/Match_part
 
-<http://www.southgreen.fr/agrold/resource/Match_part> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Match_part> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "Match part"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Metabolic_Pathway
+###  http://purl.agrold.org/vocabulary/Metabolic_Pathway
 
-<http://www.southgreen.fr/agrold/resource/Metabolic_Pathway> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Metabolic_Pathway> rdf:type owl:Class ;
                                                              
                                                              rdfs:label "Metabolic Pathway"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Pathway_Identifier
+###  http://purl.agrold.org/vocabulary/Pathway_Identifier
 
-<http://www.southgreen.fr/agrold/resource/Pathway_Identifier> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Pathway_Identifier> rdf:type owl:Class ;
                                                               
                                                               rdfs:label "Pathway Identifier"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Population
+###  http://purl.agrold.org/vocabulary/Population
 
-<http://www.southgreen.fr/agrold/resource/Population> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Population> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "Population"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Protein
+###  http://purl.agrold.org/vocabulary/Protein
 
-<http://www.southgreen.fr/agrold/resource/Protein> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Protein> rdf:type owl:Class ;
                                                    
                                                    rdfs:label "Protein"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Protein_Family
+###  http://purl.agrold.org/vocabulary/Protein_Family
 
-<http://www.southgreen.fr/agrold/resource/Protein_Family> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Protein_Family> rdf:type owl:Class ;
                                                           
                                                           rdfs:label "Protein Family"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/QTL
+###  http://purl.agrold.org/vocabulary/QTL
 
-<http://www.southgreen.fr/agrold/resource/QTL> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/QTL> rdf:type owl:Class ;
                                                
                                                rdfs:label "QTL"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Study
+###  http://purl.agrold.org/vocabulary/Study
 
-<http://www.southgreen.fr/agrold/resource/Study> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Study> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "Study"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/Threee_prime_UTR
+###  http://purl.agrold.org/vocabulary/Threee_prime_UTR
 
-<http://www.southgreen.fr/agrold/resource/Threee_prime_UTR> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/Threee_prime_UTR> rdf:type owl:Class ;
                                                             
                                                             rdfs:label "Three prime UTR"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/cDNA_match
+###  http://purl.agrold.org/vocabulary/cDNA_match
 
-<http://www.southgreen.fr/agrold/resource/cDNA_match> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/cDNA_match> rdf:type owl:Class ;
                                                       
                                                       rdfs:label "cDNA match"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/mRNA
+###  http://purl.agrold.org/vocabulary/mRNA
 
-<http://www.southgreen.fr/agrold/resource/mRNA> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/mRNA> rdf:type owl:Class ;
                                                 
                                                 rdfs:label "mRNA"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/miRNA
+###  http://purl.agrold.org/vocabulary/miRNA
 
-<http://www.southgreen.fr/agrold/resource/miRNA> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/miRNA> rdf:type owl:Class ;
                                                  
                                                  rdfs:label "miRNA"^^xsd:string .
 
 
 
-###  http://www.southgreen.fr/agrold/resource/miRNA_primary_transcript
+###  http://purl.agrold.org/vocabulary/miRNA_primary_transcript
 
-<http://www.southgreen.fr/agrold/resource/miRNA_primary_transcript> rdf:type owl:Class ;
+<http://purl.agrold.org/vocabulary/miRNA_primary_transcript> rdf:type owl:Class ;
                                                                     
                                                                     rdfs:label "miRNA primary transcript"^^xsd:string .
 

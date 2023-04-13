@@ -41,11 +41,13 @@ Map_Feature	Map feature	Class	data_1865	exact match
 Study	Study	Class	OBI_0000073	exact match
 Germplasm	Germplasm	Class	CO_715:0000225	exact match
 Domain	Domain	Class
-
+Article Article class   SIO_000154  exact match
 ##################
 # ObjectProperty #
 ##################
 participates_in	participates in	ObjectProperty	BFO_0000056	exact match
+RO_0000056  participates in ObjectProperty  exact match (RO_0000056  participates in)
+RO_0000057  has participant ObjectProperty exact match  (RO_0000057  has participant)
 ## participatesIn	participatesIn	ObjectProperty	BFO_0000056	exact match
 has_function	has function	ObjectProperty	BFO_0000085	exact match
 ## hasFunction	hasFunction	ObjectProperty	BFO_0000085	exact match
@@ -85,6 +87,8 @@ has_part	has_part	ObjectProperty	BFO_0000051	exact match (BFO_0000051:has part)
 ## hasPart	hasPart	ObjectProperty	BFO_0000051	exact match (BFO_0000051:has part)
 part_of	part of	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
 ## partOf	partOf	ObjectProperty	BFO_0000050	exact match (BFO_0000050:part of)
+hasPart has part    ObjectProperty  BFO_0000051 exact match (BFO_0000051:has part)
+BFO_0000051 has part    ObjectProperty  exact match (BFO_0000051:has part)
 is_member_of	is member of	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
 ## isMemberOf	isMemberOf	ObjectProperty	RO_0002350	exact match (RO_0002350:member of)
 ## hasMember	hasMember	ObjectProperty	RO_0002351	exact match (RO_0002351:has member)
@@ -104,7 +108,15 @@ isRepresentative	isRepresentative	ObjectProperty
 interactsWith	interacts with	RO_0002434	exact match (RO_0002434:interacts with)
 proteinProteinInteraction	protein-protein interaction	INO_0000311	exact match (INO_0000311:protein-protein interaction)
 functionallyRelatedTo	functionally related to	RO_0002328	exact match (RO_0002328:functionally related to)
-INO_0000231	co-expression	INO_0000231
+INO_0000231	co-expression	ObjectProperty INO_0000231
+hasCofactor has cofactor    ObjectProperty
+hasActivity has activity    ObjectProperty
+activityRegulation activity regulation  ObjectProperty
+biophysiochemicalProperties biophysiochemical properties    ObjectProperty
+hasSubunit  has subunit ObjectProperty  ObjectProperty
+RO_0002336  positively regulated by  ObjectProperty exact match (RO_0002336  positively regulated by)
+GENO_0000413 has_allele ObjectProperty  exact match (GENO_0000413 has_allele)
+SIO:000001  is related to    ObjectProperty exact match (SIO:000001  is related to)
 ####################
 # DataTypeProperty #
 ####################
