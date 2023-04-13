@@ -51,23 +51,28 @@
 
 <http://purl.obolibrary.org/obo/BFO_0000056> rdf:type owl:ObjectProperty ;
                                              
-                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/participates_in>, <http://purl.agrold.org/vocabulary/participatesIn> .
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/participates_in>, <http://purl.agrold.org/vocabulary/participatesIn>, <http://purl.obolibrary.org/obo/RO_0000056> .
+
+<http://purl.obolibrary.org/obo/RO_0000056> rdf:type owl:ObjectProperty ;
+
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/participates_in>, <http://purl.agrold.org/vocabulary/participatesIn>, <http://purl.obolibrary.org/obo/BFO_0000056> .
 
 
-
+<http://purl.obolibrary.org/obo/RO_0000057>  rdf:type owl:ObjectProperty ;
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_participant> .
 ###  http://purl.obolibrary.org/obo/BFO_0000082
 
-<http://purl.obolibrary.org/obo/BFO_0000082> rdf:type owl:ObjectProperty ;
+<http://purl.obolibrary.org/obo/RO_0001025> rdf:type owl:ObjectProperty ;
                                              
-                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/located_in>, <http://purl.agrold.org/vocabulary/locatedIn> .
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/located_in>, <http://purl.agrold.org/vocabulary/locatedIn> <http://purl.obolibrary.org/obo/BFO_0000082>.
 
 
 
 ###  http://purl.obolibrary.org/obo/BFO_0000085
 
-<http://purl.obolibrary.org/obo/BFO_0000085> rdf:type owl:ObjectProperty ;
+<http://purl.obolibrary.org/obo/RO_0000085> rdf:type owl:ObjectProperty ;
                                              
-                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_function>, <http://purl.agrold.org/vocabulary/hasFunction> .
+                                             owl:equivalentProperty <http://purl.agrold.org/vocabulary/has_function>, <http://purl.agrold.org/vocabulary/hasFunction>, <http://purl.obolibrary.org/obo/BFO_0000085> .
 
 
 
@@ -179,11 +184,17 @@
                                                  
                                                  owl:equivalentProperty <http://purl.agrold.org/vocabulary/homologous>.
 
-###  http://semanticscience.org/resource/SIO_010078
-
 <http://semanticscience.org/resource/SIO_010078> rdf:type owl:ObjectProperty ;
-                                                 
+
                                                  owl:equivalentProperty <http://purl.agrold.org/vocabulary/encodes> .
+
+###  http://semanticscience.org/resource/SIO_010082
+
+<http://semanticscience.org/resource/SIO_010082> rdf:type owl:ObjectProperty ;
+                                                 
+                                                 owl:equivalentProperty <http://purl.agrold.org/vocabulary/is_translated_into> .
+
+
 
 ###  http://semanticscience.org/resource/SIO_000339
 
@@ -565,6 +576,9 @@
 
 
 
+<http://purl.obolibrary.org/obo/RO_0002162> rdf:type owl:ObjectProperty ;
+
+                                            owl:equivalentProperty <http://purl.agrold.org/vocabulary/in_taxon>.
 
 
 #################################################################
@@ -1359,6 +1373,12 @@
                                                                     
                                                                     rdfs:label "miRNA primary transcript"^^xsd:string .
 
+
+###  http://purl.agrold.org/vocabulary/Taxon
+
+<http://purl.agrold.org/vocabulary/Taxon> rdf:type owl:Class ;
+
+                                                                    rdfs:label "Taxon"^^xsd:string .
 
 
 
