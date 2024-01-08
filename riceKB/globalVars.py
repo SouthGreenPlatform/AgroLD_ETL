@@ -47,14 +47,14 @@ taxon_ids = {
         # '4543' : 'Cenchrus americanus', # Pearl millet
         #'3885' : 'Phaseolus vulgaris',
         '65489': 'Oryza barthii',
-        '4533' : 'Oryza brachyantha',
+        #'4533' : 'Oryza brachyantha',
         '4538' : 'Oryza glaberrima',
-        '40148' : 'Oryza_glumaepatula',
-        '4528': 'Oryza longistaminata',
-        '40149': 'Oryza meridionalis',
-        '4536': 'Oryza_nivara',
-        '4537': 'Oryza_punctata',
-        '4529': 'Oryza rufipogon',
+        #'40148' : 'Oryza_glumaepatula',
+        #'4528': 'Oryza longistaminata',
+        #'40149': 'Oryza meridionalis',
+        #'4536': 'Oryza_nivara',
+        #'4537': 'Oryza_punctata',
+        #'4529': 'Oryza rufipogon',
         # '4530' : 'Oryza sativa',
         '39946': 'Oryza indica',
         '39947' : 'Oryza sativa',
@@ -101,7 +101,7 @@ db_obj_type = {
 
 # Prefixes
 base = '@base'
-base_uri = 'http://www.southgreen.fr/agrold/'
+base_uri = 'http://purl.agrold.org/'
 base_ns = 'agrold:'
 
 pr = '@prefix'
@@ -139,13 +139,13 @@ bibo_ns = 'bibo:'
 prism_uri = 'http://prismstandard.org/namespaces/1.2/basic/'
 prism_ns = 'prism:'
 #Internal URI/namespaces
-#base_uri = 'http://www.southgreen.fr/agrold/'
+#base_uri = 'http://purl.agrold.org/resource/'
 #base_ns = 'agrold:'
 
-base_vocab_uri = 'http://www.southgreen.fr/agrold/vocabulary/'
+base_vocab_uri = 'http://purl.agrold.org/vocabulary/'
 base_vocab_ns = 'agrold_vocabulary:'
 
-base_resource_uri = 'http://www.southgreen.fr/agrold/resource/'
+base_resource_uri = 'http://purl.agrold.org/resource/'
 base_resource_ns = 'resource:'
 # Datasource specific URIs
 ncbi_gene_uri = 'http://identifiers.org/ncbigene/'
@@ -164,16 +164,16 @@ faldo_ns = 'faldo:'
 gramene_gene =  'http://www.identifiers.org/gramene.gene/'
 gr_g_ns = 'gramene_gene:'
 
-resource = 'http://www.southgreen.fr/agrold/resource/'
+resource = 'http://purl.agrold.org/resource/'
 res_ns = 'agrold_resource:'
 
 gramene_qtl = 'http://www.identifiers.org/gramene.qtl/'
 gr_qtl_ns = 'gramene_qtl:' 
 
-msu_uri = 'http://www.southgreen.fr/agrold/msu.locus/'
+msu_uri = 'http://purl.agrold.org/resource/msu.locus/'
 msu_ns = 'msu:'
 
-qtaro_qtl = 'http://www.southgreen.fr/agrold/qtaro.qtl/'
+qtaro_qtl = 'http://purl.agrold.org/resource/qtaro.qtl/'
 qtaro_qtl_ns = 'qtaro_qtl:'
 
 
@@ -195,7 +195,7 @@ ensembl_protein_ns = 'ensembl_protein:'
 tair_l_uri = 'http://identifiers.org/tair.locus/'
 tair_l_ns = 'tairlocus:'
 
-tigr_uri = 'http://www.southgreen.fr/agrold/tigr.locus/'
+tigr_uri = 'http://purl.agrold.org/resource/msu/'
 tigr_ns = 'tigr:'
 
 tigr_g_uri = 'http://identifiers.org/ricegap/'
@@ -232,10 +232,10 @@ oryzabase_ns = 'oryzabase:'
 ec_code_uri = 'http://identifiers.org/ec-code/'
 ec_code_ns = 'ec:'
 
-reaction_uri = 'http://www.southgreen.fr/agrold/biocyc.reaction/'
+reaction_uri = 'http://purl.agrold.org/resource/biocyc.reaction/'
 reaction_ns = 'reaction:'
 
-pathway_uri = 'http://www.southgreen.fr/agrold/biocyc.pathway/'
+pathway_uri = 'http://purl.agrold.org/resource/biocyc.pathway/'
 pathway_ns = 'pathway:'
 
 #BioCyc
@@ -247,15 +247,15 @@ pubmed_uri = 'http://identifiers.org/pubmed/'
 pubmed_ns = 'pubmed:'
 
 # AraCyc
-#aracyc_uri = 'http://www.southgreen.fr/agrold/aracyc.pathway/'
+#aracyc_uri = 'http://purl.agrold.org/resource/aracyc.pathway/'
 #aracyc_ns = 'aracyc_pathway:'
-#aracyc_gene_uri = 'http://www.southgreen.fr/agrold/aracyc.gene/'
+#aracyc_gene_uri = 'http://purl.agrold.org/resource/aracyc.gene/'
 #aracyc_gene_ns = 'aracyc_gene:'
-#aracyc_prot_uri = 'http://www.southgreen.fr/agrold/aracyc.protein/'
+#aracyc_prot_uri = 'http://purl.agrold.org/resource/aracyc.protein/'
 #aracyc_prot_ns = 'aracyc_protein:'
 
 #RiceCyc
-#ricecyc_uri = 'http://www.southgreen.fr/agrold/ricecyc.pathway/'
+#ricecyc_uri = 'http://purl.agrold.org/resource/ricecyc.pathway/'
 #ricecyc_ns = 'ricecyc_pathway:'
 
 # SouthGreen
@@ -278,22 +278,22 @@ mirbase2_ns = 'mirbase:'
 mirbase_mature_uri = 'http://www.identifiers.org/mirbase.mature/'
 mirbase_mature_ns = 'mature:'
 
-protein_uri = 'http://www.southgreen.fr/agrold/orygenesdb.protein/'
+protein_uri = 'http://purl.agrold.org/resource/orygenesdb.protein/'
 protein_ns = 'protein:'
 
-flanking_uri = 'http://www.southgreen.fr/agrold/orygenesdb.flankingregion/'
+flanking_uri = 'http://purl.agrold.org/resource/orygenesdb.flankingregion/'
 flanking_ns = 'flanking:'
 
-mRNA_uri = 'http://www.southgreen.fr/agrold/orygenesdb.mrna/'
+mRNA_uri = 'http://purl.agrold.org/resource/orygenesdb.mrna/'
 mRNA_ns = 'mrna:'
 
-cDNA_uri = 'http://www.southgreen.fr/agrold/orygenesdb.cdna/'
+cDNA_uri = 'http://purl.agrold.org/resource/orygenesdb.cdna/'
 cDNA_ns = 'cdna:'
 
 otl_public_plante_uri = 'http://www.identifiers.org/otl/'
 otl_public_plante_ns = 'otl_plante:'
 
-OrygenesDB_uri = 'http://www.southgreen.fr/agrold/orygenesdb/'
+OrygenesDB_uri = 'http://purl.agrold.org/resource/orygenesdb/'
 OrygenesDB_ns = 'orygenesdb:'
 
 RiceNetDB_gene_uri = 'https://identifiers.org/ricenetdb.gene/'
@@ -303,13 +303,13 @@ RiceNetDB_gene_ns = 'ricenetdb_gene:'
 RiceNetDB_protein_uri = 'https://identifiers.org/ricenetdb.protein/'
 RiceNetDB_protein_ns = 'ricenetdb_protein:'
 
-chromosome_uri = 'http://www.southgreen.fr/agrold/resource/chromosome/'
+chromosome_uri = 'http://purl.agrold.org/resource/resource/chromosome/'
 chromosome_ns = 'chromosome:'
 
 ena_embl_uri = 'http://identifiers.org/ena.embl/'
 ena_embl_ns = 'ena.embl:'
 
-marker_uri = 'http://www.southgreen.fr/agrold/orygenesdb.marker/'
+marker_uri = 'http://purl.agrold.org/resource/orygenesdb.marker/'
 marker_ns = 'marker:'
 
 kegg_uri='http://identifiers.org/kegg/'
@@ -332,22 +332,22 @@ dosa_uri='http://www.genome.jp/dbget-bin/www_bget?'
 dosa_ns='kegg_gene:'
 #TROPGENE
 
-study_uri = 'http://www.southgreen.fr/agrold/tropgene.study/'
+study_uri = 'http://purl.agrold.org/resource/tropgene.study/'
 study_ns = 'study:'
 
-population_uri = 'http://www.southgreen.fr/agrold/tropgene.population/'
+population_uri = 'http://purl.agrold.org/resource/tropgene.population/'
 population_ns = 'population:'
 
-qtl_uri = 'http://www.southgreen.fr/agrold/tropgene.qtl/'
+qtl_uri = 'http://purl.agrold.org/resource/tropgene.qtl/'
 qtl_ns = 'qtl:'
 
 edam_uri ='http://edamontology.org/'
 edam_ns = 'edam:'
 
-trait_uri = 'http://www.southgreen.fr/agrold/tropgene.trait/'
+trait_uri = 'http://purl.agrold.org/resource/tropgene.trait/'
 trait_ns = 'trait:'
 
-mapfeature_uri = 'http://www.southgreen.fr/agrold/tropgene.mapfeature/'
+mapfeature_uri = 'http://purl.agrold.org/resource/tropgene.mapfeature/'
 mapfeature_ns = 'mapfeature:'
 
 
@@ -375,11 +375,11 @@ sio_ns = 'sio:'
 obo_uri = 'http://purl.obolibrary.org/obo/'
 obo_ns = 'obo:'
 
-#goa_uri = 'http://www.southgreen.fr/agrold/go.association/'
+#goa_uri = 'http://purl.agrold.org/resource/go.association/'
 goa_uri = 'http://identifiers.org/goa/' 
 goa_ns = 'goa:'
 
-gr_assoc = 'http://www.southgreen.fr/agrold/gramene.association/'
+gr_assoc = 'http://purl.agrold.org/resource/gramene.association/'
 gr_assoc_ns = 'gramene_association:'
 
 
@@ -410,40 +410,40 @@ ont_aspects = {
 sniplay_gene_uri = 'http://identifiers.org/ricegap/'
 sniplay_gene_ns = 'ricegap:'
 
-sniplay_gene_integenic_uri =  'http://www.southgreen.fr/agrold/sniplay.gene/'
+sniplay_gene_integenic_uri =  'http://purl.agrold.org/resource/sniplay.gene/'
 sniplay_gene_integenic_ns = 'sniplay_gene:'
 
-sniplay_individual_uri =  'http://www.southgreen.fr/agrold/sniplay.individual/'
+sniplay_individual_uri =  'http://purl.agrold.org/resource/sniplay.individual/'
 sniplay_individual_ns = 'sniplay_individual:'
 
-sniplay_allele_uri = 'http://www.southgreen.fr/agrold/sniplay.allele/'
+sniplay_allele_uri = 'http://purl.agrold.org/resource/sniplay.allele/'
 sniplay_allele_ns = 'allele:'
 
-sniplay_pos_uri =  'http://www.southgreen.fr/agrold/sniplay.pos/'
+sniplay_pos_uri =  'http://purl.agrold.org/resource/sniplay.pos/'
 sniplay_pos_ns = 'sniplay_pos:'
 
-sniplay_consequence_uri =  'http://www.southgreen.fr/agrold/sniplay.consequence/'
+sniplay_consequence_uri =  'http://purl.agrold.org/resource/sniplay.consequence/'
 sniplay_consequence_ns = 'consequence:'
 
 
 #Brapi urgi phenotype
-observationUnitDbId_uri = 'http://www.southgreen.fr/agrold/phenotype.observationUnitDbId/'
+observationUnitDbId_uri = 'http://purl.agrold.org/resource/phenotype.observationUnitDbId/'
 observationUnitDbId_ns = 'observationUnitDbId:'
 
-studyDbId_uri = 'http://www.southgreen.fr/agrold/phenotype.studyDbId/'
+studyDbId_uri = 'http://purl.agrold.org/resource/phenotype.studyDbId/'
 studyDbId_ns = 'studyDbId:'
 
-treatment_uri = 'http://www.southgreen.fr/agrold/phenotype.treatment/'
+treatment_uri = 'http://purl.agrold.org/resource/phenotype.treatment/'
 treatment_ns = 'treatment:'
 
-observationUnitLevelLabel_uri = 'http://www.southgreen.fr/agrold/phenotype.observationLabel/'
+observationUnitLevelLabel_uri = 'http://purl.agrold.org/resource/phenotype.observationLabel/'
 observationUnitLevelLabel_ns = 'observation_level_label:'
 
-observationVariableDbId_uri = 'http://www.southgreen.fr/agrold/phenotype.observationData/'
+observationVariableDbId_uri = 'http://purl.agrold.org/resource/phenotype.observationData/'
 observationVariableDbId_ns = 'observation_data:'
 
 
 #Wine dataset file name :
 
-repeatmasker_uri = 'http://www.southgreen.fr/agrold/winedb.repeatmasker/'
+repeatmasker_uri = 'http://purl.agrold.org/resource/winedb.repeatmasker/'
 repeatmasker_ns = 'repeatmasker:'
