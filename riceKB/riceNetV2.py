@@ -9,7 +9,7 @@ import numpy as np
 
 '''
 Created on Dec, 2019
-The interpro module is created as part of the Rice Knowledge Base project.
+The Rice Net v2 module is created as part of the Rice Knowledge Base project.
 
 This module contains Parsers, RDF converters and generic functions for handling interpro data
 It runs with ParentChildTreeFile.txt file downloaded from EBI interpro website

@@ -67,7 +67,7 @@ def msuModeleRDF(msu_ds, output_file):
 
 # In here we buil the modele and writer in file with ttl format
 
-    for records in msu_ds.as_matrix(columns=None):
+    for records in msu_ds.to_numpy():
         line_number+=1
         # Mapping Triple
         if not (records[0] == "None" or records[1] == "None"):
@@ -76,7 +76,7 @@ def msuModeleRDF(msu_ds, output_file):
             os_japonica_buffer += "<" + resource + records[1].split('.')[0] + ">\n"
             os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
             # os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
-            os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tigr_g_ns + records[1] + " ;\n"
+            os_japonica_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + tigr_g_ns + records[1].split('.')[0] + " ;\n"
             # os_japonica_buffer += "\t" + rdfs_ns + "has_dbxref" + "\t" + ensembl_ns + records[0] + " ;\n"
             os_japonica_buffer += "\t" + owl_ns + "sameAs" + "\t" + "<" + resource + records[0]+ "> .\n\n"
 
@@ -103,17 +103,15 @@ def msuModeleRDF(msu_ds, output_file):
 
     print(line_number)
 
-
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
 #path = '/Users/plarmande/Downloads/IRGSP-1.0_representative/transcripts_mRNA.gff'
-path_output = '/Users/pierre/workspace2015/RAP-MSU_2019-08-29.ttl' # The output
+path_output = '/Users/pierre/workspace2015/datasets/RAP-MSU_2022-09-01.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 #ds = parseGFF3(path)   # The parsing file withe tropGeneParser()
 #pp.pprint(ds)    # For to see in teminal the parsing
-
 #ds = os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
-ds = geneParser('/Users/pierre/workspace2015/RAP-MSU_2020-12-02.txt')
+ds = geneParser('/Users/pierre/workspace2015/datasets/RAP-MSU_2020-12-02.txt')
 msuModeleRDF(ds, path_output)

@@ -106,10 +106,10 @@ def RDFRegulate(ds, regulation_rdf):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/pierre/workspace2015/datasets/Osj_TF_list.txt'
-regulation_file = '/Users/pierre/workspace2015/datasets/regulation_merged_Osj.txt'
-regulation_output = '/Users/pierre/workspace2015/datasets/regulation_merged_Osj.ttl'
-path_output = '/Users/pierre/workspace2015/datasets/Osj_TF_list.ttl' # The output
+path = '/Users/pierre/workspace2015/datasets/Mes_TF_list.txt'
+regulation_file = '/Users/pierre/workspace2015/datasets/regulation_merged_Mes.txt'
+regulation_output = '/Users/pierre/workspace2015/datasets/regulation_merged_Mes.ttl'
+path_output = '/Users/pierre/workspace2015/datasets/Mes_TF_list.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = geneParser(path)   # The parsing file
@@ -117,7 +117,7 @@ pp.pprint(ds)    # For to see in teminal the parsing
 
 #os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
 
-# RDFConverter(ds, path_output)
+RDFConverter(ds, path_output)
 ds2 = geneParser(regulation_file)
 pp.pprint(ds2)
 RDFRegulate(ds2,regulation_output)

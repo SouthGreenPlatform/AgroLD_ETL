@@ -119,8 +119,8 @@ def riceNetGeneDBModelRDF(ricenetdb_ds, output_file):
         line_number+=1
         os_japonica_buffer = ''
         os_japonica_buffer += RiceNetDB_gene_ns + records['gene'] + "\n"
-        os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + res_ns + "Gene" + " ;\n"
-        os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
+        os_japonica_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
+        #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + obo_ns + gene_term + " ;\n"
 
         os_japonica_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['gene'] + "\" ;\n"
         #os_japonica_buffer += "\t" + rdfs_ns + "subClassOf" + "\t\t" + obo_ns + "SO_0000234" + " ;\n"
@@ -186,8 +186,8 @@ def riceNetGeneDBModelRDF(ricenetdb_ds, output_file):
 pp = pprint.PrettyPrinter(indent=4)
 
 #TEST PARAM
-path = '/Users/plarmande/PycharmProjects/RiceNetDB/gene.csv'
-path_output = '/Users/plarmande/PycharmProjects/RiceNetDB/ricenetdb_gene.ttl' # The output
+path = '/Users/pierre/PycharmProjects/RiceNetDB/gene.csv'
+path_output = '/Users/pierre/PycharmProjects/RiceNetDB/ricenetdb_gene.ttl' # The output
 #path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
 #path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
 ds = riceNeTDBParser(path)   # The parsing file withe tropGeneParser()

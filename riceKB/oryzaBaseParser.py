@@ -155,6 +155,9 @@ def oryzaBaseRDF(infile, output_file):
     pub_handle = open(pub_dict,'w')
     pub_handle_rapdb = open(pub_dict_RAPDB,'w')
     pub_handle_msu = open(pub_dict_MSU,'w')
+    pub_handle_genomeHub = open(pub_dict_HUB,'w')
+    PO_handle_genomeHub = open(dict_PO,'w')
+    TO_handle_genomeHub = open(dict_TO,'w')
     ttl_buffer = ''
     
     print("************* OryzaBase RDF conversion begins***********\n")
@@ -163,6 +166,8 @@ def oryzaBaseRDF(infile, output_file):
     ttl_handle.write(str(getRDFHeaders()))
 #    pp.pprint(orygene_ds)
     for oryid in orygene_ds:
+        rap_id = ''
+        msu_id = ''
         ttl_buffer = ''
         pub_buffer = ''
         pub_buffer_rapdb = ''
@@ -187,20 +192,20 @@ def oryzaBaseRDF(infile, output_file):
                     description = re.sub('\"|\'','', (orygene_ds[oryid][item]))
                     description = re.sub(r"\\",'', description)
                     ttl_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' %  (description)  + " ;\n"
-                    if description != '_':
-                        pub_buffer += description + "\t" + oryzabase_uri + oryid + "\n"
-                    pubRAPDB_writer(description, orygene_ds, oryid, pub_handle_rapdb)
-                    pubMSU_writer(description, orygene_ds, oryid, pub_handle_msu)
+                    # if description != '_':
+                        # pub_buffer += description + "\t" + oryzabase_uri + oryid + "\n"
+                    # pubRAPDB_writer(description, orygene_ds, oryid, pub_handle_rapdb)
+                    # pubMSU_writer(description, orygene_ds, oryid, pub_handle_msu)
             ## TODO : fix error - sometimes list of name separate by , check how to turn one name and alternate names, variable have "" so remove them
             if item == 'Name':
                 if orygene_ds[oryid][item]:
                     altlabel = re.sub('\"|\'','', (orygene_ds[oryid][item]))
                     altlabel = re.sub(r"\\",'', altlabel)
                     ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' %  (altlabel) + " ;\n"
-                    if altlabel != '_':
-                        pub_buffer += altlabel + "\t" + oryzabase_uri + oryid + "\n"
-                    pubRAPDB_writer(altlabel, orygene_ds, oryid, pub_handle_rapdb)
-                    pubMSU_writer(altlabel, orygene_ds, oryid, pub_handle_msu)
+                    # if altlabel != '_':
+                    #     pub_buffer += altlabel + "\t" + oryzabase_uri + oryid + "\n"
+                    # pubRAPDB_writer(altlabel, orygene_ds, oryid, pub_handle_rapdb)
+                    # pubMSU_writer(altlabel, orygene_ds, oryid, pub_handle_msu)
             if item == 'Explanation':
                 if orygene_ds[oryid][item]:
                     #bad_chars = '|'.join(['\"', '\'', '\\'])
@@ -245,9 +250,9 @@ def oryzaBaseRDF(infile, output_file):
                         alt_name = re.sub(r"\\",'', alt_name)
                         if alt_name != '_':
                             ttl_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (alt_name) + " ;\n"
-                            pub_buffer += alt_name + "\t" + oryzabase_uri + oryid + "\n"
-                            pubRAPDB_writer(alt_name, orygene_ds, oryid, pub_handle_rapdb)
-                            pubMSU_writer(alt_name, orygene_ds, oryid, pub_handle_msu)
+                            # pub_buffer += alt_name + "\t" + oryzabase_uri + oryid + "\n"
+                            # pubRAPDB_writer(alt_name, orygene_ds, oryid, pub_handle_rapdb)
+                            # pubMSU_writer(alt_name, orygene_ds, oryid, pub_handle_msu)
             if item == 'RAP_id':
                 if orygene_ds[oryid][item]:
                     for rap_id in orygene_ds[oryid][item]:
@@ -255,6 +260,7 @@ def oryzaBaseRDF(infile, output_file):
                             ttl_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + ensembl_ns + re.sub('\s+', '', rap_id)  + " ;\n"
                             ttl_buffer += "\t" + owl_ns + "sameAs" + "\t" + res_ns + re.sub('\s+', '', rap_id)  + " ;\n"
                             pub_buffer += rap_id + "\t" + rapdb_gene_uri + re.sub('\s+', '', rap_id) +"\n"
+                            pub_handle_genomeHub.write(re.sub('\s+', '', rap_id) + "\t" + ''.join(orygene_ds[oryid]['Reco_symbol']) + "\t" + ''.join(orygene_ds[oryid]['Symbols']) + "\n")
             if item == 'MSU_id':
                 if orygene_ds[oryid][item]:
                     for msu_id in orygene_ds[oryid][item]:
@@ -287,7 +293,8 @@ def oryzaBaseRDF(infile, output_file):
                             to_id = re.sub('^\s|\s$', '', to_id)
                             if re.match(r"^TO_[0-9]{7}$", to_id):
                                 ttl_buffer += "\t" + base_vocab_ns + "hasTrait" + "\t" + obo_ns + to_id + " ;\n"
-
+                        if rap_id is not None and rap_id != "":
+                            TO_handle_genomeHub.write(rap_id + "\t" + re.sub('^\s|\s$', '', to_term) + "\n")
                         # if re.match(r"^TO_[0-9]{7} or TO_[0-9]{7}", to_term):
                         #     TO_oryza = to_term.split(' or ')
                         #     for TO in TO_oryza:
@@ -312,6 +319,8 @@ def oryzaBaseRDF(infile, output_file):
                             po_id = re.sub('\s', '', po_id)
                             if re.match(r"^TO_[0-9]{7} or TO_[0-9]{7}", po_id):
                                 ttl_buffer += "\t" + obo_ns + "RO_0002206" + "\t" + obo_ns + po_id + " ;\n" # expressed in
+                        if rap_id is not None and rap_id != "":
+                            PO_handle_genomeHub.write(rap_id + "\t" + re.sub('^\s|\s$', '', po_term) + "\n")
             
         ttl_buffer = re.sub(' ;$', ' .\n', ttl_buffer)
         pub_handle.write(pub_buffer)
@@ -348,6 +357,8 @@ def pubMSU_writer(label, orygene_ds, oryid, pub_handle_msu):
                 if label != '_':
                     pub_handle_msu.write(label + "\t" + sniplay_gene_uri + msu_id + "\n")
 
+# def dicTO_writer(label, orygene_ds, oryid, pub_handle_msu):
+
 def RDF_validation(ttl_buffer,ttl_handle,oryid):
 
     try:
@@ -371,13 +382,16 @@ def RDF_validation(ttl_buffer,ttl_handle,oryid):
         handle.write(ttl_buffer)
         pass
 
-oryzabase_file = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210217010049.txt'
+oryzabase_file = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20221122010058.txt'
 
 
-oryzaBase_output = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20210114010049.ttl'
+oryzaBase_output = '/Users/pierre/workspace2015/datasets/OryzabaseGeneListEn_20221122010058.ttl'
 pub_dict = '/Users/pierre/workspace2015/datasets/pub_dictionnary.txt'
 pub_dict_RAPDB = '/Users/pierre/workspace2015/datasets/pub_dictionnary_rapdb.txt'
 pub_dict_MSU = '/Users/pierre/workspace2015/datasets/pub_dictionnary_msu.txt'
+pub_dict_HUB = '/Users/pierre/workspace2015/datasets/pub_genome_hub.txt'
+dict_PO = '/Users/pierre/workspace2015/datasets/dict_PO_hub.txt'
+dict_TO = '/Users/pierre/workspace2015/datasets/dict_TO_hub.txt'
 oryzaBaseRDF(oryzabase_file, oryzaBase_output)
 
 #

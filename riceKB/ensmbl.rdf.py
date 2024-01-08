@@ -220,8 +220,8 @@ if len(sys.argv):
     file_input = os.path.basename(filepath)
     # print(file_input)
 else:
-    ROOT_DIR = '/Users/pierre/workspace2015/datasets'
-    file_input = 'oryza_sativa.ttl'
+    ROOT_DIR = '/Users/pierre/workspace2015/datasets/ensembl'
+    file_input = 'oryza_sativa_xrefs.ttl'
 
 ensembl_files =  os.path.join(ROOT_DIR + '/' + file_input)
 ensembl_out = os.path.join(ROOT_DIR + '/' + 'agrold.' + file_input)

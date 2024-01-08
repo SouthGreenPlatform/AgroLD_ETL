@@ -6,6 +6,7 @@ Updated on Dec 4, 2019
 # TODO chercher dans les synonyms les pattern RAPDB et MSU pour creer une nouvelle relation
 # TODO ajouter Prot:uri encodedBy Gene:uri
 from Bio import SwissProt
+from Bio import SeqIO
 
 from riceKB.globalVars import *
 #from globalVars import *
@@ -241,6 +242,8 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
         #        xrefs = defaultdict(list)
         #        xref_ids = list()
+        for record in SeqIO.parse(file_handle, "uniprot-xml"):
+            print(record.id)
         for record in SwissProt.parse(file_handle): #up_records:
             xrefs = defaultdict(list)
             #ref_record = SwissProt._read_rx(record.references,'RX')
@@ -325,6 +328,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     #                    print record.keywords
                     if record.keywords:
                         for keyword in record.keywords:
+                            print(keyword)
                             keywordURI, cleanKeyword = keyword2URI(keyword)
                             keyword_list.add(cleanKeyword)
                             rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + keywordURI + " ;\n"
