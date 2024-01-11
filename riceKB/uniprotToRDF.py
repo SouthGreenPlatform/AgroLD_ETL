@@ -210,12 +210,15 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     rdf_file = "uniprot.plants.ttl"
     rdf_keyword_file = "uniprot.keyword.ttl"
     rdf_pubmed_file = "uniprot.pubmed.ttl"
+    prot_gene_mapping = "mappings_gene_prot.tsv"
     output_file = os.path.join(rdf_out_dir, rdf_file)
     output_key_file = os.path.join(rdf_out_dir, rdf_keyword_file)
     output_pub_file = os.path.join(rdf_out_dir, rdf_pubmed_file)
+    prot_gene_mapping_file = os.path.join(rdf_out_dir, prot_gene_mapping)
     output_writer = open(output_file, "w")
     keyword_writer = open(output_key_file, "w")
     pubmed_writer = open(output_pub_file, "w")
+    prot_gene_writer = open(prot_gene_mapping_file, 'w')
     keywordBuffer = ''
     rdf_buffer = ''
     pubmed_dict = {}
@@ -248,6 +251,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
             xrefs = defaultdict(list)
             #ref_record = SwissProt._read_rx(record.references,'RX')
             rdf_buffer = ''
+            prot_gene_buffer = ''
             for taxID in record.taxonomy_id:
                 if taxID in taxon_ids or record.entry_name in lookup_list:
                     # Accession
@@ -306,6 +310,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
+                                    prot_gene_buffer +=  '"%s"' + "\t" + '"%s"' + "\n" (record.entry_name, symbol)
                             if re.findall("ORFNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
