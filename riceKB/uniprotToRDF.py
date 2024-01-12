@@ -310,7 +310,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                                    prot_gene_buffer +=  '"%s"' + "\t" + '"%s"' + "\n" (record.entry_name, symbol)
+                                    prot_gene_buffer +=  '"%s"' + "\t" + '"%t"' % (record.entry_name, symbol) + "\n"
                             if re.findall("ORFNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
