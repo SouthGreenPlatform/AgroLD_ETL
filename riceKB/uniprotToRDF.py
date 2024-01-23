@@ -6,7 +6,6 @@ Updated on Dec 4, 2019
 # TODO chercher dans les synonyms les pattern RAPDB et MSU pour creer une nouvelle relation
 # TODO ajouter Prot:uri encodedBy Gene:uri
 from Bio import SwissProt
-from Bio import SeqIO
 
 from riceKB.globalVars import *
 #from globalVars import *
