@@ -245,8 +245,8 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
         #        xrefs = defaultdict(list)
         #        xref_ids = list()
-        for record in SeqIO.parse(file_handle, "uniprot-xml"):
-            print(record.id)
+            # for record in SeqIO.parse(file_handle, "uniprot-xml"):
+            #     print(record.id)
         for record in SwissProt.parse(file_handle): #up_records:
             xrefs = defaultdict(list)
             #ref_record = SwissProt._read_rx(record.references,'RX')
@@ -310,7 +310,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     symbol = re.sub('\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                                    prot_gene_buffer +=  '"%s"' + "\t" + '"%t"' % (record.entry_name, symbol) + "\n"
+                                    prot_gene_buffer +=  '"%s"' + "\t" + '"%s"' % (record.entry_name, symbol) + "\n"
                             if re.findall("ORFNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
@@ -381,6 +381,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     output_writer.close()
     keyword_writer.write(str(getRDFHeaders()))
     pubmed_writer.write(str(getRDFHeaders()))
+    prot_gene_writer.write(prot_gene_buffer)
     for keyword in keyword_list:
         keywordBuffer = ''
         keywordBuffer = keyword2Triples(keyword,keywordBuffer)
