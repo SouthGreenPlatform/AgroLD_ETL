@@ -20,11 +20,11 @@ def keyword2URI(keyword):
     cleanKey=''
     if  re.split('{',keyword):
         cleanKey = re.split('{',keyword)[0]
-        cleanKey = re.sub('^\s+|\s+$', '', keyword)
-        cleanKey = re.sub('\s', '_', keyword)
+        cleanKey = re.sub(r'^\s+|\s+$', '', keyword)
+        cleanKey = re.sub(r'\s', '_', keyword)
     else:
-        cleanKey = re.sub('^\s+|\s+$','',keyword)
-        cleanKey = re.sub('\s','_',cleanKey)
+        cleanKey = re.sub(r'^\s+|\s+$','',keyword)
+        cleanKey = re.sub(r'\s','_',cleanKey)
     keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
     return keywordURI, cleanKey
 
@@ -41,19 +41,19 @@ def pubmed2RDF(pubmedid, pubmed_dict):
     buffer += pubmed_ns +  pubmedid + " \n"
     buffer += "\t" + rdf_ns + "type" + "\t" + bibo_ns + "Article" + " ;\n"
     title = pubmed_dict['title']
-    title = re.sub('\"|\'', '', title)
+    title = re.sub(r'\"|\'', '', title)
     buffer += "\t" + dc_ns + "title" + "\t" +  "\""+ title + "\" ;\n"
     for key, value in pubmed_dict['references']:
         if key == 'DOI':
             buffer += "\t" + dcterms_ns + "identifier" + "\t" + "\""+ doi_uri + value + "\" ;\n"
     # buffer += "\t" + skos_ns + "exactMatch" + "\t" + pubmed_ns + "2719677" + " ;\n"
     buffer += "\t" + dc_ns + "creator" + "\t" + "\""+  re.split(',',pubmed_dict['authors'])[0] +  " et al.\"  ;\n"
-    year = str(re.findall('\.*\(\d+\)\.', pubmed_dict['location'])[0])
-    year = re.sub('\(|\)|\.', '', year)
+    year = str(re.findall(r'\.*\(\d+\)\.', pubmed_dict['location'])[0])
+    year = re.sub(r'\(|\)|\.', '', year)
     buffer += "\t" + dc_ns + "date" + "\t" + "\""+ year + "\"^^xsd:gYear ;\n"
     buffer += "\t" + prism_ns + "publicationDate" + "\t" + "\"" + year + "\"^^xsd:gYear ;\n"
     buffer += "\t" + dc_ns + "source" + "\t" + "\""+ pubmed_dict['location'] + "\" ;\n"
-    publicationName = str(re.split('\s\d+', pubmed_dict['location'])[0])
+    publicationName = str(re.split(r'\s\d+', pubmed_dict['location'])[0])
     # volPage = str(re.split('\w+\.*\s', pubmed_dict['location'])[1])
     buffer += "\t" + prism_ns + "publicationName" + "\t" + "\"" + publicationName + "\" ;\n"
     # volume = str(re.split(':', volPage)[0])
@@ -73,9 +73,9 @@ def pubmed2RDF(pubmedid, pubmed_dict):
 def cleanUp(text, title, provenance=False):
     clean_text = text.replace('"', '')
     clean_text = clean_text.replace(title, '')
-    clean_text = re.sub('^\s+', '', clean_text)
+    clean_text = re.sub(r'^\s+', '', clean_text)
     if provenance:
-        clean_text = re.sub('{.+?}', '', clean_text)
+        clean_text = re.sub(r'{.+?}', '', clean_text)
     return clean_text
 
 def splitComments(comments,accession):
@@ -90,9 +90,9 @@ def splitComments(comments,accession):
             location = cleanUp(annotation,'SUBCELLULAR LOCATION:', True)
             if 'Note=' in location:
                 location = location.split('Note=')[0]
-            location_entries = re.split('\.|,|;',location)
+            location_entries = re.split(r'\.|,|;',location)
             for location_entry in location_entries:
-                location_entry = re.sub('^\s+|\s+$', '', location_entry)
+                location_entry = re.sub(r'^\s+|\s+$', '', location_entry)
                 if location_entry:
                     buffer += "\t" + obo_ns + "RO_0001025" + "\t" + '"%s"' % (location_entry) + " ;\n"
         elif 'TISSUE SPECIFICITY:' in annotation:
@@ -122,7 +122,7 @@ def splitComments(comments,accession):
             for name in cofactor_list:
                 if 'Name=' in name:
                     cofactor = re.sub('Name=','',name)
-                    cofactor = re.sub('\s+','',cofactor)
+                    cofactor = re.sub(r'\s+','',cofactor)
                     buffer += "\t" + base_vocab_ns + "hasCofactor" + "\t" + '"%s"' % (cofactor) + " ;\n"
         elif 'ACTIVITY REGULATION:'  in annotation:
             regulation = cleanUp(annotation, 'ACTIVITY REGULATION:')
@@ -175,13 +175,13 @@ def splitComments(comments,accession):
         #     print('found ALLERGEN:')
         elif 'INTERACTION:' in annotation:
             interactions = cleanUp(annotation, 'INTERACTION:')
-            interaction_list = re.split('EBI-\d+;',interactions)
+            interaction_list = re.split(r'EBI-\d+;',interactions)
             for intact in interaction_list:
-                interactants = re.split('NbExp=\d+;',intact)[0]
+                interactants = re.split(r'NbExp=\d+;',intact)[0]
                 second_interactant = interactants.split(':')[0]
                 if second_interactant:
                     cleaned_interactant = re.split(';',second_interactant)[1]
-                    cleaned_interactant = re.sub('\s+','', cleaned_interactant)
+                    cleaned_interactant = re.sub(r'\s+','', cleaned_interactant)
                     if cleaned_interactant:
                         if prot_pattern.match(cleaned_interactant):
                             buffer += "\t" + obo_ns + "RO_0002434" + "\t" +  up_ns + cleaned_interactant + " ;\n"
@@ -231,7 +231,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
         if (os.path.isfile(str(additional_file))):
             with open(additional_file, 'r') as infile:
                 for prot in infile:
-                    prot = re.sub('\s+', '', prot)
+                    prot = re.sub(r'\s+', '', prot)
                     lookup_list.add(prot)
 
     print("************* Converting Uniprot data to RDF ***************\n")
@@ -287,34 +287,34 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     #  Gene Name
                     if record.gene_name:
                         for entry in record.gene_name.split(';'):
-                            new_entry = re.sub('{.+?}', '', entry)
+                            new_entry = re.sub(r'{.+?}', '', entry)
                             if re.findall("Name=",new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
-                                    symbol = re.sub('\s+', '', symbol)
-                                    symbol = re.sub('\"+', '', symbol)
+                                    symbol = re.sub(r'\s+', '', symbol)
+                                    symbol = re.sub(r'\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
                                                     symbol) + " ;\n"
                             if re.findall("Synonyms=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
-                                    symbol = re.sub('\s+', '', symbol)
-                                    symbol = re.sub('\"+', '', symbol)
+                                    symbol = re.sub(r'\s+', '', symbol)
+                                    symbol = re.sub(r'\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                             if re.findall("OrderedLocusNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
-                                    symbol = re.sub('\s+', '', symbol)
-                                    symbol = re.sub('\"+', '', symbol)
+                                    symbol = re.sub(r'\s+', '', symbol)
+                                    symbol = re.sub(r'\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                                     prot_gene_buffer +=  '"%s"' + "\t" + '"%s"' % (record.entry_name, symbol) + "\n"
                             if re.findall("ORFNames=", new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
-                                    symbol = re.sub('\s+', '', symbol)
-                                    symbol = re.sub('\"+', '', symbol)
+                                    symbol = re.sub(r'\s+', '', symbol)
+                                    symbol = re.sub(r'\"+', '', symbol)
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
 
