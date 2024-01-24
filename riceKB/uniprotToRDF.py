@@ -18,8 +18,8 @@ from collections import defaultdict
 
 def keyword2URI(keyword):
     cleanKey=''
-    if  re.split('\{',keyword):
-        cleanKey = re.split('\{',keyword)[0]
+    if  re.split('{',keyword):
+        cleanKey = re.split('{',keyword)[0]
         cleanKey = re.sub('^\s+|\s+$', '', keyword)
         cleanKey = re.sub('\s', '_', keyword)
     else:
@@ -75,7 +75,7 @@ def cleanUp(text, title, provenance=False):
     clean_text = clean_text.replace(title, '')
     clean_text = re.sub('^\s+', '', clean_text)
     if provenance:
-        clean_text = re.sub('\{.+?\}', '', clean_text)
+        clean_text = re.sub('{.+?}', '', clean_text)
     return clean_text
 
 def splitComments(comments,accession):
@@ -287,7 +287,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     #  Gene Name
                     if record.gene_name:
                         for entry in record.gene_name.split(';'):
-                            new_entry = re.sub('\{.+?\}', '', entry)
+                            new_entry = re.sub('{.+?}', '', entry)
                             if re.findall("Name=",new_entry):
                                 value = new_entry.split('=')[1]
                                 for symbol in value.split(','):
