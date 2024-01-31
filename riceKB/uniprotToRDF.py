@@ -282,42 +282,63 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     # Description
                     if record.description:
                         descriptions = record.description.split(';')
-                        description = descriptions[0][14:]  # .lstrip('RecName: Full=')
-                        rdf_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (description) + " ;\n"
+                        full_name = descriptions.pop(0)
+                        full_name = full_name[14:]  # .lstrip('RecName: Full=')
+                        full_name = re.sub(r'{.+?}', '', full_name)
+                        full_name = full_name.strip()
+                        rdf_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % (full_name) + " ;\n"
+                        rdf_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (full_name) + " ;\n"
+                        for altName in descriptions:
+                            altName = altName.strip()
+                            print(altName)
+                            if altName.startswith('AltName: Full='):
+                                altName = altName[14:]
+                                altName = re.sub(r'{.+?}', '', altName)
+                                altName = altName.strip()
+                                rdf_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (altName) + " ;\n"
+                            if altName.startswith('Short='):
+                                altName = altName[6:]
+                                altName = re.sub(r'{.+?}', '', altName)
+                                altName = altName.strip()
+                                rdf_buffer += "\t" + skos_ns + "altLabel" + "\t" + '"%s"' % (altName) + " ;\n"
+                        #.lstrip('AltName: Full=')
+
                     #  Gene Name
                     if record.gene_name:
-                        for entry in record.gene_name.split(';'):
-                            new_entry = re.sub(r'{.+?}', '', entry)
-                            if re.findall("Name=",new_entry):
-                                value = new_entry.split('=')[1]
-                                for symbol in value.split(','):
+                        print(record.gene_name)
+                        for entry_dic in record.gene_name:
+                            gene_name = entry_dic['Name']
+                            new_entry = re.sub(r'{.+?}', '', gene_name)
+                            new_entry = re.sub(r'\s+', '', new_entry)
+                            new_entry = re.sub(r'\"+', '', new_entry)
+                            new_entry = new_entry.strip()
+                            rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
+                                                    new_entry) + " ;\n"
+                            if entry_dic['Synonyms']:
+                                for symbol in entry_dic['Synonyms']:
+                                    symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
                                     symbol = re.sub(r'\"+', '', symbol)
-                                    rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
-                                                    symbol) + " ;\n"
-                            if re.findall("Synonyms=", new_entry):
-                                value = new_entry.split('=')[1]
-                                for symbol in value.split(','):
-                                    symbol = re.sub(r'\s+', '', symbol)
-                                    symbol = re.sub(r'\"+', '', symbol)
+                                    symbol = symbol.strip()
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                            if re.findall("OrderedLocusNames=", new_entry):
-                                value = new_entry.split('=')[1]
-                                for symbol in value.split(','):
+                            if entry_dic['OrderedLocusNames']:
+                                for symbol in entry_dic['OrderedLocusNames']:
+                                    symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
                                     symbol = re.sub(r'\"+', '', symbol)
+                                    symbol = symbol.strip()
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                                    prot_gene_buffer +=  '"%s"' + "\t" + '"%s"' % (record.entry_name, symbol) + "\n"
-                            if re.findall("ORFNames=", new_entry):
-                                value = new_entry.split('=')[1]
-                                for symbol in value.split(','):
+                                    rdf_buffer += "\t" + sio_ns + "SIO_000339" + "\t" + res_ns + symbol + " ;\n"
+                            if entry_dic['ORFNames']:
+                                for symbol in entry_dic['ORFNames']:
+                                    symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
                                     symbol = re.sub(r'\"+', '', symbol)
+                                    symbol = symbol.strip()
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-
                     # Taxon
                     rdf_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
                     # Comments
@@ -405,6 +426,9 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 #ROOT_DIR = '/Users/plarmande/Downloads'
 # upToRDF(up_dir, ROOT_DIR,'/Volumes/LaCie/AGROLD/data_update_2019/Rice_Genome_Hub/uniprot_id.txt')
 #upToRDF(up_dir, ROOT_DIR, '/Users/plarmande/workspace2015/datasets/uniprot_id.txt')
+# create a function that take rdf_buffer as input and validate RDF with RDFLib
+
+
 
 # code running on bioinfo-inter
 up_dir = sys.argv.pop() # path to the uniprot dataset
