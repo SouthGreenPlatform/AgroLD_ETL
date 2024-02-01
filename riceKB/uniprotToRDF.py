@@ -352,7 +352,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                     #                    print record.keywords
                     if record.keywords:
                         for keyword in record.keywords:
-                            print(keyword)
                             keywordURI, cleanKeyword = keyword2URI(keyword)
                             keyword_list.add(cleanKeyword)
                             rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + keywordURI + " ;\n"
