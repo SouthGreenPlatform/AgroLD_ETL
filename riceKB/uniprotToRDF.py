@@ -290,7 +290,6 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                         rdf_buffer += "\t" + dcterms_ns + "description" + "\t" + '"%s"' % (full_name) + " ;\n"
                         for altName in descriptions:
                             altName = altName.strip()
-                            print(altName)
                             if altName.startswith('AltName: Full='):
                                 altName = altName[14:]
                                 altName = re.sub(r'{.+?}', '', altName)
@@ -305,16 +304,16 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
                     #  Gene Name
                     if record.gene_name:
-                        print(record.gene_name)
                         for entry_dic in record.gene_name:
-                            gene_name = entry_dic['Name']
-                            new_entry = re.sub(r'{.+?}', '', gene_name)
-                            new_entry = re.sub(r'\s+', '', new_entry)
-                            new_entry = re.sub(r'\"+', '', new_entry)
-                            new_entry = new_entry.strip()
-                            rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
+                            if entry_dic.get('Name'):
+                                gene_name = entry_dic['Name']
+                                new_entry = re.sub(r'{.+?}', '', gene_name)
+                                new_entry = re.sub(r'\s+', '', new_entry)
+                                new_entry = re.sub(r'\"+', '', new_entry)
+                                new_entry = new_entry.strip()
+                                rdf_buffer += "\t" + skos_ns + "prefSymbol" + "\t" + '"%s"' % (
                                                     new_entry) + " ;\n"
-                            if entry_dic['Synonyms']:
+                            if entry_dic.get('Synonyms'):
                                 for symbol in entry_dic['Synonyms']:
                                     symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
@@ -322,7 +321,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     symbol = symbol.strip()
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                            if entry_dic['OrderedLocusNames']:
+                            if entry_dic.get('OrderedLocusNames'):
                                 for symbol in entry_dic['OrderedLocusNames']:
                                     symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
@@ -331,7 +330,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                                     rdf_buffer += "\t" + sio_ns + "SIO_000339" + "\t" + res_ns + symbol + " ;\n"
-                            if entry_dic['ORFNames']:
+                            if entry_dic.get('ORFNames'):
                                 for symbol in entry_dic['ORFNames']:
                                     symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
