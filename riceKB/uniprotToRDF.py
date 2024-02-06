@@ -220,6 +220,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     prot_gene_writer = open(prot_gene_mapping_file, 'w')
     keywordBuffer = ''
     rdf_buffer = ''
+    gene_buffer = ''
     pubmed_dict = {}
     prot_counter = 0
     lookup_list = set()
@@ -330,6 +331,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                                     rdf_buffer += "\t" + sio_ns + "SIO_000339" + "\t" + res_ns + symbol + " ;\n"
+                                    gene_buffer +=  prim_accession + "\t"  +  symbol + "\n"
                             if entry_dic.get('ORFNames'):
                                 for symbol in entry_dic['ORFNames']:
                                     symbol = re.sub(r'{.+?}', '', symbol)
@@ -399,7 +401,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
     output_writer.close()
     keyword_writer.write(str(getRDFHeaders()))
     pubmed_writer.write(str(getRDFHeaders()))
-    prot_gene_writer.write(prot_gene_buffer)
+    prot_gene_writer.write(gene_buffer)
     for keyword in keyword_list:
         keywordBuffer = ''
         keywordBuffer = keyword2Triples(keyword,keywordBuffer)
