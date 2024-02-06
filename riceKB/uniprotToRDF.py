@@ -411,7 +411,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
         pubmedBuffer = ''
         pubmedBuffer = pubmed2RDF(pubmedid, pubmed_dict[pubmedid])
         RDF_validation(pubmedBuffer, pubmed_writer, pubmedid, ROOT_DIR)
-        pubmed_writer.write(pubmedBuffer)
+        #pubmed_writer.write(pubmedBuffer)
     keyword_writer.close()
     pubmed_writer.close()
     print("Number of Proteins: %s\n" % (str(prot_counter)))
