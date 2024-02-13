@@ -206,10 +206,10 @@ def splitComments(comments,accession):
     return buffer
 def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 
-    rdf_file = "uniprot.plants.ttl"
-    rdf_keyword_file = "uniprot.keyword.ttl"
-    rdf_pubmed_file = "uniprot.pubmed.ttl"
-    prot_gene_mapping = "mappings_gene_prot.tsv"
+    rdf_file = "uniprot" + taxon_id + ".plants.ttl"
+    rdf_keyword_file = "uniprot" + taxon_id + ".keyword.ttl"
+    rdf_pubmed_file = "uniprot" + taxon_id + ".pubmed.ttl"
+    prot_gene_mapping = "mappings_" + taxon_id + "_gene_prot.tsv"
     output_file = os.path.join(rdf_out_dir, rdf_file)
     output_key_file = os.path.join(rdf_out_dir, rdf_keyword_file)
     output_pub_file = os.path.join(rdf_out_dir, rdf_pubmed_file)
@@ -248,6 +248,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
             # for record in SeqIO.parse(file_handle, "uniprot-xml"):
             #     print(record.id)
         for record in SwissProt.parse(file_handle): #up_records:
+
             xrefs = defaultdict(list)
             #ref_record = SwissProt._read_rx(record.references,'RX')
             rdf_buffer = ''
@@ -434,6 +435,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
 up_dir = sys.argv.pop() # path to the uniprot dataset
 ROOT_DIR = sys.argv.pop() # path to the root folder
 uniprotid_list = sys.argv.pop() # path
-print("%s .... %s ... %s ..." % (up_dir,ROOT_DIR,uniprotid_list))
-upToRDF(up_dir,ROOT_DIR,uniprotid_list)
+taxon_id = sys.argv.pop() # taxon id
+print("%s .... %s ... %s ..." % (up_dir,ROOT_DIR,uniprotid_list,taxon_id))
+upToRDF(up_dir,ROOT_DIR,uniprotid_list,taxon_id)
 # os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')
