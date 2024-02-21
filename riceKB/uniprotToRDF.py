@@ -204,7 +204,7 @@ def splitComments(comments,accession):
         #     print('found SEQUENCE CAUTION:')
         # print(annotation)
     return buffer
-def upToRDF(up_files, rdf_out_dir, additional_file):  # , output_file
+def upToRDF(up_files, rdf_out_dir, additional_file,taxon_id):  # , output_file
 
     rdf_file = "uniprot" + taxon_id + ".plants.ttl"
     rdf_keyword_file = "uniprot" + taxon_id + ".keyword.ttl"
