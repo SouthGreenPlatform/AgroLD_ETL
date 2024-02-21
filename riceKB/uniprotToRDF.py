@@ -436,6 +436,6 @@ up_dir = sys.argv.pop() # path to the uniprot dataset
 ROOT_DIR = sys.argv.pop() # path to the root folder
 uniprotid_list = sys.argv.pop() # path
 taxon_id = sys.argv.pop() # taxon id
-print("%s .... %s ... %s ..." % (up_dir,ROOT_DIR,uniprotid_list,taxon_id))
+print("%s .... %s ... %s ... %s" % (up_dir,ROOT_DIR,uniprotid_list,taxon_id))
 upToRDF(up_dir,ROOT_DIR,uniprotid_list,taxon_id)
 # os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')
