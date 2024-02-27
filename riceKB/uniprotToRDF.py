@@ -16,12 +16,18 @@ import os
 import sys
 from collections import defaultdict
 
+SPECIAL_CHARACTERS = '[@_!#$%^&*<>?/\\|}{~:.,;-]'
+# The pattern needs to be a raw string to handle backslashes properly, and we use re.escape to escape special characters
+pattern = '[' + re.escape(SPECIAL_CHARACTERS) + ']'
+
 def keyword2URI(keyword):
     cleanKey=''
     if  re.split('{',keyword):
         cleanKey = re.split('{',keyword)[0]
         cleanKey = re.sub(r'^\s+|\s+$', '', keyword)
         cleanKey = re.sub(r'\s', '_', keyword)
+        cleanKey = re.sub(r'/', '_', keyword)
+        cleanKey = re.sub(pattern, '_', keyword)
     else:
         cleanKey = re.sub(r'^\s+|\s+$','',keyword)
         cleanKey = re.sub(r'\s','_',cleanKey)
@@ -368,6 +374,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file,taxon_id):  # , output_file
                             db_namespace = key.lower()
                             for dbid in xrefs[key]:
                                 # rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
+                                clean_dbid = re.sub(pattern, '_', dbid)
                                 rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                         elif key == "GO":
                             for dbid in xrefs[key]:
