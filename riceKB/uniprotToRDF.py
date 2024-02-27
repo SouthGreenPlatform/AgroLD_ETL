@@ -24,13 +24,14 @@ def keyword2URI(keyword):
     cleanKey=''
     if  re.split('{',keyword):
         cleanKey = re.split('{',keyword)[0]
-        cleanKey = re.sub(r'^\s+|\s+$', '', keyword)
-        cleanKey = re.sub(r'\s', '_', keyword)
-        cleanKey = re.sub(r'/', '_', keyword)
-        cleanKey = re.sub(pattern, '_', keyword)
+        cleanKey = re.sub(r'^\s+|\s+$', '', cleanKey)
+        cleanKey = re.sub(r'\s', '_', cleanKey)
+        cleanKey = re.sub(r'/', '_', cleanKey)
+        cleanKey = re.sub(pattern, '_', cleanKey)
     else:
         cleanKey = re.sub(r'^\s+|\s+$','',keyword)
         cleanKey = re.sub(r'\s','_',cleanKey)
+        cleanKey = re.sub(pattern, '_', cleanKey)
     keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
     return keywordURI, cleanKey
 
