@@ -7,7 +7,7 @@ Updated on Dec 4, 2019
 # TODO ajouter Prot:uri encodedBy Gene:uri
 from Bio import SwissProt
 
-from riceKB.globalVars import *
+from globalVars import *
 #from globalVars import *
 from utils import *
 import pprint
