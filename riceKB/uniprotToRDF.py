@@ -376,7 +376,7 @@ def upToRDF(up_files, rdf_out_dir, additional_file,taxon_id):  # , output_file
                             for dbid in xrefs[key]:
                                 # rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
                                 clean_dbid = re.sub(pattern, '_', dbid)
-                                rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
+                                rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + clean_dbid + ">" + " ;\n"
                         elif key == "GO":
                             for dbid in xrefs[key]:
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns+ re.sub(':','_',dbid) + " ;\n"
