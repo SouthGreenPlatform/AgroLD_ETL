@@ -9,7 +9,7 @@ from Bio import SwissProt
 
 from riceKB.globalVars import *
 #from globalVars import *
-from riceKB.utils import *
+from utils import *
 import pprint
 import re
 import os
