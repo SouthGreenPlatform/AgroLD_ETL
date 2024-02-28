@@ -2,7 +2,7 @@ import sys
 from riceKB.globalVars import *
 from riceKB.globalVars import base_vocab_ns
 from riceKB.gffParser import *
-from riceKB.utils import *
+from utils import *
 import pprint
 import re
 import os
