@@ -1,5 +1,5 @@
 from __future__ import with_statement
-from riceKB.globalVars import *
+from globalVars import *
 from collections import namedtuple
 import gzip
 import urllib3
