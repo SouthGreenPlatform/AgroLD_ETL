@@ -244,6 +244,8 @@ swo_ns = 'swo:'
 pubmed_uri = 'http://identifiers.org/pubmed/'
 pubmed_ns = 'pubmed:'
 
+pubmed_rdf_uri = 'http://rdf.ncbi.nlm.nih.gov/pubmed/'
+pubmed_rdf_ns = 'pubmed_rdf:'
 # AraCyc
 #aracyc_uri = 'http://purl.agrold.org/resource/aracyc.pathway/'
 #aracyc_ns = 'aracyc_pathway:'
