@@ -157,6 +157,7 @@ def getRDFHeaders():
     headersBuffer += pr + "\t" + ensembl_ns + "<" + ensembl_plant + "> .\n"
     headersBuffer += pr + "\t" + ena_embl_ns + "<" + ena_embl_uri + "> .\n"
     headersBuffer += pr + "\t" + pubmed_ns + "<" + pubmed_uri + "> .\n"
+    headersBuffer += pr + "\t" + pubmed_rdf_ns + "<" + pubmed_rdf_uri + "> .\n"
     headersBuffer += pr + "\t" + ensembl_gene_ns + "<" + ensembl_gene_uri + "> .\n"
     headersBuffer += pr + "\t" + ensembl_transcript_ns + "<" + ensembl_transcript_uri + "> .\n"
     headersBuffer += pr + "\t" + ensembl_protein_ns + "<" + ensembl_protein_uri + "> .\n"
