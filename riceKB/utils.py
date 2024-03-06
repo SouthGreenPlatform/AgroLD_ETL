@@ -1,7 +1,7 @@
 import sys
 print(sys.path)
-from riceKB.globalVars import *
-from riceKB.globalVars import base_vocab_ns
+from globalVars import *
+from globalVars import base_vocab_ns
 from gffParser import *
 import rdflib
 from rdflib.graph import Graph
