@@ -66,7 +66,7 @@ def pubmed2RDF(pubmedid, pubmed_dict):
     # volume = str(re.split(':', volPage)[0])
     # buffer += "\t" + prism_ns + "volume" + "\t" + volume + " ;\n"
     # buffer += "\t" + up_core_ns + "pages" + "\t" + "name" + " .\n\n"
-    buffer += "\t" + rdf_ns + "seeAlso" +  "\t" + pubmed_ns + pubmedid +". \n\n"
+    buffer += "\t" + rdf_ns + "seeAlso" +  "\t" + "<" + pubmed_ns + pubmedid +">. \n\n"
     return buffer
 #  a bibo:Article;
 #   prism:publicationName "Nature science cell";
