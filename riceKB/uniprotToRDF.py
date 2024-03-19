@@ -443,6 +443,6 @@ def upToRDF(up_files, rdf_out_dir,taxon_id):  # , output_file
 up_dir = sys.argv.pop() # path to the uniprot dataset
 ROOT_DIR = sys.argv.pop() # path to the root folder
 taxon_id = sys.argv.pop() # taxon id
-print("%s .... %s ... %s ... %s" % (up_dir,ROOT_DIR,taxon_id))
+print("%s .... %s ... %s" % (up_dir,ROOT_DIR,taxon_id))
 upToRDF(up_dir,ROOT_DIR,taxon_id)
 # os.system('cp /scratch/larmande/uniprot.plants.ttl /data3/projects/agrold/uniprot/uniprot.trembl.plants.ttl')
