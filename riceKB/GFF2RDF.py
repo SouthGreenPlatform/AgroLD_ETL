@@ -31,7 +31,15 @@ __author__ = 'larmande'
 
 
 
-def RDFConverter(ds, output_file):
+def RDFConverter(ds, type_list,output_file):
+    '''
+    This function converts the GFF3 file to RDF format
+    :param ds:
+    :param type_list:
+    :param output_file:
+    :return: rdf file
+    '''
+    type_list = type_list
     os_japonica_buffer = ''  # initilised the buffer at zero
     number_match_part_sbgi = 0
     number_match_part_kome = 0
@@ -44,10 +52,11 @@ def RDFConverter(ds, output_file):
     chromosome_list = list()
     gene_list = list()
     mRNA_list = list()
-    taxon_id = "39947"
-    source_project = "JGI"
-    schema_number = "3.1"
-    ssp = "kitaake/"
+    exon_list = list()
+    taxon_id = "3702"
+    source_project = "TAIR10"
+    schema_number = "59"
+    ssp = ""
     print("************* RDF conversion begins***********\n")
     rdf_writer.write(base + "\t" + "<" + base_uri + "> .\n")
     rdf_writer.write(pr + "\t" + rdf_ns + "<" + rdf + "> .\n")
@@ -102,20 +111,22 @@ def RDFConverter(ds, output_file):
                 genome_buffer = re.sub(' ;$', ' .\n\n', genome_buffer)
                 rdf_writer.write(genome_buffer)
 
-        # filtering for gene entries
-        if records['type'] == "gene":
+        # filtering for gene entries only and avoiding duplicates in the list of genes
+        # testing the presence of the gene in the type_list
 
-            if not records['attributes']['Name'] in gene_list:
+        if records['type'] == "gene" and "gene" in type_list:
+            if not records['attributes']['ID'] in gene_list:
                 genome_buffer = ''
                 (strand,position) = getStrandValue(records['strand'])
                 strand = str(strand)
                 # print the corresponding gene associated at mRNAs
                 # os_japonica_buffer = ''
-                gene_list.append(records['attributes']['Name'])
-                genome_buffer += base_resource_ns + records['attributes']['Name'] + "\n"
+                gene_list.append(records['attributes']['ID'])
+                genome_buffer += base_resource_ns + records['attributes']['ID'] + "\n"
                 genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Gene" + " ;\n"
-                genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
+                if 'Name' in records['attributes']:
+                    genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
                 if 'Note' in records['attributes']:
                     genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes']['Note'] + "\" ;\n"
                 genome_buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxon_id + " ;\n"
@@ -128,7 +139,7 @@ def RDFConverter(ds, output_file):
                                                 records['strand'])
                 rdf_writer.write(genome_buffer)
         # filtering for mRNA
-        if records['type'] == "mRNA":
+        if records['type'] == "mRNA" and "mRNA" in type_list:
 
             if not records['attributes']['ID'] in mRNA_list:
                 genome_buffer = ''
@@ -140,7 +151,8 @@ def RDFConverter(ds, output_file):
                 genome_buffer += base_resource_ns + records['attributes']['ID'] + "\n"
                 genome_buffer += "\t" + base_vocab_ns + "sourceProject" + "\t" + " \"" + source_project + "\" ;\n"
                 genome_buffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "mRNA" + " ;\n"
-                genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
+                if 'Name' in records['attributes']:
+                    genome_buffer += "\t" + rdfs_ns + "label" + "\t" + " \"" + records['attributes']['Name'] + "\" ;\n"
                 if 'Note' in records['attributes']:
                     genome_buffer += "\t" + dcterms_ns + "description" + "\t" + " \"" + records['attributes'][
                         'Note'] + "\" ;\n"
@@ -169,7 +181,7 @@ def RDFConverter(ds, output_file):
                 genome_buffer += getFaldoRegion(taxon_id, ssp, chromosome_nb,records['start'],records['end'],records['strand'])
                 rdf_writer.write(genome_buffer)
 
-        if records['type'] == "polypeptide":
+        if records['type'] == "polypeptide" and "polypeptide" in type_list:
             genome_buffer = ''
             # print the corresponding gene associated at mRNAs
             # os_japonica_buffer = ''
@@ -193,11 +205,9 @@ def RDFConverter(ds, output_file):
 
 
 pp = pprint.PrettyPrinter(indent=4)
-path = '/Users/pierre/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.gff3'
-path_output = '/Users/pierre/workspace2015/datasets/Oryza_sativa_Kitaake_3.1.ttl'
-#path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/File_test/indicaCantTest.gff3'
-#path = '/media/elhassouni/donnees/Noeud-plante-projet/workspace/AgroLD/AgroLD_ETL/test_files/urgi/pseudomolecul_wheat.gff'
-
+path = '/Users/pierre/Downloads/Arabidopsis_thaliana.TAIR10.57.gff3'
+path_output = '/Users/pierre/Downloads/Arabidopsis_thaliana.TAIR10.57.rdf'
 ds= parseGFF3(path)
-
-RDFConverter(ds, path_output)
+#print(ds)
+type_list = ['gene','mRNA','polypeptide']
+RDFConverter(ds, type_list,path_output)
