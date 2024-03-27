@@ -57,8 +57,8 @@ def pubmed2RDF(pubmedid, pubmed_dict):
     buffer += "\t" + dc_ns + "creator" + "\t" + "\""+  re.split(',',pubmed_dict['authors'])[0] +  " et al.\"  ;\n"
     year = str(re.findall(r'\.*\(\d+\)\.', pubmed_dict['location'])[0])
     year = re.sub(r'\(|\)|\.', '', year)
-    buffer += "\t" + dc_ns + "date" + "\t" + "\""+ year + "\"^^xsd:gYear ;\n"
-    buffer += "\t" + prism_ns + "publicationDate" + "\t" + "\"" + year + "\"^^xsd:gYear ;\n"
+    buffer += "\t" + dc_ns + "date" + "\t" + "\""+ year + "\" ;\n"
+    buffer += "\t" + prism_ns + "publicationDate" + "\t" + "\"" + year + "\" ;\n"
     buffer += "\t" + dc_ns + "source" + "\t" + "\""+ pubmed_dict['location'] + "\" ;\n"
     publicationName = str(re.split(r'\s\d+', pubmed_dict['location'])[0])
     # volPage = str(re.split('\w+\.*\s', pubmed_dict['location'])[1])
