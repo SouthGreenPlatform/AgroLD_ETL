@@ -336,7 +336,7 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                                 # convert the string to a list
                                 OrderedLocusNames = OrderedLocusNames.split(',')
                                 # loop through the list
-                                for symbol in list(OrderedLocusNames):
+                                for symbol in OrderedLocusNames:
                                     symbol = re.sub(r'\[', '', symbol)  # remove the square brackets
                                     symbol = re.sub(r'\]', '', symbol)  # remove the square brackets
                                     symbol = re.sub(r'\'', '', symbol)  # remove the cotes
