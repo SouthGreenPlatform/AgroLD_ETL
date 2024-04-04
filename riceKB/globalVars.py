@@ -303,7 +303,7 @@ RiceNetDB_gene_ns = 'ricenetdb_gene:'
 RiceNetDB_protein_uri = 'https://identifiers.org/ricenetdb.protein/'
 RiceNetDB_protein_ns = 'ricenetdb_protein:'
 
-chromosome_uri = 'http://purl.agrold.org/resource/resource/chromosome/'
+chromosome_uri = 'http://purl.agrold.org/resource/chromosome/'
 chromosome_ns = 'chromosome:'
 
 ena_embl_uri = 'http://identifiers.org/ena.embl/'

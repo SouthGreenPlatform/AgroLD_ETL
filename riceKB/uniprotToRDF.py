@@ -331,7 +331,15 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
                             if entry_dic.get('OrderedLocusNames'):
-                                for symbol in entry_dic['OrderedLocusNames']:
+                                # remove the curly braces and the content within them
+                                OrderedLocusNames = re.sub(r'{.+?}', '', str(entry_dic['OrderedLocusNames']))
+                                # convert the string to a list
+                                OrderedLocusNames = OrderedLocusNames.split(',')
+                                # loop through the list
+                                for symbol in list(OrderedLocusNames):
+                                    symbol = re.sub(r'\[', '', symbol)  # remove the square brackets
+                                    symbol = re.sub(r'\]', '', symbol)  # remove the square brackets
+                                    symbol = re.sub(r'\'', '', symbol)  # remove the cotes
                                     symbol = re.sub(r'{.+?}', '', symbol)
                                     symbol = re.sub(r'\s+', '', symbol)
                                     symbol = re.sub(r'\"+', '', symbol)
