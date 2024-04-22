@@ -213,10 +213,10 @@ def splitComments(comments,accession):
     return buffer
 def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
 
-    rdf_file = "uniprot" + bank_name + "_" +taxon_id + ".plants.ttl"
-    rdf_keyword_file = "uniprot" + bank_name + "_" + taxon_id + ".keyword.ttl"
-    rdf_pubmed_file = "uniprot" + bank_name + "_" +  taxon_id + ".pubmed.ttl"
-    prot_gene_mapping = "mappings_" + bank_name + "_" +taxon_id + "_gene_prot.tsv"
+    rdf_file = "uniprot_" +  taxon_id +  "_" + bank_name + ".plants.ttl"
+    rdf_keyword_file = "uniprot_" +  taxon_id +  "_" + bank_name  + ".keyword.ttl"
+    rdf_pubmed_file = "uniprot_" +  taxon_id +  "_" + bank_name  + ".pubmed.ttl"
+    prot_gene_mapping = "mappings_" +  taxon_id + "_" + bank_name +  "_gene_prot.tsv"
     output_file = os.path.join(rdf_out_dir, rdf_file)
     output_key_file = os.path.join(rdf_out_dir, rdf_keyword_file)
     output_pub_file = os.path.join(rdf_out_dir, rdf_pubmed_file)
