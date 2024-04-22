@@ -213,10 +213,10 @@ def splitComments(comments,accession):
     return buffer
 def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
 
-    rdf_file = "uniprot" + bank_name +taxon_id + ".plants.ttl"
-    rdf_keyword_file = "uniprot" + bank_name +taxon_id + ".keyword.ttl"
-    rdf_pubmed_file = "uniprot" + bank_name +taxon_id + ".pubmed.ttl"
-    prot_gene_mapping = "mappings_" + bank_name +taxon_id + "_gene_prot.tsv"
+    rdf_file = "uniprot" + bank_name + "_" +taxon_id + ".plants.ttl"
+    rdf_keyword_file = "uniprot" + bank_name + "_" + taxon_id + ".keyword.ttl"
+    rdf_pubmed_file = "uniprot" + bank_name + "_" +  taxon_id + ".pubmed.ttl"
+    prot_gene_mapping = "mappings_" + bank_name + "_" +taxon_id + "_gene_prot.tsv"
     output_file = os.path.join(rdf_out_dir, rdf_file)
     output_key_file = os.path.join(rdf_out_dir, rdf_keyword_file)
     output_pub_file = os.path.join(rdf_out_dir, rdf_pubmed_file)
@@ -346,7 +346,8 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                                     symbol = symbol.strip()
                                     rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
                                         symbol) + " ;\n"
-                                    rdf_buffer += "\t" + sio_ns + "SIO_000339" + "\t" + res_ns + symbol + " ;\n"
+                                    rdf_buffer += "\t" + base_vocab_ns + "orderedLocusName" + "\t" + '"%s"' % (
+                                        symbol) + " ;\n"
                                     gene_buffer +=  prim_accession + "\t"  +  symbol + "\n"
                             if entry_dic.get('ORFNames'):
                                 for symbol in entry_dic['ORFNames']:
