@@ -287,7 +287,7 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                     # Label
                     rdf_buffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (record.entry_name) + " ;\n"
                     rdf_buffer += "\t" + skos_ns + "prefLabel" + "\t" + '"%s"' % (record.entry_name) + " ;\n"
-                    print("%s\n" % (str(prim_accession)))
+                    #print("%s\n" % (str(prim_accession)))
                     # Description
                     if record.description:
                         descriptions = record.description.split(';')
