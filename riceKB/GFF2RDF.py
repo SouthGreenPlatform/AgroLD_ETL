@@ -53,9 +53,9 @@ def RDFConverter(ds, type_list,output_file):
     gene_list = list()
     mRNA_list = list()
     exon_list = list()
-    taxon_id = "3702"
-    source_project = "TAIR10"
-    schema_number = "59"
+    taxon_id = "3555"
+    source_project = "RefBeet-1.2.2"
+    schema_number = "68"
     ssp = ""
     print("************* RDF conversion begins***********\n")
     rdf_writer.write(base + "\t" + "<" + base_uri + "> .\n")
@@ -205,8 +205,8 @@ def RDFConverter(ds, type_list,output_file):
 
 
 pp = pprint.PrettyPrinter(indent=4)
-path = '/Users/pierre/Downloads/Arabidopsis_thaliana.TAIR10.57.gff3'
-path_output = '/Users/pierre/Downloads/Arabidopsis_thaliana.TAIR10.57.rdf'
+path = '/Users/pierre/Downloads/Beta_vulgaris.RefBeet-1.2.2.57.gff3'
+path_output = '/Users/pierre/Downloads/Beta_vulgaris.RefBeet-1.2.2.57.rdf'
 ds= parseGFF3(path)
 #print(ds)
 type_list = ['gene','mRNA','polypeptide']

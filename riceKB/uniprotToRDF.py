@@ -43,7 +43,7 @@ def keyword2Triples(cleanedKey, keywordBuffer):
     keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (keyword) + " .\n"
     return keywordBuffer
 
-def pubmed2RDF(pubmedid, pubmed_dict):
+def pubmed2RDF(pubmedid, pubmed_dict,taxID):
     buffer = ''
     buffer += pubmed_ns +  pubmedid + " \n"
     buffer += "\t" + rdf_ns + "type" + "\t" + bibo_ns + "Article" + " ;\n"
@@ -66,6 +66,7 @@ def pubmed2RDF(pubmedid, pubmed_dict):
     # volume = str(re.split(':', volPage)[0])
     # buffer += "\t" + prism_ns + "volume" + "\t" + volume + " ;\n"
     # buffer += "\t" + up_core_ns + "pages" + "\t" + "name" + " .\n\n"
+    buffer += "\t" + obo_ns + "RO_0002162" + "\t\t" + ncbi_tax_ns + taxID + " ;\n"
     buffer += "\t" + rdf_ns + "seeAlso" +  "\t" + "<" + pubmed_rdf_uri + pubmedid +">. \n\n"
     return buffer
 #  a bibo:Article;
@@ -385,7 +386,9 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                             db_namespace = key.lower()
                             for dbid in xrefs[key]:
                                 # rdf_buffer += "\t" + base_vocab_ns + "has_dbxref" + "\t" + "<" + up_base_uri + db_namespace + "/" + dbid + ">" + " ;\n"
-                                clean_dbid = re.sub(pattern, '_', dbid)
+                                # clean the dbid from space characters
+                                clean_dbid = re.sub(r'\s+', '', dbid)
+                                #clean_dbid = re.sub(pattern, '_', dbid)
                                 rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + clean_dbid + ">" + " ;\n"
                         elif key == "GO":
                             for dbid in xrefs[key]:
@@ -428,7 +431,7 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
         #keyword_writer.write(keywordBuffer)
     for pubmedid in pubmed_dict.keys():
         pubmedBuffer = ''
-        pubmedBuffer = pubmed2RDF(pubmedid, pubmed_dict[pubmedid])
+        pubmedBuffer = pubmed2RDF(pubmedid, pubmed_dict[pubmedid],taxon_id)
         RDF_validation(pubmedBuffer, pubmed_writer, pubmedid, ROOT_DIR)
         #pubmed_writer.write(pubmedBuffer)
     keyword_writer.close()
