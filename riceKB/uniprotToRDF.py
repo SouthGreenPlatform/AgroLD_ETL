@@ -392,7 +392,7 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                                 # clean the dbid from space characters
                                 clean_dbid = re.sub(r'\s+', '', dbid)
                                 #clean_dbid = re.sub(pattern, '_', dbid)
-                                rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + clean_dbid + ">" + " ;\n"
+                                #rdf_buffer += "\t" + rdfs_ns + "seeAlso" + "\t" + "<" + up_base_uri + db_namespace + "/" + clean_dbid + ">" + " ;\n"
                         elif key == "GO":
                             for dbid in xrefs[key]:
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + obo_ns+ re.sub(':','_',dbid) + " ;\n"
