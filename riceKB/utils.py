@@ -191,7 +191,7 @@ def RDF_validation(ttl_buffer,ttl_handle,oryid,output_dir):
         ttl_handle.write(ttl_buffer)
     except:
         print("Unexpected error:"+ oryid, sys.exc_info()[0])
-        temp = os.path.join(output_dir, 'temp_graph' + oryid + '.ttl')
+        temp = os.path.join(output_dir, 'temp_graph_' + oryid + '.ttl')
         #temp = '/Users/pierre/Downloads/tmp/temp_graph'+ oryid +'.ttl'
         handle = open(temp, "w")
         handle.write(str(getRDFHeaders()))
