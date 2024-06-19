@@ -32,6 +32,9 @@ def keyword2URI(keyword):
         cleanKey = re.sub(r'^\s+|\s+$','',keyword)
         cleanKey = re.sub(r'\s','_',cleanKey)
         cleanKey = re.sub(pattern, '_', cleanKey)
+    # remove _ at the end of the keyword
+    if cleanKey.endswith('_'):
+        cleanKey = cleanKey[:-1]
     keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
     return keywordURI, cleanKey
 
