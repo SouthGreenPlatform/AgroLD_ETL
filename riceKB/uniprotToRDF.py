@@ -20,30 +20,61 @@ SPECIAL_CHARACTERS = '[@_!#$%^&*<>?/\\|}{~:.,;-]'
 # The pattern needs to be a raw string to handle backslashes properly, and we use re.escape to escape special characters
 pattern = '[' + re.escape(SPECIAL_CHARACTERS) + ']'
 
-def keyword2URI(keyword):
-    cleanKey=''
-    if  re.split('{',keyword):
-        cleanKey = re.split('{',keyword)[0]
-        cleanKey = re.sub(r'^\s+|\s+$', '', cleanKey)
-        cleanKey = re.sub(r'\s', '_', cleanKey)
-        cleanKey = re.sub(r'/', '_', cleanKey)
-        cleanKey = re.sub(pattern, '_', cleanKey)
-    else:
-        cleanKey = re.sub(r'^\s+|\s+$','',keyword)
-        cleanKey = re.sub(r'\s','_',cleanKey)
-        cleanKey = re.sub(pattern, '_', cleanKey)
-    # remove _ at the end of the keyword
-    if cleanKey.endswith('_'):
-        cleanKey = cleanKey[:-1]
-    keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
-    return keywordURI, cleanKey
+# def keyword2URI(keyword):
+#     cleanKey=''
+#     if  re.split('{',keyword):
+#         cleanKey = re.split('{',keyword)[0]
+#         cleanKey = re.sub(r'^\s+|\s+$', '', cleanKey)
+#         cleanKey = re.sub(r'\s', '_', cleanKey)
+#         cleanKey = re.sub(r'/', '_', cleanKey)
+#         cleanKey = re.sub(pattern, '_', cleanKey)
+#     else:
+#         cleanKey = re.sub(r'^\s+|\s+$','',keyword)
+#         cleanKey = re.sub(r'\s','_',cleanKey)
+#         cleanKey = re.sub(pattern, '_', cleanKey)
+#     # remove _ at the end of the keyword
+#     if cleanKey.endswith('_'):
+#         cleanKey = cleanKey[:-1]
+#     keywordURI =  "<" + base_resource_uri + 'keyword/' + cleanKey + ">"
+#     return keywordURI, cleanKey
 
+base_resource_uri = "http://purl.agrold.org/resource/"
+_pattern = r'[^\w\-]+'  # remplace tout caractère non [a-zA-Z0-9_ -] par '_'
+
+def keyword2URI(clean_keyword, base_uri=base_resource_uri):
+    slug = re.sub(r'\s+', '_', clean_keyword)   # espaces -> '_'
+    slug = re.sub(r'/', '_', slug)              # '/' -> '_'
+    slug = re.sub(_pattern, '_', slug).strip('_')
+    return f"<{base_uri}keyword/{slug}>"
+
+def parse_keywords(keywords_list):
+    """
+    keywords_list: record.keywords (list[str]) de Bio.SwissProt
+    Retourne la liste des mots-clés propres (sans {…}, ni ';', ni '.').
+    Gère les {…} qui sont coupés entre éléments en concaténant d'abord.
+    """
+
+    # 1) Concaténer en gardant des séparateurs de lignes
+    s = "\n".join(map(str, keywords_list))
+
+    # 2) Supprimer tous les blocs {...} (même s'ils traversent des lignes)
+    s = re.sub(r'\{.*?\}', '', s, flags=re.DOTALL)
+
+    # 3) Découper par fins de ligne OU par ';' (selon les formats)
+    terms = []
+    for chunk in re.split(r'[;\n]+', s):
+        term = chunk.strip().rstrip('.')  # enlever espaces et point final
+        if term:
+            terms.append(term)
+
+    print("### terms:", terms)
+    return terms
 def keyword2Triples(cleanedKey, keywordBuffer):
     # cleanKey = re.sub('^\s+|\s+$', '', keyword)
-    keyword = re.sub('_', ' ', cleanedKey)
-    keywordBuffer += "<" + base_resource_uri + "keyword/" + cleanedKey + "> \n"
+    keywordURI = re.sub('\s+', '_', cleanedKey)
+    keywordBuffer += "<" + base_resource_uri + "keyword/" + keywordURI + "> \n"
     keywordBuffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Keyword" + " ;\n"
-    keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (keyword) + " .\n"
+    keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (cleanedKey) + " .\n"
     return keywordBuffer
 
 def pubmed2RDF(pubmedid, pubmed_dict,taxID):
@@ -375,10 +406,14 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                     # Keywords
                     #                    print record.keywords
                     if record.keywords:
-                        for keyword in record.keywords:
-                            keywordURI, cleanKeyword = keyword2URI(keyword)
-                            keyword_list.add(cleanKeyword)
-                            rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + keywordURI + " ;\n"
+                        if isinstance(record.keywords, list):
+                            cleanKeyword = parse_keywords(record.keywords)
+                            print(cleanKeyword)
+                            for cl in cleanKeyword:
+                                keyword_list.add(cl)
+                                keywordURI = keyword2URI(cl)
+                                print(keywordURI)
+                                rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + keywordURI + " ;\n"
                     if record.cross_references:
                         for dbs in record.cross_references:
                             dbname = dbs[0]
