@@ -66,8 +66,6 @@ def parse_keywords(keywords_list):
         term = chunk.strip().rstrip('.')  # enlever espaces et point final
         if term:
             terms.append(term)
-
-    print("### terms:", terms)
     return terms
 def keyword2Triples(cleanedKey, keywordBuffer):
     # cleanKey = re.sub('^\s+|\s+$', '', keyword)
@@ -402,17 +400,12 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                         comment = raw_comment.replace('"', '')
                         rdf_buffer += comment_buffer
                         # print(comment_buffer)
-
-                    # Keywords
-                    #                    print record.keywords
                     if record.keywords:
                         if isinstance(record.keywords, list):
                             cleanKeyword = parse_keywords(record.keywords)
-                            print(cleanKeyword)
                             for cl in cleanKeyword:
                                 keyword_list.add(cl)
                                 keywordURI = keyword2URI(cl)
-                                print(keywordURI)
                                 rdf_buffer += "\t" + base_vocab_ns + "classifiedWith" + "\t" + keywordURI + " ;\n"
                     if record.cross_references:
                         for dbs in record.cross_references:
