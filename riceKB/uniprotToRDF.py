@@ -69,7 +69,7 @@ def parse_keywords(keywords_list):
     return terms
 def keyword2Triples(cleanedKey, keywordBuffer):
     # cleanKey = re.sub('^\s+|\s+$', '', keyword)
-    keywordURI = re.sub('\s+', '_', cleanedKey)
+    keywordURI = re.sub(r'\s+', '_', cleanedKey)
     keywordBuffer += "<" + base_resource_uri + "keyword/" + keywordURI + "> \n"
     keywordBuffer += "\t" + rdf_ns + "type" + "\t" + base_vocab_ns + "Keyword" + " ;\n"
     keywordBuffer += "\t" + rdfs_ns + "label" + "\t" + '"%s"' % (cleanedKey) + " .\n"
