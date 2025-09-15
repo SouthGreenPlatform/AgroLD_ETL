@@ -294,7 +294,7 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
             rdf_buffer = ''
             prot_gene_buffer = ''
             for taxID in record.taxonomy_id:
-                if taxID in taxon_ids:
+                if taxID == taxon_id:
                     # Accession
                     if len(record.accessions) > 1:
                         prim_accession = record.accessions.pop(0)
