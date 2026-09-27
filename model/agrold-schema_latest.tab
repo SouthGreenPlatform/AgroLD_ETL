@@ -121,8 +121,8 @@ has_start_position	has start position	DataTypeProperty	Gene	Integer
 ## hasStartPosition	hasStartPosition	DataTypeProperty	Gene	Integer
 has_end_position	has end position	DataTypeProperty	Gene	Integer
 ## hasEndPosition	hasEndPosition	DataTypeProperty	Gene	Integer
-has_biotype	has biotype	DataTypeProperty	Gene	String
-## hasBiotype	hasBiotype	DataTypeProperty	Gene	String
+has_biotype	has biotype	ObjectProperty	Gene,mRNA	Biotype (ENSGLOSSARY/SO term, not a string)
+## hasBiotype	hasBiotype	ObjectProperty	Gene,mRNA	Biotype (ENSGLOSSARY/SO term, not a string)
 has_number_of_individuals	has number of individuals	DataTypeProperty	Gene	Integer
 ## hasNumberOfIndividuals	hasNumberOfIndividuals	DataTypeProperty	Gene	Integer
 has_total_number	has total number	DataTypeProperty	Gene	Integer
