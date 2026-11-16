@@ -1,10 +1,10 @@
 import sys
-print(sys.path)
-from globalVars import *
-from globalVars import base_vocab_ns
-from gffParser import *
+from riceKB.globalVars import *
+from riceKB.globalVars import base_vocab_ns
+from riceKB.gffParser import *
 import rdflib
 from rdflib.graph import Graph
+import gzip
 import pprint
 import re
 import os
@@ -172,6 +172,84 @@ def getRDFHeaders():
     # Ajout du prefix pour la realese des donnees
     headersBuffer += pr + "\t" + base_resource_ns + "<" + base_resource_uri + "> .\n\n"
     return headersBuffer
+
+def load_msu_rap_mapping(infile):
+    """{MSU gene id (transcript suffix stripped): RAP/IRGSP gene id}, built
+    from RAP-DB's RAP-MSU mapping file (tab-separated: RAP id, then a
+    comma-separated list of MSU transcript ids it corresponds to, e.g.
+    "Os01g0100100\\tLOC_Os01g01010.1,LOC_Os01g01010.2" -- or "...\\tNone"
+    when RAP-DB has no MSU match for that RAP id, skipped here). Several
+    transcripts of the same gene collapse to the same key once their
+    ".N" suffix is stripped, which is what callers with a bare MSU gene
+    id (no transcript number) need to look up.
+
+    RAP-DB publishes this file gzip-compressed (.txt.gz); infile ending in
+    ".gz" is read as such, otherwise as plain text.
+    """
+    opener = gzip.open if infile.endswith('.gz') else open
+    mapping = {}
+    with opener(infile, 'rt') as f:
+        for line in f:
+            rap_id, msu_field = line.rstrip('\n').split('\t')
+            if msu_field == 'None':
+                continue
+            for msu_transcript in msu_field.split(','):
+                mapping[msu_transcript.split('.')[0]] = rap_id
+    return mapping
+
+def load_agrold_taxon_ids(species_file, species_table):
+    """{production_name: taxon_id} for the species list ensembl_rdf and the
+    AgroLD_ETL pipeline share -- the single source of truth for which
+    species exist and what each one's NCBI taxon is, so nothing that keys
+    on either one (the Snakefile, bin/prepare_virtuoso_import.py) disagrees
+    with the others. species_file (YAML, key "species") names the species;
+    species_table (tab-separated, #name/species/.../taxonomy_id/...) is
+    where the taxon id actually comes from.
+    """
+    import yaml
+
+    for path in (species_file, species_table):
+        if not os.path.exists(path):
+            raise RuntimeError(
+                f"ensembl_rdf config not found at {path} -- ensembl_rdf is "
+                "expected as a sibling checkout; edit config.yaml's "
+                "ensembl_rdf section if yours lives elsewhere.")
+
+    with open(species_file) as f:
+        wanted = set(yaml.safe_load(f)["species"])
+
+    taxon_id = {}
+    with open(species_table) as f:
+        next(f)  # header
+        for line in f:
+            fields = line.rstrip("\n").split("\t")
+            name = fields[1]
+            if name in wanted:
+                taxon_id[name] = fields[3]
+
+    missing = wanted - set(taxon_id)
+    if missing:
+        raise RuntimeError(
+            f"{species_table} has no taxon id for: {sorted(missing)}")
+    return taxon_id
+
+
+def turtle_literal(value):
+    """Escape a string for use inside a Turtle short string literal ("...").
+
+    A bare newline isn't legal inside a short "..." literal (only inside
+    Turtle's long triple-quoted form), so a field containing one -- or an
+    unescaped quote or backslash -- breaks the Turtle syntax outright.
+    Stripping those characters out (as several parsers used to do) silently
+    loses data instead of fixing the syntax; escaping them is the correct fix.
+    """
+    value = str(value)
+    value = value.replace('\\', '\\\\')
+    value = value.replace('"', '\\"')
+    value = value.replace('\n', '\\n')
+    value = value.replace('\r', '\\r')
+    value = value.replace('\t', '\\t')
+    return value
 
 def RDF_validation(ttl_buffer,ttl_handle,oryid,output_dir):
     ttl_handle.write(ttl_buffer)

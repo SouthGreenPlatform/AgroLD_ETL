@@ -1,0 +1,1051 @@
+1|Ph5-1|"Morphological trait"|Dwarf|2|5|2069338|2760413|C)Interval||IR64|Azucena||pha|4|RFLP|||||RG313|RZ556|||DHL|123|"plant height"|||1998
+2|hr6|"Physiological trait"|"Eating quality"|2|6|1764586|5425602|C)Interval|11.9|Caiapo|"Oryza glaberrima (accession IRGC No. 103544)"||pha|5|SSR|||||RM190|RM253|||"DH from BC3F1"|312|"Head rice"|54.1|-2.41|2004
+3|rb2|"Physiological trait"|"Eating quality"|2|2|2105542|2882252|C)Interval|55.6|Caiapo|"Oryza glaberrima (accession IRGC No. 103544)"||pha|5|SSR|||||RM236|RM279|||"DH from BC3F1"|312|"Rice bran"|32.7|-18.25|2004
+4|alk6-1|"Physiological trait"|"Eating quality"|2|6|1764586|5425602|C)Interval|32.5|Caiapo|"Oryza glaberrima (accession IRGC No. 103544)"||pha|5|SSR|||||RM190|RM253|||"DH from BC3F1"|312|Alkali-spread.score|50.1|0.87|2004
+5||"Physiological trait"|"Eating quality"|1|6|5425408|24913615|C)Interval|13.4|Caiapo|"Oryza glaberrima (accession IRGC No. 103544)"||pha|5|SSR|||||RM253|RM162|||"DH from BC3F1"|312|"Grain l/w ratio"|14|-0.74|2004
+6|Ehd1|"Physiological trait"|Flowering|2|10|17481862|17627660|A)Physical||Nipponbare|T65||pha|8|CAPS|AC027038|C234|C1369||||||BC3F5|0|"Early heading date"|||2004
+7||"Resistance or Tolerance"|"Drought tolerance"|1|3|31490136|35089139|C)Interval|5.22|Azucena|Bala|B|pha|22|RFLP|||||R1618|G164|||RIL|84|"panicle length"|||2004
+8||"Resistance or Tolerance"|"Drought tolerance"|1|5|22309016|24371958|C)Interval|5.55|Azucena|Bala|B|pha|22|RFLP|||||C43|RZ70|||RIL|84|"panicle or tiller no.per m2"|||2004
+9||"Resistance or Tolerance"|"Drought tolerance"|1|5|22309016|24371958|C)Interval|5.8|Azucena|Bala|B|pha|22|RFLP|||||C43|RZ70|||RIL|84|"fraction sterile panicles"|||2004
+10||"Resistance or Tolerance"|"Drought tolerance"|1|3|27494415|31496678|C)Interval|4.92|Azucena|Bala|B|pha|22|RFLP|||||C136|R1618|||RIL|84|"grains per panicle"|||2004
+11||"Resistance or Tolerance"|"Drought tolerance"|1|2|5263536|18269395|C)Interval|5.32|Azucena|Bala|B|pha|22|RFLP|||||RG83|RG171|||RIL|84|"spikelet fertility"|||2004
+12|ki3.1|"Morphological trait"|Seed|2|3|16620034|16619778|C)Interval|22.2|V20A|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|25|RFLP|||||||RZ251||BC3(TC)F1|308|"Kernel length"|25|0.23|2004
+13|kw1.1|"Morphological trait"|Seed|2|1|43337688|43337260|C)Interval|28.5|V20A|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|25|RFLP|||||||RG331||BC3(TC)F1|308|"kernel width"|31|0.91|2004
+14|gc7.1|"Physiological trait"|"Eating quality"|2|7|2112213|2115536|C)Interval|52.2|V20A|"Oryza glaberrima (accession IRGC No. 103544)"|B|pha|25|RFLP|||||||RZ387||BC3(TC)F1|308|"Gel consistency"|64|29.12|2004
+15|qSNC-7|"Resistance or Tolerance"|"Salinity tolerance"|2|7|2666587|4608381|C)Interval|7.66|Koshihikari|"Nona Bokra"|A|pha|26|RFLP|||||C1057|R2401|||F2|133|"Shoot Na+ concentration "|48.5|0.51|2004
+16|Spl1|Others|Others|2|12|9414819|9536731|A)Physical||"IR24 and CO39"|IR36mutant||pha|27|CAPS|"""OSJNBb0112E,OSJNBa005I1,OJ1111_C09,OSJNBb0077C18"""|Al874a|Al951a||||||"""F2,F3"""|3202|"spotted leaf"|||2004
+17|Rf5|"Physiological trait"|Sterility|2|10|19255571|19690557|B)Fine||Yuetai|Nov-93||pha|29|SSR||RM5373|RM1108|RM3150|||||BC1F1|1306|fertility-restoring|||2004
+18|Rf6(t)|"Physiological trait"|Sterility|2|10|19255571|19255928|B)Fine||"Congguang 41"|"Milyang 23"||pha|29|SSR||RM6737|SDB07|RM5373|||||BC1F1|1512|fertility-restoring|||2004
+19||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42157734|42364623|C)Interval||Azucena|IR1552|A|pha|31|RFLP|||||RZ801|RG323|||RIL|96|"stress root length (SRL)"|15|0.7|2004
+20||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42157734|42364623|C)Interval||Azucena|IR1552|A|pha|31|RFLP|||||RZ801|RG323|||RIL|96|"relative root length (RRL)"|16|0.08|2004
+21|Phyllochron|"Morphological trait"|Culm/leaf|2|10|13111494|14711256|C)Interval|4.82|IR36|"Genjah Wangkal (IRGC 35652)"|A|pha|32|Mixture|||||R1629|R2447|||RIL|100|Phyllochron|0.14|-0.12|2004
+22|"Tiller number"|"Morphological trait"|Culm/leaf|2|2|23021123|26356387|C)Interval|7.57|IR36|"Genjah Wangkal (IRGC 35652)"|A|pha|32|Mixture|||||R26|C424|||RIL|100|"Tiller number"|0.23|0.7|2004
+23|T2-2tiller|"Morphological trait"|Culm/leaf|2|2|26352595|27974295|C)Interval|8.9|IR36|"Genjah Wangkal (IRGC 35652)"|A|pha|32|Mixture|||||C424|C747|||RIL|100|"tiller-bud dormancy"|0.28|-19.55|2004
+24||"Resistance or Tolerance"|"Submergency tolerance"|1|12|23749070|26368115|C)Interval|18.6|"Patnai 23"|Goai|B|pha|34|RFLP|||||R1709|RM235|||F2|186|"early elongation ability using the lowest elongated internode (LEI) concept"|48|0.638|2004
+25|Ctb1|"Resistance or Tolerance"|"Cold tolerance"|2|4|31786937|31949802|A)Physical||Kirara397|Norin-PL8||pha|36|SSR|AL662970|OSR15|SCAB11||||||BCFn|2008|"Spikelet fertility"|||2004
+26||"Resistance or Tolerance"|"Insect resistance"|1|2|20728825|25430309|C)Interval|2.7|IR64|Azucena||pha|38|RFLP|||||RG157|RZ318|||DHL|94|"Honeydew weight (HDW)"|12.8|-0.61|2004
+27||"Resistance or Tolerance"|"Insect resistance"|1|7|4085041|21393981|C)Interval|3.1|IR64|Azucena||pha|38|RFLP|||||RG773|CDO59|||DHL|94|"Days to wilt (DW4)"|17.6|1.1|2004
+28||"Morphological trait"|Dwarf|1|1|41923730|41923950|d)Co-segregated||Teqing|"common wild rice (Oryza rufipogon Griff.)"||pha|41|SSR||||||||RM104|BC3F2|385|"plant height"|27|26.24|2004
+29||"Physiological trait"|Flowering|1|8|4377457|4377597|d)Co-segregated||Teqing|"common wild rice (Oryza rufipogon Griff.)"||pha|41|SSR||||||||RM25|BC3F2|385|"days to heading"|13|4.6|2004
+30|qUVR-10|"Resistance or Tolerance"|"Other stress resistance"|2|10|4320288|4324891|B)Fine||Nipponbare|Kasalath||pha|42|Mixture|AF053365|C60755S|C1757S|C913A|||||BC3F5||"ultraviolet-B (UVB) resistance"|||2004
+31|Eui|"Morphological trait"|Dwarf|2|5|23655231|23802397|A)Physical||"307T (eui/eui)"|"Zhenshan 97"||pha|46|CAPS|OSJNBa0095J22|M01|M0387||||||F2|0|"""eui (for elongated uppermost internode),"""|||2004
+32||"Morphological trait"|Panicle/flower|1|4|29158445|33234173|C)Interval|5.8|Akihikari|IRAT109|B|pha|47|SSR|||||RM303|RM348|||BIL|106|"number of primary branches per panicle (BPP)"|18|0.95|2004
+33||"Morphological trait"|Panicle/flower|1|11|383711|2827670|C)Interval|4.27|Akihikari|IRAT109|B|pha|47|SSR|||||RM286|RM332|||BIL|106|"number of florets per branch (FPB)"|14|0.92|2004
+34||"Morphological trait"|Panicle/flower|1|10|19577439|22899293|C)Interval|8.49|Akihikari|IRAT109|B|pha|47|SSR|||||RM171|RM333|||BIL|106|"frequency of pre-flowering floret abortion (%FA)"|22|3.24|2004
+35|yld2.1|"Morphological trait"|Seed|2|2|32389877|32389986|d)Co-segregated||V20A|"""O. rufipogon accession,"""|B|pha|51|SSR||||||||RM240|"BC2 testcross"|300|Grainyield:|18.26|1.76|1998
+36|Rf-1|"Physiological trait"|Sterility|2|10|19343755|19470171|A)Physical||MTC-10A|MTC-10R||pha|52|CAPS|OSJNBa0017E08|68923-6|68923-9||||||BC1F3|6104|"cytoplasmic male sterility restorer gene"|||2004
+37||Others|Others|1|8|5108226|5115915|B)Fine||N15|N16||pha|57|SSR||RM544|RM310||||||F2|125|"""commonly in spikelets per panicle (SPP), grains per panicle (GPP), heading date (HD) and plant height (PH)"""|||2006
+38|tgw2|"Morphological trait"|Seed|2|2|10835902|12493559|C)Interval||Hwaseongbyeo|HG101|B|pha|64|SSR|||||RM290|RM550|||F2|150|"""1,000-grain weight"""|13.4|1.1|2006
+39|tms5|"Physiological trait"|Sterility|2|2|6387908|6469287|A)Physical||Y58S|Q611||pha|65|Indel|AP004039||||Jan-39|Feb-39|||F2|0|"thermo-sensitive genic male-sterile"|||2007
+40|qGL-3a|"Morphological trait"|Seed|2|3|17142206|17260389|A)Physical|27.79|Asominori|IR24|B|pha|70|SSR|OSJNBb0074M06|RMw357|RMw353||C80|C1677|||BC4F2|2068|"grain length"|32.2|-0.26|2006
+41|qPN1|"Morphological trait"|Panicle/flower|2|1|4424186|4424560|d)Co-segregated||"Guichao 2"|"Chinese common wild rice (Oryza rufipogon Griff.)"|B|pha|73|SSR||||||||RM220|BC4F4|156|"Panicle per plant"|14|1.9|2006
+42|qGW5|"Morphological trait"|Seed|2|5|10787462|10787755|d)Co-segregated||"Guichao 2"|"Chinese common wild rice (Oryza rufipogon Griff.)"|A|pha|73|SSR||||||||RM249|BC4F4|156|"""1,000-grain weight """|11|-1.2|2006
+43|qSv1|Others|Others|2|1|15849886|15856220|C)Interval|16|Koshihikari|Kasalath|B|pha|75|RFLP|||||||C178||BC1F3|183|"tissue culture"|33.2|0.099|2006
+44|S18|"Physiological trait"|Sterility|2|11|9035057|9035344|d)Co-segregated||IR36|Dular||pha|80|SSR||||||||RM536|TCF1|245|wide-compatibility|||2006
+45|be1|Others|Others|2|3|32233979|32347378|A)Physical||PA64Sm|Nov-93||pha|81|SSR|AC084282|RM416|RM3867||||||F2|987|Bentazon-sensitivities|||2006
+46|Pi35(t)|"Resistance or Tolerance"|"Blast resistance"|2|1|33864124|35233045|C)Interval|30.5|Danghang-Shali|"Hokkai 188"|B|pha|82|SSR|||||RM1216|RM1003|||F2|126|"partial resistance to leaf blast"|69.4|-1.87|2006
+47|qSBN-3b|"Morphological trait"|Panicle/flower|2|3|36693668|37199035|C)Interval|14.27|Lemont|Teqing||pha|84|SSR|||||RM148|RM85|||BIL|217|"secondary branch number"|13.81|-5.19|2006
+48|qPBN-10|"Morphological trait"|Panicle/flower|2|10|5016823|10014985|C)Interval|2.72|Lemont|Teqing||pha|84|SSR|||||RM216|RM311|||BIL|275|"primary branch number"|7.92|-0.52|2006
+49|qSNP-4a|"Morphological trait"|Panicle/flower|2|4|679929|13211273|C)Interval|16.68|Lemont|Teqing||pha|84|SSR|||||RM401|RM335|||BIL|275|"spikelet number per panicle"|16.07|-27.56|2006
+50|PS|"Morphological trait"|Panicle/flower|2|1|1622417|1642432|B)Fine||Luhui-17|"PS mutant"||pha|86|SSR||RM6470|RM1141||||||F2|15000|"pistilloid stamen"|||2006
+51|qSH1|"Morphological trait"|Panicle/flower|2|1|38110750|38249213|A)Physical|45.5|Nipponbare|Kasalath||pha|91|RFLP|AP004127|C283|R3265|C434|||||BC4F2|10388|shattering|68.6||2006
+52|"ext-MlB (t)"|"Morphological trait"|Culm/leaf|2|6|3085639|3085922|d)Co-segregated||2480B|ext-MlB||pha|92|SSR||||||||RM197|F2|2467|"excessive tiller number"|||2006
+53|Bph18(t)|"Resistance or Tolerance"|"Insect resistance"|2|12|22456650|23301307|B)Fine||Jinbubyeo|IR65482-7-216-1-2||pha|94|Mixture|AL935072|R10289S|"RM6869 "|7312.T4A|"RM463 "|S15552|||BC2F2|245|"Brown planthopper"|||2006
+54||"Morphological trait"|Culm/leaf|1|4|24646179|25619040|C)Interval|4.3|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3785|RM1388|||RIL|98|"Plant age in leaf number F-C"|16.5|0.14|2006
+55||"Morphological trait"|Culm/leaf|1|4|24646179|25619040|C)Interval|4.5|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3785|RM1388|||RIL|98|"Plant age in leaf number F-RP"|16.9|0.19|2006
+56||"Morphological trait"|Culm/leaf|1|4|24646179|25619040|C)Interval|4.9|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3785|RM1388|||RIL|98|"Plant age in leaf number NF-C"|20.9|0.19|2006
+57||"Morphological trait"|Culm/leaf|1|4|21926953|24646318|C)Interval|3.2|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3337|RM3785|||RIL|98|"Plant age in leaf number NF-RP"|15.4|0.18|2006
+58||"Morphological trait"|Root|1|6|30762933|31849183|C)Interval|5.2|Otomemochi|Yumenohatamochi|B|pha|95|SSR|||||RM5814|RM3509|||RIL|98|"DRW F-C"|22.4|-0.04|2006
+59||"Morphological trait"|Root|1|6|30762933|31849183|C)Interval|2.8|Otomemochi|Yumenohatamochi|B|pha|95|SSR|||||RM5814|RM3509|||RIL|98|"DRW Average"|10.6|-0.01|2006
+60||"Morphological trait"|Root|1|4|33424905|33430563|C)Interval|6.5|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3335|RM1153|||RIL|98|"No. of new roots F-C"|20|0.95|2006
+61||"Morphological trait"|Root|1|4|33424905|33430563|C)Interval|6.9|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3335|RM1153|||RIL|98|"No. of new roots F-RP"|21.4|1.33|2006
+62||"Morphological trait"|Root|1|4|33424905|33430563|C)Interval|7.3|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3335|RM1153|||RIL|98|"No. of new roots NF-C"|26.9|0.98|2006
+63||"Morphological trait"|Root|1|4|33424905|33430563|C)Interval|5.4|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3335|RM1153|||RIL|98|"No. of new roots NF-RP"|18.3|0.92|2006
+64||"Morphological trait"|Root|1|4|31080146|33425145|C)Interval|11.4|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3276|RM3335|||RIL|98|"No. of new roots Average"|31.2|1.1|2006
+65||"Morphological trait"|Root|1|1|41963580|44719439|C)Interval|2.7|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM1387|RM1067|||RIL|98|"Maximum new root length F-RP"|12.4|0.44|2006
+66||"Morphological trait"|Root|1|9|22021233|23552932|C)Interval|2.7|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM215|RM205|||RIL|98|"Maximum new root length NF-C"|13.4|0.76|2006
+67||"Morphological trait"|Root|1|6|30762933|31849183|C)Interval|2.7|Otomemochi|Yumenohatamochi|B|pha|95|SSR|||||RM5814|RM3509|||RIL|98|"Maximum new root length NF-RP"|13.8|-0.52|2006
+68||"Morphological trait"|Root|1|4|27941367|30762314|C)Interval|4.4|Otomemochi|Yumenohatamochi|B|pha|95|SSR|||||RM3288|RM5503|||RIL|98|"Maximum new root length Average"|16.1|-0.39|2006
+69||"Morphological trait"|Root|1|6|23557477|28706469|C)Interval|3.3|Otomemochi|Yumenohatamochi|B|pha|95|SSR|||||RM4447|RM5509|||RIL|98|"Root-to-shoot ratio F-RP"|15.2|-0.04|2006
+70||"Morphological trait"|Root|1|1|27797914|30720282|C)Interval|4.8|Otomemochi|Yumenohatamochi|A|pha|95|SSR|||||RM3475|RM3494|||RIL|98|"Root-to-shoot ratio Average"|17.5|0.13|2006
+71|Ps-4|Others|Others|2|6|5096744|5425602|B)Fine||rdh|Shuhui527||pha|97|SSR||RM253|RM111||||||F2|1180|"purple stigma"|||2006
+72|Grh5|"Resistance or Tolerance"|"Insect resistance"|2|8|26582935|27651023|B)Fine|35.1|"Taichung 65"|"Oryza rufipogon Griff. (W1962)"|B|pha|99|SSR||RM502|RM6845|"""RM3754,RM3761"""|||||BC4F2||"green rice leafhopper"|95.2|-92.4|2006
+73|GS3|"Morphological trait"|Seed|2|3|17343910|17472917|A)Physical||"Minghui 63"|"Chuan 7"||pha|100|CAPS|OSJNBa0030J19|GS63|GS65||MRG5881|"""GS09,"""|||BC3F2|5740|"""small grain,"""|||2006
+74|Pi-d2|"Resistance or Tolerance"|"Blast resistance"|2|6|18094296|18246420|A)Physical||Digu|Lijiangxintuanheigu||pha|103|SSR|"""AP003577,AP006048, AP005967"""||||RM3|RM527|||F2|20000|"blast resistance"|||2006
+75|bph19(t)|"Resistance or Tolerance"|"Insect resistance"|2|3|7252976|7328472|A)Physical||AS20-1|Lijiangxintuanheigu||pha|104|SSR|"""OSJNBa0049C20,OJ1081D05"""|RM3134|RM6308|RM1022|||||F2|1330|"brown planthopper "|||2006
+76|qCTS12|"Resistance or Tolerance"|"Cold tolerance"|2|12|5645531|5804408|A)Physical||M-202|IR50||pha|105|SSR|AL954853||||"RM5746 "|RM3103|RM7003||RIL|1954|"tolerance to low temperature stress"|||2006
+77|ph1|"Morphological trait"|Dwarf|2|1|36697294|42364623|C)Interval||IR64|Azucena|B|pha|108|RFLP|||||RZ730|RZ801|||DHL|123|"plant height"||19.8|1999
+78|ta9|"Morphological trait"|Culm/leaf|2|9|19168716|20079157|C)Interval||IR64|Azucena|A|pha|108|RFLP|||||RZ228|RZ12|||DHL|123|"tiller angle"||9.24|1999
+79|fll1|"Morphological trait"|Culm/leaf|2|1|36697294|42364623|C)Interval||IR64|Azucena|B|pha|108|RFLP|||||RZ730|RZ801|||DHL|123|"flag leaf length"||2.92|1999
+80|fla1|"Morphological trait"|Culm/leaf|2|1|42496228|43337260|C)Interval||IR64|Azucena|B|pha|108|RFLP|||||RG810|RG331|||DHL|123|"flag leaf angle"||13.78|1999
+81|qCCFJ-4|"Physiological trait"|"Source activity"|2|4|6571336|24646318|C)Interval|3.65|IR36|Nekken2|B|pha|115|SSR|||||RM261|RM3785|||BC1F2|135|"leaf chlorophyll content at flowering (SPAD)"|11||2005
+82|qCCAI-9|"Physiological trait"|"Source activity"|2|9|18374393|20828859|C)Interval|3.17|IR36|Nekken2|A|pha|115|SSR|||||RM257|RM201|||BC1F2|105|"leaf chlorophyll content 25 days after flowering"|13.7||1999
+83|qRCRJ-6|"Physiological trait"|"Source activity"|2|6|4234080|6399814|C)Interval|3.14|IR36|Nekken2|B|pha|115|SSR|||||RM217|RM402|||BC1F2|135|"Çíeduction in chlorophyll content"|9.5||1999
+84|"""qLDLJ-6-1,2,3"""|"Physiological trait"|"Source activity"|2|6|4234080|28130383|C)Interval|3.26|IR36|Nekken2|B|pha|115|SSR|||||RM217|RM3|||BC1F2|135|"number of late-discoloring leaves per panicle at 25 DAF"|10||1999
+85|qHUS-1-2|Others|Others|2|1|29092066|31822450|C)Interval|10.1|"Zhenshan 97B"|"Milyang 46"|A|pha|120|Mixture|||||RM246|RG101|||RIL|244|"""FLS, mg Si per 100 mg dryweight in the flag leaf"""|7.7|0.534|2005
+86|qSTS-1|Others|Others|2|1|5558578|5759851|C)Interval|11.4|"Zhenshan 97B"|"Milyang 46"|A|pha|120|Mixture|||||RM151|RG532|||RIL|244|"""STS, mg Si per 100 mg dry weight in the stem"""|6.3|0.295|2005
+87|ac6|"Physiological trait"|"Eating quality"|2|6|1764586|2292076|C)Interval|65.8|"Zhenshan 97"|H94|A|pha|122|SSR|||||RM190|RM587|||DHL|92|"Amylose content"|54.87|5.83|2005
+88|qGP4|"Morphological trait"|Panicle/flower|2|4|25273817|25274481|d)Co-segregated|5.7|Asominori|IR24|B|pha|123|RFLP||||||||C335|CSSL|65|"grain number"|28.2||2005
+89|qSD7-1|"Physiological trait"|Germination/dormancy|2|7|6413144|6413348|d)Co-segregated||EM93-1|Plant#14(CO39xSS18-2_F2)||pha|128|SSR||||||||RM5672|BC4F4|176|"percentage germinationÅ@after1-45 days of incubationafter at25 C for 11days ripening"|10.2||2005
+90|ÇëCR-3|"Physiological trait"|"Source activity"|2|3|3939279|4098191|C)Interval|3.05|Kinmaze|DV85|A|pha|129|RFLP|||||C25|R518|||RIL|81|"chlorophyll a/b ratioat the 7th day after heading"|13.8|0.09|2005
+91||"Resistance or Tolerance"|"Other soil stress tolerance"|1|8|1584134|5333855|C)Interval||Koshihikari|Kasalath|A|pha|130|RFLP|||||C390|C1121|||CSSL|39|"Cd concentration in brown rice"|||2005
+92|Pi-hy|"Resistance or Tolerance"|"Blast resistance"|2|2|36292667|36292865|B)Fine||Hwayeong|Nagdong||pha|134|||||RM2265|||||F2|105|"blast resistance (resistance/susceptible)"|||2005
+93|brt1d|"Resistance or Tolerance"|"Drought tolerance"|2|1|14045859|42715593|C)Interval|5.77|IRAT109|Yuefu|B|pha|140|RFLP|||||C742|C904|||DHL|116|"basal root thickness"|6.4|0.126|2005
+94|idr2|"Resistance or Tolerance"|"Drought tolerance"|2|2|36028513|36318752|C)Interval|2.87|IRAT109|Yuefu|A|pha|140|SSR|||||RM208|RM48|||DHL|116|"index of drought resistance"|2|0.087|2005
+95|rdw9|"Resistance or Tolerance"|"Drought tolerance"|2|9|12410287|18491736|C)Interval|3.77|IRAT109|Yuefu|B|pha|140|Mixture|||||R79|R2638|||DHL|116|"root dry weight"|18.5|0.102|2005
+96|rrsd6b|"Resistance or Tolerance"|"Drought tolerance"|2|6|4844259|5425602|C)Interval|4.44|IRAT109|Yuefu|B|pha|140|SSR|||||RM253|RM314|||DHL|116|"root dry weight/root fresh weight"|3|0.019|2005
+97|rfw1b|"Resistance or Tolerance"|"Drought tolerance"|2|1|7476658|35715948|C)Interval|5.59|IRAT109|Yuefu|A|pha|140|RFLP|||||C813|C955|||DHL|116|"root fresh weight"|11|0.583|2005
+98|rn7a|"Resistance or Tolerance"|"Drought tolerance"|2|7|11391449|13444846|C)Interval|14.18|IRAT109|Yuefu|A|pha|140|Isozyme|||||C39|RM214|||DHL|116|"root number"|11.7|3.14|2005
+99|n-p3|"Resistance or Tolerance"|"Other soil stress tolerance"|2|3|23850041|25360678|C)Interval|15.23|"Zhenshan 97"|"Minghui 63"|B|pha|141|RFLP|||||RZ403|R19|||RIL|239|"Plant weight low N condition "|5.95|0.19|2005
+100|n+p1a|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|196647|1891262|C)Interval|8.07|"Zhenshan 97"|"Minghui 63"|A|pha|141|RFLP|||||C161|R753|||RIL|239|"Plant weight normal N condition "|3.32|0.28|2005
+101|rrw1b|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|39466088|43764612|C)Interval|15.37|"Zhenshan 97"|"Minghui 63"|A|pha|141|RFLP|||||C86|RG236|||RIL|239|"Relative root weight "|9.82|0.04|2005
+102|rsw1c|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|43765087|44751487|C)Interval|11|"Zhenshan 97"|"Minghui 63"|A|pha|141|RFLP|||||RG236|C112|||RIL|239|"Relative shoot weight "|6.05|0.02|2005
+103|n-s4|"Resistance or Tolerance"|"Other soil stress tolerance"|2|4|35277669|35283358|C)Interval|10.56|"Zhenshan 97"|"Minghui 63"|A|pha|141|RFLP|||||C107|RG620|||RIL|239|"Shoot weight low N condition"|3.69|0.1|2005
+104|n+s1a|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|196647|1891262|C)Interval|9.87|"Zhenshan 97"|"Minghui 63"|A|pha|141|RFLP|||||C161|R753|||RIL|239|"Shoot weight normal N condition"|4.49|0.27|2005
+105|pal1|"Morphological trait"|Panicle/flower|2|6|4032516|4212697|B)Fine||pal|Sheng47||pha|144|CAPS|P0548D03|C498|RZ450||||||F2|11454|"palealess mutant (pal)"|||2005
+106|gn2.1|"Morphological trait"|Panicle/flower|2|2|33667096|36028798|C)Interval|3.32|"IR 58025A"|"O. rufipogon (IC 22015)"|A|pha|147|SSR|||||RM250|RM208|||"BC2F1(test cross)"|251|"Grain number per planicle"|16.65|72.52|2005
+107|gnp5.1|"Morphological trait"|Panicle/flower|2|5|5311917|10787755|C)Interval|5.73|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM194|RM249|||"BC2F1(test cross)"|251|"Grain number per plant"|12|-285.18|2005
+108|gw2.1|"Morphological trait"|Seed|2|2|33667096|36028798|C)Interval|3.25|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM250|RM208|||"BC2F1(test cross)"|251|"Test (1000) grain weight"|10.4|-5.21|2005
+109|np2.2|"Morphological trait"|Culm/leaf|2|2|11418741|21658842|C)Interval|3.23|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM324|RM262|||"BC2F1(test cross)"|251|"Number of panicles per plant"|10.81|-1.28|2005
+110|nt5.1|"Morphological trait"|Culm/leaf|2|5|7509091|10787755|C)Interval|2.53|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM169|RM249|||"BC2F1(test cross)"|251|"Number of tillers per plant"|5.9|-1.06|2005
+111|pl2.1|"Morphological trait"|Panicle/flower|2|2|33667096|36028798|C)Interval|10.9|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM250|RM208|||"BC2F1(test cross)"|251|"Panicle length"|19.28|-9.53|2005
+112|ph1.1|"Morphological trait"|Dwarf|2|1|4424186|5941561|C)Interval|5.32|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM220|RM272|||"BC2F1(test cross)"|251|"Plant height"|17.48|-17.33|2005
+113|yld2.1|"Morphological trait"|Seed|2|2|21658702|26758298|C)Interval|31.92|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM262|RM263|||"BC2F1(test cross)"|251|"Plot yield"|38.46|-216.04|2005
+114|sf1.1|"Physiological trait"|Sterility|2|1|34810383|38491404|C)Interval|3.26|"IR 58025A"|"O. rufipogon (IC 22015)"|A|pha|147|SSR|||||RM212|RM315|||"BC2F1(test cross)"|251|"Spikelet fertility"|5.2|2.45|2005
+115|sn2.1|"Morphological trait"|Panicle/flower|2|2|33667096|36028798|C)Interval|4.2|"IR 58025A"|"O. rufipogon (IC 22015)"|A|pha|147|SSR|||||RM250|RM208|||"BC2F1(test cross)"|251|"Spikelet number per ppanicle"|19.13|103.53|2005
+116|snp5.1|"Morphological trait"|Panicle/flower|2|5|5311917|10787755|C)Interval|3.98|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|SSR|||||RM194|RM249|||"BC2F1(test cross)"|251|"Spikelet number per  plant"|11.79|-413.25|2005
+117|yldp9.1|"Morphological trait"|Seed|2|9|19464779|23552932|C)Interval|4.18|"IR 58025A"|"O. rufipogon (IC 22015)"|B|pha|147|RFLP|||||RM242|RM205|||"BC2F1(test cross)"|251|"Yield per plant"|23.2|-13.84|2005
+118|QFlw3|"Morphological trait"|Culm/leaf|2|3|25891087|27899169|C)Interval|2.63|Lemont|Teqing|B|pha|148|RFLP|||||RZ474|C746|||"""RIL,2BCF1"""|254|flag-leafwidth|7|0.6|2005
+119||"Physiological trait"|Flowering|1|6|8054255|11750090|C)Interval|16.25|Nipponbare|Kasalath|A|pha|149|RFLP|||||R2171|R2123|||BC1F9|98|"heading date"|0.42|9.45|2005
+120||"Resistance or Tolerance"|"Insect resistance"|1|3|16196565|16199182|C)Interval|3.31|"Taichung 65"|ARC10313|A|pha|361|RFLP|||||XNpb182|R19|C1677||RIL|125|GLH-resistance|12.9|19.04|2004
+121||"Morphological trait"|Root|1|1|40287847|41923950|C)Interval|2.98|IR64|Azucena|A|pha|370|Mixture|||||RG109|RM104|||DHL|96|"adventitious root number(flooding)"|13.3|-0.52|2006
+122||"Morphological trait"|Root|1|3|13274763|16024796|C)Interval|3.12|IR64|Azucena|A|pha|370|Mixture|||||RM338|RZ284|||DHL|96|"root dry weight(flooding)"|13.9|0.52|2006
+123||"Morphological trait"|Root|1|5|2069338|2760413|C)Interval|3.65|IR64|Azucena|A|pha|370|RFLP|||||RZ556|RG313|||DHL|96|"seminal root length(upland)"|16.1|-1.97|2006
+124||"Morphological trait"|Root|1|1|32494603|32627034|C)Interval|2.59|IR64|Azucena|A|pha|370|Mixture|||||RZ19|RM128|||DHL|96|"adventitious root number(upland)"|11.7|-0.34|2006
+125|qRGV-8|"Physiological trait"|Germination/dormancy|2|8|26582935|28166213|C)Interval|3.2|"Zhenshan 97"|IRAT109|B|pha|373|SSR|||||RM502|RM477|||RIL|154|"Relative germination vigor(RGV)"|8.55|-3.3|2006
+126|qRGR-5|"Physiological trait"|Germination/dormancy|2|5|24086072|27457701|C)Interval|4.2|"Zhenshan 97"|IRAT109|B|pha|373|SSR|||||RM421|RM480|||RIL|154|"Relative germination rate(RGR)"|13.25|6.83|2006
+127|qLRS-2|"Resistance or Tolerance"|"Drought tolerance"|2|2|7462419|11418936|C)Interval|3.1|"Zhenshan 97"|IRAT109|B|pha|373|SSR|||||RM322|RM324|||RIL|154|"leaf rolling of  spraying (LRS)"|11.56|0.31|2006
+128|qLRC-1|"Resistance or Tolerance"|"Drought tolerance"|2|1|28571547|34744337|C)Interval|4.8|"Zhenshan 97"|IRAT109|B|pha|373|SSR|||||RM237|RM302|||RIL|154|"leaf rolling of  culturing (LRC)"|10.87|-0.22|2006
+129|Zmt1|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|40038301|40288357|C)Interval|4.2|IR74|Jalmagna|B|pha|374|RFLP|||||RG220|RG109|||RIL|165|"Plant mortality  (Sep-Dec)"|16.5|15.4|2006
+130|f5-Du|"Physiological trait"|Sterility|2|5|1243631|1376781|A)Physical||ZS(f5-Du/f5-ZS)|Balilla||pha|375|SSR|AC079021|WFPM3|WFPR1|WFPM5|||||BC1F1|255|"pollen sterility (Wide-compatibility)"|||2006
+131|2-3SY|"Physiological trait"|"Source activity"|2|2|18269869|20729299|C)Interval||IR64|Azucena|A|pha|380|RFLP|||||RG171|RG157|||DHL|125|"biomass yield "||1.38|2006
+132||"Physiological trait"|"Source activity"|1|4|25273817|25274481|C)Interval|4.97|IR72|IR69093-41-3-2||pha|381|RFLP|||||||C335||RIL|101|"delta13 (2001 grain)"|15.9|0.261|2006
+133||"Physiological trait"|"Source activity"|1|9|6491728|6492209|C)Interval|2.95|IR72|IR69093-41-3-2||pha|381|RFLP|||||||RM444||RIL|101|"delta13 (2002 grain)"|10.9|-0.229|2006
+134||"Physiological trait"|"Source activity"|1|9|6491728|6492209|C)Interval|5.1|IR72|IR69093-41-3-2||pha|381|SSR|||||||RM444||RIL|101|"delta13 C(2003)"|19|-0.393|2006
+135||"Physiological trait"|"Source activity"|1|9|6491728|6492209|C)Interval|2.53|IR72|IR69093-41-3-2||pha|381|SSR|||||||RM444||RIL|101|"delta13 C(2004)"|8.9|-0.188|2006
+136||"Physiological trait"|"Source activity"|1|7|25961839|25965832|C)Interval|3.55|IR72|IR69093-41-3-2||pha|381|RFLP|||||||C847||RIL|101|SPAD|1.25|9.8|2006
+137|qSD12|"Physiological trait"|Germination/dormancy|2|12|23698130|26368115|C)Interval||EM93-1|SS18-2|B|pha|387|SSR|||||RM3331|RM235|||F2||"Seed dormancy"|||2006
+138|OsGNA1|"Morphological trait"|Root|2|9|19479227|19479974|A)Physical|||||pha|400||AK063214||||||||||"short-root "|||2005
+139|dgl1|"Morphological trait"|Dwarf|2|1|29747390|29878594|A)Physical|||||pha|401||"""P0445E10,P0019E03"""||||||||||"dwarf phenotype and leaves with abnormally rounded tip regions"|||2005
+140||Others|Others|1|6|31821199|31825208|C)Interval|4.03|Rexmont|PI312777|B|jsa|6|RFLP|||||||R1167||F2|192|"allelopathic effect (inhibition of root enlongation of lettuce"|16.1|-2.72|2001
+141|qLTG-4-1|"Physiological trait"|Germination/dormancy|2|4|4433646|4435752|C)Interval|2.79|Nipponbare|Kasalath|B|jsa|7|RFLP|||||||C946||BIL|98|"low temperature germinablity"|14.9|10.7|2001
+142|qBFR-4-1|"Resistance or Tolerance"|"Blast resistance"|2|4|31923161|31926406|C)Interval|37|Koshihikari|Kahei|A|jsa|8|RFLP|||||||G264||F2|234|"blast field resistance"|61.6|1.13|2001
+143|qDTH-6|"Physiological trait"|Flowering|2|6|8054255|8066362|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||R2171||BIL|187|days-to-heading|34.6|-7.9|2001
+144|qCL-12|"Morphological trait"|Dwarf|2|12|12388491|12390602|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||C443||BIL|187|"culm length"|17.7|6.6|2001
+145|qPL-6|"Morphological trait"|Panicle/flower|2|6|28536072|28538177|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||C556||BIL|187|"panicle length"|13.2|1|2001
+146|qIN1-3|"Morphological trait"|Dwarf|2|3|36297173|36303203|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||R1925||BIL|187|"1st internode length"|11.2|-1.8|2001
+147|qIN2-1|"Morphological trait"|Dwarf|2|1|39466088|39470731|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||C86||BIL|187|"2nd internode length"|10.2|1.4|2001
+148|qIN3-6|"Morphological trait"|Dwarf|2|6|25794136|25797291|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||R2549||BIL|187|"3rd internode length"|9.5|1.1|2001
+149|qIN4-12|"Morphological trait"|Dwarf|2|12|12388491|12390602|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||C443||BIL|187|"4th internode length"|12.7|1.9|2001
+150|qIN5-12|"Morphological trait"|Dwarf|2|12|12388491|12390602|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||C443||BIL|187|"5th internode length"|10.1|1.8|2001
+151|qIN6-6|"Morphological trait"|Dwarf|2|6|8054255|8066362|C)Interval||Koshihikari|Kasalath|B|jsa|11|RFLP|||||||R2171||BIL|187|"6th internode length"|9|-0.8|2001
+152|qCT-1|"Resistance or Tolerance"|"Cold tolerance"|2|1|41703909|41707366|C)Interval|2.4|Koshihikari|Akihikari|B|jsa|12|RFLP|||||R494|R503|R1545||DHL|212|ëœó‚ê´åüíËïﬁèÍÇ…Ç®ÇØÇÈñ´é¿ó¶|5.1|-4.6|2001
+153|Hd9|"Physiological trait"|Flowering|2|3|975995|1427051|B)Fine||Nipponbare|Kasalath||jsa|13|RFLP||R1468B|C721|S12021|||||BC4F2|96|"days to heading"|||2002
+154||"Morphological trait"|Seed|1|11|2827521|20702000|C)Interval|5.31|Reiho|Yamadanishiki|A|jsa|17|SSR|||||RM332|RM229|||DHL|91|"grain length"|23.4|-0.07|2002
+155||"Morphological trait"|Seed|1|5|19258755|28755091|C)Interval|6.31|Reiho|Yamadanishiki|A|jsa|17|SSR|||||RM163|RM31|||DHL|91|"grain width"|27.1|-0.03|2002
+156||"Morphological trait"|Seed|1|5|19258755|28755091|C)Interval|4.36|Reiho|Yamadanishiki|A|jsa|17|SSR|||||RM163|RM31|||DHL|91|"grain thickness"|19.6|-0.02|2002
+157||"Physiological trait"|"Eating quality"|1|12|970495|8828505|C)Interval|3.02|Reiho|Yamadanishiki|A|jsa|17|SSR|||||RM20|RM101|||DHL|91|"white core"|14.2|-0.16|2002
+158||"Physiological trait"|"Eating quality"|1|5|19258755|28755091|C)Interval|4.64|Reiho|Yamadanishiki|A|jsa|17|SSR|||||RM163|RM31|||DHL|91|"white belly"|20.7|-0.22|2002
+159||"Physiological trait"|"Eating quality"|1|11|24323354|24323830|C)Interval|3.09|Reiho|Yamadanishiki|A|jsa|17|SSR|||||RM21|Chr11_LT|RM206||DHL|91|"protein content"|15.1|0.12|2002
+160||"Resistance or Tolerance"|"Blast resistance"|1|11|21898615|21903367|C)Interval|3.6|"Norin 29"|Sensho|A|jsa|19|RFLP|||||G257|R2708|C1172||F2|192|"blast field resistance"|8.3|0.6|2002
+161|Rf1|"Physiological trait"|Sterility|2|10|19577439|22770151|B)Fine||"Dianyu 1A"|WAB450-11-1-2-P61-HB||rgn|162|SSR||RM171|RM228||||||BC1F1|143|"Fertility restorer"|||2002
+162|crl1|"Morphological trait"|Root|2|3|2630287|2795703|B)Fine||"Taichung 65 crl1"|Kasalath||rgn|163|RFLP||C725|R3131||||||F2|2500|"crown root less"|||2002
+163|d50|"Morphological trait"|Dwarf|2|2|13202780|17226219|B)Fine||"Fukei 71(d50)"|Kasalath||rgn|164|CAPS||E61832S|R1736||||||F2|1053|dwarf|||2002
+164|nk2(t)|"Physiological trait"|"Eating quality"|2|5|27729674|27735241|B)Fine||"Taichung 65"|"Oryza glumaepatula (IRGC 105668)introgression line"||rgn|165|RFLP||G1103|R521|R2953|||||F2|59|"notched kernel"|||2002
+165|sk1(t)|"Morphological trait"|Seed|2|2|32710995|33265069|B)Fine||"Taichung 65"|"Oryza glumaepatula (IRGC 105668)introgression line"||rgn|166|RFLP||C679|C560||||||F2|55|"slender kernel"|||2002
+166|glup3|"Physiological trait"|"Eating quality"|2|4|27204061|27357420|A)Physical||"EM856(Taichung 65 glup3 mutant)"|Kasalath||rgn|172|RFLP|OSJNBa0091D06|L1091|R2783||||||F2|2200|"high amount of glutelin precursor"|||2002
+167|Sh3|"Morphological trait"|Panicle/flower|2|4|34553977|35281498|B)Fine||"Taichung 65"|"O. rufipogon Griff. (Acc.IRGC105715)introgression line"||rgn|174|RFLP||R1427|C107||||||F2|104|"seed shattering"|||2002
+168|Sh3-gla|"Morphological trait"|Panicle/flower|2|4|34553977|35281498|B)Fine||"Taichung 65"|"O. glaberrima (ACC IRGC104038)"||rgn|175|RFLP||R1427|C107||||||F2|131|"seed shattering"|||2002
+169|iSh3(t)|"Morphological trait"|Panicle/flower|2|4|34553977|35281498|B)Fine||"Taichung 65"|"O. glaberrima (ACC IRGC104038)"||rgn|175|RFLP||R1427|C107||||||F2|131|"inhibition of seed shattering"|||2002
+170|Sh6-mer|"Morphological trait"|Panicle/flower|2|5|4085166|4087911|B)Fine||"Taichung 65"|"O. meridionalis introgression line"||rgn|176|RFLP||C119|Y1060L|R2232|||||F2|71|"seed shattering"|||2002
+171|Sh5-glum|"Morphological trait"|Panicle/flower|2|5|20217134|20220313|B)Fine||"Taichung 65"|"O. meridionalis introgression line"||rgn|176|RFLP||R118|R1553|C1268|||||F2|65|"seed shattering"|||2002
+172|qGRH-2|"Resistance or Tolerance"|"Insect resistance"|2|2|23191143|31166188|C)Interval|4.2|IR20965-26-1-2|T65|B|rgn|179|RFLP|||||C621|C601|||F2||"resistance to green rice leafhopper (GRH)"|68.3|-23.6|2002
+173|xa8|"Resistance or Tolerance"|"Bacterial blight resistance"|2|7|13444285|13444846|d)Co-segregated||PR106|IRBB8|B|rgn|181|SSR||||||||RM214|RIL|105|"bacterial leaf blight resistance"|||2002
+174|An9|"Morphological trait"|Panicle/flower|2|1|6273283|9865716|B)Fine||"Taichung 65"|"O. meridionalis (Acc. W1625)introgression line"||rgn|185|SSR||RM8111|RM8051||||||F2|85|Awned|||2003
+175|An10|"Morphological trait"|Panicle/flower|2|1|28571547|36953571|B)Fine||"Taichung 65"|"O. meridionalis (Acc. W1625)introgression line"||rgn|185|SSR||RM237|RM265||||||F2|85|Awned|||2003
+176|An6-mer|"Morphological trait"|Panicle/flower|2|8|27930045|27930287|d)Co-segregated||"Taichung 65"|"O. meridionalis (Acc. W1625)introgression line"||rgn|185|SSR||||||||RM3496|F2|85|Awned|||2003
+177|An8-glum|"Morphological trait"|Panicle/flower|2|4|6571336|20053733|B)Fine||"Taichung 65"|"O. glumaepatula (IRGC Acc.No. 105668)introgression line"||rgn|186|SSR||RM261|RM1359||||||F2|74|Awned|||2003
+178|An7-glum|"Morphological trait"|Panicle/flower|2|5|5266957|7818948|B)Fine||"Taichung 65"|"O. glumaepatula (IRGC Acc.No. 105668)introgression line"||rgn|186|SSR||RM3419|RM289||||||F2|71|Awned|||2003
+179||"Morphological trait"|Panicle/flower|1|12|27662696|27664972|C)Interval||Asominori|IR24|B|rgn|190|RFLP|||||||C901||RIL|71|"stigma exertion"|7.8|-0.64|2003
+180|yl(t)|"Morphological trait"|Shoot/Seedling|2|5|7509091|16531609|B)Fine||"yl mutant"|W002||rgn|191|SSR||RM169|RM3838||||||F2|195|"yellowish-green leaf"|||2003
+181|Glu6|"Physiological trait"|"Eating quality"|2|3|18470802|18600010|A)Physical|||||pha|195||OSJNBa0083F15||||||||||"glutelin subunit polypeptides "|||2003
+182|qLTG-7|"Physiological trait"|Germination/dormancy|2|7|17530626|22912990|C)Interval|3.62|Kinmaze|DV85|A|rgn|198||||||R1440|R1357|||RIL|81|"low temperature germinablity"|8.7|9.3|2003
+183||"Resistance or Tolerance"|"Other soil stress tolerance"|1|3|488942|979543|C)Interval|5.89|Kinmaze|DV85|A|rgn|199||||||R1468A|R1468B|||RIL|81|"tolerance to ferrous iron toxicity"|23.18|3.64|2003
+184|Xa21|"Resistance or Tolerance"|"Bacterial blight resistance"|2|11|21483290|23651853|C)Interval||O.sativa(BS125)|O.longistaminata(WLO2)||pha|448|Mixture|||||CDO534|RZ537|||NIL|386|"bacterial blight disease resistance"|||1992
+185|Re|"Physiological trait"|"Eating quality"|2|4|4433646|4435752|C)Interval||Nipponbare|Kasalath||pha|457|Mixture|||||G3006|C1156|C946||F2|186|"starch debranching enzyme"|||1996
+186|chs|Others|Others|2|11|20614217|22645738|B)Fine||Abhaya|Shyamala||pha|459|RFLP||RG2|RG103||||||F2|184|"Chalcone synthase"|||1996
+187|OVP1|Others|Others|2|6|27039549|27287933|B)Fine||Nipponbare|Kasalath||pha|460|RFLP||G12|C882|C554|||||F2|186|"vacuolar H+-pyrophosphatase"|||1996
+188|Fh1-2|"Morphological trait"|Dwarf|2|1|36697294|42364623|C)Interval||IR64|Azucena|B|pha|462|RFLP|||||RZ730|RZ801|||DHL|123|"plant height"||-22.67|2001
+189||"Physiological trait"|Sterility|1|3|13279321|13284073|C)Interval||Nipponbare|Kasalath||pha|463|RFLP|||||||C582||F2|186|"gametophytic reproductive barrier"|||2001
+190||"Physiological trait"|"Source activity"|1|8|27115743|27120160|C)Interval|2|Nipponbare|Kasalath||pha|465|RFLP|||||C10122|R1963|R2662||BIL|98|"soluble protein content at 5days after heading"|||2001
+191||"Physiological trait"|"Source activity"|1|4|25273817|25274481|C)Interval|2.1|Nipponbare|Kasalath||pha|465|RFLP|||||C513|R374|C335||BIL|98|"soluble protein content at 25days after heading"|||2001
+192||"Physiological trait"|"Source activity"|1|8|19395396|24277473|C)Interval|2|Nipponbare|Kasalath||pha|465|RFLP|||||R727|R202|G2140||BIL|98|"Rubisco protein content at 5days after heading"|||2001
+193||"Physiological trait"|"Source activity"|1|2|534963|538203|C)Interval|3.3|Nipponbare|Kasalath||pha|465|RFLP|||||R26838|G293|R2510||BIL|98|"Rubisco protein content at 25days after heading"|||2001
+194|CORN5|"Physiological trait"|"Source activity"|2|5|238143|3285751|C)Interval|2.18|Nipponbare|Kasalath||pha|465|RFLP|||||C597|R1838|R3166||BIL|98|"the ratio of Rubisco to total leaf N content at 5days after heading"|||2001
+195||"Resistance or Tolerance"|"Salinity tolerance"|1|1|4635793|27950354|C)Interval||IR4630-|IR15324-||pha|466|Mixture|||||RM1|R886|||RIL|118|"Na+ uptake"|8.9|-0.04|2001
+196||"Resistance or Tolerance"|"Salinity tolerance"|1|1|4635793|25629404|C)Interval||IR4630-|IR15324-||pha|466|Mixture|||||RM1|RM5|||RIL|118|"K+1 concentration"|10.6|0.05|2001
+197||"Resistance or Tolerance"|"Salinity tolerance"|1|1|4635793|27950354|C)Interval||IR4630-|IR15324-||pha|466|Mixture|||||RM1|R886|||RIL|118|"Na+:K+1 ratio"|9.1|-0.22|2001
+198||"Morphological trait"|Panicle/flower|1|3|31082622|37254205|C)Interval|6.85|Lemont|Teqing|A|pha|470|RFLP|||||G249|RG418|||RIL|254|grains/plant|-13.8|0.63|2001
+199||"Morphological trait"|Seed|1|1|25236559|29382447|C)Interval|3.18|Lemont|Teqing|A|pha|470|RFLP|||||CDO118|CDO455|||RIL|254|"1000-grain weight"|-6.6|0.62|2001
+200|xa5|"Resistance or Tolerance"|"Bacterial blight resistance"|2|8|26646849|26650161|d)Co-segregated||IR24|IRBB4||pha|473|RFLP||||||||S14003|NIL||"bacterial blight resistance"|||2001
+201|sp1a|"Morphological trait"|Panicle/flower|2|1|4795155|5759851|C)Interval|14.2|"Zhenshan 97"|"Minghui 63"|A|pha|475|Mixture|||||G359|RG532|||RIL|241|"spikelets per panicle"|5.79|7.04|2001
+202|gp1|"Morphological trait"|Panicle/flower|2|1|5759741|7445899|C)Interval|7.2|"Zhenshan 97"|"Minghui 63"|A|pha|475|Mixture|||||RG532|RM259|||RIL|241|"grains per panicle"|4.16|5.38|2001
+203|ss2|"Physiological trait"|"Source activity"|2|2|32389877|35545232|C)Interval|7.1|"Zhenshan 97"|"Minghui 63"|A|pha|475|Mixture|||||RM240|RM213|||RIL|241|"seed setting"|4.02|1.7|2001
+204|pl9|"Morphological trait"|Panicle/flower|2|9|20600863|21314308|C)Interval|8.9|"Zhenshan 97"|"Minghui 63"|A|pha|475|Mixture|||||RG570|RG667|||RIL|241|"panicle length"|6.17|-0.42|2001
+205|dn1a|"Morphological trait"|Panicle/flower|2|1|4795155|5759851|C)Interval|10.9|"Zhenshan 97"|"Minghui 63"|A|pha|475|Mixture|||||G359|RG532|||RIL|241|density|5.8|0.26|2001
+206||"Physiological trait"|"Source activity"|1|1|5759741|39646396|C)Interval|3.77|"Zhenshan 97B"|"Milyang 46"||pha|476|RFLP|||||RG532|RM472|||RIL|231|"number of filled grains per panicle"||17.8|2001
+207||"Morphological trait"|Culm/leaf|1|6|27288493|29906021|C)Interval|2.04|"Zhenshan 97B"|"Milyang 46"||pha|476|RFLP|||||RG653|RZ140|||RIL|231|"number of panicle"||-0.75|2001
+208||"Morphological trait"|Panicle/flower|1|6|3459492|6023472|C)Interval|6.05|"Zhenshan 97B"|"Milyang 46"||pha|476|RFLP|||||RG138|RZ398|||RIL|231|"total number of spikelets per panicle"||-23.3|2001
+209||"Physiological trait"|"Source activity"|1|6|3459492|6023472|C)Interval|2.96|"Zhenshan 97B"|"Milyang 46"||pha|476|RFLP|||||RG138|RZ398|||RIL|231|"spikelet fertility"||5.12|2001
+210||"Morphological trait"|Seed|1|6|3459492|6023472|C)Interval|5.13|"Zhenshan 97B"|"Milyang 46"||pha|476|RFLP|||||RG138|RZ398|||RIL|231|"Grain yield"||-4.62|2001
+211||"Morphological trait"|Seed|1|10|19738642|22303661|C)Interval|7.98|"Zhenshan 97B"|"Milyang 46"||pha|476|RFLP|||||RZ811|RG561|||RIL|231|"1000-grain weight"||-2.09|2001
+212|OsAOX1a|"Resistance or Tolerance"|"Cold tolerance"|2|4|29737978|33358474|C)Interval||Hokkai241|Silewah||pha|477|RFLP|||||R2737|R740|S2486||||"alternative oxidase"|||2002
+213||"Physiological trait"|Sterility|1|10|10558704|10561460|C)Interval||"Fl1087 "|"Dao Ren Qiao"||pha|481|RFLP|||||||C148||F2|94|"Gametophytic reproductive barriers"|||2002
+214|yd1|"Morphological trait"|Seed|2|1|36226902|39470731|C)Interval|4|"Zhenshan 97"|"Minghui 63"||pha|482|RFLP|||||C2340|C86|||RIL|240|Yield(1998)|4.9|0.3|2002
+215|tp5b|"Morphological trait"|Culm/leaf|2|5|27486247|28855659|C)Interval|5.7|"Zhenshan 97"|"Minghui 63"||pha|482|RFLP|||||RM26|C1447|||RIL|240|Tillers/plant(1998)|8.7|-1.4|2002
+216|tp2b|"Morphological trait"|Culm/leaf|2|2|36028513|36262401|C)Interval|3.8|"Zhenshan 97"|"Minghui 63"||pha|482|RFLP|||||RM208|RM207|||RIL|240|Tillers/plant(1999)|4.3|0.6|2002
+217|gp6|"Morphological trait"|Panicle/flower|2|6|6927624|20691040|C)Interval|6.7|"Zhenshan 97"|"Minghui 63"||pha|482|RFLP|||||RZ667|RG424|||RIL|240|Grains/panicle(1998)|7.9|-4.7|2002
+218|gp1a|"Morphological trait"|Panicle/flower|2|1|4795155|5759851|C)Interval|8.2|"Zhenshan 97"|"Minghui 63"||pha|482|RFLP|||||G359|RG532|||RIL|240|Grains/panicle(1999)|9.7|11.2|2002
+219|gw1a|"Morphological trait"|Seed|2|1|4795155|5759851|C)Interval|9.4|"Zhenshan 97"|"Minghui 63"||pha|482|RFLP|||||G359|RG532|||RIL|240|"Grain weight(1999)"|9.3|-1|2002
+220||Others|Others|1|10|16326502|16330772|d)Co-segregated||"Milyang 23"|Gihobyeo||pha|483|RFLP||||||||RZ400|RIL|164|"plant regeneration ability in anther culture"|||2002
+221|qALSRL-9|"Resistance or Tolerance"|"Other soil stress tolerance"|2|9|20828464|21314308|C)Interval|6.28|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|488|Mixture|||||RM201|RG667|||DHL|154|"stress root length"|18.3|-1.09|2002
+222|qALRR-8|"Resistance or Tolerance"|"Other soil stress tolerance"|2|8|5326640|17528755|C)Interval|8.23|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|488|Mixture|||||RG978|C1121|||DHL|154|"root length ratio"|28.7|-13.37|2002
+223||"Resistance or Tolerance"|"Drought tolerance"|1|3|27494415|31496678|C)Interval|3|Bala|Azucena||pha|489|Mixture|||||C136|R1618|||RIL|205|"carbon isotope discrimination(É¢ 13C) in IRRI 1996"|||2002
+224||"Resistance or Tolerance"|"Blast resistance"|1|3|23887818|28859103|C)Interval||CT9993-5-10-1-M|KDML105||pha|490|Mixture|||||RM16|RM168|||RIL|141|"disease severity index at URRC"|6||2002
+225||"Resistance or Tolerance"|"Blast resistance"|1|6|8054255|9537572|C)Interval||CT9993-5-10-1-M|KDML105||pha|490|Mixture|||||R2171|RG64|||RIL|141|"Neck blast incidence at Kampangsaen (1998)"|15||2002
+226||"Resistance or Tolerance"|"Blast resistance"|1|6|8054255|9537572|C)Interval||CT9993-5-10-1-M|KDML105||pha|490|Mixture|||||R2171|RG64|||RIL|141|"Neck blast incidence against the THL84"|17||2002
+227||"Resistance or Tolerance"|"Blast resistance"|1|6|6822037|8066362|C)Interval||CT9993-5-10-1-M|KDML105||pha|490|Mixture|||||C1478|R2171|||RIL|141|"Leaf blast incidence against the THL84"|40||2002
+228|yd1b|"Morphological trait"|Seed|2|1|36226902|41822222|C)Interval|6.8|"Zhenshan 97"|"Minghui 63"|B|pha|492|Mixture|||||C547|C2340|||RIL|240|Yield(1998)|10|1.72|2002
+229|gn1|"Morphological trait"|Panicle/flower|2|1|4795155|5759851|C)Interval|2.9|"Zhenshan 97"|"Minghui 63"|B|pha|492|Mixture|||||G359|RG532|||RIL|240|"Grains per panicle(1998)"|3.7|4.26|2002
+230|QBphr1|"Resistance or Tolerance"|"Insect resistance"|2|1|9701778|10543644|C)Interval|5.44|Lemont|Teqing|A|pha|494|RFLP|||||R210|RZ382|||RIL|160|"brown planthopper"|13.2|3.41|2002
+231||"Physiological trait"|"Source activity"|1|2|35125790|35128892|d)Co-segregated||Nipponbare|Kasalath||pha|496|RFLP||||||||C1221|BIL|98|"NADH-GOGAT protein"|||2002
+232||"Physiological trait"|"Source activity"|1|11|28353580|28355835|d)Co-segregated||Nipponbare|Kasalath||pha|496|RFLP||||||||C950|BIL|98|"GS1 protein"|||2002
+233|spl11|Others|Others|2|12|23610707|23758251|B)Fine||IR64|Azucena||pha|498|||R1709|CDO459||||||DHL|111|"spotted leaf"|||2002
+234|qGYD-6-1|"Morphological trait"|Seed|2|6|3168374|3459750|C)Interval|9.8|"Zhenshan 97B"|"Milyang 46"|A|pha|502|Mixture|||||RZ398|RM204|||RIL|209|"grain yield per plant"|2.4|-1.11|2002
+235|qNP-6|"Morphological trait"|Culm/leaf|2|6|4212289|4899565|C)Interval|11.1|"Zhenshan 97B"|"Milyang 46"|A|pha|502|Mixture|||||RZ450|RZ588|||RIL|209|"number of panicles per plant"|1.7|0.53|2002
+236|qNFGP-7-1|"Physiological trait"|"Source activity"|2|7|19502607|20434662|C)Interval|11.5|"Zhenshan 97B"|"Milyang 46"|A|pha|502|Mixture|||||RZ471|RZ753|||RIL|209|"number of filled grains per panicle"|6.2|6.39|2002
+237|qTNSP-1-1|"Morphological trait"|Panicle/flower|2|1|4635793|5759851|C)Interval|18.2|"Zhenshan 97B"|"Milyang 46"|A|pha|502|Mixture|||||RM1|RG532|||RIL|209|"total number of spikelets per panicle"|12.4|10.05|2002
+238|qSF-1|"Physiological trait"|"Source activity"|2|1|36697294|39534042|C)Interval|5.1|"Zhenshan 97B"|"Milyang 46"|A|pha|502|Mixture|||||RZ730|RZ538|||RIL|209|"spikelet fertility"|3.9|2.44|2002
+239|qTGWT-10|"Morphological trait"|Seed|2|10|22304140|22770151|C)Interval|19.6|"Zhenshan 97B"|"Milyang 46"|A|pha|502|Mixture|||||RG561|RM228|||RIL|209|"1000-grain weight"|13.4|-0.79|2002
+240|qGB|"Physiological trait"|"Eating quality"|2|6|3416533|3416728|d)Co-segregated||"Basmati 370"|ASD16||pha|503|Mixture||||||||RM225|F2|247|"grain breadth"|||2005
+241|qCGB|"Physiological trait"|"Eating quality"|2|12|3185432|3185629|d)Co-segregated||"Basmati 370"|ASD16||pha|503|Mixture||||||||RM247|F2|247|"cooked grain breadth"|||2005
+242||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|5793810|7481804|C)Interval|3.17|Nipponbare|Kasalath|B|pha|505|RFLP|||||C955|C885|||BIL|96|"Leaf bronzing index"|20.5|0.021|2003
+243||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|5793810|7481804|C)Interval|7.03|Nipponbare|Kasalath|B|pha|505|RFLP|||||C955|C885|||BIL|96|"Stem dry weight"|36.9|-0.0114|2003
+244||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|5793810|7481804|C)Interval|6.89|Nipponbare|Kasalath|B|pha|505|RFLP|||||C955|C885|||BIL|96|"Tiller number"|43.9|0.0679|2003
+245||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|5793810|7481804|C)Interval|6.59|Nipponbare|Kasalath|B|pha|505|RFLP|||||C955|C885|||BIL|96|"Root dry weight"|38.8|-0.0095|2003
+246|qah7|"Physiological trait"|Flowering|2|7|4606397|16264722|C)Interval|3.11|Nipponbare|Kasalath||pha|508|RFLP|||||R2401|C1226|||BIL|98|"length of the heading period"|14||2004
+247||"Morphological trait"|Panicle/flower|1|2|34831427|35173313|C)Interval|3.11|Palawan|IR42|A|pha|509|RFLP|||||RG256|RG151|||F2|231|"average panicle length per plant"|6.2|0.66|1996
+248||"Morphological trait"|Panicle/flower|1|4|32246485|34252531|C)Interval|3.05|Palawan|IR42|A|pha|509|RFLP|||||RG143|RG214|||F2|231|"average primary branch number per panicle per plant"|6.8|0.84|1996
+249||"Morphological trait"|Seed|1|3|10000519|12208434|C)Interval|6.32|Domsephid|Gerdeh|B|pha|510|SSR|||||RM251|RM554|||F2|192|"grain length"|19.3|-0.18|2004
+250||"Morphological trait"|Seed|1|3|9880148|10000636|C)Interval|15.02|Domsephid|Gerdeh|B|pha|510|SSR|||||RM7|RM251|||F2|192|"grain breadth"|34.1|0.15|2004
+251||"Morphological trait"|Seed|1|3|10000519|12208434|C)Interval|11.29|Domsephid|Gerdeh|B|pha|510|SSR|||||RM251|RM554|||F2|192|"grain shape"|27.1|-0.27|2004
+252|qCRE-8|"Resistance or Tolerance"|"Other soil stress tolerance"|2|8|16626364|19399182|C)Interval|2.99|Nipponbare|Kasalath|A|pha|511|RFLP|||||R727|C347|||BIL|98|"control root elongation"|9.3|0.24|2006
+253|qRRE-10|"Resistance or Tolerance"|"Other soil stress tolerance"|2|10|5167605|7599729|C)Interval|3.33|Nipponbare|Kasalath|A|pha|511|RFLP|||||R2174|R2194|||BIL|98|"relative root elongation"|11.8|9.29|2006
+254|qVB-1|"Morphological trait"|Culm/leaf|2|1|22256683|24776333|C)Interval|2.75|Gui630|2428|A|pha|512|RFLP|||||RZ776|RZ744|||DHL|81|"number of vascular bundles"|14.2|1.33|2002
+255||"Morphological trait"|Root|1|9|21313734|23027968|C)Interval|3.4|IAC165|Co39|B|pha|513|RFLP|||||RG667|RZ404|||RIL|142|"Maximum root length"|8.2|3.06|2003
+256||"Morphological trait"|Root|1|4|30445455|31356186|C)Interval|5.4|IAC165|Co39|B|pha|513|RFLP|||||RZ23|RM255|||RIL|142|"Root thickness"|24.4|0.0456|2003
+257||"Morphological trait"|Root|1|4|6571336|11290874|C)Interval|2.7|IAC165|Co39|B|pha|513|RFLP|||||RM261|RZ69|||RIL|142|"Root weight in the 30-60 cm laye"|10.9|0.0168|2003
+258||"Morphological trait"|Root|1|4|17889105|20281368|C)Interval|4.3|IAC165|Co39|B|pha|513|RFLP|||||RG449|RG788|||RIL|142|"Root weight in the 60-90 cm layer"|10.3|0.0046|2003
+259||"Morphological trait"|Root|1|4|11283287|17888842|C)Interval|3.6|IAC165|Co39|B|pha|513|RFLP|||||RZ69|RG449|||RIL|142|"Deep root weight"|12.3|0.023|2003
+260||"Morphological trait"|Root|1|4|6571336|11290874|C)Interval|6.1|IAC165|Co39|B|pha|513|RFLP|||||RM261|RZ69|||RIL|142|"Deep root weight per unit shoot weight"|20.7|0.64|2003
+261||"Morphological trait"|Root|1|2|18269869|20729299|C)Interval|3.3|IAC165|Co39|B|pha|513|RFLP|||||RG171|RG157|||RIL|142|"Deep root weight per tiller "|7.8|-0.0018|2003
+262||"Morphological trait"|Root|1|4|11283287|17888842|C)Interval|6.7|IAC165|Co39|B|pha|513|RFLP|||||RZ69|RG449|||RIL|142|"Deep root weight per tiller"|17.6|0.0027|2003
+263||"Morphological trait"|Dwarf|1|3|5210684|5584862|C)Interval|5.6|IAC165|Co39|B|pha|513|RFLP|||||RG100|RG450|||RIL|142|"Plant height"|11.7|4.27|2003
+264||"Morphological trait"|Culm/leaf|1|1|41444285|42364623|C)Interval|4.8|IAC165|Co39|B|pha|513|RFLP|||||RZ801|RZ14|||RIL|142|"Tiller number"|18.4|1.27|2003
+265||"Morphological trait"|Shoot/Seedling|1|9|9783058|12413337|C)Interval|2.5|IAC165|Co39|B|pha|513|RFLP|||||RG553|RZ206|||RIL|142|"Shoot dry weight"|5.5|0.221|2003
+266|Rf3|"Physiological trait"|Sterility|2|1|5759741|5759851|C)Interval|20.07|"Zhenshan 97A"|Minghui||pha|514|RFLP|||||RG173|RG532|RG532||F2|160|"restoring factor"|||1997
+267|qTNL-3|"Morphological trait"|Culm/leaf|2|3|4072902|6784194|C)Interval|3.1|Asominori|IR24|A|pha|515|RFLP|||||C563|R518|||RIL|71|"total number of leaves"|8.2|-0.33|2004
+268|qDEF-3|"Physiological trait"|Flowering|2|3|1423343|4098191|C)Interval|4.7|Asominori|IR24|A|pha|515|RFLP|||||R518|C721|||RIL|71|"days to emergence of flag-leaf"|10.9|-3.17|2004
+269|qLER-2|"Morphological trait"|Culm/leaf|2|2|5357310|9018568|C)Interval|3.6|Asominori|IR24|A|pha|515|RFLP|||||R2344|R712|||RIL|71|"leaf emergence rate"|12.3|0.06|2004
+270|qRFC-5|"Physiological trait"|"Eating quality"|2|5|23597602|28841123|C)Interval|6.6|Gui630|2428|A|pha|516|RFLP|||||RG470|RG474|||DHL|81|"Rice fat content"|25.5|-0.17|2004
+271|qPHT-1|"Morphological trait"|Dwarf|2|1|36697294|42364623|C)Interval|16.06|IR64|Azucena|B|pha|517|RFLP|||||RZ730|RZ801|||DHL|125|"Plant height"|56.2|18.59|2002
+272|qFDN-3|"Physiological trait"|Flowering|2|3|1429107|3509693|C)Interval|4.19|IR64|Azucena|B|pha|517|RFLP|||||RZ329|RG348|||DHL|125|"Flowering duration"|18.3|3.44|2002
+273|qPL-1|"Morphological trait"|Panicle/flower|2|1|36697294|42364623|C)Interval|6.01|IR64|Azucena|B|pha|517|RFLP|||||RZ730|RZ801|||DHL|125|"Panicle length"|26.8|1.82|2002
+274|qPEN-4|"Morphological trait"|Panicle/flower|2|4|8667374|13693920|C)Interval|4.62|IR64|Azucena|B|pha|517|RFLP|||||RG190|RG908|||DHL|125|"Panicle exsertion"|16.2|-1.18|2002
+275|qNOP-1|"Morphological trait"|Culm/leaf|2|1|36697294|42364623|C)Interval|3.98|IR64|Azucena|B|pha|517|RFLP|||||RZ730|RZ801|||DHL|125|"Number of panicles"|18.7|-0.86|2002
+276|qFRP-4|"Physiological trait"|"Source activity"|2|4|20281518|21649520|C)Interval|3.12|IR64|Azucena|B|pha|517|RFLP|||||RG788|RZ565|||DHL|125|Fertility|11|4.96|2002
+277|qTGW-1|"Morphological trait"|Seed|2|1|42496228|43337260|C)Interval|4.74|IR64|Azucena|B|pha|517|RFLP|||||RG810|RG331|||DHL|125|"Thousand grain weight"|16.3|1.27|2002
+278|qHID-1|"Morphological trait"|Seed|2|1|42496228|43337260|C)Interval|4.77|IR64|Azucena|B|pha|517|RFLP|||||RG810|RG331|||DHL|125|"Harvest index"|19.1|-0.03|2002
+279|qPHT3-2|"Resistance or Tolerance"|"Drought tolerance"|2|3|29555852|29580503|C)Interval|3.42|IR64|Azucena|B|pha|518|RFLP|||||RZ519|RZ448|||DHL|64|"Plant height "|27|4.66|2000
+280|sd1|"Resistance or Tolerance"|"Drought tolerance"|2|1|36697294|42364623|C)Interval|3.63|IR64|Azucena|B|pha|518|RFLP|||||RZ730|RZ801|||DHL|64|"Plant height"|29.2|4.96|2000
+281|qNOT4-2|"Resistance or Tolerance"|"Drought tolerance"|2|4|17889105|20281368|C)Interval|2.51|IR64|Azucena|B|pha|518|RFLP|||||RG449|RG788|||DHL|64|"No. of tillers"|19.8|-1.15|2000
+282|qRTV3-1|"Resistance or Tolerance"|"Drought tolerance"|2|3|464682|1429520|C)Interval|2.89|IR64|Azucena|B|pha|518|RFLP|||||RG104|RG348|||DHL|64|"Root volume"|21.4|-1.99|2000
+283|qRTT2-1|"Resistance or Tolerance"|"Drought tolerance"|2|2|20728825|25430309|C)Interval|3.21|IR64|Azucena|B|pha|518|RFLP|||||RG157|RZ318|||DHL|64|"Root thickness"|26.7|0.05|2000
+284|qRDW3-1|"Resistance or Tolerance"|"Drought tolerance"|2|3|464682|1429520|C)Interval|2.8|IR64|Azucena|B|pha|518|RFLP|||||RG348|RG104|||DHL|64|"Root dry weight"|20.8|-0.38|2000
+285|qDRS12-1|"Resistance or Tolerance"|"Drought tolerance"|2|12|26277931|27748876|C)Interval|2.03|IR64|Azucena|B|pha|518|RFLP|||||RG181|RG958|||DHL|64|"Drought score"|16.1|0.27|2000
+286|qCC-1|"Physiological trait"|"Source activity"|2|1|31822907|33817439|C)Interval|2.61|ZYQ8|"Jingxi 17"|B|pha|521|Mixture|||||RG541|RG101|||DHL|127|"Chlorophyll content"|11.2|1.7234|2004
+287||"Physiological trait"|"Eating quality"|1|1|42496228|43337260|C)Interval|2.71|IR64|Azucena|A|pha|523|RFLP|||||RG331|RG810|||DHL|135|"gel consistency"|9|-3.7|2002
+288||"Physiological trait"|"Eating quality"|1|2|27928037|29583314|C)Interval|5.39|IR64|Azucena|A|pha|523|RFLP|||||RG139|RZ58|||DHL|135|"hot paste viscosity"|16|-9.51|2002
+289||"Physiological trait"|"Eating quality"|1|3|10652190|16024796|C)Interval|2.71|IR64|Azucena|A|pha|523|RFLP|||||RZ574|RZ284|||DHL|135|"cool paste viscosity"|8|-16.96|2002
+290||"Physiological trait"|"Eating quality"|1|4|32246485|33033092|C)Interval|2.64|IR64|Azucena|A|pha|523|RFLP|||||RZ590|RG214|||DHL|135|breakdown|9|-6.22|2002
+291||"Physiological trait"|"Eating quality"|1|4|32246485|33033092|C)Interval|2.99|IR64|Azucena|A|pha|523|RFLP|||||RZ590|RG214|||DHL|135|setback|11|7.38|2002
+292|qCHR-2|Others|Others|2|2|26758064|36554631|C)Interval|6.01|ZYQ8|"Jingxi 17"|A|pha|524|Mixture|||||RM263|RG520|Y8007R||DHL|127|"chlorate sensitivity"|26.5|-21.2|2006
+293||"Physiological trait"|"Eating quality"|1|5|21013626|25225759|C)Interval|5.6|IR64|Azucena|B|pha|525|SSR|||||RM305|RM178|||DHL|129|inositol-6-phosphate|24.3|0.514|2007
+294||"Physiological trait"|"Eating quality"|1|12|3185432|14601609|C)Interval|3.5|IR64|Azucena|B|pha|525|SSR|||||RM247|RM179|||DHL|129||15.4|0.409|2007
+295||"Physiological trait"|"Eating quality"|1|5|21013626|25225759|C)Interval|5.6|IR64|Azucena|B|pha|525|SSR|||||RM305|RM178|||DHL|129|"total P"|24.3|0.016|2007
+296||"Physiological trait"|"Eating quality"|1|12|26367959|27215000|C)Interval|3.1|IR64|Azucena|B|pha|525|SSR|||||RM235|RM17|||DHL|129|"Zinc content"|12.8|5.407|2007
+297||"Resistance or Tolerance"|"Drought tolerance"|1|3|464682|1429520|C)Interval|5.24|IR64|Azucena||pha|528|Mixture|||||RG104|RG348|||DHL|90|"days to flowering (non stress)"|24.6||2002
+298||"Resistance or Tolerance"|"Drought tolerance"|1|1|36697294|42495953|C)Interval|3.36|IR64|Azucena||pha|528|Mixture|||||RG810|RZ730|||DHL|90|"plant height (non stress)"|20||2002
+299||"Resistance or Tolerance"|"Drought tolerance"|1|1|42361507|42495953|C)Interval|3.1|IR64|Azucena||pha|528|Mixture|||||RZ801|RG810|||DHL|90|"plant height (Low moisture stress)"|17.1||2002
+300||"Resistance or Tolerance"|"Drought tolerance"|1|3|2432425|3509693|C)Interval|3.44|IR64|Azucena||pha|528|Mixture|||||RM231|RZ329|||DHL|90|"days to flowering (mean)"|21||2002
+301||"Resistance or Tolerance"|"Drought tolerance"|1|3|464682|1429520|C)Interval|3.63|IR64|Azucena||pha|528|Mixture|||||RG104|RG348|||DHL|90|"days to maturity (mean)"|20.4||2002
+302||"Resistance or Tolerance"|"Drought tolerance"|1|2|20728825|25430309|C)Interval|3.21|IR64|Azucena||pha|528|Mixture|||||RG157|RZ318|||DHL|90|"root thickness (non stress 65 days)"|26.9||2002
+303||"Resistance or Tolerance"|"Drought tolerance"|1|3|2432425|3509693|C)Interval|4.02|IR64|Azucena||pha|528|Mixture|||||RM231|RZ329|||DHL|90|"root volume (low moisture stress 85 days)"|29.1||2002
+304||"Resistance or Tolerance"|"Drought tolerance"|1|3|2432425|3509693|C)Interval|4.22|IR64|Azucena||pha|528|Mixture|||||RM231|RZ329|||DHL|90|"root dry weight (low moisture stress 85 days)"|30.7||2002
+305||"Resistance or Tolerance"|"Drought tolerance"|1|9|20078749|20828859|C)Interval|3.63|IR64|Azucena||pha|528|Mixture|||||RZ12|RM201|||DHL|90|"maximum root length (non stress)"|12.9||2002
+306||"Morphological trait"|Seed|1|6|4346160|4352379|d)Co-segregated|4.77|T65wx|T65Wx-pat|B|pha|530|Mixture||||||||S1520|RIL|163|"Seed length"|9.4|0.17|2006
+307||"Morphological trait"|Seed|1|6|4346160|4352379|d)Co-segregated|3.38|T65wx|T65Wx-pat|B|pha|530|Mixture||||||||S1520|RIL|163|"Seed breadth"|6.8|0.06|2006
+308||"Morphological trait"|Seed|1|6|28130152|28130383|d)Co-segregated|10.41|T65wx|T65Wx-pat|B|pha|530|Mixture||||||||RM3|RIL|163|"Kernel breadth"|24.4|-0.06|2006
+309||"Morphological trait"|Seed|1|6|28130152|28130383|d)Co-segregated|9.51|T65wx|T65Wx-pat|B|pha|530|Mixture||||||||RM3|RIL|163|"Seed weight"|22.6|-0.01|2006
+310||"Morphological trait"|Seed|1|6|28130152|28130383|d)Co-segregated|9.63|T65wx|T65Wx-pat|B|pha|530|Mixture||||||||RM3|RIL|163|"Kernel weight"|22.8|-0.01|2006
+311|qRRE-8|"Resistance or Tolerance"|"Other soil stress tolerance"|2|8|3170545|5333855|C)Interval|3.1|Kinmaze|DV85|B|rgn|201|RFLP|||||C166|C1121|||RIL|81|"relative root elongation (an indicator for Al tolerance)"|18.2|0.1|2003
+312|"qLEI 4"|"Resistance or Tolerance"|"Submergency tolerance"|2|12|24616244|27664972|C)Interval|12|T65|Bhadua|B|rgn|203|Mixture|||||RM5479|C901|||F2|155|"position of the lowest elongated internode"|37.3|-1.3|2003
+313|"qRIE 1"|"Resistance or Tolerance"|"Submergency tolerance"|2|1|39466088|42591824|C)Interval|108|T65|Bhadua|B|rgn|203|Mixture|||||C86|G54|||F2|155|"rate of internodal elongation"|32.2|1.5|2003
+314|Grh5|"Resistance or Tolerance"|"Insect resistance"|2|8|26358647|27651023|B)Fine||"W1962 (Oryza rufipogon) "|T65||rgn|204|SSR||RM1615|RM6845|RM3754|||||BC4F2|98|"nymph mortality"|||2003
+315||"Resistance or Tolerance"|"Insect resistance"|1|3|22304962|25360678|C)Interval|2.4|Nipponbare|Kasalath|A|rgn|205|RFLP|||||G332|R19|||BIL|98|"Egg mortality of WBPH "|14.1|-17.8|2003
+316||"Resistance or Tolerance"|"Insect resistance"|1|12|21430775|21431060|d)Co-segregated|4.6|T65|"Podiwi A8"|B|rgn|207|SSR||||||||RM1986|F2|81|"nymph mortality"|29.7|25.8|2003
+317|sp2(t)|"Morphological trait"|Panicle/flower|2|7|17530626|22912990|B)Fine||Kinmaze|DV85||rgn|214|RFLP||R1440|R1357||||||BC2F2|71|"panicle length"|||2004
+318|S29(t)|"Physiological trait"|Sterility|2|2|1660784|3836885|B)Fine||WAB450-6|WAB56-104||rgn|219|||RM423|RM7033||||||BC2F2|142|sterility|||2004
+319|qZNT-3|"Resistance or Tolerance"|"Other soil stress tolerance"|2|3|696186|979543|C)Interval|3.2|Asominori|IR24|A|rgn|220|RFLP|||||R1468B|C515|||RIL|71|"Zn2+ toxicity tolerance"|8.9|-0.85|2004
+320|qLTSPS2|"Physiological trait"|Sterility|2|2|27533328|32389986|C)Interval|2.39|3037|2428|B|rgn|221|SSR|||||RM1385|RM240|||F2|157|"lowtemperature-sensitive pollen sterility"|15.6|0.021|2004
+321|qCR-3|"Physiological trait"|"Source activity"|2|3|3939279|4098191|C)Interval|3.05|Kinmaze|DV85|B|rgn|222|RFLP|||||C25|R518|||RIL|81|"chlorophyll a/b ratio"|13.8|-0.09|2004
+322|qCC-1|"Physiological trait"|"Source activity"|2|1|28628063|29823005|C)Interval|2.66|Kinmaze|DV85|B|rgn|222|RFLP|||||C122|R1012|||RIL|81|"chlorophyll content of leaf"|11.2|1.18|2004
+323|S-9|"Physiological trait"|Sterility|2|4|18772814|18772892|d)Co-segregated||"Ketan Nangka"|"Bai Mi Fen"||rgn|223|SSR||||||||RM185|F1|80|"spikelet fertility"|||2004
+324|qSdn-5|"Physiological trait"|Germination/dormancy|2|5|27457534|27457701|d)Co-segregated|7.19|N22|"Nanjing 35"|B|rgn|224|SSR||||||||RM480|BC1F1|162|"germination percentage"|16|-33.5|2004
+325|qPGWC8|"Physiological trait"|"Eating quality"|2|8|26637711|28166213|B)Fine||Asominori|IR24||rgn|225|SSR||RM477|RM447||||||F2|1382|"Percentage of chalkiness grains"|||2004
+326|Qstv1|"Resistance or Tolerance"|"Other disease resistance"|2|1|26686640|26690092|d)Co-segregated|3.8|Kinmaze|DV85|B|rgn|226|RFLP||||||||R1485|RIL|81|"rice stripe virus resistance"|25.1|21.01|2004
+327||"Resistance or Tolerance"|"Other disease resistance"|1|7|16262181|17535483|C)Interval|2.77|Nipponbare|Kasalath|A|rgn|227|RFLP|||||C1226|R1440|||BIL|98|"rice stripe virus resistance"|8.96|-7.19|2004
+328|Tid1|"Morphological trait"|Dwarf|2|11|6171645|8107623|B)Fine||Tid1-mutant|Kasalath||rgn|231|SSR||RM3137|RM3701||||||F2||Tid1|||2004
+329|"qSS5 or S31(t)"|"Physiological trait"|Sterility|2|5|2190812|2190895|d)Co-segregated|15.1|Tuanguzao|"Ketan Nangka"||rgn|233|SSR||||||||RM413|BC1F1|238|"hybrid sterility"|20.1|21.5|2005
+330|pss1|"Physiological trait"|Sterility|2|8|1560795|1560923|d)Co-segregated||W207-2|Nipponbare||rgn|234|SSR||||||||RM6356|F2|291|"pollen semi-sterility"|||2005
+331|S34(t)|"Physiological trait"|Sterility|2|3|2432425|10000636|B)Fine||"IRGC103977 (O. glaberrima)"|"Dianjingyou 1 (O. sativa)"||rgn|235|SSR||RM251|RM231||||||BC7F1|123|"pollen sterility"|||2005
+332|FSM|"Morphological trait"|Shoot/Seedling|2|1|39535359|41672331|B)Fine||"T65 mutant"|Kasalath||rgn|241|RFLP||R1764|S10526||||||F2||"flattened shoot meristem"|||2005
+333|Su-Se-1(t)|"Physiological trait"|Flowering|2|6|8054255|8066362|d)Co-segregated||Asominori|IR24||rgn|242|RFLP||||||||R2171|||"dominant photoperiod-sensitive suppression gene"|||2005
+334|qTIL12|"Resistance or Tolerance"|"Submergency tolerance"|2|12|25203610|25203829|d)Co-segregated|2.04|T65|"Bangladesh (N01)"||rgn|244|SSR||||||||RM6386|F2|94|"Total internode length"|10||2005
+335|qNEI12|"Resistance or Tolerance"|"Submergency tolerance"|2|12|25203610|25203829|d)Co-segregated|1.5|T65|"Bangladesh (N01)"||rgn|244|SSR||||||||RM6386|F2|94|"Elongated internode number"|7||2005
+336|Pi-y(t)|"Resistance or Tolerance"|"Blast resistance"|2|2|35918141|36028798|B)Fine||"Yanxian No.1"|Lijiangxintuanheigu||rgn|246|SSR||RM3248|RM208||||||F2||"blast resistance"|||2005
+337|rbr2|"Resistance or Tolerance"|"Blast resistance"|2|2|35545046|36028798|C)Interval|27.8|"Zhenshan 97"|"Minghui 63"|B|pha|279|SSR|||||RM213|RM208|||RIL|241|"lesion number"|42.7|13.42|2003
+338|rbr2|"Resistance or Tolerance"|"Blast resistance"|2|2|35545046|36028798|C)Interval|19.7|"Zhenshan 97"|"Minghui 63"|B|pha|279|SSR|||||RM213|RM208|||RIL|241|"lesion length"|29.5|1.13|2003
+339|rbr2|"Resistance or Tolerance"|"Blast resistance"|2|2|35545046|36028798|C)Interval|22.3|"Zhenshan 97"|"Minghui 63"|B|pha|279|SSR|||||RM213|RM208|||RIL|241|"lesion area"|29.2|9.41|2003
+340|rbr2|"Resistance or Tolerance"|"Blast resistance"|2|2|35545046|36028798|C)Interval|27.8|"Zhenshan 97"|"Minghui 63"|B|pha|279|SSR|||||RM213|RM208|||RIL|241|"lesion degree"|44.2|0.96|2003
+341|qFL1-1|"Morphological trait"|Culm/leaf|2|1|4795155|4797479|C)Interval|14.51|"Zhenshan 97"|"Minghui 63"|B|pha|281|RFLP|||||R753|RG352|G359||RIL|241|"Area of flag leaf (cm2)"|11.19|2.47|2003
+342|qSL6-1|"Morphological trait"|Culm/leaf|2|6|6927624|20691040|C)Interval|14.45|"Zhenshan 97"|"Minghui 63"|B|pha|281|RFLP|||||RZ667|RG424|||RIL|241|"Area of -2nd leaf (cm2)"|11.8|2.53|2003
+343|qTL6-1|"Morphological trait"|Culm/leaf|2|6|6927624|20691040|C)Interval|20.05|"Zhenshan 97"|"Minghui 63"|B|pha|281|RFLP|||||RZ667|RG424|||RIL|241|"Area of -3rd leaf (cm2)"|19.47|3.55|2003
+344|qLVB10-1|"Morphological trait"|Panicle/flower|2|10|16938289|18543072|C)Interval|15.59|"Zhenshan 97"|"Minghui 63"|A|pha|281|Mixture|||||C677|RM258|||RIL|241|"Number of large vascular bundles"|11.57|0.67|2003
+345|qLVBTS1-1|"Morphological trait"|Panicle/flower|2|1|36226902|39470731|C)Interval|28.27|"Zhenshan 97"|"Minghui 63"|B|pha|281|RFLP|||||C2340|C86|||RIL|241|"Number of large vascular bundles/Total spikelets per panicle"|18.58|0.09|2003
+346|qGY6-1|"Morphological trait"|Seed|2|6|6927624|20691040|C)Interval|53.71|"Zhenshan 97"|"Minghui 63"|A|pha|281|RFLP|||||RZ667|RG424|||RIL|241|"Grain yield (t/ha)"|12.18|0.51|2003
+347|qGW3-2|"Morphological trait"|Seed|2|4|22267815|22270568|C)Interval|38.08|"Zhenshan 97"|"Minghui 63"|B|pha|281|RFLP|||||RG393|RZ403|C1087||RIL|241|"""1,000-grain weight (g)"""|15.41|0.95|2003
+348|qSLTS4-1|"Morphological trait"|Culm/leaf|2|4|27441052|27441315|C)Interval|17.11|"Zhenshan 97"|"Minghui 63"|B|pha|281|Mixture|||||C2807|G102|RM241||RIL|241|"Area of -2nd leaf/Total spikelets per panicle"|13.48|0.018|2003
+349|qTLTS1-1|"Morphological trait"|Culm/leaf|2|8|11101731|11107277|C)Interval|12.22|"Zhenshan 97"|"Minghui 63"|B|pha|281|Mixture|||||G393|RM212|R2201||RIL|241|"Area of -3rd leaf/Total spikelets per panicle"|5.88|0.015|2003
+350|qLVBFL9-1|"Morphological trait"|Panicle/flower|2|9|18374393|18491736|C)Interval|14.05|"Zhenshan 97"|"Minghui 63"|B|pha|281|Mixture|||||R2638|RM257|R2638||RIL|241|"Number of large vascular bundles/Area of flag leaf"|9.77|0.024|2003
+351|qLVBSL6-1|"Morphological trait"|Panicle/flower|2|6|6927624|20691040|C)Interval|10.75|"Zhenshan 97"|"Minghui 63"|A|pha|281|RFLP|||||RZ667|RG424|||RIL|241|"Number of large vascular bundles/Area of -2nd leaf"|8.8|0.022|2003
+352|qLVBTL6-1|"Morphological trait"|Panicle/flower|2|6|6927624|20691040|C)Interval|16.61|"Zhenshan 97"|"Minghui 63"|A|pha|281|RFLP|||||RZ667|RG424|||RIL|241|"Number of large vascular bundles/Area of -3rd leaf"|16.76|0.039|2003
+353|qEML-2|"Morphological trait"|Seed|2|2|5357310|9018568|C)Interval|4.3|Asominori|IR24|A|pha|282|RFLP|||||R2344|R712|C132||RIL|165|"Embryo Length"|25.7|59|2003
+354|qEMW-2|"Morphological trait"|Seed|2|2|9013105|9018568|C)Interval|2.6|Asominori|IR24|A|pha|282|RFLP|||||R1989|XNpb227|R712||RIL|165|"Embryo Width"|13.5|17.9|2003
+355|qBMS1-2|"Physiological trait"|"Source activity"|2|1|42361507|43337260|C)Interval|4.02|IR64|Azucena|B|pha|286|RFLP|||||RZ801|RG331|||DHL|125|"Biomass plant-1"|14.1|3.83|2003
+356|qFRP4-1|"Physiological trait"|"Source activity"|2|4|17889105|20281368|C)Interval|3.4|IR64|Azucena|B|pha|286|RFLP|||||RG449|RG788|||DHL|125|"Fertility percentage"|13.1|6.41|2003
+357|qHDD3-2|"Physiological trait"|Flowering|2|3|1429107|2432615|C)Interval|8.32|IR64|Azucena|B|pha|286|Mixture|||||RG348|RM231|||DHL|125|"Heading date"|32.1|4.35|2003
+358|qHID1-2|"Morphological trait"|Seed|2|1|42361507|43337260|C)Interval|5.95|IR64|Azucena|A|pha|286|RFLP|||||RZ801|RG331|||DHL|125|"Harvest index"|20.5|0.04|2003
+359|qPHT1-1|"Morphological trait"|Dwarf|2|1|36697294|42495953|C)Interval|18.92|IR64|Azucena|B|pha|286|RFLP|||||RZ730|RG810|||DHL|125|"Plant height"|63.3|19.84|2003
+360|qTGW1-3|"Morphological trait"|Seed|2|1|42361507|43337260|C)Interval|6.22|IR64|Azucena|B|pha|286|RFLP|||||RZ801|RG331|||DHL|125|"1000 grain weight"|20.9|1.47|2003
+361|Rhz2|Others|Others|2|3|6088558|7176458|C)Interval|12.71|RD23|"O. longistaminata accession with long and strong rhizomes"|B|pha|288|SSR|||||OSR13|OSR16|||F2|228|"rhizome branching degree"|0.83||2003
+362||"Morphological trait"|Seed|1|2|27971229|35962660|C)Interval|3.99|Nipponbare|Kasalath|A|pha|290|RFLP|||||C747|C1445|C560||BIL|98|"""1,000-grain weight"""|16.5||2003
+363|Pi5(t)|"Resistance or Tolerance"|"Blast resistance"|2|9|10195130|10197474|B)Fine||"RIL (Moroberekan/CO39)"|CO39||pha|292|Mixture||2P10r|17I18-12|C1454|||||F4|2000|"blast resistance"|||2003
+364|qSD-1-2|"Physiological trait"|Germination/dormancy|2|1|23731232|23736697|d)Co-segregated|2.8|Asominori|IR24|A|pha|295|RFLP||||||||R1928|CSSL|65||15|0.2|2003
+365|qPES-3|"Morphological trait"|Panicle/flower|2|3|31082622|35089139|C)Interval|2.16|"Zaiyeqing 8"|"Jingxi 17"|A|pha|299|RFLP|||||G249|G164|||DHL|127|"Percentage of exserted stigmas"|10.7|8.6047|2003
+366|qGL-6|"Morphological trait"|Seed|2|6|24220931|25797291|C)Interval|5.1|Nipponbare|Kasalath|B|pha|301|RFLP|||||R674|R2549|||BIL|98|"Grain length"|15|0.13|2003
+367|qGW-3|"Morphological trait"|Seed|2|3|18350837|22306369|C)Interval|5|Nipponbare|Kasalath|B|pha|301|RFLP|||||G332|C80|||BIL|98|"Grain width"|12.7|0.06|2003
+368|qPGWC-6b|"Physiological trait"|"Eating quality"|2|6|6521345|6831863|C)Interval|6.4|Nipponbare|Kasalath|B|pha|301|RFLP|||||R2147|C1478|||BIL|98|"Percentages of grains with chalkiness"|16.8|13.5|2003
+369|qET-6|"Physiological trait"|"Eating quality"|2|6|6521345|6831863|C)Interval|8.6|Nipponbare|Kasalath|A|pha|301|RFLP|||||R2147|C1478|||BIL|98|"Endosperm translucency"|25.2|0.04|2003
+370|sd-1|"Morphological trait"|Dwarf|2|1|36697294|42495953|C)Interval|25.2|IR64|Azucena|A|pha|302|RFLP|||||RZ730|RG810|||DHL|135|"plant height"||14.7|2003
+371|QHd7|"Physiological trait"|Flowering|2|7|4606397|6812968|C)Interval|12.2|IR64|Azucena|B|pha|302|RFLP|||||RZ488|RG477|||DHL|135|"heading date"||4.1|2003
+372|qBM-3|"Physiological trait"|"Source activity"|2|3|9015683|12199844|C)Interval|11.88|Gui630|2428|B|pha|308|RFLP|||||RG369|RG745|||DHL|81|Biomass|16.6|1.24|2003
+373|qGY-3|"Morphological trait"|Seed|2|3|9015683|12199844|C)Interval|9.37|Gui630|2428|B|pha|308|RFLP|||||RG369|RG745|||DHL|81|"Grain yeild"|3.23|0.51|2003
+374|qSC-4|"Morphological trait"|Panicle/flower|2|4|31648882|32036068|C)Interval|6.49|Gui630|2428|B|pha|308|RFLP|||||RG776|RG476||ZG9|DHL|81|"Sink capacity"|8.6|0.37|2003
+375|qPH-2|"Morphological trait"|Dwarf|2|2|5263536|30654749|C)Interval|11.17|Gui630|2428|B|pha|308|RFLP|||||RG324|RG83|||DHL|81|"Plant height"|28.7|8.38|2003
+376|RPLD4|"Physiological trait"|"Eating quality"|2|6|20691542|25333212|C)Interval|||||pha|310|RFLP|||||RG424|RG172|||||"Phospholipase D"|||2003
+377|QFll3|"Morphological trait"|Culm/leaf|2|3|31082622|37254205|C)Interval|11.51|Lemont|Teqing|B|pha|311|RFLP|||||G249|RG418|||RIL|254|"flag leaf length"|18.7|2.63|2003
+378|QPh3a|"Morphological trait"|Dwarf|2|3|464682|698721|C)Interval|5.05|Lemont|Teqing|B|pha|311|RFLP|||||RG104|C515|||RIL|254|"plant height"|7.8|3.3|2003
+379|QSn3|"Morphological trait"|Culm/leaf|2|3|31082622|37254205|C)Interval|11.5|Lemont|Teqing|B|pha|311|RFLP|||||G249|RG418|||RIL|254|"spikelet number per panicle"|15.7|0.75|2003
+380|QalSr8.1|"Resistance or Tolerance"|"Other stress resistance"|2|8|19472018|20740963|C)Interval|3.1|IR64|"O. rufipogon (Acc 106424)"|B|pha|313|Mixture|||||RG28|RM223|||RIL|171|"stress root length"|20.8|1.915|2003
+381|QalRr8.1|"Resistance or Tolerance"|"Other stress resistance"|2|8|19472018|20740963|C)Interval|2.5|IR64|"O. rufipogon (Acc 106424)"|B|pha|313|Mixture|||||RG28|RM223|||RIL|171|"relative root length"|20.8|0.104|2003
+382||"Resistance or Tolerance"|"Drought tolerance"|1|10|21384897|21932522|C)Interval|6.8|IR62266-42-6-2|IR60080-46A|B|pha|316|RFLP|||||C809|R716|||BC3F3|150|"osmotic adjustment"|25|0.43|2003
+383|Pi32(t)|"Resistance or Tolerance"|"Blast resistance"|2|12|21477298|21481353|C)Interval|8.65|IR64|Azucena|A|pha|317|RFLP|||||||C449||DHL|105||29|0.9|2003
+384||"Resistance or Tolerance"|"Other stress resistance"|1|10|3758658|13115650|C)Interval|15.5|Nipponbare|Kasalath|A|pha|318|RFLP|||||R1933|R1629|R2174||BIL|98|"relative fresh weight"|40.8|12|2003
+385||"Resistance or Tolerance"|"Other stress resistance"|1|10|3758658|13115650|C)Interval|13.9|Nipponbare|Kasalath|A|pha|318|RFLP|||||R1933|R1629|R2174||BIL|98|"relative chlorophyll content of leaf blade"|36.7|20.4|2003
+386|dth7.1|"Physiological trait"|Flowering|2|7|5512628|5512754|C)Interval|4.95|IR64|"O. rufipogon (IRGC 105491)"|B|pha|319|SSR|||||||RM125||BC2F2|400|"Days to heading"|12.2|2.54|2003
+387|ph1.1|"Morphological trait"|Dwarf|2|1|38490966|38491404|C)Interval|64.18|IR64|"O. rufipogon (IRGC 105491)"|B|pha|319|SSR|||||||RM315||BC2F2|400|"Plant height"|73.9|32.09|2003
+388|pl1.1|"Morphological trait"|Panicle/flower|2|1|38490966|38491404|C)Interval|6.86|IR64|"O. rufipogon (IRGC 105491)"|B|pha|319|SSR|||||||RM315||BC2F2|400|"Panicle length"|9.9|0.85|2003
+389|ppl1.1|"Morphological trait"|Culm/leaf|2|1|40650780|40651278|C)Interval|6.62|IR64|"O. rufipogon (IRGC 105491)"|A|pha|319|SSR|||||||RM431||BC2F2|400|Panicles/plant|10.1|0.68|2003
+390|pss2.1|"Physiological trait"|"Source activity"|2|2|36318480|36318617|C)Interval|5.94|IR64|"O. rufipogon (IRGC 105491)"|A|pha|319|SSR|||||||RM266||BC2F2|400|"Percent seed set"|9.8|4.65|2003
+391|gw1.1|"Morphological trait"|Seed|2|1|40650780|40651278|C)Interval|7.45|IR64|"O. rufipogon (IRGC 105491)"|B|pha|319|SSR|||||||RM431||BC2F2|400|"Grain weight"|11.4|0.12|2003
+392||"Physiological trait"|"Source activity"|1|8|22562556|22562749|C)Interval|6.4|IR64|"O. rufipogon (IRGC 105491)"|A|pha|320|SSR|||||||RM210||BC2F2|285|"Grain density"|14.2|45.56|2003
+393||"Physiological trait"|"Eating quality"|1|7|5512628|5512754|C)Interval|50.89|IR64|"O. rufipogon (IRGC 105491)"|B|pha|320|SSR|||||||RM125||BC2F2|285|"Red grain"|70.4|47.09|2003
+394||"Physiological trait"|"Eating quality"|1|10|1798870|1799061|C)Interval|6.08|IR64|"O. rufipogon (IRGC 105491)"|A|pha|320|SSR|||||||RM474||BC2F2|285|"Milled rice grain"|20.5|2.73|2003
+395||"Physiological trait"|"Eating quality"|1|2|26758064|26758298|C)Interval|8.86|IR64|"O. rufipogon (IRGC 105491)"|A|pha|320|SSR|||||||RM263||BC2F2|285|"Head rice grain"|42.6|11.56|2003
+396||"Physiological trait"|"Eating quality"|1|6|1360570|1360690|C)Interval|15.78|IR64|"O. rufipogon (IRGC 105491)"|B|pha|320|SSR|||||||RM170||BC2F2|285|"Amylose content"|28.2|1.74|2003
+397|qFLL-1|"Morphological trait"|Culm/leaf|2|1|1405980|5759851|C)Interval|8.7|"Zhenshan 97B"|"Milyang 46"|B|pha|321|RFLP|||||RZ543|RG532|||RIL|247|"first leaf length"|22.7|3.3|2003
+398|qFLP-1|"Morphological trait"|Culm/leaf|2|1|1405980|5759851|C)Interval|11.8|"Zhenshan 97B"|"Milyang 46"|B|pha|321|RFLP|||||RZ543|RG532|||RIL|247|"first leaf perimeter"|32.5|9.2|2003
+399|qSLL-6|"Morphological trait"|Culm/leaf|2|6|3168374|4234201|C)Interval|7.2|"Zhenshan 97B"|"Milyang 46"|A|pha|321|SSR|||||RM204|RM217|||RIL|247|"second leaf length"|13.2|2.4|2003
+400|qTLL-6|"Morphological trait"|Culm/leaf|2|6|3168374|4234201|C)Interval|9.4|"Zhenshan 97B"|"Milyang 46"|A|pha|321|SSR|||||RM204|RM217|||RIL|247|"third leaf length"|16.5|2.5|2003
+401|qTLWR-6|"Morphological trait"|Culm/leaf|2|6|3168374|4234201|C)Interval|11.4|"Zhenshan 97B"|"Milyang 46"|A|pha|321|Mixture|||||RM204|RM217|||RIL|247|"second leaf length/width ratio"|29.6|4.3|2003
+402|Xa4|"Resistance or Tolerance"|"Bacterial blight resistance"|2|11|29841073|30349173|B)Fine||IRBB4|IR24||pha|323|RFLP||Y6855RA|R1506||||||F2|2800|"bacterial blight resistance"|||2003
+403|dth7.1|"Physiological trait"|Flowering|2|7|5512628|22532504|C)Interval|16.72|Jefferson|"O. rufipogon (IRGC 105491)"|B|pha|325|SSR|||||RM125|RM336|||BC2F2|258|"Days to heading"|25.8||2003
+404|spp3.1|"Morphological trait"|Panicle/flower|2|3|34244159|35998885|C)Interval|10.46|Jefferson|"O. rufipogon (IRGC 105491)"|B|pha|325|Mixture|||||RM130|RG1356|||BC2F2|258|"Spikelets per panicle"|15.1||2003
+405|pl1.1|"Morphological trait"|Panicle/flower|2|1|36697294|42364623|C)Interval|22.53|Jefferson|"O. rufipogon (IRGC 105491)"|B|pha|325|RFLP|||||RZ730|RZ801|||BC2F2|258|"Panicle length"|28.7||2003
+406|pss4.1|"Physiological trait"|"Source activity"|2|4|25316661|33033092|C)Interval|10.04|Jefferson|"O. rufipogon (IRGC 105491)"|A|pha|325|RFLP|||||RZ740|RZ590|||BC2F2|258|"Percent seed set"|19.9||2003
+407|gw3.1|"Morphological trait"|Seed|2|3|15401242|25890781|C)Interval|15.83|Jefferson|"O. rufipogon (IRGC 105491)"|A|pha|325|RFLP|||||RZ672|RZ474|||BC2F2|258|"Grain weight"|17.3||2003
+408|yld3.2|"Morphological trait"|Seed|2|3|34244159|35998885|C)Interval|11.56|Jefferson|"O. rufipogon (IRGC 105491)"|B|pha|325|Mixture|||||RM130|RG1356|||BC2F2|258|"Yield per plant"|16.6||2003
+409||"Resistance or Tolerance"|"Submergency tolerance"|1|9|7787900|7791369|C)Interval|17.3|IR49830|CT6241|A|pha|326|RFLP|||||||RZ698||DHL|65|"percent plant survival"|48.3|2.6|2003
+410||"Resistance or Tolerance"|"Submergency tolerance"|1|9|6582100|6586071|C)Interval|49.1|FR13A|CT6241|A|pha|326|RFLP|||||||R1164||DHL|65|"Tolerance score"|72.2|3.9|2003
+411||"Resistance or Tolerance"|"Submergency tolerance"|1|9|7787900|7791369|C)Interval|18|IR49830|CT6241|A|pha|326|RFLP|||||||RZ698||DHL|65|"Leaf senescence"|72|1.9|2003
+412||"Resistance or Tolerance"|"Submergency tolerance"|1|9|6582100|6586071|C)Interval|28.1|IR49830|CT6241|B|pha|326|RFLP|||||||R1164||RIL|172|"Total shoot elongation"|52|13.4|2003
+413||"Resistance or Tolerance"|"Submergency tolerance"|1|11|24323354|24323830|d)Co-segregated||"Jao Hom Nin"|"Khaow Dawk Mali 105"|A|pha|326|SSR||||||||RM206|F2|188|"Relative shoot elongation"|2.7|16.6|2003
+414||"Resistance or Tolerance"|"Other soil stress tolerance"|1|9|18489616|21113859|C)Interval|2.72|Asominori|IR24|B|pha|329|RFLP|||||R2638|C1263|||CSSL|66|"Leaf bronzing index"|11.16|0.11|2003
+415||"Resistance or Tolerance"|"Other soil stress tolerance"|1|7|24952921|27191049|C)Interval|5.51|Asominori|IR24|A|pha|329|RFLP|||||R1245|R1789|||CSSL|66|"Root length"|29.87|3.38|2003
+416||"Resistance or Tolerance"|"Other soil stress tolerance"|1|7|21001164|24959020|C)Interval|3.61|Asominori|IR24|A|pha|329|RFLP|||||C451|R1245|||CSSL|66|"Root dry weight"|36.34|0.07|2003
+417||Others|Others|1|7|23326303|25284593|C)Interval|9.41|"Zhong 156"|"Gumei 2"||pha|333|RFLP|||||RZ395|RZ264|||RIL|134|allelopathy|32.3|0.002|2003
+418|qLW-6|"Morphological trait"|Seed|2|6|4234080|5096867|C)Interval|2.67|Balilla|NTH|B|pha|334|SSR|||||RM217|RM111|||BC1F1|142|"Grain shape"|11.5|0.1279|2003
+419|qSPTF6|"Physiological trait"|Sterility|2|6|4234080|5096867|C)Interval|2.85|Balilla|NTH|B|pha|335|SSR|||||RM217|RM111|||BC1F1|142|"spikelet fertility"|15.2|16.414|2003
+420|qPLLN7|"Physiological trait"|Sterility|2|7|26133781|30222602|C)Interval|2.76|Balilla|NTH|B|pha|335|SSR|||||RM234|RM172|||BC1F1|142|"Pollen fertility"|12.9|12.003|2003
+421|qChll1a|"Morphological trait"|Culm/leaf|2|1|35712600|39470731|C)Interval|6.2|Nipponbare|Kasalath|A|pha|336|RFLP|||||C86|C813|||BIL|98|"Chlorophyll contents"|22|2.08|2003
+422|qH2O21|Others|Others|2|1|35712600|39470731|C)Interval|3.1|Nipponbare|Kasalath|B|pha|336|RFLP|||||C86|C813|||BIL|98|"H2O2 content"|11.3|10.15|2003
+423|Xa26(t)|"Resistance or Tolerance"|"Bacterial blight resistance"|2|11|29841073|30349173|B)Fine||"Zhenshan 97"|"Minghui 63"||pha|337|RFLP||R1506|Y6855RA||||||F2|2533|"bacterial blight resistance"|||2003
+424|qPH7-2|"Morphological trait"|Dwarf|2|7|23766521|24746292|C)Interval|11.12|"Zhong 156"|"Gumei 2"|B|pha|338|RFLP|||||RZ626|RG650|||RIL|305|"plant height"|2.95|2.27|2003
+425|qPN2|"Morphological trait"|Culm/leaf|2|2|23021123|24905734|C)Interval|5.61|"Zhong 156"|"Gumei 2"|A|pha|338|RFLP|||||RZ961|RZ401|||RIL|305|"panicle number"|4.53|0.58|2003
+426||"Resistance or Tolerance"|"Drought tolerance"|1|9|20600863|21314308|C)Interval|2.99|IR1552|Azucena|B|pha|339|RFLP|||||RG570|RG667|||RIL|96|"Seminal root length"|13.4|2.84|2003
+427||"Resistance or Tolerance"|"Drought tolerance"|1|2|23457248|23460088|C)Interval|3.22|IR1552|Azucena|A|pha|339|RFLP|||||||G45||RIL|96|"Adventitious root numbers"|18.2|0.8|2003
+428||"Resistance or Tolerance"|"Drought tolerance"|1|3|5758005|5758498|C)Interval|2.48|IR1552|Azucena|B|pha|339|RFLP|||||||RG191||RIL|96|"lateral root number"|11.7|41.83|2003
+429|PR-1|"Resistance or Tolerance"|"Blast resistance"|2|10|13330314|13329988|d)Co-segregated||SHZ-2|Texianzhan-13||pha|355|RFLP||||||||RZ892|BC3F3|144||15.8||2004
+430|oa1.1|"Resistance or Tolerance"|"Drought tolerance"|2|1|5094276|5094764|C)Interval|4.6|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|358|RFLP|||||||RG140||DHL|154|"Osmotic adjustment"|12.9|0.991|2004
+431|brt9.1|"Resistance or Tolerance"|"Drought tolerance"|2|9|1159676|1164723|C)Interval|7.74|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|358|RFLP|||||||C711||DHL|154|"Basal root thickness"|20.7|0.0849|2004
+432|rpf3.1|"Resistance or Tolerance"|"Drought tolerance"|2|3|1772253|1772098|C)Interval|6.02|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|358|RFLP|||||||CDO20||DHL|154|"Root pulling force"|16.5|14.52|2004
+433|trdw10.1|"Resistance or Tolerance"|"Drought tolerance"|2|10|9125266|12043918|C)Interval|6.88|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|358|RFLP|||||RG257|R1261|||DHL|154|"Total root dry weight"|20.7|0.5085|2004
+434|prdw12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|18152227|18160498|C)Interval|4.13|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|358|RFLP|||||||RG9||DHL|154|"Penetrated root dry weight"|12.7|0.0737|2004
+435|prt12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|18152227|18160498|C)Interval|4.62|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|358|RFLP|||||||RG9||DHL|154|"Penetrated root thichness"|14.5|0.0809|2004
+436|sd1|"Morphological trait"|Dwarf|2|1|40038301|40288357|B)Fine||sd1NIL|Shiokari||jsa|81|RFLP||RG109|RG220||||||F2|178||||1997
+437|sh4|"Morphological trait"|Panicle/flower|2|3|25876546|25884563|C)Interval|19.3|Dinalaga|SR-5|A|jsa|87|RFLP|||||C746|XNpb40|R250||F2|78|"shattering "|79.6|90.9|1998
+438||"Physiological trait"|Sterility|1|10|845399|21629868|C)Interval|8.04|"Taichung 65"|"O. glaberrima (ACC IRGC104038)"||jsa|89|RFLP|||||C701|C16|||BC2F1|99|"pollen fertility"|||1998
+439|Grh1|"Resistance or Tolerance"|"Insect resistance"|2|5|7773134|7779385|C)Interval||Norin-PL2|Kinuhikari||jsa|90|RFLP|||||||R566||BC1F1|108||||1999
+440|qNVB-1-1|"Morphological trait"|Culm/leaf|2|1|15849886|23361033|C)Interval|2.29|Asominori|IR24|B|jsa|91|RFLP|||||R2159|C178|||RIL|65|"number of vascular bundle"|14.8|0.96|1999
+441|Rf-5|"Physiological trait"|Sterility|2|10|18542704|18543072|d)Co-segregated||"Congguang 4lA"|"Milyang 23"||rgn|121|SSR||||||||RM258|BC1F1|174|"Cytoplasmic male sterility"|||1999
+442||"Resistance or Tolerance"|"Other disease resistance"|1|1|40287847|43764612|C)Interval|6.13|Moroberekan|C039||rgn|122|RFLP|||||RG109|RG236|||RIL|188|"Sheath rot resistance"|18.8|11.82|1999
+443|Ovc|"Resistance or Tolerance"|"Insect resistance"|2|6|4932906|4937483|C)Interval||Asominori|IR24||rgn|124|RFLP|||||S1520|L688|R1954||BC3F2||"whitebacked planthopper"|||1999
+444||"Resistance or Tolerance"|"Insect resistance"|1|5|8708578|8715068|C)Interval|22.5|Asominori|IR24|B|rgn|125|RFLP|||||||C309||RIL||"Green rice hopper"|80.1|-56.9|1999
+445|eui2|"Morphological trait"|Dwarf|2|10|19184232|19184413|C)Interval||XQZeB-2|AJNT||rgn|129|SSR|||||||RM304||F2|54|"Elongated uppermost internode"|||2000
+446|d11|"Morphological trait"|Dwarf|2|4|22813028|24022219|B)Fine||d11|"SL14 (Substitution line of Nipponbare/Kasalath)"||rgn|130|RFLP||R1721|R278||||||F3|3020|dwarf|||2000
+447|En-Se1|"Physiological trait"|Flowering|2|6|2770072|3826329|B)Fine||"T65WxS6 (W593A)"|"T65wxSe1S6 (W593C)"||rgn|132|RFLP||C764|R845|B174|||||F2|198|"days to heading"|||2000
+448|Lhd1(t)|"Physiological trait"|Flowering|2|6|2684129|4352379|B)Fine||"IRGC Acc. No. 105668"|"Taichung 65"||rgn|133|RFLP||R1962|S1520||||||BC4F2|254||||2000
+449||"Morphological trait"|Seed|1|12|5820051|24012742|C)Interval|5.75|"Zhenshan 97B"|"Milyang 46"||rgn|134|RFLP|||||RG543|RG81|||F2|171|"1000 grain weight"||0.85|2000
+450||"Morphological trait"|Seed|1|6|3459492|6023472|C)Interval|4.96|"Zhenshan 97B"|"Milyang 46"||rgn|134|RFLP|||||RG138|RZ398|||RIL|231|"grain yield"||-1.95|2000
+451||"Physiological trait"|"Source activity"|1|1|1039868|5759851|C)Interval|7|"Zhenshan 97B"|"Milyang 46"||rgn|134|RFLP|||||RG532|RG472|||RIL|231|"number of filled grain per paniucle"||10.3|2000
+452||"Morphological trait"|Panicle/flower|1|6|3459492|6023472|C)Interval|11.8|"Zhenshan 97B"|"Milyang 46"||rgn|134|RFLP|||||RG138|RZ398|||RIL|231|"total number of spikelets per panicle"||-13|2000
+453||"Physiological trait"|"Source activity"|1|6|3459492|6023472|C)Interval|3.4|"Zhenshan 97B"|"Milyang 46"||rgn|134|RFLP|||||RG138|RZ398|||RIL|231|"spikelet fertility"||3.01|2000
+454||"Physiological trait"|Sterility|1|10|19738642|22303661|C)Interval||"Zhenshan 97B"|"Milyang 46"||rgn|136|RFLP|||||RZ811|RG561|||RIL|227|||34|2000
+455|S23(t)|"Physiological trait"|Sterility|2|7|27188091|30322668|C)Interval||"IRGC Acc. No. 105668"|"Taichung 65"||rgn|138|RFLP|||||R1789|C213|||BC4F2|231||||2000
+456|qOVA-5-2|"Resistance or Tolerance"|"Insect resistance"|2|5|20217134|20220313|C)Interval|6.1|Asominori|IR24||rgn|142|RFLP|||||||C1268||||"whitebacked planthopper"|46.9|7.9|2000
+457|sho2|"Morphological trait"|Dwarf|2|3|18350837|22142430|B)Fine||"Sho2 heterozygote (SHO2 / sho2)"|Kasalath||rgn|144|RFLP||C80|C816||||||F2|1225||||2001
+458|An5(t)|"Morphological trait"|Panicle/flower|2|3|16196565|25360678|C)Interval||Asominori|IR24||rgn|145|RFLP|||||C1677|R19|G1316||BC3F2|48|awnless|||2001
+459|mori1|"Morphological trait"|Culm/leaf|2|3|28179047|28179157|C)Interval||"Taichung 65 MORI1 heterozygous plant"|Kasalath||rgn|147|SSR|||||RM16|RM55|OSR31||F2|109||||2001
+460|orl1|"Morphological trait"|Culm/leaf|2|4|20518311|24585809|C)Interval||"ORL1 heterozygous plants"|||rgn|149|RFLP|||||S10628|C377|||F2|50||||2001
+461|spl12(t)|Others|Others|2|2|26033535|26034238|C)Interval||IR24|Asominori||rgn|153|RFLP|||||G1314B|R399S|C920||BC4F2|83|"spotted leaf"|||2001
+462|qEhd1|"Physiological trait"|Flowering|2|10|17505263|17510657|C)Interval|10.3|"Oryza glumaepatula (IRGC 105668)introgression line"|"Taichung 65"|B|rgn|154|RFLP|||||R3217|G37|C234||BC4F2|271||50|2.1|2001
+463|qNFGP-6|"Physiological trait"|"Source activity"|2|6|8751256|12402719|C)Interval|5.8|"Zhong 156"|"Gumei 2"||rgn|157|Mixture|||||RM136|RG456|||RIL|148|"number of filled grains per panicle"|7.3|6|2001
+464|qSF-6|"Physiological trait"|"Source activity"|2|6|8751256|12402719|C)Interval|7.2|"Zhong 156"|"Gumei 2"||rgn|157|Mixture|||||RM136|RG456|||RIL|148|"spikelet fertility"|18.4|3.5|2001
+465|cl8.1|"Morphological trait"|Dwarf|2|11|20701870|20702000|C)Interval||Hwaseongbyeo|HG101|A|rgn|160|SSR|||||||RM229||F2|150|"culm length"|23.2|3|2002
+466|pms1|"Physiological trait"|Sterility|2|7|5884863|6812968|B)Fine||"Minghui 63"|32001S|B|pha|191|RFLP||RG477|R1807||||||F2|240|"phtoperiod-sensitivite genetic male sterility"|||2001
+467||"Morphological trait"|Root|1|9|1159676|11367960|C)Interval|3.43|ZYQ8|"Jingxi 17"|B|pha|195|RFLP|||||C711|G103|||DHL|127|"Maximum Root Length"|17|1.4249|2001
+468||"Morphological trait"|Root|1|6|29906429|31674997|C)Interval|4.52|ZYQ8|"Jingxi 17"|B|pha|195|RFLP|||||RG653|RG433|||DHL|127|"Root / Shoot Ratio of Dry Weight"|19.9|0.0355|2001
+469|Qpn3|"Morphological trait"|Culm/leaf|2|3|28179047|28999468|C)Interval|6.82|Lemont|Teqing|B|pha|196|Mixture|||||CDO337|OSR31|||RIL|292|"panicle number"|4.7|1.03|2001
+470|Qsnp3b|"Morphological trait"|Panicle/flower|2|3|35783061|37199035|C)Interval|20.26|Lemont|Teqing|B|pha|196|Mixture|||||RM227|RM85|||RIL|292|"spikelet number per panicle"|17.2|26.74|2001
+471|Qsbn3b|"Morphological trait"|Panicle/flower|2|3|35783061|37199035|C)Interval|19.83|Lemont|Teqing|B|pha|196|Mixture|||||RM227|RM85|||RIL|292|"Secondary branch number per panicle"|17.2|4.89|2001
+472|qASV6-1|"Physiological trait"|"Eating quality"|2|6|4844259|5096867|C)Interval|28.16|Balilla|Nantehao|A|pha|197|SSR|||||RM111|RM314|||BC1F1|142|"alkali spreading value"|87.6|3.26|2001
+473|qRf-10|"Physiological trait"|Sterility|2|10|19738642|22303661|C)Interval|19.6|"Zhenshan 97A"|"Zhenshan 97B"||pha|198|RFLP|||||RZ811|RG561|||TCF6|227|"Spikelet fertility"|43|34.3|2001
+474||"Morphological trait"|Culm/leaf|1|8|20740779|20740963|C)Interval|8.51|"O. glumaepatula RS-16"|"O. sativa BG90-2"|A|pha|199|Mixture|||||RM44|RM210|RM223||BC2F1|96|"panicle number"|30.82||2002
+475|qGR5-1|"Physiological trait"|Germination/dormancy|2|5|27056983|27486349|C)Interval|15.9|"Zhenshan 97"|"Minghui 63"|A|pha|202|Mixture|||||C246|RM26|||RIL|241|"Germination rate"|17.4|7.8|2002
+476|qTDW5-1|"Morphological trait"|Shoot/Seedling|2|5|27486247|28855659|C)Interval|16.2|"Zhenshan 97"|"Minghui 63"|A|pha|202|Mixture|||||RM26|C1447|||RIL|241|"Total dry weight"|17.4|0.39|2002
+477|qSDW1-1|"Morphological trait"|Shoot/Seedling|2|1|43765087|44751487|C)Interval|8.4|"Zhenshan 97"|"Minghui 63"|A|pha|202|Mixture|||||RG236|C112|||RIL|241|"Shoot dry weight"|9.7|0.18|2002
+478|qRDW5-1|"Morphological trait"|Shoot/Seedling|2|5|27056983|27486349|C)Interval|19.4|"Zhenshan 97"|"Minghui 63"|A|pha|202|Mixture|||||C246|RM26|||RIL|241|"Root dry weight"|24.1|0.22|2002
+479|qMRL5-1|"Morphological trait"|Shoot/Seedling|2|5|27486247|28855659|C)Interval|11|"Zhenshan 97"|"Minghui 63"|A|pha|202|Mixture|||||RM26|C1447|||RIL|241|"Max. root length"|13.1|4.87|2002
+480|qTAA3-1|"Morphological trait"|Shoot/Seedling|2|3|6027240|8462713|C)Interval|3.5|"Zhenshan 97"|"Minghui 63"|B|pha|202|Mixture|||||C316|C63|||RIL|241|"Total amylase activity"|5.5|0.02|2002
+481|qRS6-1|"Morphological trait"|Shoot/Seedling|2|6|6927624|20691040|C)Interval|6.7|"Zhenshan 97"|"Minghui 63"|B|pha|202|Mixture|||||RZ667|RG424|||RIL|241|"Reducing sugar content"|9|0.05|2002
+482|qRA5-1|"Morphological trait"|Shoot/Seedling|2|5|27056983|27486349|C)Interval|7.8|"Zhenshan 97"|"Minghui 63"|B|pha|202|Mixture|||||C246|RM26|||RIL|241|"Root activity"|13|6.99|2002
+483|qSW1-3|"Morphological trait"|Seed|2|1|4795155|5759851|C)Interval|11|"Zhenshan 97"|"Minghui 63"|A|pha|202|Mixture|||||G359|RG532|||RIL|241|"Seed weight"|7.7|0.73|2002
+484|qPL3-1|"Morphological trait"|Panicle/flower|2|3|35783061|36303203|C)Interval|7.2|"Zhenshan 97"|"Minghui 63"|B|pha|203|Mixture|||||R1925|RM227|||RIL|241|"panicle length"|8.3|0.43|2002
+485|qNPB6-1|"Morphological trait"|Panicle/flower|2|6|6521345|6927968|C)Interval|13.49|"Zhenshan 97"|"Minghui 63"|B|pha|203|Mixture|||||RZ667|R2147|||RIL|241|"number of primary branches per panicle"|19.8|0.33|2002
+486|qNSB1-1|"Morphological trait"|Panicle/flower|2|1|36226902|39470731|C)Interval|4.89|"Zhenshan 97"|"Minghui 63"|A|pha|203|Mixture|||||C86|C2340|||RIL|241|"number of secondary branches per panicle"|7.7|1.11|2002
+487|qSPBp10-2|"Morphological trait"|Panicle/flower|2|10|9888577|15136649|C)Interval|15.43|"Zhenshan 97"|"Minghui 63"|A|pha|203|Mixture|||||C1633|RM239|||RIL|241|"number of spikelets on primary branches per panicle"|24.6|2.47|2002
+488|qSSBp1-1|"Morphological trait"|Panicle/flower|2|1|36226902|39470731|C)Interval|6.3|"Zhenshan 97"|"Minghui 63"|A|pha|203|Mixture|||||C86|C2340|||RIL|241|"number of spikelets on secondary branches per panicle"|9.3|4.68|2002
+489|qLSVB10-1|"Morphological trait"|Panicle/flower|2|10|16938289|18543072|C)Interval|4.21|"Zhenshan 97"|"Minghui 63"|A|pha|203|Mixture|||||RM258|C677|||RIL|241|"No. of large stem vascular bundles "|6.5|0.52|2002
+490|qSPB2-1|"Morphological trait"|Panicle/flower|2|10|9888577|15136649|C)Interval|3.06|"Zhenshan 97"|"Minghui 63"|A|pha|203|Mixture|||||C1633|RM239|||RIL|241|"number of spikelets on primary branches per primary branches"|7|0.08|2002
+491|qSSB1-1|"Morphological trait"|Panicle/flower|2|1|4795155|5759851|C)Interval|9.69|"Zhenshan 97"|"Minghui 63"|B|pha|203|Mixture|||||RG532|G359|||RIL|241|"number of spikelets on secondary branches per secondary branches"|13.8|0.07|2002
+492|qSB-9|"Resistance or Tolerance"|"Sheath blight resistance"|2|9|15302939|18491736|C)Interval|2.26|"Zhenshan 97B"|"Minghui 63"|B|pha|204|Mixture|||||C472|R2638|||RIL|240|"Sheath blight response ratings"|10.1|0.36|2002
+493||"Morphological trait"|Root|1|2|34831427|35173313|C)Interval|6.15|IR58821|IR52561|A|pha|207|Mixture|||||RG256|RG151|||RIL|184|"Deep root ratio"|17.3|0.55|2002
+494||"Morphological trait"|Root|1|4|32246485|33717911|C)Interval|5.35|IR58821|IR52561|B|pha|207|Mixture|||||RG214|C1016|||RIL|184|"Rooting depth"||0.81|2002
+495||"Morphological trait"|Root|1|3|35998421|36303203|C)Interval|6.3|IR58821|IR52561|A|pha|207|Mixture|||||R1925|RG1356|||RIL|184|"Root thickness 0-10 cm"|13.8|0.03|2002
+496||"Morphological trait"|Root|1|3|1772253|3475138|C)Interval|7.01|CT9993|IR62266|B|pha|208|Mixture|||||CDO20|RG409|||DHL|220|"Deep root mass"|14.6|0.05|2002
+497||"Morphological trait"|Root|1|1|33178792|34810544|C)Interval|3.76|CT9993|IR62266|B|pha|208|Mixture|||||RM212|R2417|||DHL|220|"Deep root per tiller"|9.8|1.52|2002
+498||"Morphological trait"|Root|1|5|3320155|3597128|C)Interval|5.54|CT9993|IR62266|B|pha|208|Mixture|||||C119|C859|||DHL|220|"Rooting depth"|9.6|1.2|2002
+499||"Morphological trait"|Root|1|4|31648882|32246967|C)Interval|15.82|CT9993|IR62266|A|pha|208|Mixture|||||RG476|RG214|||DHL|220|"Root thickness 0-10 cm"|29.9|0.06|2002
+500||"Morphological trait"|Root|1|4|31648882|32246967|C)Interval|7.26|CT9993|IR62266|A|pha|208|Mixture|||||RG476|RG214|||DHL|220|"Root thickness 20-25 cm"|18.3|0.05|2002
+501|Hd3a|"Physiological trait"|Flowering|2|6|2839864|2912060|A)Physical||Nipponbare|Kasalath||pha|209||"""P0037G03,P0046E09,P0698G05"""||||||||BC3F4|2207|"days to heading"|||2002
+502|qSBR-3|"Resistance or Tolerance"|"Sheath blight resistance"|2|3|31082622|35089139|C)Interval|2.43|ZYQ8|"Jingxi 17"||pha|210|RFLP|||||G249|G164|||DHL|127|"Sheath blight response"|10.5|13.931|2002
+503||"Physiological trait"|"Eating quality"|1|7|25762909|26436746|C)Interval|7.01|Lemont|Teqing||pha|212|RFLP|||||CDO497|BCD855|||RIL|212|"head milled rice"|17.52|-4.6804|2002
+504|qSD-5|"Physiological trait"|Germination/dormancy|2|5|3281266|3285751|C)Interval|3.1|Nipponbare|Kasalath|A|pha|213|RFLP|||||R3166|C249|R1838||BIL|98|"Seed dormancy"|13.6|13.6|2002
+505|qLG-9|"Physiological trait"|Germination/dormancy|2|9|11366789|15020655|C)Interval|13.883|Nipponbare|Kasalath|B|pha|213|RFLP|||||G103|R1751|R79||BIL|98|"Seed longevity"|59.5|25.5|2002
+506|Hd3b|"Physiological trait"|Flowering|2|6|1370829|2501902|B)Fine||Nipponbare|Kasalath||pha|214|RFLP||R2291|R3139|R1952|||||BC4F2|595|"days to heading"|||2002
+507||"Resistance or Tolerance"|"Drought tolerance"|1|1|39466088|41444527|C)Interval|11|Bala|Azucena|A|pha|215|RFLP|||||C86|RZ14|C949||RIL|205|"leaf rolling"|20.4|0.175|2002
+508||"Resistance or Tolerance"|"Drought tolerance"|1|1|41444285|44211418|C)Interval|6.8|Bala|Azucena|A|pha|215|RFLP|||||RZ14|R117|||RIL|205|"leaf drying score"|17.6|0.141|2002
+509||"Resistance or Tolerance"|"Drought tolerance"|1|9|6582100|12413787|C)Interval|5.9|Bala|Azucena|B|pha|215|Mixture|||||R1164|R79|R1687||RIL|205|"relative water content"|25.6|2.36|2002
+510|Gm7|"Resistance or Tolerance"|"Insect resistance"|2|4|31436862|31649362|B)Fine||RP2333|Shyamala||pha|217|Mixture||RG329|RG476||||||RIL||"score of gall midge resistance"|||2002
+511|qBLASTads-2|"Resistance or Tolerance"|"Blast resistance"|2|2|36554929|36554631|C)Interval|13.8|Lemont|Teqing|A|pha|220|RFLP|||||||RG520||RIL|280|"Standard Evaluation System (SES) for rating leaf blast"|31.7|1.86|2002
+512|qBLASTa-12-2f|"Resistance or Tolerance"|"Blast resistance"|2|12|1595305|1594834|C)Interval|5.21|Lemont|Teqing|A|pha|220|RFLP|||||||RG574||RIL|280|"the area under a disdisease progress curve"|1.9|0.35|2002
+513|alk(t)|"Physiological trait"|"Eating quality"|2|6|6521345|6831863|B)Fine||Nipponbare|Kasalath||pha|222|RFLP||R2147|C1478|E11025|||||BIL|98|"granule disintegration"|||2002
+514|gel(t)|"Physiological trait"|"Eating quality"|2|6|6521345|6831863|B)Fine||Nipponbare|Kasalath||pha|222|RFLP||R2147|C1478|E11025|||||BIL|98|"starch gelatinisation"|||2002
+515|acl(t)|"Physiological trait"|"Eating quality"|2|6|6521345|6831863|B)Fine||Nipponbare|Kasalath||pha|222|RFLP||R2147|C1478|E11025|||||BIL|98|"amylopectin chain-length"|||2002
+516||"Physiological trait"|Flowering|1|8|3170545|5333855|C)Interval|4.43|"Taichung 65"|Bhadua||pha|223|RFLP|||||C166|C1121|||F2|96|"heading date"|22.9||2002
+517|qRf-10-2|"Physiological trait"|Sterility|2|10|18542704|19738291|C)Interval|39.7|"Xieqingzao B"|"B/Miyang 46"||pha|225|SSR|||||RM258|RZ811|||RIL|210|"spikelet fertility"|36.2|0.327|2002
+518|"Bph 12(t)"|"Resistance or Tolerance"|"Insect resistance"|2|4|6571336|6571458|d)Co-segregated||B14|"Taichung Native 1"||pha|227|Mixture||||||||RM261|F2|184|"score of brown planthopper"|||2002
+519|ph1|"Morphological trait"|Dwarf|2|1|41820167|43764612|C)Interval|3.7|"Zhenshan 97"|"Minghui 63"|A|pha|228|Mixture|||||RG236|C547|||F3|240|"Plant height"|6.9|3.59|2002
+520|hd7a|"Physiological trait"|Flowering|2|7|26313662|27191049|C)Interval|5.8|"Zhenshan 97"|"Minghui 63"|B|pha|228|Mixture|||||RM18|R1789|||F3|240|"Heading date"|11.1|3.77|2002
+521|qVB-1|"Morphological trait"|Culm/leaf|2|1|22256683|24776333|C)Interval|2.75|Gui630|2428|A|pha|231|RFLP|||||RZ776|RZ744|||DHL|81|"no. of vascular bundles in peduncle"|14.2|1.33|2002
+522||"Physiological trait"|"Eating quality"|1|6|8054255|9537572|C)Interval||KDML105|CT9993-5-10-1-M|B|pha|240|Mixture|||||RG64|R2171|||RIL|141|"Gel Consistency"|10.5|5.18|2000
+523||"Physiological trait"|"Eating quality"|1|6|6822037|6927968|C)Interval||KDML105|CT9993-5-10-1-M|B|pha|240|Mixture|||||C1478|RZ667|||RIL|141|"Gelatinization Temperature"|60.3|2.21|2000
+524|lpa1|"Physiological trait"|"Eating quality"|2|2|36028513|36262401|B)Fine||"ÅeKaybonnetÅf lpa1 mutant"|ZHE733||pha|241|Mixture||RM208|RM207||||||F2|137|"Seed total P"|||2000
+525|PLFDH|"Morphological trait"|Panicle/flower|2|1|42157734|42364623|C)Interval|7|Azucena|IR64||pha|243|Mixture|||||RG323|RZ801|||DHL|134|"panicle length"|16|-2.9|2000
+526||Others|Others|1|2|23457248|26356387|C)Interval|9.9|"Norin 1"|Tadikan|B|pha|255|RFLP|||||C424|G45|||F2||"shoot regeneration from mature seed-derived calli"|18.8|2.67|2000
+527|Sub1|"Resistance or Tolerance"|"Submergency tolerance"|2|9|6582100|7791369|B)Fine||IR40931-26|PI543851||pha|247|Mixture||RZ698|R1164||||||F2|178|"score of submergence tolerance"|||2000
+528|Hd7|"Physiological trait"|Flowering|2|2|29242392|35959447|C)Interval|3.2|Nipponbare|Kasalath|B|pha|248|RFLP|||||R3393|R2511|C560||BC4F3|100|"heading date"|13.8|2.4|2000
+529|S5|"Physiological trait"|Sterility|2|6|6283432|9284248|C)Interval|9.03|Nanjing11|Duiai||pha|249||||||RG213|C235|||TCF1|109|"spikelet fertility"|32.3||2000
+530||"Morphological trait"|Root|1|3|464682|1429520|C)Interval|3.21|IR64|Azucena||pha|251|Mixture|||||RG104|RG348|||DHL|109|"total root number"|14.3|31.4|2000
+531||"Morphological trait"|Root|1|3|464682|1429520|C)Interval|2.18|IR64|Azucena||pha|251|Mixture|||||RG104|RG348|||DHL|109|"root-penetration index"|8.9|6|2000
+532||"Morphological trait"|Root|1|1|36697294|42364623|C)Interval|2.61|IR64|Azucena||pha|251|Mixture|||||RZ730|RZ801|||DHL|109|"penetrated root thickness"|16.4|81|2000
+533|QKw5|"Morphological trait"|Seed|2|5|6115238|18944887|C)Interval|5.1|Lemont|Teqing|A|pha|264|RFLP|||||RG182|RG13|||F2|255|"1000 kernel weight"|16.3|1.51|1997
+534|QGn4|"Morphological trait"|Panicle/flower|2|4|32246485|34252531|C)Interval|4.93|Lemont|Teqing|B|pha|264|RFLP|||||RG143|RG214|||F2|255|"grain number per panicle"|8.8|10.2|1997
+535|QGwp4|"Physiological trait"|"Source activity"|2|4|32246485|34252531|C)Interval|3.89|Lemont|Teqing|B|pha|264|RFLP|||||RG143|RG214|||F2|255|"grain weight per panicle"|6.8|1.79|1997
+536|QSs3|"Physiological trait"|Sterility|2|3|1429107|3215610|C)Interval|5.4|Lemont|Teqing|A|pha|265|RFLP|||||RG348|RG944|||F2|255|"Spikelet sterility"|11.7|3.9|1997
+537||"Resistance or Tolerance"|"Drought tolerance"|1|9|19559036|19562133|d)Co-segregated||IR20|63-83|B|pha|269|Mixture||||||||S1057|F2|79|"ABA accumulation"||109.7|1997
+538|yd1a|"Morphological trait"|Seed|2|1|196647|1891262|C)Interval|3.5|"Zhenshan 97"|"Minghui 63"|B|pha|271|Mixture|||||R753|C161|||F2|250|"""Yield, t/ha"""|9.7|20.3|1997
+539|gp1a|"Morphological trait"|Panicle/flower|2|1|1887524|4635870|C)Interval|6|"Zhenshan 97"|"Minghui 63"|B|pha|271|Mixture|||||RM1|R753|||F2|250|Grains/panicle|15.5|28.1|1997
+540|gw3a|"Morphological trait"|Seed|2|3|23850041|25360678|C)Interval|11.4|"Zhenshan 97"|"Minghui 63"|B|pha|271|Mixture|||||R19|RZ403|||F2|250|"""Grain weight, g/1,000"""|23.6|21.8|1997
+541|qCTB2a|"Resistance or Tolerance"|"Cold tolerance"|2|2|11418741|12245613|C)Interval|6|M-202|IR50|A|pha|273|SSR|||||RM324|RM301|||RIL|191|"Spikelet fertility"|16.8|5.83|2003
+542|qCTS8-2a|"Resistance or Tolerance"|"Cold tolerance"|2|8|20740779|21233221|C)Interval|5.29|M-202|IR50|B|pha|274|SSR|||||RM223|RM284|||RIL|191|"Cold-induced wilting tolerance"|12.7|0.55|2003
+543|qCTS4-1|"Resistance or Tolerance"|"Cold tolerance"|2|4|679929|6571458|C)Interval|8.36|M-202|IR50|A|pha|274|SSR|||||RM335|RM261|||RIL|191|"Cold tolerance"|20.8|0.6|2003
+544|qCTS8-2b|"Resistance or Tolerance"|"Cold tolerance"|2|8|20740779|21233221|C)Interval|4.41|M-202|IR50|B|pha|274|SSR|||||RM223|RM284|||RIL|191|"Cold-induced necrosis tolerance"|12.1|0.95|2003
+545|qCTS4-3|"Resistance or Tolerance"|"Cold tolerance"|2|4|27441052|29644770|C)Interval|5.3|M-202|IR50|A|pha|274|SSR|||||RM241|RM317|||RIL|191|"Cold-induced yellowing tolerance"|14.2|0.5|2003
+546|rwc9.1|"Resistance or Tolerance"|"Drought tolerance"|2|9|21313734|22021406|C)Interval|8.59|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|275|Mixture|||||RM215|RG667|||DHL|154|"Relative water content"|58.8|7.73|2003
+547|dhs9.1|"Resistance or Tolerance"|"Drought tolerance"|2|9|20828464|21314308|C)Interval|4.48|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|275|Mixture|||||RG667|RM201|||DHL|154|"Days to heading-stress"|23.8|1.8|2003
+548|dhc9.1|"Resistance or Tolerance"|"Drought tolerance"|2|9|21313734|22021406|C)Interval|3.6|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|275|Mixture|||||RM215|RG667|||DHL|154|"Days to heading-control"|19.5|1.98|2003
+549|phs4.1|"Resistance or Tolerance"|"Drought tolerance"|2|4|31648882|32246967|C)Interval|7.82|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|275|Mixture|||||RG476|RG214|||DHL|154|"Plant height-stress"|14.4|4.91|2003
+550|phc4.1|"Resistance or Tolerance"|"Drought tolerance"|2|4|31648882|32246967|C)Interval|8.97|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|275|Mixture|||||RG476|RG214|||DHL|154|"Plant height-control"|16|3.92|2003
+551|bmc4.1|"Resistance or Tolerance"|"Drought tolerance"|2|4|35277669|35283358|C)Interval|6.75|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|275|Mixture|||||RG620|C107|||DHL|154|Biomass-control|15.4|54.69|2003
+552|gpps4.1|"Resistance or Tolerance"|"Drought tolerance"|2|4|32246485|35283358|C)Interval|3.58|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|275|Mixture|||||RG214|RG620|||DHL|154|"Grains per panicle-stress"|13.6|4.09|2003
+553|Spk(t)|"Morphological trait"|Culm/leaf|2|9|21109960|22690613|B)Fine||Nipponbare|Kasalath||jsa|80|RFLP||C1263|C506|c570|||||BC3F2|50|"spread stub"|||1997
+554|hwd1|"Physiological trait"|Lethality|2|10|845399|1935940|B)Fine||Co1.No.15|W26||rgn|85|RFLP||C701|R2309||||||F2|225|"hybrid breakdown"|||1997
+555|hwd2|"Physiological trait"|Lethality|2|7|6841433|15871629|B)Fine||W26|"Siborunauli 1"||rgn|85|RFLP||C67A|R1788|ÇªÇÃëº8Ç¬Ç∆ã§ï™ó£|||||F2|92|"hybrid breakdown"|||1997
+556|qDLA-12-3|"Resistance or Tolerance"|"Blast resistance"|2|12|2427030|24823647|C)Interval|5.34|IR64|Azucena||rgn|94|Mixture|||||RG463|RZ816|||DHL|114|"field resistance to leaf blast"|17.5||1998
+557|qNBL-5|"Resistance or Tolerance"|"Blast resistance"|2|5|19614740|27264019|C)Interval|2.42|IR64|Azucena||rgn|94|Mixture|||||RZ649|RZ225|||DHL|114|"field resistance to neck blast"|11.1||1998
+558|xa13|"Resistance or Tolerance"|"Bacterial blight resistance"|2|8|26865987|27199300|B)Fine||IR65598-112-2|IRBB13||rgn|96|RFLP||RG136|R2027||||||F2|230|"bacterial blight resistance "|||1998
+559|qPSP-6|"Physiological trait"|Flowering|2|6|6720901|8066362|C)Interval||"O. rufipogon(W1944)"|Pei-Khu||rgn|98|Mixture|||||R2171|RZ144|||RIL|118|"photoperiod sensitive phase"|8.4||1998
+560|Ef(t)|"Physiological trait"|Flowering|2|10|17684573|17686581|B)Fine||"Taichung 65"|"O. glaberrima (ACC IRGC104038)"||rgn|100|RFLP||C234|G37|C1369|||||BC3F5|147|"heading date"|||1998
+561|Ta1|"Morphological trait"|Culm/leaf|2|9|19168716|21314308|C)Interval|32.3|Lemont|Teqing|B|rgn|103|RFLP|||||RZ228|RG667|||F2|255|"""tiller, leaf and flag leaf angles"""|47.5||1998
+562||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42157734|42364623|C)Interval|6.93|IR1552|Azucena|B|rgn|111|Mixture|||||RZ801|RG323|||RIL|150|"Relative root length after 2 weeks stress"|19|0.08|1999
+563||"Resistance or Tolerance"|"Other soil stress tolerance"|1|12|18152227|19802220|C)Interval|6.82|IR1552|Azucena|B|rgn|111|Mixture|||||RG9|RG457|||RIL|150|"Relative root length after 4 weeks stress"|20|0.07|1999
+564||"Resistance or Tolerance"|"Other soil stress tolerance"|1|12|18152227|19802220|C)Interval|4.89|IR1552|Azucena|B|rgn|111|Mixture|||||RG9|RG457|||RIL|150|"Conditional Relative root length (4-week/2-week)"|18|0.05|1999
+565|QRl7|"Morphological trait"|Culm/leaf|2|7|18481047|25763098|C)Interval|4.6|Lemont|Teqing|A|rgn|112|Mixture|||||CDO497|CDO385|||RIL|188|"leaf rolling"|7.5|0.16|1999
+566|qLTG-5|"Resistance or Tolerance"|"Cold tolerance"|2|5|10787462|18944887|C)Interval|4.22|"Milyang 23"|"Milyang 23"||rgn|113|Mixture|||||RM249|RG13|||BC1F1|98|"germinability at low temperature (15Åé)"|15.6||1999
+567|hsa2(t)|"Physiological trait"|Sterility|2|8|8921661|16630704|B)Fine||Asominori|IR24||rgn|117|RFLP||G104|C347||||||BC3F3|99|"F2 sterility"|||1999
+568|Sh(t)|"Morphological trait"|Panicle/flower|2|4|34553977|35281498|B)Fine||"O. glumaepatula"|"Taichung 65"||rgn|120|RFLP||R1427|C107||||||BC4F1|43|"seed shattering"|||1999
+569|qml5-4|"Morphological trait"|Shoot/Seedling|2|5|26972040|27060414|C)Interval|4.37|"Zhenshan 97B"|"Milyang 46"|B|pha|151|Mixture|||||C246|RM274|||RIL|247|"mesocotyl length"|11.4|0.172|2005
+570|qSB-2|"Resistance or Tolerance"|"Sheath blight resistance"|2|2|23457248|30711734|C)Interval|4.3|Lemont|Teqing|A|pha|152|RFLP|||||G45|RZ273|||RIL|300|"resistance to sheath blight (SB) disease"|7|0.67|2005
+571|qCA-2|"Resistance or Tolerance"|"Blast resistance"|2|2|22631410|23025244|C)Interval|6.8|Zhong158|"Gumei 2"|B|pha|153|RFLP|||||RG25|RZ961|||RIL|304|"parial resistance to neck blast"|17.1|66.2|2005
+572|pf12|"Physiological trait"|Sterility|2|12|2432289|3185629|C)Interval|5.52|02428/Nanjing15|Balilla||pha|158|SSR|||||RM19|RM247|||Çe1||"Pollen fertility"|12.5|20.78|2005
+573|spf6|"Physiological trait"|Sterility|2|6|6283432|7177183|C)Interval|5.14|02428/Nanjing12|Balilla||pha|158|SSR|||||RG213|RM557|||Çe1||"Spikelet fertility"|11.01|17.64|2005
+574||"Morphological trait"|Panicle/flower|1|4|29158445|31356186|C)Interval|5.05|"Milyang 23"|Akihikari|B|pha|159|SSR|||||"RM303 "|RM255|||RIL|155|"Spikelet number per panicle(35 d after heading)"|11.6|10.35|2005
+575|6.3|"Resistance or Tolerance"|"Blast resistance"|2|6|27586549|27586198|d)Co-segregated|5.8|Bala|Azucena|A|pha|160|RFLP||||||||RZ682|RIL|205|"disease severity"|17|-0.47|2005
+576|1.2|"Resistance or Tolerance"|"Blast resistance"|2|1|31203835|31206299|d)Co-segregated|5.9|Bala|Azucena|A|pha|160|RFLP||||||||C1370|RIL|205|"Lesion area"|13.2|-0.2|2005
+577|10.2|"Resistance or Tolerance"|"Blast resistance"|2|10|21624625|21629868|d)Co-segregated|4|Bala|Azucena|B|pha|160|RFLP||||||||C16|RIL|205|"dry weight per plant"|7.8|0.024|2005
+578|12.1|"Resistance or Tolerance"|"Blast resistance"|2|10|3758658|3760625|d)Co-segregated|4.8|Bala|Azucena|A|pha|160|RFLP||||||||R1933|RIL|205|"number of lesions per leaf"|16.1|-0.76|2005
+579|4.2|"Resistance or Tolerance"|"Blast resistance"|2|4|17889105|17888842|d)Co-segregated|5.1|Bala|Azucena|B|pha|160|RFLP||||||||RG449|RIL|205|"plant carbon  concentration"|11.2|0.65|2005
+580|12.1|"Resistance or Tolerance"|"Blast resistance"|2|10|3758658|3760625|d)Co-segregated|5.8|Bala|Azucena|B|pha|160|RFLP||||||||R1933|RIL|205|"plant nitrogen concentration"|13.9|0.145|2005
+581|ÇëSÇa-9|"Resistance or Tolerance"|"Sheath blight resistance"|2|9|23107112|23552932|C)Interval|3|Teqing|Lemont|B|pha|161|SSR|||||RM205|RM245|||F2|115|"sheath blight resistance"|11.8|0.7968|2005
+582|D11|"Morphological trait"|Dwarf|2|4|23865707|23870132|A)Physical||d11|SL14(KasalathSLchr4)||pha|162|Others|AB158759||||||||F2|0|"dwarf mutant"|||2005
+583|qSD-3|"Physiological trait"|Germination/dormancy|2|3|9880148|9880322|d)Co-segregated|3.6|IR50/Tatsumimochi|Miyukimochi|B|pha|165|SSR||||||||RM7|"""F1(three-way cross),F2"""|166|"seed dormancy(germination rate)"|15|20.1|2005
+584|qGL-3|"Morphological trait"|Seed|2|3|16196565|25360678|C)Interval|6.4625|Asominori|IR29|B|pha|166|RFLP|||||R19|C1677|||CSSL|66|"grain length"|32.7625|0.2575|2005
+585|qLWR-3|"Morphological trait"|Seed|2|3|16196565|25360678|C)Interval|3.925|Asominori|IR31|B|pha|166|RFLP|||||R19|C1677|||CSSL|66|"grain length-width ratio"|20.6|0.1475|2005
+586|qSS-2|"Physiological trait"|Sterility|2|2|12245463|26758298|C)Interval|2.22|CPSLO17|W207-2|A|pha|167|SSR|||||RM301|RM263|||F2|157|"spikelet fertility"|6.3|6.3|2005
+587|qDLA8|"Resistance or Tolerance"|"Blast resistance"|2|8|4377457|4377597|d)Co-segregated||"Zhong 156"|"Gumei 2"|B|pha|170|SSR||||||||RM25|RIL|304|"percentage diseased leaf area against isolate Ca89 "|7.7|0.43|2005
+588|qLN8|"Resistance or Tolerance"|"Blast resistance"|2|8|4377457|4377597|d)Co-segregated||"Zhong 156"|"Gumei 2"|B|pha|170|SSR||||||||RM25|RIL|304|"lesion number against isolate Ca89 "|7.4|0.52|2005
+589|qLS3|"Resistance or Tolerance"|"Blast resistance"|2|3|10000519|10000636|d)Co-segregated||"Zhong 156"|"Gumei 2"|B|pha|170|SSR||||||||RM251|RIL|304|"lesion size against isolate Ca89 "|6.8|0.34|2005
+590|qLS8|"Resistance or Tolerance"|"Blast resistance"|2|8|4377457|4377597|d)Co-segregated||"Zhong 156"|"Gumei 2"|B|pha|170|SSR||||||||RM25|RIL|304|"lesion sizea gainst isolate Ca89 "|6.1|0.28|2005
+591|qDLA2|"Resistance or Tolerance"|"Blast resistance"|2|2|6945662|6945420|d)Co-segregated||"Zhong 156"|"Gumei 2"|B|pha|170|RFLP||||||||RZ599|RIL|304|"percentage diseased leaf area against isolate C923-39"|10.7|0.85|2005
+592|qLN1-1|"Resistance or Tolerance"|"Blast resistance"|2|5|2760002|2760413|d)Co-segregated||"Zhong 156"|"Gumei 2"|A|pha|170|RFLP||||||||RG313|RIL|304|"lesion number against isolate C923-39"|25.9|13.97|2005
+593|qDLA3-1|"Resistance or Tolerance"|"Blast resistance"|2|3|1498936|1499106|d)Co-segregated||"Zhong 156"|"Gumei 2"|B|pha|170|SSR||||||||RM22|RIL|304|"percentage diseased leaf area at blast nursery"|28.6|3.16|2005
+594|QHd10b|"Resistance or Tolerance"|"Drought tolerance"|2|10|22769959|22770151|d)Co-segregated||Teqing|Lemont|A|pha|172|SSR||||||||RM228|B2F5-B4F3|254|"heading date"||2.3|2005
+595|QGy11a|"Resistance or Tolerance"|"Drought tolerance"|2|11|2827521|2827670|d)Co-segregated||Teqing|Lemont|A|pha|172|SSR||||||||RM332|B2F5-B4F3|254|"grain yield"||129.6|2005
+596|QHd8|"Resistance or Tolerance"|"Drought tolerance"|2|8|6762708|6762895|d)Co-segregated||Teqing|Lemont|B|pha|172|SSR||||||||RM72|B2F5-B4F3|254|"heading date difference between irrigated and water-stress conditions"||1.7|2005
+597|QGy11a|"Resistance or Tolerance"|"Drought tolerance"|2|11|2827521|2827670|d)Co-segregated||Teqing|Lemont|B|pha|172|SSR||||||||RM332|B2F5-B4F3|254|"grain yield difference between irrigated and water-stress conditions"||134.5|2005
+598|qLTSPS2|"Physiological trait"|Sterility|2|2|27533328|32389986|C)Interval|2.39|3037|2428||pha|173|SSR|||||RM1385|RM240|||F2|157|"low-temperature-sensitive pollen sterility"|15.6|0.021|2005
+599||"Resistance or Tolerance"|"Drought tolerance"|1|8|6762708|12383755|C)Interval|4.5|"Zhenshan 97"|IRAT109|A|pha|176|SSR|||||RM72|RM331|||RIL|180|"delay in flowering time by drought (DFT)"|10.38|1.58|2005
+600||"Resistance or Tolerance"|"Drought tolerance"|1|6|1360570|3168547|C)Interval|4.3|"Zhenshan 97"|IRAT109|B|pha|176|SSR|||||RM170|RM204|||RIL|180|"leaf rolling score (LRS)"|11.38|0.26|2005
+601||"Resistance or Tolerance"|"Drought tolerance"|1|10|15737354|17165630|C)Interval|4.5|"Zhenshan 97"|IRAT109|B|pha|176|SSR|||||RM596|RM271|||RIL|180|"drought respond index (DRI)"|15.49|0.5|2005
+602||"Resistance or Tolerance"|"Drought tolerance"|1|10|22769959|22957121|C)Interval|3.7|"Zhenshan 97"|IRAT109|B|pha|176|SSR|||||RM496|RM228|||RIL|180|"relative yield (RY)"|32.06|11.74|2005
+603||"Resistance or Tolerance"|"Drought tolerance"|1|8|522421|2114959|C)Interval|2.7|"Zhenshan 97"|IRAT109|A|pha|176|SSR|||||RM407|RM38|||RIL|180|"relative spikelet fertility (RSF)"|15.45|9.91|2005
+604||"Resistance or Tolerance"|"Drought tolerance"|1|1|20666582|25629404|C)Interval|4.8|"Zhenshan 97"|IRAT109|A|pha|176|SSR|||||RM129|RM5|||RIL|180|"canopy temperature (CT)"|14.14|0.26|2005
+605|qSV-3-1|"Morphological trait"|Shoot/Seedling|2|3|18350854|28859103|C)Interval|2.6|Lemont|Teqing|A|pha|177|SSR|||||RM156|RM168|||RIL|282|"dry weight"|10.3|0.07|2005
+606|qSV-3-2|"Physiological trait"|Germination/dormancy|2|3|35783061|37199035|C)Interval|5.4|Lemont|Teqing|B|pha|177|SSR|||||RM227|RM85|||RIL|282|"germination rate"|14.7|8.36|2005
+607||"Morphological trait"|Shoot/Seedling|1|6|1764586|3416728|C)Interval|4.4|Lemont|Teqing|B|pha|177|SSR|||||OSR19|RM225|||RIL|282|"root length"|7.2|2.22|2005
+608|qSV-3-1|"Morphological trait"|Shoot/Seedling|2|3|18350854|28859103|C)Interval|3.8|Lemont|Teqing|A|pha|177|SSR|||||RM156|RM168|||RIL|282|"shoot length"|6.3|0.82|2005
+609|qGY-2b|"Resistance or Tolerance"|"Drought tolerance"|2|2|27557550|29160460|C)Interval|4.23|"Zhenshan 97B"|IRAT109|B|pha|179|SSR|||||RM526|RM525|||RIL|187|"grain yield per plant"|5.05|0.5|2005
+610|qPN-4b|"Resistance or Tolerance"|"Drought tolerance"|2|4|29644621|31356186|C)Interval|7.48|"Zhenshan 97B"|IRAT109|A|pha|179|SSR|||||RM317|RM255|||RIL|187|"panicle number per hill"|9.17|0.44|2005
+611|qSN-4b|"Resistance or Tolerance"|"Drought tolerance"|2|4|31356068|33083265|C)Interval|13.2|"Zhenshan 97B"|IRAT109|B|pha|179|SSR|||||RM255|RM349|||RIL|187|"spikelet number per panicle"|12.85|10.82|2005
+612|qTGW-2a|"Resistance or Tolerance"|"Drought tolerance"|2|2|27557550|29160460|C)Interval|9.02|"Zhenshan 97B"|IRAT109|B|pha|179|SSR|||||RM526|RM525|||RIL|187|"""1,000-grain weight"""|9.66|0.07|2005
+613||"Resistance or Tolerance"|"Blast resistance"|1|1|22256683|22256222|d)Co-segregated|22.5|Moroberekan|" C039"|B|pha|182|RFLP||||||||RZ744|RIL|281|"lesion number in polycyclic  test"|58.8|0.46|1994
+614||"Resistance or Tolerance"|"Blast resistance"|1|4|32246485|32246967|d)Co-segregated|13.7|Moroberekan|" C039"|B|pha|182|RFLP||||||||RG214|RIL|281|"diseased leaf area (DLA) "||49.8|1994
+615||"Resistance or Tolerance"|"Drought tolerance"|1|7|1570817|2350360|C)Interval|5.2|Moroberekan|" C039"|A|pha|184|RFLP|||||"RG528 "|RG128|||RIL|52|"the lethal osmotic potential Å@"|36|1.57|1996
+616||"Resistance or Tolerance"|"Drought tolerance"|1|8|17528232|25684949|C)Interval|4.7|Moroberekan|" C039"|B|pha|184|RFLP|||||"RG978 "|"RZ66 "|||RIL|52|"osmotic adjustment at 70 % RWC "|32|0.6|1996
+617|qSPN-6|"Morphological trait"|Panicle/flower|2|6|9282143|17933378|C)Interval|3|ZYQ8|"Jingxi 17"|A|pha|185|RFLP|||||C235|G294|||RIL|107|"Number of spikelets per panicle"|15.3|-43.3|2001
+618|qDTH-7|"Physiological trait"|Flowering|2|7|27391198|29608218|C)Interval|28|Hayamasari|"Italica Livorno"|B|jsa|41|Mixture|||||S10832|RM1306|||BIL|122|"day to heading"|64.5|7.1|2005
+619|qBFR11|"Resistance or Tolerance"|"Blast resistance"|2|11|20100938|21478317|C)Interval|14.7|"Norin 12"|Koshihikari|B|jsa|50|SSR|||||RM209|RM5349|||Çe3|136|"field resistance"|39.2|1.14|2006
+620|qHD6|"Physiological trait"|Flowering|2|6|483009|1562787|C)Interval|4.26|Moritawase|Koshihikari|B|jsa|52|SSR|||||RM8120|RM1369|||RIL|92|"Heading date"|13.9|2.71|2006
+621|qPC9|"Physiological trait"|"Eating quality"|2|9|1119992|12373242|C)Interval|3.24|Moritawase|Koshihikari|B|jsa|52|SSR|||||RM4413|RM1896|||RIL|92|"Protein content"|11.4|0.17|2006
+622|qAC9|"Physiological trait"|"Eating quality"|2|9|1119992|15903077|C)Interval|3.52|Moritawase|Koshihikari|A|jsa|52|SSR|||||RM4413|RM5122|||RIL|92|"Amylose content"|11.6|0.37|2006
+623||"Physiological trait"|"Eating quality"|1|2|23191143|32334580|C)Interval|14.91|Koshihikari|Akihikari|B|jsa|55|RFLP|||||C621|C370|||DHL|212|"Amylose content"|37.1|-1.99|2006
+624||"Morphological trait"|Shoot/Seedling|1|3|16840989|16841409|d)Co-segregated|6|Labelle|"Black Gora"|A|rgn|41|RFLP||||||||RZ452|F2|204|Shoot-length|15.5||1994
+625||"Morphological trait"|Shoot/Seedling|1|3|29580203|29580503|d)Co-segregated|5.31|Labelle|"Black Gora"|B|rgn|41|RFLP||||||||RZ448|F2|204|Coleoptile-length|25.1||1994
+626||"Morphological trait"|Shoot/Seedling|1|3|23850041|23850248|d)Co-segregated|4.73|Labelle|"Black Gora"|B|rgn|41|RFLP||||||||RZ403|F2|204|Mesocotyl-length|17.5||1994
+627|"Pi-2(t) "|"Resistance or Tolerance"|"Blast resistance"|2|6|9536259|11765132|B)Fine||Co39|C101A51||rgn|42|RFLP||RZ612|RG64||||||F2|120|"infection type (R/S)"|||1994
+628|"Pi-4(t) "|"Resistance or Tolerance"|"Blast resistance"|2|12|1548039|5758733|B)Fine||Co39|C101PKT||rgn|42|RFLP||RG241|RZ397||||||F3|80|"infection type (R/S)"|||1994
+629||"Physiological trait"|"Source activity"|1|6|4896312|4899565|d)Co-segregated||Palawan|IR42|B|rgn|44|RFLP||||||||"RZ588 "|F2|231|"atom  % 15N excess"|||1994
+630|Sub-1(t)|"Resistance or Tolerance"|"Submergency tolerance"|2|9|4357987|7791369|C)Interval||IR40931-26-3-3-5|PI543851||rgn|62|RFLP|||||C1232|RZ698|||Çe3||"submergence tolerance"|69||1995
+631|np4|"Morphological trait"|Panicle/flower|2|4|32246485|34252531|C)Interval|9.68|"Waiyin 2"|CB|A|rgn|65|RFLP|||||RG143|RG214|||F2|171|"Number of panicles per plant"|26.1|2.92|1995
+632|ng1|"Morphological trait"|Panicle/flower|2|1|34264553|36658883|C)Interval|4.41|"Tesanai 2"|CB|A|rgn|65|RFLP|||||RG374|RG394|||F2|171|"Number of grains per panicle"|17.2|1.39|1995
+633|sf1|"Physiological trait"|"Source activity"|2|1|34264553|36658883|C)Interval|3.86|"Tesanai 2"|CB|A|rgn|65|RFLP|||||RG374|RG394|||F2|171|"Spikelet fertility"|12.2|5.1|1995
+634|tgwt4|"Morphological trait"|Seed|2|4|32246485|34252531|C)Interval|2.74|"Tesanai 2"|CB|A|rgn|65|RFLP|||||RG143|RG214|||F2|171|"1000-grain weight"|8.5|1.39|1995
+635|nfb8|"Morphological trait"|Panicle/flower|2|8|5421262|7568613|C)Interval|6.49|"Waiyin 2"|CB|B|rgn|65|RFLP|||||RG108|RZ562|||F2|171|"Number of first branches per panicle"|20.9|1.91|1995
+636|gwt4a|"Morphological trait"|Seed|2|4|8667374|20281368|C)Interval|4.67|"Waiyin 2"|CB|A|rgn|65|RFLP|||||RG788|RG190|||F2|171|"Grain weight per plant"|22.3|8.85|1995
+637|tns6|"Morphological trait"|Panicle/flower|2|6|6023974|9537572|C)Interval|5.01|"Tesanai 2"|CB|A|rgn|65|RFLP|||||RG138|RG64|||F2|171|"Total number of spikelets  per panicle"|13.1|38.04|1995
+638|sd6|"Morphological trait"|Panicle/flower|2|6|6023974|9537572|C)Interval|5.15|"Tesanai 2"|CB|A|rgn|65|RFLP|||||RG138|RG64|||F2|171|"Spikelet density"|13.3|14.62|1995
+639|hd8|"Physiological trait"|Flowering|2|8|5421262|17528755|C)Interval|7.2|"Tesanai 2"|CB|B|rgn|66|RFLP|||||RZ562|RG978|||F2|171|"heading date"|23.1|6.25|1995
+640||"Morphological trait"|Shoot/Seedling|1|6|28605507|28610782|d)Co-segregated|2.59|Surjumkhi|"Dao Ren Qiao"||rgn|71|RFLP||||||||G1091|F3|96|"mesocotyl length"|11.7||1996
+641||"Morphological trait"|Seed|1|5|18944261|21678878|C)Interval||Tesanai|CB|A|rgn|72|RFLP|||||RG13|RG573|||"""Çe2,F3"""|161|"1000-grain  weight (TGW)"||0.72|1996
+642||"Physiological trait"|"Source activity"|1|8|25681306|27825769|C)Interval||Tesanai|CB|A|rgn|72|RFLP|||||RZ66|RG598|||"""Çe2,F3"""|161|"filled grain weight per plant (GYD)"||7.96|1996
+643||"Physiological trait"|"Source activity"|1|1|34067651|36658883|C)Interval||Tesanai|CB|A|rgn|72|RFLP|||||RG374|RG690|||"""Çe2,F3"""|161|"number of filled grain per panicle (NFG)"||1.39|1996
+644||"Morphological trait"|Panicle/flower|1|4|32246485|35283358|C)Interval||Tesanai|CB|A|rgn|72|RFLP|||||RG620|RG214|||"""Çe2,F3"""|161|"number of productive panicles per plant (PAN)"||2.92|1996
+645||"Morphological trait"|Panicle/flower|1|4|11283287|20281368|C)Interval||Tesanai|CB|B|rgn|72|RFLP|||||RG788|RZ69|||"""Çe2,F3"""|161|"panicle length (PAL)"||1.17|1996
+646|APAGE1|"Physiological trait"|"Eating quality"|2|5|22309016|25730022|B)Fine||"Indica cultivar"|"O. rufipogon"||rgn|80|RFLP||C43|RG480||||||RIL|118|"Salt-soluble storage proteins"|||1997
+647|Hd4|"Physiological trait"|Flowering|2|7|8358800|11394315|B)Fine||Nipponbare|"NIL (Hd4)"||jsa|21|RFLP||R46|C39|R610|||||F2|192|"days to heading"|||2003
+648|Hd5|"Physiological trait"|Flowering|2|8|4444681|4446617|B)Fine||Nipponbare|"NIL (Hd5)"||jsa|21|RFLP||C166|R902|R2976|||||F2|150|"days to heading"|||2003
+649|qAC-6|"Physiological trait"|"Eating quality"|2|6|642688|2687409|C)Interval|43.5|Nipponbare|Kasalath|A|jsa|24|RFLP|||||R2869|R1962|||BIL|98|"amylose content"|80.7|-4.4|2003
+650|clr9|"Resistance or Tolerance"|"Cold tolerance"|2|9|2658483|16317550|C)Interval|3.3|"Milyang 23"|"Hapcheonaengmi 3"|B|jsa|25|SSR|||||RM285|RM434|||RIL|80|"ratio of culm length reduction"|11.5|-2.1|2004
+651|fer11|"Resistance or Tolerance"|"Cold tolerance"|2|11|4830321|8107623|C)Interval|2.7|"Milyang 23"|"Hapcheonaengmi 3"|B|jsa|25|SSR|||||RM3701|RM552|||RIL|80|"spikelet fertility"|12.9|-9.7|2004
+652|dc11|"Resistance or Tolerance"|"Cold tolerance"|2|11|4830321|6171879|C)Interval|2.9|"Milyang 23"|"Hapcheonaengmi 3"|B|jsa|25|SSR|||||RM552|RM3137|||RIL|80|discoloration|17.8|1.1|2004
+653||"Resistance or Tolerance"|"Insect resistance"|1|2|31163247|31166188|d)Co-segregated|6.6|Nipponbare|URK72|A|jsa|26|RFLP||||||||C601|F2|120|"rice stripe resistance"|22.5|16.2|2004
+654|qSB-3|"Resistance or Tolerance"|"Sheath blight resistance"|2|3|29542638|29542992|d)Co-segregated|2.8|Hinohikari|WSS2||jsa|27|SSR||||||||RM3856|BC1F1|60|"sheath blight resistance"|19.4||2004
+655|qPH1-4-1|"Morphological trait"|Dwarf|2|4|22859833|27441315|C)Interval|9.05|"Zhenshan 97"|"Minghui 63"|A|jsa|29|Mixture|||||RM241|C2807|||RIL|241|"plant height at 35DAT"|13.94|-1.74|2004
+656|qPH2-6-1|"Morphological trait"|Dwarf|2|6|6927624|20691040|C)Interval|22.51|"Zhenshan 97"|"Minghui 63"|A|jsa|29|RFLP|||||RG424|RZ667|||RIL|241|"plant height at maturity"|38.4|6.9|2004
+657|qTN2-6-1|"Morphological trait"|Culm/leaf|2|6|6927624|20691040|C)Interval|21.93|"Zhenshan 97"|"Minghui 63"|A|jsa|29|RFLP|||||RG424|RZ667|||RIL|241|"tiller number at maturity"|32.08|-0.96|2004
+658|qHD-6-1|"Physiological trait"|Flowering|2|6|6927624|20691040|C)Interval|3|"Zhenshan 97"|"Minghui 63"|B|jsa|29|RFLP|||||RG424|RZ667|||RIL|241|"heading date"|7.3||2004
+659|qRCT6b|"Resistance or Tolerance"|"Cold tolerance"|2|6|4932906|5425602|C)Interval|5.8|Kunmingxiaobaigu|Towada||jsa|30|Mixture|||||R1954|RM253|||F2|250|"cold tolerance at the reproductive stage"|10.1|10.17|2004
+660|qWIJ-2|"Morphological trait"|Seed|2|2|2069848|5347589|C)Interval||IR36|Nekken2||jsa|32|SSR|||||RM233A|RM8|||BC1F1|120|"grain width"|11||2005
+661|qTHJ-5|"Morphological trait"|Seed|2|5|7818863|10787755|C)Interval||IR36|Nekken2||jsa|32|SSR|||||RM289|RM249|||BC1F1|120|"grain thickness"|14.7||2005
+662|qLEJ-1|"Morphological trait"|Shoot/Seedling|2|1|33856510|34810544|C)Interval||IR36|Nekken2||jsa|32|SSR|||||RM212|RM297|||BC1F1|120|"first leaf length at seedling"|10.2||2005
+663|qHEJ-3|"Morphological trait"|Shoot/Seedling|2|3|1498936|3845280|C)Interval||IR36|Nekken2||jsa|32|SSR|||||RM175|RM22|||BC1F1|120|"seedling hight"|10.1||2005
+664||"Resistance or Tolerance"|"Submergency tolerance"|1|12|24616244|26389832|C)Interval|18.2|"Habiganj Aman VIII"|"Patnai 23"||jsa|33|SSR|||||RM5479|RM6953|||F2|192|"lowest elongated internode"|41|-0.87|2005
+665|Qbph10|"Resistance or Tolerance"|"Insect resistance"|2|10|21593531|22957121|C)Interval|2.74|"Rathu Heenati"|2428|A|jsa|37|SSR|||||RM484|RM496|||F2|156||10.1|-0.81|2005
+666|d4|"Morphological trait"|Dwarf|2|6|2853061|4303488|B)Fine||H125|Kasalath||jsa|40|SSR|RM587|RM4608|RM3805||||||BC1F1|514||||2005
+667|hbd1(t)|"Physiological trait"|Lethality|2|2|2450945|2451056|B)Fine||Koshihikari|"Nona Bokra"||rgn|247|Mixture||K/Nindel-1|RM12463|RM12453|||||BC3F3|1056|"hybrid breakdown "|||2006
+668||"Physiological trait"|"Source activity"|1|6|29477181|29477319|d)Co-segregated|3.89|"Milyang 23"|Akihikari|B|jsa|118|SSR||||||||RM340|RIL|126|"Carbon isotope discrimination É¢"|8.7|-0.17|2006
+669|QPl5|"Morphological trait"|Panicle/flower|2|5|18944261|29429411|C)Interval|7.7|Lemont|Teqing||pha|621|RFLP|||||RG13|RG346|||F2|255|"Spikelet density"|7.7||1998
+670|hbd3|"Physiological trait"|Lethality|2|11|15492181|19497296|B)Fine||Koshihikari|Habataki||pha|622|Mixture||S790A|RM1355||||||BC1F2|288|"the number of tillers"|||2007
+671|qCTB8|"Resistance or Tolerance"|"Cold tolerance"|2|8|2954625|3045863|A)Physical||Hokkai-PL9|Hokkai287|A|pha|626|SSR|"""P0443G08,OJ1349_D05"""|RM5647|PLA61||||||F2|288|"mean seed fertility of F7 lines"|26.6|11.4|2007
+672|Pikm|"Resistance or Tolerance"|"Blast resistance"|2|11|29929121|30047077|A)Physical||Tsuyuake|"""AS20-1, M142, Kasalath"""||pha|629|SSR|"""OSJNBa0047M04, OSJNBa0036K13"""||||||||F2||"Blast resistance"|||2007
+673|qCTs-1-c|"Resistance or Tolerance"|"Cold tolerance"|2|1|38490966|39646396|C)Interval|8.03|"Zhenshan 97B"|AAV002863|A|pha|632|SSR|||||RM315|RM472|||DHL|193|"cold tolerance at seedling stage (CTS)"|8.81|5.86|2007
+674|Qbph6|"Resistance or Tolerance"|"Insect resistance"|2|6|2831443|4844376|C)Interval|18.301|"Col.5 T"|2428|B|pha|642|SSR|||||RM510|" RM314"|||F2|147|resistance-scoring|46.2|-2.547|2007
+675|"qTN-9-2 "|"Morphological trait"|Culm/leaf|2|9|22021233|23027968|C)Interval||"Zhenshan 97"|"Minghui 63"|B|pha|643|Mixture|||||RM215|"RZ404 "|||RIL|241|"Tiller number"|7.3|0.92|2006
+676|"qPH-11-1 "|"Morphological trait"|Dwarf|2|11|20100938|20702000|C)Interval||"Zhenshan 97"|"Minghui 63"|B|pha|643|SSR|||||RM229|"RM209 "|||RIL|241|"Plant height"|5.3|0.64|2006
+677|Gw2|"Morphological trait"|Seed|2|2|8041708|8197754|A)Physical||WY3|Fengaizhan-1||pha|647|Mixture|AP005004|W024|W004||||||F2|6013|"Grain weight"|||2007
+678|Yd3-13|"Morphological trait"|Seed|2|3|23850041|28999468|C)Interval||IR64|Azucena||pha|562|RFLP|||||RZ403|CDO337|||DHL|123|Yield||-0.88|2007
+679|hi7b|"Morphological trait"|Seed|2|7|30000996|30092568|C)Interval|6.88|Dasanbyeo|TR22183|A|pha|565|SSR|||||RM420|RM248|||RIL|166|"harvest index"|23.1|-3.9|2007
+680|gy9|"Morphological trait"|Seed|2|9|19464779|22021406|C)Interval|4.1|Dasanbyeo|TR22183|A|pha|565|SSR|||||RM242|RM215|||RIL|166|"grain yield"|12.9|37.1|2007
+681|Gc|Others|Others|2|1|84323|1058644|B)Fine||"Chongqing 2"|"Zhenshan 97B"||pha|567|SSR||RM462|RM6340|RM6464|||||BC6F2|300|"chlorophyll content"|||2007
+682|tms5|"Physiological trait"|Sterility|2|2|6035616|6762680|B)Fine||Y58S|Guanghui122||pha|569|SSR||RM5862|RM5897||||||F2|14000|"thermo-sensitive genic male sterile"|||2007
+683|Xa3|"Resistance or Tolerance"|"Bacterial blight resistance"|2|11|29841073|30773636|B)Fine||IRBB3|IR24||pha|578|RFLP||R1506|S10559||||||F2|2000|"bacterial blight resistance"|||2006
+684|FON3|"Morphological trait"|Panicle/flower|2|11|24948460|28848614|C)Interval||9311|"fon3 mutant from Guguanghuang"||pha|581|SSR|||||RM4601|RM1233|||F2|2700|"floral organ number"|||2007
+685|Xa2|"Resistance or Tolerance"|"Bacterial blight resistance"|2|4|29644621|33083265|C)Interval||Zhenzhuai|IRBB2||pha|584|SSR|||||RM317|RM349|||F2|1579|"bacterial blight resistance"|||2006
+686|q2LSL3|"Morphological trait"|Shoot/Seedling|2|3|37198953|37199035|C)Interval|5.2|A58|"W107 (o. rufipogon)"|A|jsa|104|SSR|||||||RM85||RIL|89|"leaf sheath length st seedling stage"|26||2007
+687|qSPR4|"Morphological trait"|Panicle/flower|2|4|34553977|34561100|C)Interval|3.9|A58|"W107 (o. rufipogon)"|B|jsa|104|RFLP|||||||R1427||RIL|89|"spreading of panicle at maturity stage"|21.2||2007
+688|qSH1|"Morphological trait"|Panicle/flower|2|1|38378834|38379204|C)Interval|10.9|A58|"W630 (o. rufipogon)"|B|jsa|104|SSR|||||||RM8278||RIL|89|"shattring habit at maturity stage"|36.2||2007
+689|qSW5|"Morphological trait"|Seed|2|5|10894478|10897829|C)Interval|3.2|A58|"W107 (o. rufipogon)"|A|jsa|104|RFLP|||||||R413||RIL|89|"seed width at seed traits"|19.2||2007
+690|qAHL6|"Morphological trait"|Panicle/flower|2|6|6230045|6230185|C)Interval|4.5|A58|"W107 (o. rufipogon)"|A|jsa|104|SSR|||||||RM276||RIL|89|"apiculus hair length at seed traits"|21.6||2007
+691|qLT12|"Resistance or Tolerance"|"Cold tolerance"|2|12|3185432|3185629|C)Interval|6.8|A58|"W107 (o. rufipogon)"|B|jsa|104|SSR|||||||RM247||RIL|89|"low-temperature tolerance"|27||2007
+692|qTRA7|"Resistance or Tolerance"|"Other stress resistance"|2|7|2908317|2908485|C)Interval|4.8|A58|"W107 (o. rufipogon)"|B|jsa|104|SSR|||||||RM481||RIL|89|"tolerance to disturbance trampling tolerance"|26.6||2007
+693|qTA|"Morphological trait"|Culm/leaf|2|7|2908317|2908485|C)Interval|15|A58|"W630 (o. rufipogon)"|B|jsa|104|SSR|||||||RM481||RIL|99|"tiller angle at vegetative stage "|55.2||2007
+694|qTN|"Morphological trait"|Culm/leaf|2|7|2908317|2908485|C)Interval|19.1|A58|"W630 (o. rufipogon)"|B|jsa|104|SSR|||||||RM481||RIL|99|"tiller number at vegetative stage "|60.5||2007
+695|qLSL|"Morphological trait"|Culm/leaf|2|7|2908317|2908485|C)Interval|17.1|A58|"W630 (o. rufipogon)"|A|jsa|104|SSR|||||||RM481||RIL|99|"leaf sheath length at vegetative stage "|61||2007
+696|qLA|"Morphological trait"|Culm/leaf|2|7|2908317|2908485|C)Interval|21.8|A58|"W630 (o. rufipogon)"|B|jsa|104|SSR|||||||RM481||RIL|99|"leaf angle length at vegetative stage "|75.1||2007
+697|qCL|"Morphological trait"|Dwarf|2|7|2908317|2908485|C)Interval|8.3|A58|"W630 (o. rufipogon)"|A|jsa|104|SSR|||||||RM481||RIL|99|"culm length at maturity stage"|30.3||2007
+698|qPN-1|"Morphological trait"|Culm/leaf|2|7|2908317|2908485|C)Interval|7.9|A58|"W630 (o. rufipogon)"|B|jsa|104|SSR|||||||RM481||RIL|99|"panicle number at maturity stage"|31.9||2007
+699|qHD-1|"Physiological trait"|Flowering|2|7|11391449|11394315|C)Interval|11.2|A58|"W107 (o. rufipogon)"|B|jsa|104|RFLP|||||||C39||RIL|99|"days to heading"|38||2007
+700|qSDS-7-2|"Physiological trait"|Germination/dormancy|2|7|19354374|26133946|C)Interval||EM93-1|SS18-2|B|pha|12|SSR|||||RM320|RM234|||BC1F1|156|"Seed ÇÑormancy"|9.3|0.08|2004
+701|qLTG-7|"Resistance or Tolerance"|"Cold tolerance"|2|7|17530626|22912990|C)Interval|3.58|Kinmaze|DV85|A|pha|14|RFLP|||||R1440|R1357|||RIL|80|" low temperature germinability"|22.9|0.17|2004
+702||"Physiological trait"|Germination/dormancy|1|3|36693668|37199035|C)Interval|2.66|Lemont|Teqing|A|pha|15|SSR|||||RM148|RM85|||RIL|264|"germination rate(7days after incubation)"|5.2|4.47|2004
+703||"Physiological trait"|Germination/dormancy|1|2|26758064|28502793|C)Interval|3.52|Lemont|Teqing|A|pha|15|SSR|||||RM263|RM221|||RIL|264|"germination rate(9days after incubation)"|5.6|4.34|2004
+704||"Morphological trait"|Shoot/Seedling|1|2|33667096|34831889|C)Interval|4|Lemont|Teqing|A|pha|15|Mixture|||||RM250|RG256|||RIL|264|"shoot length"|5.9|1.55|2004
+705||"Morphological trait"|Seed|1|7|27297755|30001266|C)Interval|11.1|"Zhenshan 97"|"Wuyujing 2"|A|pha|18|SSR|||||RM118|RM248|||DHL|190|"the grain yield per plant (GY) "|6.6|-3.6|2004
+706||"Morphological trait"|Culm/leaf|1|6|7592048|8751554|C)Interval|10.3|"Zhenshan 97"|"Wuyujing 2"|A|pha|18|SSR|||||RM121|RM136|||DHL|190|"the effective tiller percentage per plant(TPP) "|5.3|4.3|2004
+707||"Morphological trait"|Panicle/flower|1|6|6230045|7592308|C)Interval|24.8|"Zhenshan 97"|"Wuyujing 2"|A|pha|18|SSR|||||RM276|RM121|||DHL|190|"the spikelet number of a panicle (SP)"|15.6|16.7|2004
+708||"Morphological trait"|Panicle/flower|1|6|7592048|8751554|C)Interval|13.1|"Zhenshan 97"|"Wuyujing 2"|A|pha|18|SSR|||||RM121|RM136|||DHL|190|"the number of grains per panicle (GP) "|10.3|11.1|2004
+709||"Morphological trait"|Panicle/flower|1|9|15359476|18374564|C)Interval|36.8|"Zhenshan 97"|"Wuyujing 2"|A|pha|18|SSR|||||RM257|RM566|||DHL|190|"the panicle length (PL) "|20.8|2|2004
+710||"Physiological trait"|"Source activity"|1|6|6230045|7592308|C)Interval|13.3|"Zhenshan 97"|"Wuyujing 2"|A|pha|18|SSR|||||RM276|RM121|||DHL|190|"the grain-setting density(SDEN) "|9.2|0.6|2004
+711||"Resistance or Tolerance"|"Lodging resistance"|1|6|6822037|8066362|C)Interval|3.98|Nipponbare|Kasalath|A|pha|19|RFLP|||||C1478|R2171|||BIL|89|"pushing resistance of thelower part"|0.174||2004
+712||"Resistance or Tolerance"|"Lodging resistance"|1|1|4541296|7481804|C)Interval|4.48|Nipponbare|Kasalath|B|pha|19|RFLP|||||R1944|C955|||BIL|89|"Stem diameter"|0.19||2004
+713|Rf1|"Physiological trait"|Sterility|2|10|19343755|19470171|A)Physical||"""MS-Koshihikari,FR-Koshihikari"""|Koshihikari||pha|21|CAPS|AC068923|M6227Bsl1|M1239MboI||||||BC1F1|4103|"Restoration of the pollen fertility"|||2004
+714||"Physiological trait"|Flowering|1|6|9536259|9537572|d)Co-segregated||"Puang Rai 2"|IR26760-27-1-3-2-1||rgn|4|RFLP||||||||RG64|F2|||||1990
+715|xa5|"Resistance or Tolerance"|"Bacterial blight resistance"|2|5|336573|336728|d)Co-segregated||"IRBB- 5"|IR24||rgn|9|||||||||RG207|F2|36||||1991
+716|Hg|"Morphological trait"|Panicle/flower|2|3|1429107|1429520|d)Co-segregated|||||rgn|13|RFLP||||||||RG348|F2|||||1992
+717|Cl|"Physiological trait"|Sterility|2|6|25332713|25333212|d)Co-segregated|||||rgn|13|RFLP||||||||RG172|F2||"Clustered spikelets "|||1992
+718|Dn-1|"Morphological trait"|Panicle/flower|2|9|9783058|9783612|d)Co-segregated|||||rgn|13|RFLP||||||||RG553|F2||"Dense panicle"|||1992
+719|d-27|"Morphological trait"|Dwarf|2|11|4060115|4066682|d)Co-segregated|||||rgn|13|RFLP||||||||RZ141|F2||dwarf|||1992
+720|QGt6b|"Physiological trait"|"Eating quality"|2|6|4844259|5425602|C)Interval|9.96|Yuefu|IRAT109||pha|532|Mixture|||||RM253|RM314|||DHL|116|"Alkali-spreading score"||0.954|2007
+721|qCSH2|"Resistance or Tolerance"|"Cold tolerance"|2|2|21658702|26758298|C)Interval|5.02|"Milyang 23"|"Jileng 1"|B|pha|537|SSR|||||RM262|RM263|||F2:3|200|"Seedling height"|16.6|1.4561|2007
+722|qSDW2|"Resistance or Tolerance"|"Cold tolerance"|2|2|26758064|30472718|C)Interval|3.9|"Milyang 27"|"Jileng 1"|B|pha|537|SSR|||||RM263|RM6|||F2:3|200|"Seedling dry weight"|8.6|0.1272|2007
+723|qHd-7|"Physiological trait"|Flowering|2|7|5512628|19619933|C)Interval|8.4|USSR5|N22|B|pha|538|SSR|||||RM125|RM432|||F2|148|"heading date"|15.14|5.2|2007
+724|qLVG6|"Resistance or Tolerance"|"Cold tolerance"|2|6|28130152|29477319|C)Interval|2.4|"Milyang 24"|"Jileng 1"|B|pha|542|SSR|||||RM340|RM30|||F2:3|200|"Vigor of germination (7days)Å@"|6|1.5605|2006
+725|qLVG3|"Resistance or Tolerance"|"Cold tolerance"|2|3|10000519|12459455|C)Interval|4.26|"Milyang 30"|"Jileng 1"|B|pha|542|SSR|||||RM251|RM282|||F2:3|200|"Vigor of germination (11 days)"|11.8|4.3897|2006
+726|qLVG7-2|"Resistance or Tolerance"|"Cold tolerance"|2|7|22532352|27297913|C)Interval|3.45|"Milyang 23"|"Jileng 1"|B|pha|542|SSR|||||RM336|RM118|||F2:3|200|"Vigor of germination (14 days)"|11.2|8.359|2006
+727|qCIVG7-2|"Resistance or Tolerance"|"Cold tolerance"|2|7|22532352|27297913|C)Interval|3.49|"Milyang 25"|"Jileng 1"|B|pha|542|SSR|||||RM336|RM118|||F2:3|200|"Cold response index for vigor of germination"|12.9|9.3532|2006
+728|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|14257182|17546401|C)Interval|34|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM28048|RM511|||F3|436|"Grain yield"|33|172|2007
+729|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|14257182|17758636|C)Interval|23|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM28048|RM28166|||F3|436|"Biomass yield"|18|634|2007
+730|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|9895474|17758636|C)Interval|22|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM7195|RM28166|||F3|436|"Harvest index"|26|0.03|2007
+731|qtl3.1|"Resistance or Tolerance"|"Drought tolerance"|2|3|390526|4976444|C)Interval|34|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM7332|RM545|||F3|436|"Days to 50% flowering"|64|11.2|2007
+732|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|14257182|17758636|C)Interval|9.8|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM28048|RM28166|||F3|436|"Plant heigh at maturity"|5|1.4|2007
+733|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|9895474|17758636|C)Interval|12.9|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM7195|RM28166|||F3|436|"Panicle number m-2"|9|26|2007
+734|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|9895474|17758636|C)Interval|19|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM7195|RM28166|||F3|436|"Flowering delay"|16|-2.4|2007
+735|qtl12.1|"Resistance or Tolerance"|"Drought tolerance"|2|12|14257182|17546401|C)Interval|39|"Way Rarem"|Vandana|A|pha|544|SSR|||||RM28048|RM511|||F3|436|"Droughtresponse index"|37|0.89|2007
+736||"Morphological trait"|Root|1|9|20442345|21379666|C)Interval||Otomemochi|Yumenohatamochi||pha|554|SSR|||||RM160|RM3808|||RIL|98|"No. of new roots"|||2007
+737||"Resistance or Tolerance"|"Other stress resistance"|1|3|11360711|23162767|C)Interval|4.6|Hana-echizen|Niigatawase|A|jsa|102|SSR|||||RM4512|RM8208|||F2:3|180|"White-back kernels"|25.9|-0.73|2007
+738||"Resistance or Tolerance"|"Other stress resistance"|1|3|11360711|23162767|C)Interval|4.98|Hana-echizen|Niigatawase|A|rgn|102|SSR|||||RM4512|RM8208|||F2:3|180|"one-thousand kernel weight"|12.3|-0.17|2007
+739|Ovc|"Resistance or Tolerance"|"Insect resistance"|2|6|4932906|4937483|B)Fine||IR24|Asominori||pha|594|RFLP||S1954|L688|R1954|||||F2|86|"ovicidal response to whitebacked planthopper"|||2003
+740|qOVA-4|"Resistance or Tolerance"|"Insect resistance"|2|4|608084|4435752|C)Interval|21.2|IR24|Asominori|A|pha|594|RFLP|||||R1854|C946|||F2|108|"ovicidal response to whitebacked planthopper"|61|-5.9|2003
+741|qHUS-1-1|Others|Others|2|1|5558578|6155115|C)Interval|6.36|"Zhenshan 97B"|"Milyang 46"||pha|595|SSR|||||RM151|RM3746|||RIL|0|"hull siliconcontent"|10.3|0.537|2007
+742||"Morphological trait"|Seed|1|1|36697294|42364623|C)Interval|6.2|IR64|Azucena|B|pha|601|RFLP|||||RZ730|RZ801|||DHL|135|"grain shape"|23.3|0.4013|1997
+743|qGC6-2|"Physiological trait"|"Eating quality"|2|6|441692|537430|C)Interval|6.2|Nanjing11|Balilla|A|pha|602|Mixture|||||RM508|RM435|||DHL|130|"Gel consistency"|19.7|-8.4|2006
+744|qGT5-1|"Physiological trait"|"Eating quality"|2|5|26157218|27457701|C)Interval|2.6|Nanjing11|Balilla|A|pha|602|Mixture|||||RM538|RM480|||RIL|130|"Gelatinization temperature"|10.6|0.5|2006
+745||"Physiological trait"|Flowering|1|3|32239082|32365157|C)Interval|21.3|"Nona Bokra"|Koshihikari|B|pha|603|RFLP|||||R2404|R2856|||BC2F2|100|Days-to-heading|33.3|6.4|2007
+746|Bph3|"Resistance or Tolerance"|"Insect resistance"|2|6|1476793|1477087|d)Co-segregated|61.6|"Rathu Heenati"|KDML105|A|pha|604|SSR||||||||RM586|BC3F2|333|"brown planthopperresistance"|57.4|-2.665|2007
+747|"apd9 "|Others|Others|2|9|4326497|11367960|C)Interval|5.65|ZYQ8|"Jingxi 17"|B|pha|606|RFLP|||||"CDO590 "|"G103 "|||DHL|132|"Albino plantlet differentiation frequency"|27.9|-18.9|1998
+748|"gpy1 "|Others|Others|2|1|31822907|33817439|C)Interval|2.42|ZYQ8|"Jingxi 17"|B|pha|606|RFLP|||||"RG541 "|"RG101 "|||DHL|132|"Green plantlet yield frequency"|10.4|-0.38|1998
+749|"qDTH8 "|"Physiological trait"|Flowering|2|8|360155|4446617|C)Interval|22.65|98SQ1496|Koshihikari|B|pha|607|Mixture|||||R1943|"R2976 "|||F2|150|Days-to-heading|22.92|9.25|2007
+750|"qPL8 "|"Morphological trait"|Panicle/flower|2|8|360155|4446617|C)Interval|5.79|98SQ1496|Koshihikari|A|pha|607|Mixture|||||R1943|"R2976 "|||F2|150|"Panicle length "|16.89|1.09|2007
+751|"qGL9 "|"Morphological trait"|Seed|2|9|18374393|19465043|C)Interval|3.99|98SQ1496|Koshihikari|B|pha|607|Mixture|||||RM257|RM242|||F2|150|"Grain length "|11.09|0.13|2007
+752|"qGW3 "|"Morphological trait"|Seed|2|3|7935478|9901136|C)Interval|4.8|98SQ1496|Koshihikari|B|pha|607|Mixture|||||C706|"C12534S "|||F2|150|"Grain width "|5.69|0.04|2007
+753||"Physiological trait"|"Eating quality"|1|6|6230045|6976691|C)Interval|73|"Zhenshan 97"|"Delong 208"|A|pha|609|Mixture|||||RM276|RM549|||RIL|188|"alkali spreading value"|87.8|-1.78|2007
+754||"Physiological trait"|"Eating quality"|1|6|6230045|6976691|C)Interval|51.7|"Zhenshan 97"|"Delong 208"|A|pha|609|Mixture|||||RM276|"RM549 "|||RIL|188|"Pasting temperature (61-02)"|85.2|3.63|2007
+755||"Physiological trait"|"Eating quality"|1|6|6230045|6976691|C)Interval|49.6|"Zhenshan 97"|"Delong 208"|A|pha|609|Mixture|||||RM276|"RM549 "|||RIL|188|"""Pasting time, time of initial viscosity increase"""|84|0.49|2007
+756|Rf3|"Physiological trait"|Sterility|2|1|4885916|6676229|B)Fine|21.36|IR58025A|IR34686R||pha|610|SSR||RM283|RM490||||||F2|237|"pollen sterility"|49||2007
+757|Rf|"Physiological trait"|Sterility|2|1|5788225|6220168|B)Fine|14.12|IR75596A|IR68077-82-22-2-3R||pha|610|SSR||RM7466|RM1360||||||F2|250|"pollen sterility"|52||2007
+758|Rf|"Physiological trait"|Sterility|2|10|18542704|19345496|B)Fine|19.78|IR75601A|IR68444R||pha|610|SSR||RM258|RM6100||||||F2|250|"pollen sterility"|38||2007
+759|Rf|"Physiological trait"|Sterility|2|1|5941444|8139063|B)Fine|23.14|IR75596A|IR68077-82-22-2-3R||pha|610|SSR||RM272|RM576||||||F2|249|"pollen sterility"|36||2007
+760|Hbd2|"Physiological trait"|Lethality|2|2|24880297|27129441|B)Fine||"SL-407 (Sasanishiki/Habataki//Sasanishiki)"|Sasanishiki||pha|611|SSR||RM3515|RM3730|RM6617|||||F2|32|"No. of tiller"|||2007
+761|Hbd3|"Physiological trait"|Lethality|2|11|16351679|19497296|B)Fine||"SL-407 (Sasanishiki/Habataki//Sasanishiki)"|Habataki||pha|611|SSR||RM5824|RM1355|RM5824|||||F2|22|"No. of tiller"|||2007
+762|S31|"Physiological trait"|Sterility|2|5|1243631|1376781|A)Physical||IR24|Asominori||pha|612||P0008A07||||||||||"seed sterility"|||2007
+763|"aro8-1 "|"Physiological trait"|"Eating quality"|2|8|20740779|24569536|C)Interval|11.54|"Pusa 1121"|"Pusa 1342"|A|pha|615|SSR|||||RM223|"RM80 "|||RIL|209|"Aroma "|18.9|4.21|2007
+764|"grl1-1 "|"Morphological trait"|Seed|2|1|40650780|41923950|C)Interval|5.75|"Pusa 1121"|"Pusa 1342"|A|pha|615|SSR|||||RM431|"RM104 "|||RIL|209|"Grain length "|10.1|1.92|2007
+765|"grb7-2 "|"Morphological trait"|Seed|2|7|22532352|25188107|C)Interval|9.2|"Pusa 1121"|"Pusa 1342"|A|pha|615|SSR|||||RM505|"RM336 "|||RIL|209|"Grain breadth "|18.9|-0.79|2007
+766|"amy6-1 "|"Physiological trait"|"Eating quality"|2|6|4234080|28130383|C)Interval|21.8|"Pusa 1121"|"Pusa 1342"|A|pha|615|SSR|||||RM3|"RM217 "|||RIL|209|"Amylose content "|39.6|-2.76|2007
+767|"elr11-1 "|"Physiological trait"|"Eating quality"|2|11|2391119|20101064|C)Interval|2.8|"Pusa 1121"|"Pusa 1342"|A|pha|615|SSR|||||RM1812|"RM209 "|||RIL|209|"cooked kernel elongation ratio"|6.8|0.45|2007
+768|"asv6-1 "|"Physiological trait"|"Eating quality"|2|6|4234080|28130383|C)Interval|2.63|"Pusa 1121"|"Pusa 1342"|A|pha|615|SSR|||||RM3|"RM217 "|||RIL|209|"Alkali spreading value"|6.9|2.54|2007
+769|Se8|"Physiological trait"|Flowering|2|8|4377457|4377597|C)Interval||EM93-1|SS18-2|B|pha|617|SSR|||||RM7015|RM547|RM25||BC1F1|156|Days-to-heading|29|54.2|2007
+770|"qAC-6 "|"Physiological trait"|"Eating quality"|2|6|1764586|2831635|C)Interval|35.5|"Wuyujing 2"|"Zhenshan 97B"|A|pha|618|SSR|||||RM190|"RM510 "|||DHL|190|"Amylose content"|61.8|-9.4|2005
+771|"qGC-6 "|"Physiological trait"|"Eating quality"|2|6|1764586|2831635|C)Interval|33.7|"Wuyujing 2"|"Zhenshan 97B"|A|pha|618|SSR|||||RM190|"RM510 "|||DHL|190|"Gel consistency"|59.7|24.4|2005
+772|"qGT-6 "|"Physiological trait"|"Eating quality"|2|6|6230045|7592308|C)Interval|34|"Wuyujing 2"|"Zhenshan 97B"|A|pha|618|SSR|||||RM276|"RM121 "|||DHL|190|"Gelatinization temperature"|80.3|3.52|2005
+773|"qWA-6 "|"Physiological trait"|"Eating quality"|2|6|1360570|1764729|C)Interval|17.9|"Wuyujing 2"|"Zhenshan 97B"|A|pha|618|SSR|||||RM170|"RM190 "|||DHL|190|"Water absorption"|45.9|-56.13|2005
+774|"qCRE-6 "|"Physiological trait"|"Eating quality"|2|6|1360570|1764729|C)Interval|4.1|"Wuyujing 2"|"Zhenshan 97B"|A|pha|618|SSR|||||RM170|"RM190 "|||DHL|190|"cooked rice elongation"|11.7|-13.12|2005
+775|"qVE-6 "|"Physiological trait"|"Eating quality"|2|6|1360570|1764729|C)Interval|8.1|"Wuyujing 2"|"Zhenshan 97B"|A|pha|618|SSR|||||RM170|"RM190 "|||DHL|190|"volume expansion"|30|-61.54|2005
+776||"Resistance or Tolerance"|"Drought tolerance"|1|9|20078749|21314308|C)Interval|9.39|IR64|Azucena|B|pha|620|RFLP|||||RZ12|RG667|||DHL|135|"leaf rolling"|18|0.27|2000
+777||"Resistance or Tolerance"|"Drought tolerance"|1|4|34247154|35283358|C)Interval|4.16|IR64|Azucena|B|pha|620|RFLP|||||RG143|RG620|||DHL|135|"leaf drying"|8.2|-0.16|2000
+778||"Resistance or Tolerance"|"Drought tolerance"|1|1|36697294|42364623|C)Interval|4.09|IR64|Azucena|B|pha|620|RFLP|||||RZ730|RZ801|||DHL|135|"relative water content"|14.9|1.63|2000
+779|Symptoms|"Resistance or Tolerance"|"Other disease resistance"|2|9|19168716|21314308|C)Interval|2.3|IR64|Azucena|B|pha|663|RFLP|||||RZ228|RG667|||DHL|183|"yellow mottle virus (RYMV)"|12||1998
+780||"Resistance or Tolerance"|"Drought tolerance"|1|3|35998421|36303203|C)Interval|2.3|IR58821-23-B-1-2-1|IR52561-UBN-1-1-2|B|pha|664|Mixture|||||R1925|RG1356|||RIL|166|"Total root number(Fall)"|9|-12.8|2000
+781||"Resistance or Tolerance"|"Drought tolerance"|1|1|23281883|24776333|C)Interval|2.3|IR58821-23-B-1-2-1|IR52561-UBN-1-1-2|B|pha|664|Mixture|||||BCD134|RZ776|||RIL|166|"Penetrated root number(Sum.)"|9.1|7.9|2000
+782||"Resistance or Tolerance"|"Drought tolerance"|1|3|27894595|29580503|C)Interval|2|IR58821-23-B-1-2-1|IR52561-UBN-1-1-2|B|pha|664|Mixture|||||C746|RZ448|||RIL|166|"Penetrated root number(Fall)"|7.1|-4.7|2000
+783||"Resistance or Tolerance"|"Drought tolerance"|1|10|13330314|19551633|C)Interval|2.06|IR58821-23-B-1-2-1|IR52561-UBN-1-1-2|B|pha|664|Mixture|||||RZ892|BCD386|||RIL|166|"Root penetration index(Sum.)"|9.6|-0.05|2000
+784||"Resistance or Tolerance"|"Drought tolerance"|1|7|29072683|30127996|C)Interval|2.22|IR58821-23-B-1-2-1|IR52561-UBN-1-1-2|B|pha|664|Mixture|||||RZ978|RG351|||RIL|166|"Penetrated root thickness(Fall)"|7.1|-0.06|2000
+785|"Area Under Symptoms Progression Curve (AUSPC)"|"Resistance or Tolerance"|"Other disease resistance"|2|2|12493299|12493559|C)Interval|17.63|IR64|Azucena|B|pha|672|SSR|||||||RM550||RIL&DHL|352|"yellow mottle virus (RYMV)"|12||2007
+786|"Area Under Symptoms Progression Curve (AUSPC)"|"Resistance or Tolerance"|"Other disease resistance"|2|12|8828352|8828505|B)Fine|18.25|IR64|Azucena|B|pha|672|SSR||MV4|AB28|RM101|||||RIL&DHL|352|"yellow mottle virus (RYMV)"|11.8||2007
+787|fgr|"Physiological trait"|"Eating quality"|2|8|20464618|20591286|A)Physical||"Kyeema (Pelde//Della/ Kulu)"|"Gulfmont (Lebonnet//CI9881/PI 331581) "|A|pha|673|SSR|AP004463|RM515|SSRJ07||||||F2|168|"flavour or fragrance of basmati and jasmine rice"|||2005
+788|qSHT-4|"Morphological trait"|Panicle/flower|2|4|31863376|32246967|C)Interval||Pei-Khu|"W1944(O. rufipogon Griff.)"||pha|676|Mixture|||||CDO244|RG214|||RIL|158|shattering|14.8||2000
+789||"Resistance or Tolerance"|"Drought tolerance"|1|12|5758920|5758733|d)Co-segregated||Co39|Moroberekan|B|pha|680|RFLP||||||||RZ397|RIL|203|"Root thickness"|15|74|1995
+790||"Resistance or Tolerance"|"Drought tolerance"|1|12|5758920|5758733|d)Co-segregated||Co39|Moroberekan|B|pha|680|RFLP||||||||RZ397|RIL|217|"Root/shoot ratio"|15|37|1995
+791||"Resistance or Tolerance"|"Drought tolerance"|1|12|27748377|27748876|d)Co-segregated||Co39|Moroberekan|B|pha|680|RFLP||||||||RG181|RIL|229|"Deep root weight"|14|29|1995
+792|Xa7|"Resistance or Tolerance"|"Bacterial blight resistance"|2|6|4946071|5029146|A)Physical||IRBB7|IR24|A|pha|682|SSR|AP006056|GDSSR02|RM20593|"""RM20589,RM20590,RM20591"""|||||F2|3201|"Bacterial blight"|||2008
+793|ppp1.1|"Morphological trait"|Panicle/flower|2|1|5094276|7970819|C)Interval|5.24|"Milyang 23"|Gihobyeo|B|pha|684|Mixture|||||RG140|RM243|||RIL|164|"panicle per plant"|16.97||2008
+794|spp1.2|"Morphological trait"|Panicle/flower|2|1|5094276|7970819|C)Interval|7.47|"Milyang 23"|Gihobyeo|A|pha|684|Mixture|||||RG140|RM243|||RIL|164|"spikelets per panicle"|15.87||2008
+795|tgw6.1|"Physiological trait"|"Source activity"|2|6|10015514|28130383|C)Interval|8.68|"Milyang 23"|Gihobyeo|B|pha|684|Mixture|||||RG264|RM3|||RIL|164|"1000 grain weight"|18.08||2008
+796|prg1.2|"Physiological trait"|"Source activity"|2|1|5094276|7970819|C)Interval|8.58|"Milyang 23"|Gihobyeo|B|pha|684|Mixture|||||RG140|RM243|||RIL|164|"percent ripened grain"|18.48||2008
+797|yld1.1|"Physiological trait"|"Source activity"|2|1|25629211|30941150|C)Interval|3.66|"Milyang 23"|Gihobyeo|A|pha|684|Mixture|||||RM5|RG462|||RIL|164|yield|8.41||2008
+798|dth1.1|"Physiological trait"|Flowering|2|1|33817920|40288357|C)Interval|3.42|"Milyang 23"|Gihobyeo|A|pha|684|Mixture|||||RG541|RG109|||RIL|164|"days to heading"|7.22||2008
+799|cl8.1|"Morphological trait"|Dwarf|2|8|2034368|3543208|C)Interval|4.49|"Milyang 23"|Gihobyeo|A|pha|684|Mixture|||||RG20|RG885|||RIL|164|"culm length"|4.58||2008
+800|qPHw6-2|"Resistance or Tolerance"|"Other soil stress tolerance"|2|6|6927624|20691040|C)Interval|7.23|"Zhenshan 97"|"Minghui 63"|B|pha|687|Mixture|||||RG424|RZ667|||RIL|120|"plant height (Well watered)"|11.43|0.49|2008
+801|qPHd1|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|43765087|44751487|C)Interval|11.98|"Zhenshan 97"|"Minghui 63"|A|pha|687|Mixture|||||C112|RG236|||RIL|120|"plant height (Water deficit)"|18.89|-0.39|2008
+802|qSFWw1-1|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|43765087|44751487|C)Interval|13.62|"Zhenshan 97"|"Minghui 63"|A|pha|687|Mixture|||||C112|RG236|||RIL|120|"shoot fresh weight (Well watered)"|18.76|-3.63|2008
+803|qSFWd6|"Resistance or Tolerance"|"Other soil stress tolerance"|2|6|6927624|20691040|C)Interval|7.3|"Zhenshan 97"|"Minghui 63"|B|pha|687|Mixture|||||RG424|RZ667|||RIL|120|"shoot fresh weight (Water deficit)"|15.75|1.78|2008
+804|qRNw5|"Resistance or Tolerance"|"Other soil stress tolerance"|2|5|27486247|28855659|C)Interval|9.24|"Zhenshan 97"|"Minghui 63"|A|pha|687|Mixture|||||C1447|RM26|||RIL|120|"Root number (Well watered)"|18.17|-0.62|2008
+805|qRNd1|"Resistance or Tolerance"|"Other soil stress tolerance"|2|1|39466088|43764612|C)Interval|11.88|"Zhenshan 97"|"Minghui 63"|A|pha|687|Mixture|||||RG236|C86|||RIL|120|"Root number (Water deficit)"|7.54|-0.38|2008
+806|qMRLw8|"Resistance or Tolerance"|"Other soil stress tolerance"|2|8|19395396|20740963|C)Interval|10.99|"Zhenshan 97"|"Minghui 63"|A|pha|687|Mixture|||||RM223|R727|||RIL|120|"maximum root length (Well watered)"|35.73|-1.11|2008
+807|qMRLd2|"Resistance or Tolerance"|"Other soil stress tolerance"|2|2|9013105|10110105|C)Interval|13.11|"Zhenshan 97"|"Minghui 63"|B|pha|687|Mixture|||||RZ324|R712|||RIL|120|"maximum root length (Water deficit)"|22.28|0.95|2008
+808|qRFWw3|"Resistance or Tolerance"|"Other soil stress tolerance"|2|3|27894595|29301670|C)Interval|8.12|"Zhenshan 97"|"Minghui 63"|B|pha|687|Mixture|||||C944|C746|||RIL|120|"root fresh weight (Well watered)"|16.88|1.57|2008
+809|qRFWd3-2|"Resistance or Tolerance"|"Other soil stress tolerance"|2|3|27894595|29301670|C)Interval|5.07|"Zhenshan 97"|"Minghui 63"|B|pha|687|Mixture|||||C944|C746|||RIL|120|"root fresh weight (Water deficit)"|12.57|1.46|2008
+810|qRSd5|"Resistance or Tolerance"|"Other soil stress tolerance"|2|5|27486247|28855659|C)Interval|14.5|"Zhenshan 97"|"Minghui 63"|A|pha|687|Mixture|||||C1447|RM26|||RIL|120|"root to shoot ratio (Water deficit)"|13.98|-0.033|2008
+811|qChla4-1|"Morphological trait"|Shoot/Seedling|2|4|22859833|27441315|C)Interval|3.08|"Zhenshan 97A"|"Minghui 63"|B|pha|688|Mixture|||||C2807|RM241|||RIL|241|"Chlorophyll a"|6.67|0.07|2002
+812|qChlab4-1|"Morphological trait"|Shoot/Seedling|2|4|22859833|27441315|C)Interval|2.5|"Zhenshan 97A"|"Minghui 63"|B|pha|688|Mixture|||||C2807|RM241|||RIL|241|"Total Chlorophyll"|5.23|0.09|2002
+813|qLS1-2|"Morphological trait"|Shoot/Seedling|2|1|4795155|5759851|C)Interval|11.91|"Zhenshan 97A"|"Minghui 63"|B|pha|688|Mixture|||||G359|RG532|||RIL|241|"Length of the second seedling leaf"|14.47|1.78|2002
+814|qLT3-1|"Morphological trait"|Shoot/Seedling|2|3|35783061|36303203|C)Interval|3.78|"Zhenshan 97A"|"Minghui 63"|B|pha|688|Mixture|||||RM227|R1925|||RIL|241|"Length of the third seedling leaf"|7.2|0.39|2002
+815|qPH1-1|"Morphological trait"|Shoot/Seedling|2|1|39466088|43764612|C)Interval|11.56|"Zhenshan 97A"|"Minghui 63"|B|pha|688|Mixture|||||C86|RG236|||RIL|241|"Seedling height"|16.97|0.57|2002
+816|qSS1-2|"Morphological trait"|Seed|2|1|4795155|5759851|C)Interval|9.04|"Zhenshan 97A"|"Minghui 63"|A|pha|688|Mixture|||||G359|RG532|||RIL|241|"Seed size"|6.67|-0.59|2002
+817|AsTol|"Resistance or Tolerance"|"Other soil stress tolerance"|2|6|2561213|6283916|C)Interval||Bala|Azucena|A|pha|689|RFLP|||||RZ516|RG213|||RIL|108|"root length"|||2004
+818||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|5.12|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (High N level, Nutrient solution culture, )"""|24.2|5.4|2001
+819||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|3.89|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (High N level, Soil culture , Tillering stage )"""|22|3|2001
+820||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|4.52|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (High N level, Soil culture , Heading stage )"""|23.6|10.4|2001
+821||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|5.7|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (High N level, Soil culture , Maturity  )"""|36.1|18.8|2001
+822||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|6.06|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (Low N level, Nutrient solution culture, )"""|27.9|4.3|2001
+823||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|6.44|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (Low N level, Soil culture , Tillering Stage )"""|33.5|4.9|2001
+824||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|5.43|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (Low N level, Soil culture , Heading stage )"""|27|8.2|2001
+825||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|36697294|42364623|C)Interval|8.94|IR64|Azucena|B|pha|694|RFLP|||||RZ730|RZ801|||RIL|123|"""Plant height (Low N level, Soil culture , Maturity  )"""|41.7|17.2|2001
+826|"""qLTG3-1,"""|"Resistance or Tolerance"|"Other stress resistance"|2|3|198324|199266|A)Physical||BIL116|Hayamasari|A|pha|698|Indel|Os03g0103300|SSR118673-13.1|S107||||||BC1F2|3200|"low-temperature germinability"|||2008
+827|Xa10|"Resistance or Tolerance"|"Bacterial blight resistance"|2|11|23939104|24038825|A)Physical||IRBB10A|IR24|A|pha|705|CAPS|AC104847|M491|M419|S723|||||F2|1027|"Bacterial blight"|||2008
+828||"Morphological trait"|Root|1|1|3483439|7970819|C)Interval|6.66|Akihikari|IRAT109|B|pha|717|SSR|||||RM7383|RM243|||BC1F5|106|"Root dry weight"|12|1.24|2006
+829||"Morphological trait"|Root|1|1|3483439|10753685|C)Interval|3.74|Akihikari|IRAT109|B|pha|717|SSR|||||RM7383|RM23|||BC1F5|106|"Root axis length"|16|0.98|2006
+830||"Morphological trait"|Root|1|1|10753550|26104011|C)Interval|3.66|Akihikari|IRAT109|A|pha|717|SSR|||||RM23|RM306|||BC1F5|106|"Branching index"|12|1.56|2006
+831||"Morphological trait"|Dwarf|1|12|1595305|1594834|d)Co-segregated||C039|Moroberekan||pha|719|RFLP||||||||RG574|RIL|230|"plant height"|||1996
+832|Qbp1|"Resistance or Tolerance"|"Insect resistance"|2|3|32803587|36303203|C)Interval|12.9|B5|"Minghui 63"|A|pha|721|RFLP|||||R1925|R2443|||F3|250|ResistanceÅ@score|26.4|0.995|2001
+833||"Physiological trait"|"Source activity"|1|1|42710233|42715593|d)Co-segregated||Nipponbare|Kasalath|B|pha|722|RFLP||||||||C742|BC1F7|98|Sucrose/plant|19||2007
+834||"Physiological trait"|"Source activity"|1|5|20217134|20220313|d)Co-segregated||Nipponbare|Kasalath|B|pha|722|RFLP||||||||C1268|BC1F7|98|Starch/plant|12||2007
+835||"Physiological trait"|"Source activity"|1|1|42710233|42715593|d)Co-segregated||Nipponbare|Kasalath|B|pha|722|RFLP||||||||C742|BC1F7|98|Hexose/plant|11||2007
+836||"Physiological trait"|"Source activity"|1|5|5896190|5898983|d)Co-segregated||Nipponbare|Kasalath||pha|722|RFLP||||||||C249|BC1F7|98|Starch/sucrose|12||2007
+837||"Morphological trait"|Seed|1|3|27494415|27496634|d)Co-segregated|4.3|Nipponbare|Kasalath|A|pha|724|RFLP||||||||C136|BC1F7|98|"Grain number per panicle"|20.6||2001
+838||"Morphological trait"|Seed|1|3|27494415|27496634|d)Co-segregated|6.3|Nipponbare|Kasalath|A|pha|724|RFLP||||||||C136|BC1F7|98|Yield|22.2||2001
+839||Others|Others|1|12|27662696|27664972|d)Co-segregated|3.1|Nipponbare|Kasalath|A|pha|724|RFLP||||||||C901|BC1F7|98|Ratoon|13.6||2001
+840||"Physiological trait"|"Source activity"|1|3|27494415|27496634|d)Co-segregated|2.8|Nipponbare|Kasalath|B|pha|724|RFLP||||||||C136|BC1F7|98|"Chl. Content"|10.8||2001
+841||"Physiological trait"|"Source activity"|1|6|31870268|31872155|d)Co-segregated|2.9|Nipponbare|Kasalath|B|pha|724|RFLP||||||||C607|BC1F7|98|"Decreased Chl. content"|10.9||2001
+842||"Physiological trait"|"Source activity"|1|5|3281266|3285751|d)Co-segregated|4.2|Nipponbare|Kasalath|B|pha|724|RFLP||||||||R1838|BC1F7|98|Rubisco/Chl|17.9||2001
+843||"Physiological trait"|"Source activity"|1|2|23021123|23025244|d)Co-segregated|3|Nipponbare|Kasalath|B|pha|724|RFLP||||||||R26|BC1F7|98|"É¬-[13C] value"|11.4||2001
+844||"Morphological trait"|Dwarf|1|1|41321619|41326023|d)Co-segregated|3.8|Nipponbare|Kasalath|B|pha|724|RFLP||||||||R2414|BC1F7|98|"Plant height  (middle stage)"|12.9||2001
+845||"Morphological trait"|Dwarf|1|1|41321619|41326023|d)Co-segregated|5.7|Nipponbare|Kasalath|B|pha|724|RFLP||||||||R2414|BC1F7|98|"Plant height  (maximum)"|19.2||2001
+846||"Morphological trait"|Dwarf|1|9|22688515|22690613|d)Co-segregated|2.7|Nipponbare|Kasalath|A|pha|724|RFLP||||||||C506|BC1F7|98|"Elongation of plant height"|10.6||2001
+847||"Morphological trait"|Culm/leaf|1|1|42710233|42715593|d)Co-segregated|3.6|Nipponbare|Kasalath|B|pha|724|RFLP||||||||C742|BC1F7|98|"-2 leaf height"|16.1||2001
+848||"Morphological trait"|Culm/leaf|1|7|3215492|3219427|d)Co-segregated|2.3|Nipponbare|Kasalath|A|pha|724|RFLP||||||||R565|BC1F7|98|"Leaf area"|12.5||2001
+849||"Physiological trait"|Germination/dormancy|1|3|10238092|10240940|d)Co-segregated|5.1|Nipponbare|Kasalath|A|pha|724|RFLP||||||||C1488|BC1F7|98|"Seed dormancy"|25.6||2001
+850||"Physiological trait"|Flowering|1|6|8054255|8066362|d)Co-segregated|5.1|Nipponbare|Kasalath|A|pha|724|RFLP||||||||R2171|BC1F7|98|"Heading date"|27.6||2001
+851|xa5|"Resistance or Tolerance"|"Bacterial blight resistance"|2|5|347741|491988|A)Physical||Nipponbare|IRBB5||pha|734||"""AC129716, AC079022, and 44B4."""|"""K8(ctacagagaactaatcaacc,  ctcgatttcttacaatgtcc)"""|"""T25 (tccagtcgaaaggtcttcac,ttgcagactcgcagttactc)"""||||||F2|22000|"resistant or susceptible phenotype "|||2006
+852|yld2.1|"Morphological trait"|Panicle/flower|2|2|34831427|34831889|d)Co-segregated||V20A|"O. rufipogon (IRGC 105491)"|B|pha|739|RFLP||||||||RG256|"BC2 testcross population"|300|"grain yield"|17.07|1.14|1996
+853||Others|Others|1|1|31203835|31206299|d)Co-segregated|7.8|Azucena|Bala|A|pha|741|RFLP||||||||C1370|RIL|115|"rice plant height of Striga/control treatment;"|20.8||2008
+854||Others|Others|1|1|31203835|31206299|d)Co-segregated|10.4|Azucena|Bala|A|pha|741|RFLP||||||||C1370|RIL|115|"rice leaf dry weight of Striga/control treatment"|30.4||2008
+855||Others|Others|1|1|31203835|31206299|d)Co-segregated|7|Azucena|Bala|A|pha|741|RFLP||||||||C1370|RIL|115|"rice stem dry weight of Striga/control treatment"|22.8||2008
+856||Others|Others|1|1|31203835|31206299|d)Co-segregated|15.7|Azucena|Bala|A|pha|741|RFLP||||||||C1370|RIL|115|"rice shoot dry weight of Striga/control treatment"|26.1||2008
+857||Others|Others|1|1|31203835|31206299|d)Co-segregated|6.8|Azucena|Bala|B|pha|741|RFLP||||||||C1370|RIL|115|"rice leaf/stem ratio of Striga/control treatment"|22||2008
+858||Others|Others|1|1|33178792|33184516|d)Co-segregated|4.9|Azucena|Bala|B|pha|741|RFLP||||||||"R2417 "|RIL|115|"Striga dry weight"|11||2008
+859||Others|Others|1|1|33178792|33184516|d)Co-segregated|7.6|Azucena|Bala|B|pha|741|RFLP||||||||R2417|RIL|115|"Striga number at week 11"|18.4||2008
+860||Others|Others|1|1|31203835|31206299|d)Co-segregated|5.8|Azucena|Bala|A|pha|741|RFLP||||||||C1370|RIL|115|"time of first Striga emergence."|14.4||2008
+861||"Resistance or Tolerance"|"Drought tolerance"|1|3|1429107|3509693|C)Interval||IR64|Azucena|B|pha|760|RFLP|||||RG348|RZ329|||DHL|80|"Day toÅ@flowering"|||2002
+862||"Resistance or Tolerance"|"Drought tolerance"|1|1|36697294|42495953|C)Interval||IR64|Azucena|B|pha|760|RFLP|||||RZ730|RG810|||DHL|80|"Plant height"|||2002
+863||"Resistance or Tolerance"|"Drought tolerance"|1|1|34067651|42495953|C)Interval||IR64|Azucena|A|pha|760|RFLP|||||RG690|RG810|||DHL|80|Panicles/m2|||2002
+864||"Resistance or Tolerance"|"Drought tolerance"|1|5|2069338|2760413|C)Interval||IR64|Azucena|B|pha|760|RFLP|||||RG313|RZ556|||DHL|80|"Steririty (%)"|||2002
+865|cisc(t)|"Resistance or Tolerance"|"Cold tolerance"|2|9|18374393|19465043|B)Fine||Lemont|Dular|A|pha|761|SSR||RM257|RM242||||||F2|100|"cold tolerance at seedling stage"|||2007
+866|Ste2|"Physiological trait"|Sterility|2|12|309365|308865|d)Co-segregated||"3037 (indica)"|2428||pha|765|RFLP||||||||RG98|BC1F1|121|"low-temperature-sensitive sterility"|||1997
+867|"qSS-7a "|"Physiological trait"|Sterility|2|7|413668|1165196|C)Interval|19.9|"WAB450-16(O. sativa)"|"""CG14,(O. glaberrima)"""||pha|766|SSR|||||"RM295 "|RM3831|||BC1F7||"pollen and spikelet fertility"|63|36.85|2008
+868|"gp7a "|"Morphological trait"|Panicle/flower|2|7|2349842|17535483|C)Interval|9.1|"Zhenshan 97"|"Minghui 6"|B|pha|767|RFLP|||||R1440|"RG128 "|||F2|250|"Grains/panicle "|20.4|18.6|2000
+869|"gw7 "|"Morphological trait"|Panicle/flower|2|7|2349842|17535483|C)Interval|6.8|"Zhenshan 97"|"Minghui 6"|B|pha|767|RFLP|||||R1440|"RG128 "|||F2|250|"1000 Grain weight "|21.8|1.8|2000
+870|"tp7b "|"Morphological trait"|Culm/leaf|2|7|2349842|17535483|C)Interval|4.5|"Zhenshan 97"|"Minghui 6"|B|pha|767|RFLP|||||R1440|"RG128 "|||F2|250|"Tillers/plant "|9.3|1.4|2000
+871|"yd7a "|"Morphological trait"|Panicle/flower|2|7|2349842|17535483|C)Interval|9.3|"Zhenshan 97"|"Minghui 6"|B|pha|767|RFLP|||||R1440|"RG128 "|||F2|250|"Yield per plant"|19.8|9.5|2000
+872|qSPN-6|"Morphological trait"|Panicle/flower|2|6|9282143|17933378|C)Interval|3|ZYQ8|"Jingxi 17"|A|pha|768|RFLP|||||C235|G294|||RIL|107|"Spikelets per panicle"|15.3|43.3|1999
+873|Ta|"Morphological trait"|Culm/leaf|2|9|19168716|21314308|C)Interval|32.3|Lemont|Teqing|B|pha|773|RFLP|||||RZ228|RG667|||F2|255|"tillering angle"|47.5|0.82|1999
+874|Ta|"Morphological trait"|Culm/leaf|2|9|19168716|21314308|C)Interval|11.1|Lemont|Teqing|B|pha|773|RFLP|||||RZ228|RG667|||F2|255|"leaf angle"|20.7|0.36|1999
+875|QFla5|"Morphological trait"|Culm/leaf|2|5|23597602|29429411|C)Interval|7.8|Lemont|Teqing|B|pha|773|RFLP|||||RG470|RG346|||F2|255|"flag leaf angle"|22.1|-0.36|1999
+876|"QSbr3a "|"Resistance or Tolerance"|"Sheath blight resistance"|2|3|1429107|3215610|C)Interval|15.26|Lemont|Teqing|B|pha|774|RFLP|||||RG348|RG944|||F4|255|"sheath blight response ratings (SBRs)"|27.7|-1.11|1995
+877|PNF(DH)1|"Morphological trait"|Culm/leaf|2|1|42157734|42364623|C)Interval|5.42|Azucena|IR64||pha|775|RFLP|||||RG323|RZ801|||DHL|134|"panicle number"|13.6||2001
+878|Pi37|"Resistance or Tolerance"|"Blast resistance"|2|1|34825679|34969341|A)Physical|||||pha|776||"""DQ92349.1,B1100D10"""||||||||||"blast resistance"|||2007
+879|"np4 "|"Morphological trait"|Seed|2|4|32246485|34252531|C)Interval|9.68|"Waiyin 2"|CB|B|pha|777|RFLP|||||RG143|RG214|||F2|171|"Number of panicles/plant"|26.1|-2.92|1996
+880|ng1|"Morphological trait"|Seed|2|1|34264553|36658883|C)Interval|4.41|"Tesanai 2"|CB|B|pha|777|RFLP|||||RG374|RG394|||F2|171|"Number of grains/plant"|17.2|-1.39|1996
+881|sf1|"Morphological trait"|Seed|2|1|34264553|36658883|C)Interval|3.86|"Tesanai 2"|CB|B|pha|777|RFLP|||||RG374|RG394|||F2|171|"Spikelet fertility"|12.2|-5.1|1996
+882|"tgwt4 "|"Morphological trait"|Seed|2|4|32246485|34252531|C)Interval|2.74|"Tesanai 2"|CB|B|pha|777|RFLP|||||RG143|RG214|||F2|171|"1000-grain weight"|8.5|-1.39|1996
+883|"nfb8 "|"Morphological trait"|Seed|2|8|5421262|7568613|C)Interval|6.49|"Waiyin 2"|CB|B|pha|777|RFLP|||||RG108|RZ562|||F2|171|"Number of first branches / main panicle"|20.9|1.91|1996
+884|"gwt4a "|"Morphological trait"|Seed|2|4|8667374|20281368|C)Interval|4.67|"Tesanai 2"|CB|B|pha|777|RFLP|||||RG788|"RG190 "|||F2|171|"Grain weight/plant"|22.3|-8.85|1996
+885|"tns6 "|"Morphological trait"|Seed|2|6|6023974|9537572|C)Interval|5.01|"Waiyin 2"|CB|B|pha|777|RFLP|||||RG138|"RG64 "|||F2|171|"Total number of spikelets/panicle"|13.1|-38.04|1996
+886|"sd6 "|"Morphological trait"|Seed|2|6|6023974|9537572|C)Interval|5.15|"Tesanai 2"|CB|B|pha|777|RFLP|||||RG138|"RG64 "|||F2|171|"Spikelet density (number of spikelets per 10cm of panicle)"|13.3|-14.62|1996
+887||"Resistance or Tolerance"|"Salinity tolerance"|1|6|23740405|23740821|d)Co-segregated||"Tesanai 2"|CB|A|pha|779|RFLP||||||||RG716|RIL|142|"The average for survival days"||1.5|1998
+888|qER-2|"Physiological trait"|"Eating quality"|2|2|31163247|32334580|C)Interval|6.75|Asominori|IR24|B|pha|782|RFLP|||||C370|C601|||RIL|71|"elongation ratio"|34.8|-0.1|2008
+889|qEL-2|"Physiological trait"|"Eating quality"|2|2|31163247|32334580|C)Interval|3.75|Asominori|IR24|B|pha|782|RFLP|||||C370|C601|||RIL|71|"elongation index"|17.7|-0.052|2008
+890|qWA-2|"Physiological trait"|"Eating quality"|2|2|31163247|32334580|C)Interval|3.81|Asominori|IR24|B|pha|782|RFLP|||||C370|C601|||RIL|71|"water absorption"|15.2|0.098|2008
+891|qER-2a|"Physiological trait"|"Eating quality"|2|2|29520942|30524437|B)Fine||Asominori|IR24||pha|782|SSR||RM450|RM318||||||F2||"elongation ratio"|31.5||2008
+892|qER-2b|"Physiological trait"|"Eating quality"|2|2|27533328|28207849|B)Fine||Asominori|IR24||pha|782|SSR||RM1385|RM3512||||||F2||"elongation ratio"|26.2||2008
+893|Aroma|"Physiological trait"|"Eating quality"|2|8|19472018|21737684|C)Interval|14.5|Azucena|IR64|A|pha|790|RFLP|||||RG28|RG1|||DHL|135|"scent revelation with KOH"|69||1996
+894|gw-6|"Morphological trait"|Seed|2|6|9282143|17933378|C)Interval|3.02|"Zaiyeqing 8"|"Jingxi 17"||pha|791|RFLP|||||C235|G294|||DHL|132|"1000-grain weight "|11.5|0.4|1996
+895|eui|"Morphological trait"|Dwarf|2|5|23775727|23785531|A)Physical|||||pha|793||Os05g0482400||||||||||"elongation of the uppermost internode at the heading stage"|||2006
+896|RL10(t)|"Morphological trait"|Culm/leaf|2|9|14310249|14458878|A)Physical||rl10|D62B||pha|794|SSR|AP005904||||||||F2|5400|"rolled leaf trait"|||2007
+897|OsPIPK1|"Physiological trait"|Flowering|2|3|28940657|28946571|A)Physical|||||pha|795||Os03g0701800||||||||||"heading date"|||2004
+898|Ehd2|"Physiological trait"|Flowering|2|10|15197103|15199951|A)Physical||ehd2Å@mutant|"Guang Lu Ai 4"||pha|801||Os10g0419200||||||||||"heading date"|||2008
+899|qRPA-2-c|"Resistance or Tolerance"|"Other soil stress tolerance"|2|2|23457248|26356387|C)Interval|2.72|ZYQ8|"Jingxi 17"||pha|803|RFLP|||||C424|G45|||RIL|98|"relative P allocation between shoot and root"|13.6|0.11|2001
+900|dth3.1|"Resistance or Tolerance"|"Drought tolerance"|2|3|464682|3509693|C)Interval|5.18|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|RFLP|||||RG104|RZ329|||BC1F1|224|"Days to heading"|||2001
+901|ph1.2|"Resistance or Tolerance"|"Drought tolerance"|2|1|41923730|42364623|C)Interval|13.28|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|Mixture|||||RM104|RZ801|||BC1F1|224|"Plant height"|||2001
+902|ppl6.1|"Resistance or Tolerance"|"Drought tolerance"|2|6|26569436|28130383|C)Interval|4.54|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|Mixture|||||RM3|CDO78|||BC1F1|224|"Panicles per plant "|||2001
+903|ste10.2|"Resistance or Tolerance"|"Drought tolerance"|2|10|21474732|21503768|C)Interval|6.22|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|Mixture|||||RM147|RZ500|||BC1F1|224|"Percent sterility"|||2001
+904|gpl11.1|"Resistance or Tolerance"|"Drought tolerance"|2|11|17246592|23651853|C)Interval|3.66|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|RFLP|||||RZ537|RZ900|||BC1F1|224|"Grains per plant"|||2001
+905|gw11.1|"Resistance or Tolerance"|"Drought tolerance"|2|11|17246592|23651853|C)Interval|7.19|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|RFLP|||||RZ537|RZ900|||BC1F1|224|"1000-grain weight"|||2001
+906|yld11.1|"Resistance or Tolerance"|"Drought tolerance"|2|11|17246592|23651853|C)Interval|4.96|Caiapo|"O. rufipogon (IRGC 105491)"|B|pha|804|RFLP|||||RZ537|RZ900|||BC1F1|224|"Yield per plant"|||2001
+907|OsPRR95|"Physiological trait"|Flowering|2|9|21716815|21721485|A)Physical|||||pha|806||Os09g0532400||||||||||"relative amount of mRNA"|||2003
+908|OsPRR59|"Physiological trait"|Flowering|2|11|2772223|2776940|A)Physical|||||pha|806||Os11g0157600||||||||||"relative amount of mRNA"|||2003
+909|OsPRR37|"Physiological trait"|Flowering|2|7|30276864|30289374|A)Physical|||||pha|806||Os07g0695100||||||||||"relative amount of mRNA"|||2003
+910|OsORR73|"Physiological trait"|Flowering|2|3|9810142|9819353|A)Physical|||||pha|806||Os03g0284100||||||||||"relative amount of mRNA"|||2003
+911|OsPRR1|"Physiological trait"|Flowering|2|2|25427321|25430309|A)Physical|||||pha|806||Os02g0618200||||||||||"relative amount of mRNA"|||2003
+912||"Resistance or Tolerance"|"Other soil stress tolerance"|1|12|1548039|18160498|C)Interval|16.51|IR20|IR55178-3B-9-3|A|pha|810|RFLP|||||RG9|RG241|||RIL|285|"Relative tillering ability"|54|42.9|1998
+913||"Resistance or Tolerance"|"Other soil stress tolerance"|1|12|1548039|18160498|C)Interval|16.98|IR20|IR55178-3B-9-3|A|pha|810|AFLP|||||RG9|RG241|||RIL|285|"Relative shoot dry weight"|60.8|31.3|1998
+914||"Resistance or Tolerance"|"Other soil stress tolerance"|1|12|1548039|18160498|C)Interval|12.05|IR20|IR55178-3B-9-3|A|pha|810|AFLP|||||RG9|RG241|||RIL|285|"Relative root dry weight"|44.2|47|1998
+915||"Physiological trait"|Flowering|1|7|4606397|17535483|C)Interval|52.3|Hoshinoyume|Kasalath|A|pha|813|RFLP|||||R2401|R1440|||F2|197|"heading date"|69.3|-13.1|2008
+916|AsTol10|"Resistance or Tolerance"|"Other soil stress tolerance"|2|10|12044545|12043918|d)Co-segregated||Bala|Azucena||pha|814|RFLP||||||||RG257|RIL|108|"Arsenate tolerance"|||2008
+917||"Resistance or Tolerance"|"Other soil stress tolerance"|1|4|19921036|29158662|C)Interval|10.92|Nekken-1|IR36||pha|815|SSR|||||RM5586|RM3916|RM3839||RIL|83|"Boron tolerance"|||2008
+918|OsCPS1|Others|Others|2|2|10302717|10312725|A)Physical|||||pha|818||Os02g0278700||||||||||"GA biosynthesis?"|||2004
+919|OsCyc1|Others|Others|2|4|5310439|5318806|A)Physical|||||pha|818||Os04g0178300||||||||||"phytoalexin biosynthesis?"|||2004
+920|OsCyc2|Others|Others|2|2|22698920|22705606|A)Physical|||||pha|818||Os02g0571100||||||||||"phytoalexin biosynthesis?"|||2004
+921|qCER4-1|"Morphological trait"|Shoot/Seedling|2|4|8667374|11290874|C)Interval|15.94|"Zhenshan 97B"|MY46|B|pha|819|RFLP|||||RG190|RZ69|||RIL|244|"coleoptile elongation rate"|7.26|-0.12|2007
+922|OsId1|"Physiological trait"|Flowering|2|10|15197103|15199951|A)Physical|||||pha|820||Os10g0419200|||||||||||||2008
+923|RG869|"Resistance or Tolerance"|"Other disease resistance"|2|12|7731505|7731094|d)Co-segregated||IR64|Azucena|B|pha|821|RFLP||||||||RG869|DHL|89|"resistance to rice yellow mottle virus"|36.5||1998
+924||"Morphological trait"|Root|1|1|44208186|44211418|d)Co-segregated||Bala|Azucena|B|pha|823|RFLP||||||||" R117  "|RIL|205|" No. of roots  "|10.3||2002
+925||"Morphological trait"|Root|1|11|23732960|23734930|d)Co-segregated||Bala|Azucena|A|pha|823|RFLP||||||||" C189  "|RIL|205|" No. of penetrated roots"|6.9||2002
+926||"Morphological trait"|Root|1|11|23732960|23734930|d)Co-segregated||Bala|Azucena|A|pha|823|RFLP||||||||" C189  "|RIL|205|" Ratio penetrated total roots"|7.4||2002
+927||"Resistance or Tolerance"|"Drought tolerance"|1|1|41444285|44211418|C)Interval||Bala|Azucena|B|pha|823|RFLP|||||RZ14|"R117 "|||RIL|205|"No. of roots "|10.3|7.8|2000
+928||"Resistance or Tolerance"|"Drought tolerance"|1|11|23732960|23734930|C)Interval||Bala|Azucena|B|pha|823|RFLP|||||RZ2|G1465|"C189 "||RIL|205|"No. of penetrated root"|6.9|2.2|2000
+929||"Resistance or Tolerance"|"Drought tolerance"|1|11|23732960|23734930|C)Interval||Bala|Azucena|B|pha|823|RFLP|||||RZ2|G1465|"C189 "||RIL|205|"Ratio penetrated: total root"|7.4|0.047|2000
+930|2-2|"Morphological trait"|Root|2|2|31163247|31166188|d)Co-segregated|0|Bala|Azucena||pha|824|RFLP||||||||C601|RIL|140|"""root to shoot ratio,deep root weight,root thickness,maximum root length,number of roots past 100cm"""|||2002
+931|5-1|"Morphological trait"|Root|2|5|28994948|29429411|C)Interval|0|Bala|Azucena||pha|824|RFLP|||||RG119|RG346|||RIL|140|"""deep root weight,maximum root length,number of roots past 100cm"""|||2002
+932|7-3|"Morphological trait"|Root|2|7|24746657|26133946|C)Interval|0|Bala|Azucena||pha|824|Mixture|||||RG650|RM234|||RIL|140|"""root thickness,maximum root length,number of roots past 100cm"""|||2002
+933|8-4|"Morphological trait"|Root|2|8|24274675|27825769|C)Interval|0|Bala|Azucena||pha|824|RFLP|||||R202|RG598|||RIL|140|"""root to shoot ratio,maximum root length"""|||2002
+934|9-1|"Morphological trait"|Root|2|9|15969906|15977784|d)Co-segregated|0|Bala|Azucena||pha|824|RFLP||||||||G385|RIL|140|"""root to shoot ratio,root thickness"""|||2002
+935|10-1|"Morphological trait"|Root|2|10|845399|847614|d)Co-segregated|0|Bala|Azucena||pha|824|RFLP||||||||C701|RIL|140|"""root thickness,maximum root length"""|||2002
+936|11-1|"Morphological trait"|Root|2|11|23732960|23734930|d)Co-segregated|0|Bala|Azucena||pha|824|RFLP||||||||C189|RIL|140|"""root thickness,number of roots past 100cm"""|||2002
+937||"Resistance or Tolerance"|"Drought tolerance"|1|7|30127519|30127996|d)Co-segregated|2.3|Bala|Azucena|B|pha|825|RFLP||||||||"RG351 "|F2|178|"rate of stomatal closure upon excision based on visual assessment of a plot of stomatal resistance vs. time"|6.1|0.1|1997
+938||"Resistance or Tolerance"|"Drought tolerance"|1|3|12199361|12199844|d)Co-segregated|2.5|Bala|Azucena|B|pha|825|RFLP||||||||RG745|F2|178|"time of fastest stomatal closure after leaf excision"|9.6|-0.49|1997
+939||"Resistance or Tolerance"|"Drought tolerance"|1|3|5758005|5758498|C)Interval|2.7|Bala|Azucena|B|pha|825|RFLP|||||C643|RG745|RG191||F2|178|"stomatal resistance before leaf excision"|16.9|-2.31|1997
+940|"qDLR11 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|11|383711|21835946|C)Interval|2.78|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM2596|"RM286 "|||F2|200|"Dead leaf rate at 20 days"|5.96|2.05|2008
+941|"qDLR2-1 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|2|29160264|36128950|C)Interval|2.29|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM525|"RM406 "|||F2|200|"Dead leaf rate at 27 days"|5.41|4.42|2008
+942|"qDLR2-1 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|2|29160264|36128950|C)Interval|2.82|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM525|"RM406 "|||F2|200|"Dead leaf rate at 34 days"|6.04|5.44|2008
+943|"qDLR4 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|4|23292321|23757222|C)Interval|3.74|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM3524|"RM3866 "|||F2|200|"Dead leaf rate at 41 days"|10.5|-7.39|2008
+944|"qDLR4 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|4|23292321|23757222|C)Interval|3.64|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM3524|"RM3866 "|||F2|200|"Dead leaf rate at 48 days"|8.34|-7|2008
+945|"qDLR3 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|3|13274763|21005826|C)Interval|2.82|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM338|"RM2453 "|||F2|200|"Dead leaf rate at 55 days"|3.47|-4.09|2008
+946|"qDLR6-2 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|6|24221010|25399700|C)Interval|2.88|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM1340|"RM5957 "|||F2|200|"Dead leaf rate at 62 days"|9.86|4.13|2008
+947|"qDSR 8 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|8|3927309|15529036|C)Interval|3.76|"Gaochan 106"|"Changbai 9"|B|pha|827|SSR|||||RM3572|"RM404 "|||F2|200|"Dead seedling rate at 62 days"|18.86|12.96|2008
+948|brt4b|"Resistance or Tolerance"|"Drought tolerance"|2|4|33234004|33430563|C)Interval|13|IRAT109|Yuefu|A|pha|831|SSR|||||RM1153|"RM348 "|||RIL|120|"Basal root thickness"||0.05|2008
+949|rn3|"Resistance or Tolerance"|"Drought tolerance"|2|3|2432425|3845280|C)Interval|10.3|IRAT109|Yuefu|A|pha|831|SSR|||||RM231|"RM175 "|||RIL|120|"root number"||-7.96|2008
+950|mrl9a|"Resistance or Tolerance"|"Drought tolerance"|2|9|18297411|20828859|C)Interval|9.48|IRAT109|Yuefu|A|pha|831|SSR|||||"RM201 "|RM410|||RIL|120|"maximum root length"||2.69|2008
+951|rfw4a|"Resistance or Tolerance"|"Drought tolerance"|2|4|25626203|33083265|C)Interval|14.7|IRAT109|Yuefu|A|pha|831|SSR|||||"RM349 "|RM1136|||RIL|120|"root fresh weight"||1.06|2008
+952|rv12-2|"Resistance or Tolerance"|"Drought tolerance"|2|12|3581725|8828505|C)Interval|5.67|IRAT109|Yuefu|A|pha|831|SSR|||||"RM491 "|RM101|||RIL|120|"root volume"||0.04|2008
+953||"Morphological trait"|Seed|1|8|22562556|22562749|d)Co-segregated||BG90-2|"RS-16(Oryza glumaepatula)"|A|pha|834|SSR||||||||RM210|IL|35|"grain yield"|16.43||2008
+954||"Morphological trait"|Shoot/Seedling|1|3|16018787|23850248|C)Interval|5.62|Labelle|"Black Gora"|A|pha|836|RFLP|||||RZ284|RZ403|"RZ452 "||F2|172|"Shoot length "|17.1|-9.12|1996
+955||"Morphological trait"|Shoot/Seedling|1|3|23850041|31298638|C)Interval|5.31|Labelle|"Black Gora"|A|pha|836|RFLP|||||RZ403|RZ630|"RZ448 "||F2|172|"Coleoptile length "|25.1|3.19|1996
+956||"Morphological trait"|Shoot/Seedling|1|3|16840989|29580503|C)Interval|4.73|Labelle|"Black Gora"|A|pha|836|RFLP|||||RZ452|RZ448|"RZ403 "||F2|172|"Mesocotyl length "|17.5|3.34|1996
+957||"Morphological trait"|Panicle/flower|1|3|23850041|29580503|C)Interval|7.72|Labelle|"Black Gora"|B|pha|837|RFLP|||||RZ448|"RZ403 "|||F2|195|"Panicle size"|16|-26.1|1998
+958||"Morphological trait"|Panicle/flower|1|1|23359606|24776333|C)Interval|4.96|Labelle|"Black Gora"|B|pha|837|RFLP|||||CDO920|"RZ776 "|||F2|195|"Spikelet fertility"|10.6|-7.3|1998
+959||"Morphological trait"|Panicle/flower|1|3|16018787|16841409|C)Interval|9.95|Labelle|"Black Gora"|B|pha|837|RFLP|||||"RZ452 "|RZ284|||F2|195|"Grain length"|20.9|-0.29|1998
+960||"Morphological trait"|Panicle/flower|1|2|27928037|31809030|C)Interval|4.01|Labelle|"Black Gora"|B|pha|837|RFLP|||||"RG139 "|CDO686|||F2|195|"Grain breadth"|9.1|-0.08|1998
+961||"Morphological trait"|Panicle/flower|1|3|16840989|23850248|C)Interval|10.19|Labelle|"Black Gora"|B|pha|837|RFLP|||||"RZ403 "|RZ452|||F2|195|"Grain shape"|21.4|-0.18|1998
+962||"Morphological trait"|Panicle/flower|1|8|4105519|5425677|C)Interval|3.35|Labelle|"Black Gora"|B|pha|837|RFLP|||||"RG333 "|RZ562|||F2|195|"Grain weight"|7.7|-0.08|1998
+963|GA20ox-2|"Morphological trait"|Dwarf|2|1|40138229|40141332|A)Physical|||||pha|840||AB077025||||||||||semi-dwarf|||2002
+964||"Resistance or Tolerance"|"Insect resistance"|1|1|11726709|11726808|d)Co-segregated||IR36|TNAULFR831311|A|pha|844|SSR||||||||"RM3412 "|RIL|176|"Damage score based on green house screening "|4.32||2007
+965||"Resistance or Tolerance"|"Insect resistance"|1|1|34539279|39646396|C)Interval|10.96|IR36|TNAULFR831311|A|pha|844|RFLP|||||RM543|RM472|||RIL|176|"Length of the flag leaf "|25.8|2.8043|2007
+966||"Resistance or Tolerance"|"Insect resistance"|1|1|8138438|11726808|C)Interval|2.95|IR36|TNAULFR831311|A|pha|844|RFLP|||||RM576|RM3412|||RIL|176|"Width of the flag leaf "|9.7|0.0657|2007
+967|qREP-6|"Resistance or Tolerance"|"Other soil stress tolerance"|2|6|25399524|31966537|B)Fine|95.2|Nipponbare|CSSL29||pha|846|SSR||RM5957|RM494||||||F2|752|"root elongation under phosphorus deficiency"|54.5|3.4|2008
+968||"Resistance or Tolerance"|"Insect resistance"|1|6|27116596|27116110|C)Interval|4.4|Bala|Azucena|A|pha|849|RFLP|||||R2654|RG778|RG778||RIL|156|"controlling nematode tolerance"|9|1.96|2007
+969|yld1.1|"Morphological trait"|Panicle/flower|2|1|25629211|25629404|B)Fine|||||pha|851|Others|AP003216|||RM5|||||||yield|||2008
+970|"QPh1b "|"Resistance or Tolerance"|"Submergency tolerance"|2|1|26419476|29360353|C)Interval|6.6|IR74|Jalmagna|A|pha|855|RFLP|||||RZ527|"RZ154 "|||RIL|165|"initial plant height"|-3.5|14.9|2000
+971|"qDTH-6 "|"Morphological trait"|Seed|2|6|3416533|3416728|C)Interval|42.15|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||OSR25|RM253|"RM225 "||BC3F2|141|"Days to heading "|74.8|24.7|2005
+972|"qCL-10 "|"Morphological trait"|Seed|2|10|18542704|18543072|C)Interval|3.73|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||||"RM258 "||BC3F2|141|"Culm length"|11.1|-3.9|2005
+973|"qPL-2 "|"Morphological trait"|Seed|2|2|1326947|1327099|C)Interval|4.33|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||||"RM110 "||BC3F2|141|"Panicle length"|12.5|1.8|2005
+974|"qPN-8 "|"Morphological trait"|Seed|2|8|20740779|24569536|C)Interval|5.59|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||RM223|RM80|"OSR7 "||BC3F2|141|"Panicles per plant "|9.1|-1.4|2005
+975|"qSN-3 "|"Morphological trait"|Seed|2|3|2432425|2432615|C)Interval|4.93|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||||"RM231 "||BC3F2|141|"Spikelets per panicle"|11.9|13.3|2005
+976|"qFER-6 "|"Morphological trait"|Seed|2|6|3416533|3416728|C)Interval|26.81|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||OSR25|RM253|"RM225 "||BC3F2|141|Fertility|58.3|-40|2005
+977|"qGW-6 "|"Morphological trait"|Seed|2|6|3416533|3416728|C)Interval|12.7|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||OSR25|RM253|"RM225 "||BC3F2|141|"""1,000-grain weight"""|34|-2.4|2005
+978|"qYI-6-2 "|"Morphological trait"|Seed|2|6|3416533|3416728|C)Interval|21.74|"Milyang 23"|"Oryza glaberrima (accession IRGC No. 103544)"|A|pha|856|SSR|||||OSR25|RM253|"RM225 "||BC3F2|141|Yield|50.9|-3.6|2005
+979|PhyB|"Physiological trait"|Flowering|2|3|11070754|11078864|A)Physical|||||pha|860||Os03g0309200|||||||||||||2005
+980|PhyC|"Physiological trait"|Flowering|2|3|31767880|31772937|A)Physical|||||pha|860||"Os03g0752100 "|||||||||||||2005
+981||"Resistance or Tolerance"|"Blast resistance"|1|6|27116596|27586198|C)Interval|5.8|Bala|Azucena|A|pha|861|RFLP|||||RG778|"RZ682 "|"RZ682 "||RIL|205|"Disease severity"|18.2|-0.463|2004
+982||"Resistance or Tolerance"|"Blast resistance"|1|10|3758658|3760625|C)Interval|8.7|Bala|Azucena|A|pha|861|RFLP|||||RG341|C449|"R1933 "||RIL|205|"lesion size"|22.1|-0.736|2004
+983||"Resistance or Tolerance"|"Blast resistance"|1|1|44208186|44211418|C)Interval|3.6|Bala|Azucena|A|pha|861|RFLP|||||||"R117 "||RIL|205|"number of lesions per leaf"|12.3|-7.44|2004
+984||"Physiological trait"|Sterility|1|10|1928434|12043918|C)Interval|7.5|RD21A|IR24||pha|863|RFLP|||||R2309|"RG257 "|||BC1F1|122|"Pollen fertility"|25.8|0.326|1998
+985||"Physiological trait"|"Eating quality"|1|5|27056983|28855659|C)Interval|2.8|"Zhenshan 97"|"Minghui 63"|A|pha|865|RFLP|||||C246|"C1447 "|||RIL|238|"Milled rice percentage"|7|-1.32|2001
+986||"Physiological trait"|"Eating quality"|1|7|24952921|26133946|C)Interval|3.2|"Zhenshan 97"|"Minghui 63"|A|pha|865|Mixture|||||"R1245 "|RM234|||RIL|238|Protein|6|-0.43|2001
+987||"Physiological trait"|"Eating quality"|1|1|196647|1891262|C)Interval|3.8|"Zhenshan 97"|"Minghui 63"|A|pha|866|RFLP|||||"C161 "|R753|||F2|240|"Grain width "|13.7|0.02|2000
+988||"Physiological trait"|"Eating quality"|1|3|23850041|25360678|C)Interval|21|"Zhenshan 97"|"Minghui 63"|A|pha|866|RFLP|||||RZ403|"R19 "|||F2|240|"Length-width ratio "|36.4|0.24|2000
+989||"Physiological trait"|"Eating quality"|1|1|196647|1891262|C)Interval|2.6|"Zhenshan 97"|"Minghui 63"|A|pha|866|RFLP|||||"C161 "|R753|||F2|240|"Chalkiness "|8.9|1.97|2000
+990||"Physiological trait"|"Eating quality"|1|7|24952921|27191049|C)Interval|2.7|"Zhenshan 97"|"Minghui 63"|A|pha|866|RFLP|||||"R1245 "|R1789|||RIL|238|"White belly "|9.5|24.5|2000
+991|"Ph7a "|"Morphological trait"|Dwarf|2|7|19344636|24746292|C)Interval|2.6|"Zaiyeqing 8"|"Jingxi 17"|A|pha|867|RFLP|||||"RG650 "|C285|||DHL|133|"Plant height "|12.7|-9.4382|1996
+992|Sn2a|"Morphological trait"|Dwarf|2|2|23457248|26356387|C)Interval|2.07|"Zaiyeqing 8"|"Jingxi 17"|A|pha|867|RFLP|||||"C424 "|G45|||DHL|133|"Length of top second internode "|8.9|1.6461|1996
+993|"Ra7a "|Others|Others|2|7|19344636|24746292|C)Interval|4.24|"Zaiyeqing 8"|"Jingxi 17"|A|pha|868|RFLP|||||"RG650 "|C285|||DHL|133|"Ratooning ability "|18.3|-0.5108|1997
+994|"Gy3a "|Others|Others|2|3|5466676|8462713|C)Interval|3.11|"Zaiyeqing 8"|"Jingxi 17"|A|pha|868|RFLP|||||"RG266 "|C63|||DHL|133|"Grain yield per plant"|12.1|3.9014|1997
+995||"Morphological trait"|Root|1|3|6042033|6041592|d)Co-segregated||Palawan|IR42|A|pha|869|RFLP||||||||"RZ742 "|F2|137|"Root value"|0.08|0.2|1999
+996||"Morphological trait"|Root|1|5|18944261|18944887|d)Co-segregated||Palawan|IR42|A|pha|869|RFLP||||||||"RG13 "|F2|137|"maximum root length"|0.12|-1.9|1999
+997|"qPTD-2 "|"Morphological trait"|Panicle/flower|2|2|23457248|26356387|C)Interval|2.53|"Zaiyeqing 8"|"Jingxi 17"|B|pha|870|RFLP|||||"C424 "|G45|||DHL|127|"peduncle top diameter"|12.5|-0.2368|2002
+998||"Resistance or Tolerance"|"Other soil stress tolerance"|1|10|13111494|14711256|C)Interval|4.7|Nipponbare|Kasalath|A|pha|883|RFLP|||||R1629|"R2447 "|||BIL|98|"P uptake"|7.7|621|1998
+999||"Resistance or Tolerance"|"Other soil stress tolerance"|1|4|608084|4435752|C)Interval|4.35|Nipponbare|Kasalath|B|pha|883|RFLP|||||C946|R1854|||BIL|98|"P-use eficiency "|9.4|0.303|1998
+1000||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42157734|42364623|C)Interval|6.93|IR1552|Azucena|B|pha|886|Mixture|||||"RZ801 "|RG323|||RIL|150|"maximum root length (2 weeks-stress)"|0.2|0.08|2000
+1001||"Resistance or Tolerance"|"Other soil stress tolerance"|1|12|18152227|19802220|C)Interval|6.82|IR1552|Azucena|B|pha|886|Mixture|||||"RG9 "|RG457|||RIL|150|"maximum root length (after 4-weeks stress)"|0.2|0.07|2000
+1002||"Physiological trait"|"Source activity"|1|4|31436862|34252531|C)Interval|2.91|IR42|Palawan|B|pha|887|RFLP|||||RG143|"RG329 "|||F2|231|"chlorophyll content"|5.9|0.134|1996
+1003||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42496228|43337260|C)Interval|3.53|IR64|Azucena|A|pha|888|RFLP|||||RG810|RG331|||DHL|123|"tolerance index to Fe 2+ toxicity"|12.6|0.63|1997
+1004|gpp4|"Morphological trait"|Seed|2|4|21645173|34244441|C)Interval|10.31|9024|LH422|B|pha|890|RFLP|||||RZ569|RZ565|||RIL|194|"grains per panicle"|10|-1.52|1996
+1005|spp4-2|"Morphological trait"|Panicle/flower|2|4|1137976|17888842|C)Interval|2.09|9024|LH422|B|pha|890|RFLP|||||RG449|CDO456|||RIL|194|"spikelets per panicle"|5.1|-9.64|1996
+1006|ph6|"Morphological trait"|Dwarf|2|6|6927624|29906021|C)Interval|5.36|9024|LH422|B|pha|890|RFLP|||||RZ667|RG653|||RIL|194|"plant height"|12.1|-6.28|1996
+1007|dth8|"Physiological trait"|Flowering|2|8|4105519|25684949|C)Interval|27.66|9024|LH422|B|pha|890|RFLP|||||RG333|RZ66|||RIL|194|"days to heading"|51.1|9.31|1996
+1008|ssd10|"Morphological trait"|Panicle/flower|2|10|12044545|19623828|C)Interval|2.46|9024|LH422|B|pha|890|RFLP|||||RG257|RZ583|||RIL|194|"spikelets setting density"|6.9|-0.46|1996
+1009|gy12|"Morphological trait"|Seed|2|12|309365|7731094|C)Interval|2.68|9024|LH422|B|pha|890|RFLP|||||RG869|RG98|||RIL|194|"grain yield"|9.1|-0.42|1996
+1010|gl3a|"Morphological trait"|Panicle/flower|2|3|8460597|9806441|C)Interval|3.77|"Zhenshan 97"|"Minghui 63"|B|pha|892|Mixture|||||C63|RM232|||RIL|241|"grain length"|8.8|0.17|2001
+1011|gw6|"Morphological trait"|Panicle/flower|2|6|20691542|25797291|C)Interval|2.45|"Zhenshan 97"|"Minghui 63"|B|pha|892|Mixture|||||RG424|R2549|||RIL|241|"grain width"|6.6|0.06|2001
+1012|qSSP7|"Morphological trait"|Panicle/flower|2|7|8910286|11394315|B)Fine|56.1|"Zhenshan 97"|"Minghui 63"|B|pha|893|Mixture||"RM3859 "|C39||||||BC3F2|0|"number of spikelets per panicle"|74.2|59.8|2008
+1013|"qRRE-11 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|11|5402356|5699215|C)Interval|2.64|Asominori|IR24|A|pha|900|RFLP|||||C496|C410|||RIL|71|"relative root elongation"|13.5|0.22|2007
+1014|bc7(t)|"Morphological trait"|Culm/leaf|2|1|33168525|33249565|A)Physical||"Zhonghua 11((bc7(t) mutant)"|Dular||pha|903||AP003237||||||||F2|90|"brittle culm"|||2007
+1015|tn1-4|"Morphological trait"|Culm/leaf|2|1|36697294|42364623|C)Interval||IR64|Azucena||pha|906|Mixture|||||RZ730|RZ801|||DHL|123|"tiller numbers"|||1998
+1016|"dcf3 "|"Physiological trait"|"Source activity"|2|3|10000519|12459455|C)Interval|10.36|SNU-SG1|"Milyang 23"|A|pha|911|Mixture|||||RM282|"RM251 "|||F2|46|"degree of chlorophyll content of flag leaf at the heading date"|13.4|5.33|2007
+1017|"ccf3b "|"Physiological trait"|"Source activity"|2|3|12459327|23887965|C)Interval|12.34|SNU-SG1|"Milyang 23"|A|pha|911|Mixture|||||RM16|"RM282 "|||F2|46|"cumulative chlorophyll content of the flag leaf"|16|23.72|2007
+1018|"ccs3 "|"Physiological trait"|"Source activity"|2|3|10000519|12459455|C)Interval|9.04|SNU-SG1|"Milyang 23"|A|pha|911|Mixture|||||RM282|"RM251 "|||F2|46|"cumulative chlorophyll content of the second leaf"|13.9|15.08|2007
+1019|"ccfs3 "|"Physiological trait"|"Source activity"|2|3|12459327|23887965|C)Interval|12.23|SNU-SG1|"Milyang 23"|A|pha|911|Mixture|||||RM16|"RM282 "|||F2|46|"mean of cumulative chlorophyll contents of the flag and second leaves"|36.5|22.59|2007
+1020|"dcs5 "|"Physiological trait"|"Source activity"|2|5|18760746|19982059|C)Interval|11.62|SNU-SG1|"Milyang 23"|B|pha|911|Mixture|||||RM440|"RM430 "|||RIL|92|"degree of chlorophyll content of the second leaf at the heading date"|12.7|3.93|2007
+1021|"dcfs5 "|"Physiological trait"|"Source activity"|2|5|18760746|19982059|C)Interval|12.14|SNU-SG1|"Milyang 23"|B|pha|911|Mixture|||||RM440|"RM430 "|||RIL|92|"degree of mean chlorophyll content of the flag and second leaves"|21|4.91|2007
+1022|Xa1|"Resistance or Tolerance"|"Bacterial blight resistance"|2|4|32036440|32061259|A)Physical||IR24|"""IR-BB1, Kogyoku"""||pha|912||AB002266||||||||F3|4225|"bacterial blight resistance"|||1998
+1023|Tac1|"Morphological trait"|Culm/leaf|2|9|21504897|21615388|A)Physical||IR24|"""introgressed line, IL55, derived from japonica rice Asominori"""||pha|913|Mixture|AP005682||||||||F2|2496|"tiller angle"|||2007
+1024|"oa2.1 "|"Resistance or Tolerance"|"Drought tolerance"|2|2|26758064|29247371|C)Interval|3|CT9993-5-10-1-M|IR62266-42-6-2|B|pha|917|Mixture|||||RM263|"R3393 "|||DHL|154|"Osmotic adjustment "|8.9|0.08|2001
+1025|"prt6.1 "|"Resistance or Tolerance"|"Drought tolerance"|2|6|23740405|25797291|C)Interval|3|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|917|Mixture|||||R2549|"RG716 "|||DHL|154|"Penetrated root thickness "|9|0.06|2001
+1026|"rpf4.1 "|"Resistance or Tolerance"|"Drought tolerance"|2|4|32246485|35283358|C)Interval|7.3|CT9993-5-10-1-M|IR62266-42-6-2|A|pha|917|Mixture|||||RG214|"RG620 "|||DHL|154|"Root pulling force "|19.9|13.4|2001
+1027|"AsS "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|2|29520942|30524437|C)Interval|5.7|CJ06|TN1||pha|918|SSR|||||RM318|"RM450 "|||DHL|94|"arsenic concentrations in shoots"|24.4|-1.38|2008
+1028|"AsSe2 "|"Resistance or Tolerance"|"Other soil stress tolerance"|2|8|4772713|5115915|C)Interval|5.5|CJ06|TN1||pha|918|SSR|||||RM1111|"RM310 "|||DHL|94|"arsenic concentrations in brown rice "|35.2|-0.092|2008
+1029|ostd(t)|"Physiological trait"|Sterility|2|6|24812663|25202821|B)Fine||ostd(t)|Nipponbare||pha|921|SSR||RM7434|RM275||||||F2|800|"male sterility"|||2008
+1030||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42496228|43337260|C)Interval|4.23|IR64|Azucena|A|pha|927|Mixture|||||RG810|RG331|||DHL|135|"leaf bronzing index"|16|0.104|1998
+1031||"Resistance or Tolerance"|"Other soil stress tolerance"|1|1|42496228|43337260|C)Interval|3.16|IR64|Azucena|A|pha|927|Mixture|||||RG810|RG331|||DHL|135|"iron concentration in shoot tissue"|15|0.24|1998
+1032|"qSB-3 "|"Resistance or Tolerance"|"Bacterial blight resistance"|2|3|25876546|27899169|C)Interval|6.86|"Jasmine 85"|Lemont|A|pha|928|Mixture|||||R250|"C746 "|||F2|128|"sheath blight resistance"|26.5|0.7332|2000
+1033|"qLCC-7 "|"Physiological trait"|"Source activity"|2|7|23518753|24685302|C)Interval|3.72|IR24|Asominori|A|pha|929|RFLP|||||R2394|"R2677 "|||RIL|71|"leaf chlorophyll content"|14.2|0.94|2007
+1034|"qCDS-7 "|"Physiological trait"|"Source activity"|2|7|23518753|24685302|C)Interval|3.64|IR24|Asominori|A|pha|929|RFLP|||||R2394|"R2677 "|||RIL|71|"chlorophyll degradation speed"|15.9|1.02|2007
+1035|qLEI3|"Resistance or Tolerance"|"Submergency tolerance"|2|3|10708808|12954471|B)Fine||T65|C9285||jsa|132|Mixture||RM3803|RM7249||||||BC4F4||"Lowest elongated internode"|||2008
+1036|qTIL12|"Resistance or Tolerance"|"Submergency tolerance"|2|12|25203610|26368115|B)Fine||T65|C9285||jsa|132|Mixture||RM6386|RM235||||||BC4F4||"Total internode elongation length"|||2008
+1037|qNEI12|"Resistance or Tolerance"|"Submergency tolerance"|2|12|25203610|26368115|B)Fine||T65|C9285||jsa|132|Mixture||RM6386|RM235||||||BC4F4||"Number of elongated internodes"|||2008
+1038|qLEI12|"Resistance or Tolerance"|"Submergency tolerance"|2|12|25203610|26368115|B)Fine||T65|C9285||jsa|132|Mixture||RM6386|RM235||||||BC4F4||"Lowest elongated internode"|||2008
+1039|qGL3-1|"Physiological trait"|"Eating quality"|2|3|10220781|18799084|B)Fine||SL207|Koshihikari||jsa|134|SSR||RM4321|RM1940||||||F3|1536|glossiness|||2007
+1040|qOE3-1|"Physiological trait"|"Eating quality"|2|3|2432217|15045666|B)Fine||SL207|Koshihikari||jsa|134|SSR||RM1332|RM6676||||||F3|1536|"overall evaluation"|||2007
+1041|qST3-2|"Physiological trait"|"Eating quality"|2|3|514856|2432647|B)Fine||SL207|Koshihikari||jsa|134|SSR||RM4108|RM1332||||||F3|1536|stickiness|||2007
+1042|qTA3|"Physiological trait"|"Eating quality"|2|3|2432217|15045666|B)Fine||SL207|Koshihikari||jsa|134|SSR||RM1332|RM6676||||||F3|1536|taste|||2007
+1043|qSTA-2|"Morphological trait"|Root|2|2|20199878|21658842|C)Interval|7.05|IR64|"Kinandang Patong"|B|jsa|135|Mixture|||||RM262|RM341|||F2|117|"stele transversal area"|14.7|3612|2008
+1044|qMXA-2-1|"Morphological trait"|Root|2|2|7735705|8789557|C)Interval|4.92|IR64|"Kinandang Patong"|B|jsa|135|Mixture|||||OSR9A|RM71|||F2|117|"total area of late metaxylem vessels"|8.7|656.87|2008
+1045|qMXN-9|"Morphological trait"|Root|2|9|20442345|20828859|C)Interval|4.67|IR64|"Kinandang Patong"|B|jsa|135|Mixture|||||RM201|OSR29|||F2|117|"number of late metaxylem vessels"|11.9|0.15|2008
+1046|qRTH-2|"Morphological trait"|Root|2|2|20199878|21658842|C)Interval|7.86|IR64|"Kinandang Patong"|B|jsa|135|Mixture|||||RM262|RM341|||F2|117|"root thickness"|19.3|40.14|2008
+1047|qLEI3|"Resistance or Tolerance"|"Submergency tolerance"|2|3|10708808|12954471|C)Interval|3.14|T65|C9285|B|jsa|136|SSR|||||RM7249|RM3803|||F2|94|"Lowest elongated internode"|14|0|2007
+1048||"Physiological trait"|"Eating quality"|1|2|26613968|30200578|B)Fine||Akihikari|"DH92(Koshihikari x Akihikari DHL line)"||jsa|137|SSR||RM13658|RM6933||||||||"stickiness score"|||2008
+1049||"Physiological trait"|"Eating quality"|1|2|26613968|30200578|B)Fine||Akihikari|"DH92(Koshihikari x Akihikari DHL line)"||jsa|137|SSR||RM13658|RM6933||||||||"amylose content"|||2008
+1050||"Physiological trait"|"Eating quality"|1|2|4414015|5205255|C)Interval|11.6|"CSSL(Koshihikari x Kasalath)"|Koshihikari|B|jsa|138|SSR|||||RM3865|RM3294|||F2|94|"white-back kernels"|43|7.8|2008
+1051||"Physiological trait"|"Eating quality"|1|1|36657777|40959893|C)Interval|8.2|"CSSL(Koshihikari x Kasalath)"|Koshihikari|A|jsa|138|SSR|||||RM8084|RM6827|||F2|94|"white-berry kernels"|14.9|11.8|2008

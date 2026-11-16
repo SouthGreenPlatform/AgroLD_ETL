@@ -1,0 +1,82 @@
+# Configuration for the Snakemake pipeline.
+#
+# Paths to raw input files, per data source, and where the RDF they produce
+# is written. Each source's section lists exactly what its parser needs —
+# see the comment at the top of the matching riceKB/*.py module for the
+# expected file format.
+#
+# output_dir is deliberately NOT rdf_ttl/ -- that directory is tracked in
+# git and holds small, hand-picked example outputs, not a real run's
+# output. A real run writes here instead; this directory is gitignored,
+# like data/, so on a cluster with limited home quota it can be symlinked
+# to shared project storage the same way.
+output_dir: "output"
+
+interpro:
+  tree_file: "data/interpro/ParentChildTreeFile.txt"
+  entry_list: "data/interpro/entry.list"
+  go_mapping: "data/interpro/interpro2go"
+
+oryzabase:
+  # OryzaBase's gene list is exported on demand via a web form
+  # (https://shigen.nig.ac.jp/rice/oryzabase/gene/download), with a
+  # timestamp baked into the downloaded filename -- no stable URL to fetch
+  # automatically, so like interpro above, rename or symlink the download
+  # to this fixed path by hand.
+  gene_list: "data/oryzabase/OryzabaseGeneListEn.txt"
+  # OryzaBase's separate "Reference" export (literature, not genes) -- same
+  # on-demand/no-stable-URL situation as gene_list above.
+  reference: "data/oryzabase/Reference.txt"
+
+qtaro:
+  gene_export: "data/qtaro/qtaro_gene.csv"
+  qtl_export: "data/qtaro/qtaro_qtl.csv"
+
+rapdb_msu:
+  # RAP-DB's RAP<->MSU gene id cross-reference
+  # (https://rapdb.dna.naro.go.jp/download/archive/), dated like oryzabase
+  # above -- rename the download to this fixed path. Used to convert a
+  # locus id given in MSU format (LOC_Os...) to RAP/IRGSP format (see
+  # riceKB/utils.py:load_msu_rap_mapping) instead of dropping it, e.g. in
+  # riceKB/qtaroModel.py's "genes" command.
+  mapping_file: "data/rapdb_msu/RAP-MSU.txt.gz"
+
+# The single source of truth for which species AgroLD covers and what each
+# one's NCBI taxon id is -- shared with ensembl_rdf, so the two pipelines
+# never disagree. Assumes ensembl_rdf is checked out as a sibling directory;
+# override these paths if yours lives elsewhere.
+ensembl_rdf:
+  species_file: "../ensembl_rdf/ensembl_rdf/config/species_agrold.yaml"
+  species_table: "../ensembl_rdf/ensembl_rdf/config/species_EnsemblPlants_63.txt"
+
+planttfdb:
+  # One subdirectory per species, named by its ensembl_rdf production name
+  # (e.g. data/planttfdb/oryza_sativa/), each with these two files. Fetched
+  # automatically on demand by the Snakefile's download_planttfdb rule (via
+  # bin/download_planttfdb.py) and deleted again right after use -- no
+  # manual download, and no permanent copy kept on disk.
+  data_dir: "data/planttfdb"
+  tf_list: "Mes_TF_list.txt"
+  regulation_file: "regulation_merged_Mes.txt"
+
+stringdb:
+  # One subdirectory per species, named by its ensembl_rdf production name
+  # (e.g. data/stringdb/arabidopsis_thaliana/), each with the two files
+  # STRING names by taxon id (e.g. 3702.protein.aliases.v12.5.txt,
+  # 3702.protein.links.v12.5.txt). Unlike planttfdb above, these are fetched
+  # automatically on demand by the Snakefile's download_stringdb rule (via
+  # bin/download_stringdb.py) and deleted again right after use -- no
+  # manual download, and no permanent copy kept on disk.
+  data_dir: "data/stringdb"
+  aliases_suffix: "protein.aliases.v12.5.txt"
+  links_suffix: "protein.links.v12.5.txt"
+
+uniprot:
+  # One shared flat-file per bank (sprot, trembl) for the whole "plants"
+  # taxonomic division (not per-species: UniProt publishes one file per
+  # division, covering every species in it). Fetched automatically on
+  # demand by the Snakefile's download_uniprot rule (via
+  # bin/download_uniprot.py), kept gzip-compressed on disk (trembl's is
+  # ~14GB compressed), and deleted again once every species' conversion
+  # job for that bank has used it.
+  data_dir: "data/uniprot"

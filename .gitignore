@@ -1,0 +1,6 @@
+.DS_Store
+.snakemake/
+data/
+output/
+__pycache__/
+rdf_ttl/

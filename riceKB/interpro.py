@@ -1,4 +1,5 @@
 import sys
+import argparse
 from riceKB.globalVars import *
 from riceKB.utils import *
 import pprint
@@ -25,8 +26,14 @@ __author__  = "larmande"
 
 def fileParser(infile,list, mapping, outfile):
     #array = pd.read_csv(infile, sep="\t", delimiter=None , dtype='str')
-    array1 = pd.read_csv(list, sep="\t", delimiter=None, dtype='str' , header=None, skip_blank_lines=True)
-    goarray = pd.read_csv(mapping, sep=" > ", delimiter=None, dtype='str' , header=None, engine='python', skip_blank_lines=True)
+    # entry.list has a header row (ENTRY_AC/ENTRY_TYPE/ENTRY_NAME); header=0
+    # drops it instead of ingesting it as a bogus entry.
+    array1 = pd.read_csv(list, sep="\t", delimiter=None, dtype='str' , header=0, skip_blank_lines=True)
+    # interpro2go starts with a handful of "!"-prefixed metadata lines (date,
+    # citation, contact...) with no " > " in them; comment='!' drops those so
+    # pandas doesn't infer a 1-column format from them and then choke on the
+    # first real, 2-column row.
+    goarray = pd.read_csv(mapping, sep=" > ", delimiter=None, dtype='str' , header=None, engine='python', skip_blank_lines=True, comment='!')
     godic = {}
     for line in goarray.to_numpy():
         iprtuple = line[0]
@@ -75,32 +82,32 @@ def fileParser(infile,list, mapping, outfile):
             buffer = ''
             if not line.startswith('--'):
                 nb_line += 1
-                key,value = line.split('::')
+                key,value = line.rstrip('\n').rstrip(':').split('::', 1)
                 root_item = key
             elif not line.startswith('----'):
                 nb_line += 1
-                key, value = line.split('::')
+                key, value = line.rstrip('\n').rstrip(':').split('::', 1)
                 key = re.sub('--','',key)
                 second_item = key
                 buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + interpro_ns + root_item + " ;\n"
             elif not line.startswith('------'):
                 nb_line += 1
-                key, value = line.split('::')
+                key, value = line.rstrip('\n').rstrip(':').split('::', 1)
                 key = re.sub('--', '', key)
                 third_item = key
                 buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + interpro_ns + second_item + " ;\n"
             elif not line.startswith('--------'):
                 nb_line += 1
-                key, value = line.split('::')
+                key, value = line.rstrip('\n').rstrip(':').split('::', 1)
                 key = re.sub('--', '', key)
                 fourth_item = key
                 buffer += "<" + interpro_ns + key + ">\n"
                 buffer += "\t" + rdfs_ns + "subClassOf" + "\t" + interpro_ns + third_item + " ;\n"
             else:
                 nb_line += 1
-                key, value = line.split('::')
+                key, value = line.rstrip('\n').rstrip(':').split('::', 1)
                 key = re.sub('--', '', key)
                 parent_item = current_item
                 current_item = key
@@ -114,18 +121,17 @@ def fileParser(infile,list, mapping, outfile):
 
 
 
-#TEST PARAM
-path1 = '/Users/pierre/workspace2015/datasets/ParentChildTreeFile.txt'
-path2 ='/Users/pierre/workspace2015/datasets/entry.list'
-path3 = '/Users/pierre/workspace2015/datasets/interpro2go'
-path_output = '/Users/pierre/workspace2015/datasets/interpro.ttl' # The output
-#path = '/opt/TOS_DI-20141207_1530-V5.6.1/workspace/gff_data_orygeneDB/os_japonica/os_indicaCancat.gff3'    # The input
-#path_output = '/home/elhassouni/Bureau/japonica.ttl' # The output
-#ds = geneParser(path)   # The parsing file
-#pp.pprint(ds)    # For to see in teminal the parsing
+def main():
+    parser = argparse.ArgumentParser(
+        description="Convert InterPro's ParentChildTreeFile, entry list and "
+                    "GO mapping to RDF.")
+    parser.add_argument("tree_file", help="ParentChildTreeFile.txt (entry hierarchy)")
+    parser.add_argument("entry_list", help="entry.list (id, type, label)")
+    parser.add_argument("go_mapping", help="interpro2go (id -> GO term mapping)")
+    parser.add_argument("output", help="output Turtle file")
+    args = parser.parse_args()
+    fileParser(args.tree_file, args.entry_list, args.go_mapping, args.output)
 
-#os_indicaModele(ds, path_output)  # The path_output)  # The tranformation fonction tropGeneToRdf(input, output)
 
-#RDFConverter(ds, path_output)
-
-fileParser(path1,path2,path3,path_output)
+if __name__ == "__main__":
+    main()

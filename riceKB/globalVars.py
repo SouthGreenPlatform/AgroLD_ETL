@@ -178,15 +178,17 @@ qtaro_qtl_ns = 'qtaro_qtl:'
 ensembl_plant = 'http://identifiers.org/ensembl.plant/' # http://rdf.ebi.ac.uk/resource/ensembl/
 ensembl_ns = 'ensembl:'
 
-ensembl_gene_uri = 'http://rdf.ebi.ac.uk/resource/ensembl/'
+# Must match ensembl_rdf's own agrold profile (rdf-config/agrold/prefix.yaml):
+# gene has no path segment, transcript and protein each have their own.
+ensembl_gene_uri = 'http://purl.agrold.org/resource/'
 ensembl_gene_ns = 'ensembl_gene:'
 
 
-ensembl_transcript_uri = 'http://rdf.ebi.ac.uk/resource/ensembl.transcript/'
+ensembl_transcript_uri = 'http://purl.agrold.org/resource/transcript/'
 ensembl_transcript_ns = 'ensembl_transcript:'
 
 
-ensembl_protein_uri = 'http://rdf.ebi.ac.uk/resource/ensembl.protein/'
+ensembl_protein_uri = 'http://purl.agrold.org/resource/protein/'
 ensembl_protein_ns = 'ensembl_protein:'
 
 

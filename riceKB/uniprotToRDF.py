@@ -10,6 +10,7 @@ from Bio import SwissProt
 from globalVars import *
 #from globalVars import *
 from utils import *
+import gzip
 import pprint
 import re
 import os
@@ -280,7 +281,12 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
     output_writer.write(str(getRDFHeaders()))
 #    for upfile in up_files:
 #        file_handle = open(upfile, "r")
-    with open(up_files, 'r') as file_handle:
+    # up_files is now kept gzip-compressed on disk (the plants/trembl
+    # divisions are too big to decompress to a second on-disk copy, and
+    # SwissProt.parse() below reads it incrementally anyway, so streaming
+    # decompression costs no extra memory over reading it uncompressed).
+    opener = gzip.open if up_files.endswith('.gz') else open
+    with opener(up_files, 'rt') as file_handle:
         #up_records = SwissProt.parse(file_handle)
 
         #        xrefs = defaultdict(list)
@@ -378,11 +384,22 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
                                     symbol = re.sub(r'\s+', '', symbol)
                                     symbol = re.sub(r'\"+', '', symbol)
                                     symbol = symbol.strip()
-                                    rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
-                                        symbol) + " ;\n"
-                                    rdf_buffer += "\t" + base_vocab_ns + "orderedLocusName" + "\t" + '"%s"' % (
-                                        symbol) + " ;\n"
-                                    gene_buffer +=  prim_accession + "\t"  +  symbol + "\n"
+                                    # UniProt sometimes merges two paralogous/duplicate loci
+                                    # into one OrderedLocusNames entry with a '/'
+                                    # (e.g. "Os02g0318450/Os02g0318500") instead of two
+                                    # comma-separated entries -- split those too, one triple
+                                    # per actual locus, so a downstream join on this literal
+                                    # (e.g. against ensembl_rdf's gene dcterms:identifier)
+                                    # matches an individual locus id, not the combined string.
+                                    for locus in symbol.split('/'):
+                                        locus = locus.strip()
+                                        if not locus:
+                                            continue
+                                        rdf_buffer += "\t" + skos_ns + "altSymbol" + "\t" + '"%s"' % (
+                                            locus) + " ;\n"
+                                        rdf_buffer += "\t" + base_vocab_ns + "orderedLocusName" + "\t" + '"%s"' % (
+                                            locus) + " ;\n"
+                                        gene_buffer +=  prim_accession + "\t"  +  locus + "\n"
                             if entry_dic.get('ORFNames'):
                                 for symbol in entry_dic['ORFNames']:
                                     symbol = re.sub(r'{.+?}', '', symbol)
@@ -469,6 +486,14 @@ def upToRDF(up_files, rdf_out_dir,taxon_id,bank_name):  # , output_file
     pubmed_writer.close()
     print("Number of Proteins: %s\n" % (str(prot_counter)))
     print("*************** UniProt RDF conversion completed ************\n")
+    if prot_counter == 0:
+        # Nothing matched taxon_id -- in particular the case Snakemake's
+        # uniprot rule relies on, where up_files holds many species: exit
+        # non-zero so a species with no Swiss-Prot entry in this division
+        # shows up as a clear job failure instead of silently-near-empty
+        # (header-only) output files, matching download_stringdb.py /
+        # download_planttfdb.py's convention.
+        sys.exit(1)
 
 
 #                   pp.pprint(record.cross_references) #taxonomy_id cross_references comments description keywords gene_name molecule_type

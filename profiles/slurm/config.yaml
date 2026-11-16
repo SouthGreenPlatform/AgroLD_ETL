@@ -1,0 +1,19 @@
+# Snakemake profile for the i-Trop cluster.
+#
+#   snakemake --profile profiles/slurm
+#
+# Memory here is per reserved CPU, not a flat pool (see the normal
+# partition's MaxMemPerCPU and the highmem one's 9000 MB/CPU cap, learned
+# the hard way while sizing ensembl_rdf's cluster jobs) -- mem_mb_per_cpu
+# below becomes sbatch's --mem-per-cpu, not --mem. Override per rule in the
+# Snakefile for anything heavier than interpro/plantTFDB (e.g. a future
+# ensembl_rdf or Compara rule), rather than raising this global default.
+executor: slurm
+jobs: 10
+latency-wait: 60
+
+default-resources:
+  slurm_partition: normal
+  mem_mb_per_cpu: 2000
+  cpus_per_task: 1
+  runtime: 30
